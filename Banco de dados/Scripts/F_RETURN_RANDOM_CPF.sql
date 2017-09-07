@@ -1,5 +1,3 @@
-FIRST T-SQL Function
-
 IF object_id('dbo.F_RETURN_RANDOM_CPF', 'FN') IS NOT NULL
   DROP FUNCTION dbo.F_RETURN_RANDOM_CPF;
 
