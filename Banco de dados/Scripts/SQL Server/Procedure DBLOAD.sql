@@ -1,9 +1,7 @@
 /*    ==Parâmetros de Script==
-
     Versão do Servidor de Origem : SQL Server 2016 (13.0.4001)
     Edição do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
     Tipo do Mecanismo de Banco de Dados de Origem : SQL Server Autônomo
-
     Versão do Servidor de Destino : SQL Server 2016
     Edição de Mecanismo de Banco de Dados de Destino : Microsoft SQL Server Enterprise Edition
     Tipo de Mecanismo de Banco de Dados de Destino : SQL Server Autônomo
@@ -95,8 +93,8 @@ BEGIN
 
   --Insert em tb_contrato
 
-  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor1, 'ESPARTA SEGURANÇA LTDA', '65616094000173', 63, '29/07/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor2, 'BRASFORT ADMINISTRAÇÃO E SERVIÇOS LTDA', '46048365000197', 70, '22/02/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor1, 'ESPARTA SEGURANÇA LTDA', '65616094000173', 63, '29/07/2017', 'S', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor2, 'BRASFORT ADMINISTRAÇÃO E SERVIÇOS LTDA', '46048365000197', 70, '22/02/2017', 'S', @vLoginAtualizacao, @vDataAtualizacao);
 
   --Carregamento das variáveis de contrato
   
@@ -107,6 +105,11 @@ BEGIN
   SELECT @vCodContrato2 = cod
     FROM tb_contrato
     WHERE UPPER(nome_empresa) = 'BRASFORT ADMINISTRAÇÃO E SERVIÇOS LTDA';
+
+  --Insert em tb_vigencia_contrato
+
+  INSERT INTO tb_vigencia_contrato (cod_contrato, data_inicio_vigencia, data_fim_vigencia, login_atualizacao, data_atualizacao) VALUES (@vCodContrato1, '27/01/2017', '31/08/2017', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_vigencia_contrato (cod_contrato, data_inicio_vigencia, data_fim_vigencia, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, '22/02/2017', '16/10/2017', @vLoginAtualizacao, @vDataAtualizacao);
 
   --Carregamento das variáveis de percentual
 
@@ -415,5 +418,3 @@ BEGIN
 END;
 
 GO
-
-
