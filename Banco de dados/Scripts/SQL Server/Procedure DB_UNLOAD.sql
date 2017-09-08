@@ -32,13 +32,13 @@ BEGIN
 
   DELETE FROM tb_restituicao_rescisao;
 
-  DELETE FROM tb_posto_funcionario;
+  DELETE FROM tb_cargo_funcionario;
 
   DELETE FROM tb_convencao_coletiva;
 
   DELETE FROM tb_funcionario;
 
-  DELETE FROM tb_posto_trabalho;
+  DELETE FROM tb_cargo_contrato;
 
   DELETE FROM tb_percentual_contrato;
 
