@@ -1,6 +1,6 @@
 /*    ==Parâmetros de Script==
 
-    Versão do Servidor de Origem : SQL Server 2016 (13.0.1601)
+    Versão do Servidor de Origem : SQL Server 2016 (13.0.4001)
     Edição do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
     Tipo do Mecanismo de Banco de Dados de Origem : SQL Server Autônomo
 
@@ -9,16 +9,18 @@
     Tipo de Mecanismo de Banco de Dados de Destino : SQL Server Autônomo
 */
 
-USE [siscovi]
+USE [SISCOVI]
 GO
 
-/****** Object:  UserDefinedFunction [dbo].[F_RETURN_RANDOM_CPF]    Script Date: 04/09/2017 15:03:56 ******/
+/****** Object:  UserDefinedFunction [dbo].[F_RETURN_RANDOM_CPF]    Script Date: 07/09/2017 21:11:24 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
+
+-----------------------------------------------------------------------------------
 
 create function [dbo].[F_RETURN_RANDOM_CPF](@pRandomNumber BIGINT) RETURNS VARCHAR(14)
 WITH EXECUTE AS CALLER
@@ -93,6 +95,8 @@ BEGIN
   RETURN @vCpf;
 
 END;
+
+------------------------------------------------------------------------------------------------
 GO
 
 

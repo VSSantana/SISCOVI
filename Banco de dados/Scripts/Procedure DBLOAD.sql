@@ -1,6 +1,6 @@
 /*    ==Parâmetros de Script==
 
-    Versão do Servidor de Origem : SQL Server 2016 (13.0.1601)
+    Versão do Servidor de Origem : SQL Server 2016 (13.0.4001)
     Edição do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
     Tipo do Mecanismo de Banco de Dados de Origem : SQL Server Autônomo
 
@@ -9,15 +9,17 @@
     Tipo de Mecanismo de Banco de Dados de Destino : SQL Server Autônomo
 */
 
-USE [siscovi]
+USE [SISCOVI]
 GO
 
-/****** Object:  StoredProcedure [dbo].[DBLOAD]    Script Date: 04/09/2017 15:09:06 ******/
+/****** Object:  StoredProcedure [dbo].[DBLOAD]    Script Date: 07/09/2017 21:11:07 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+
 
 CREATE procedure [dbo].[DBLOAD]
 AS
@@ -38,10 +40,12 @@ BEGIN
   DECLARE @vCodAbono INT;
   DECLARE @vCodFerias INT;
   DECLARE @vCodFgts INT;
-  DECLARE @vCodPostoTrabalho1 INT;
-  DECLARE @vCodPostoTrabalho2 INT;
+  DECLARE @vCodCargoContrato1 INT;
+  DECLARE @vCodCargoContrato2 INT;
   DECLARE @vCodFuncionario INT;
   DECLARE @vCount INT = 0;
+  DECLARE @vCodCargo1 INT;
+  DECLARE @vCodCargo2 INT;
   DECLARE @vRemuneracao1 FLOAT = CONVERT(FLOAT,'1142.68');
   DECLARE @vRemuneracao2 FLOAT = CONVERT(FLOAT,'1239.80');
 
@@ -91,8 +95,8 @@ BEGIN
 
   --Insert em tb_contrato
 
-  INSERT INTO tb_contrato (cod_gestor, nome_empresa, numero_portaria, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor1, 'ESPARTA SEGURANÇA LTDA', 177, 63, '29/07/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_contrato (cod_gestor, nome_empresa, numero_portaria, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor2, 'BRASFORT ADMINISTRAÇÃO E SERVIÇOS LTDA', 171, 70, '22/02/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor1, 'ESPARTA SEGURANÇA LTDA', '65616094000173', 63, '29/07/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_contrato (cod_gestor, nome_empresa, cnpj, numero_contrato, data_inicio, se_ativo, login_atualizacao, data_atualizacao) VALUES (@vCodGestor2, 'BRASFORT ADMINISTRAÇÃO E SERVIÇOS LTDA', '46048365000197', 70, '22/02/2017', 'S',@vLoginAtualizacao, @vDataAtualizacao);
 
   --Carregamento das variáveis de contrato
   
@@ -139,12 +143,36 @@ BEGIN
   INSERT INTO tb_percentual_contrato (cod_contrato, cod_rubrica, percentual, data_inicio, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, @vCodFerias, '9.09', '22/02/2017', @vLoginAtualizacao, @vDataAtualizacao);
   INSERT INTO tb_percentual_contrato (cod_contrato, cod_rubrica, percentual, data_inicio, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, @vCodFgts, '4.36', '22/02/2017', @vLoginAtualizacao, @vDataAtualizacao);
 
-  --Insert em tb_posto_trabalho
+  --Insert em tb_cargo
 
-  INSERT INTO tb_posto_trabalho (cod_contrato, nome, login_atualizacao, data_atualizacao) VALUES (@vCodContrato1, 'Posto 1.1', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_posto_trabalho (cod_contrato, nome, login_atualizacao, data_atualizacao) VALUES (@vCodContrato1, 'Posto 1.2', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_posto_trabalho (cod_contrato, nome, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, 'Posto 1.1', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_posto_trabalho (cod_contrato, nome, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, 'Posto 1.2', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo (nome, login_atualizacao, data_atualizacao) VALUES ('Agente de Segurança', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo (nome, login_atualizacao, data_atualizacao) VALUES ('Segurança Patrimonial', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo (nome, login_atualizacao, data_atualizacao) VALUES ('Secretariado Executivo', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo (nome, login_atualizacao, data_atualizacao) VALUES ('Assistente Executivo', @vLoginAtualizacao, @vDataAtualizacao);
+  
+  --Insert em tb_cargo_contrato
+
+  SELECT @vCodCargo1 = cod
+    FROM tb_cargo
+    WHERE UPPER(nome) = UPPER('Agente de Segurança');
+
+  SELECT @vCodCargo2 = cod
+    FROM tb_cargo
+    WHERE UPPER(nome) = UPPER('Segurança Patrimonial');
+
+  INSERT INTO tb_cargo_contrato (cod_contrato, cod_cargo, login_atualizacao, data_atualizacao) VALUES (@vCodContrato1, @vCodCargo1, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo_contrato (cod_contrato, cod_cargo, login_atualizacao, data_atualizacao) VALUES (@vCodContrato1, @vCodCargo2, @vLoginAtualizacao, @vDataAtualizacao);
+
+  SELECT @vCodCargo1 = cod
+    FROM tb_cargo
+    WHERE UPPER(nome) = UPPER('Secretariado Executivo');
+
+  SELECT @vCodCargo2 = cod
+    FROM tb_cargo
+    WHERE UPPER(nome) = UPPER('Assistente Executivo');
+
+  INSERT INTO tb_cargo_contrato (cod_contrato, cod_cargo, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, @vCodCargo1, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_cargo_contrato (cod_contrato, cod_cargo, login_atualizacao, data_atualizacao) VALUES (@vCodContrato2, @vCodCargo2, @vLoginAtualizacao, @vDataAtualizacao);
 
   --Insert em tb_funcionarios
 
@@ -240,24 +268,26 @@ BEGIN
          ('Oswaldo Borges da Costa',dbo.F_RETURN_RANDOM_CPF(FLOOR(RAND() * (99999999999 - 10000000000) + 10000000000)),'S',@vLoginAtualizacao,@vDataAtualizacao),
          ('Cândido Vaccarezza',dbo.F_RETURN_RANDOM_CPF(FLOOR(RAND() * (99999999999 - 10000000000) + 10000000000)),'S',@vLoginAtualizacao,@vDataAtualizacao);
 
-  --Carregamento das variáveis de posto de trabalho para o contrato 1
+  --Carregamento das variáveis de cargo para o contrato 1
 
-  SELECT @vCodPostoTrabalho1 = cod
-    FROM tb_posto_trabalho
-    WHERE UPPER(nome) = UPPER('Posto 1.1')
-      AND cod_contrato = @vCodContrato1;
+  SELECT @vCodCargoContrato1 = cc.cod
+    FROM tb_cargo_contrato cc
+	  JOIN tb_cargo c ON c.cod = cc.cod_cargo
+    WHERE UPPER(c.nome) = UPPER('Agente de Segurança')
+      AND cc.cod_contrato = @vCodContrato1;
 
-  SELECT @vCodPostoTrabalho2 = cod
-    FROM tb_posto_trabalho
-    WHERE UPPER(nome) = UPPER('Posto 1.2')
-      AND cod_contrato = @vCodContrato1;
+  SELECT @vCodCargoContrato2 = cc.cod
+    FROM tb_cargo_contrato cc
+	  JOIN tb_cargo c ON c.cod = cc.cod_cargo
+    WHERE UPPER(c.nome) = UPPER('Segurança Patrimonial')
+      AND cc.cod_contrato = @vCodContrato1;
 
   --Insert em tb_convencao_coletiva
   
-  INSERT INTO tb_convencao_coletiva (cod_posto_trabalho, data, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodPostoTrabalho1, '29/01/2017', @vRemuneracao1, @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_convencao_coletiva (cod_posto_trabalho, data, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodPostoTrabalho2, '29/01/2017', @vRemuneracao2, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_convencao_coletiva (cod_cargo_contrato, data_convencao, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '29/01/2017', '29/01/2017', @vRemuneracao1, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_convencao_coletiva (cod_cargo_contrato, data_convencao, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '29/01/2017', '29/01/2017', @vRemuneracao2, @vLoginAtualizacao, @vDataAtualizacao);
 
-  --Insert em tb_posto_funcionario
+  --Insert em tb_cargo_funcionario
 
   OPEN cur_funcionario
 
@@ -271,13 +301,13 @@ BEGIN
 
         BEGIN
 
-        INSERT INTO tb_posto_funcionario(cod_funcionario, 
-                                         cod_posto_trabalho, 
+        INSERT INTO tb_cargo_funcionario(cod_funcionario, 
+                                         cod_cargo_contrato, 
                                          data_disponibilizacao, 
                                          login_atualizacao, 
                                          data_atualizacao) 
           VALUES (@vCodFuncionario, 
-                  @vCodPostoTrabalho1,
+                  @vCodCargoContrato1,
                   @vDataDisponibilizacao, 
                   @vLoginAtualizacao, 
                   @vDataAtualizacao);
@@ -292,13 +322,13 @@ BEGIN
  
         BEGIN
 
-          INSERT INTO tb_posto_funcionario(cod_funcionario, 
-                                           cod_posto_trabalho, 
+          INSERT INTO tb_cargo_funcionario(cod_funcionario, 
+                                           cod_cargo_contrato, 
                                            data_disponibilizacao, 
                                            login_atualizacao, 
                                            data_atualizacao) 
             VALUES (@vCodFuncionario, 
-                    @vCodPostoTrabalho2,
+                    @vCodCargoContrato2,
                     @vDataDisponibilizacao, 
                     @vLoginAtualizacao, 
                     @vDataAtualizacao);
@@ -313,13 +343,13 @@ BEGIN
 
           BEGIN
           
-            INSERT INTO tb_posto_funcionario(cod_funcionario, 
-                                      cod_posto_trabalho, 
+            INSERT INTO tb_cargo_funcionario(cod_funcionario, 
+                                      cod_cargo_contrato, 
                                       data_disponibilizacao, 
                                       login_atualizacao, 
                                       data_atualizacao) 
               VALUES (@vCodFuncionario, 
-                      @vCodPostoTrabalho1,
+                      @vCodCargoContrato1,
                       @vDataDisponibilizacao, 
                       @vLoginAtualizacao, 
                       @vDataAtualizacao);
@@ -334,13 +364,13 @@ BEGIN
 
             BEGIN
 
-              INSERT INTO tb_posto_funcionario(cod_funcionario, 
-                                               cod_posto_trabalho, 
+              INSERT INTO tb_cargo_funcionario(cod_funcionario, 
+                                               cod_cargo_contrato, 
                                                data_disponibilizacao, 
                                                login_atualizacao, 
                                                data_atualizacao) 
                 VALUES (@vCodFuncionario, 
-                        @vCodPostoTrabalho2,
+                        @vCodCargoContrato2,
                         @vDataDisponibilizacao, 
                         @vLoginAtualizacao, 
                         @vDataAtualizacao);
@@ -357,18 +387,20 @@ BEGIN
 
       --Carregamento das variáveis dos postos de trabalho para o contrato 2  
 
-        SELECT @vCodPostoTrabalho1 = cod
-          FROM tb_posto_trabalho
-          WHERE UPPER(nome) = UPPER('Posto 1.1')
-            AND cod_contrato = @vCodContrato2;
+        SELECT @vCodCargoContrato1 = cc.cod
+		  FROM tb_cargo_contrato cc
+		    JOIN tb_cargo c ON c.cod = cc.cod_cargo
+		  WHERE UPPER(c.nome) = UPPER('Secretariado Executivo')
+		    AND cc.cod_contrato = @vCodContrato2;
 
-        SELECT @vCodPostoTrabalho2 = cod
-          FROM tb_posto_trabalho
-          WHERE UPPER(nome) = UPPER('Posto 1.2')
-            AND cod_contrato = @vCodContrato2;
+        SELECT @vCodCargoContrato2 = cc.cod
+          FROM tb_cargo_contrato cc
+	        JOIN tb_cargo c ON c.cod = cc.cod_cargo
+          WHERE UPPER(c.nome) = UPPER('Assistente Executivo')
+            AND cc.cod_contrato = @vCodContrato2;
 
-        INSERT INTO tb_convencao_coletiva (cod_posto_trabalho, data, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodPostoTrabalho1, '22/01/2017', '1320.40', @vLoginAtualizacao, @vDataAtualizacao);
-	    INSERT INTO tb_convencao_coletiva (cod_posto_trabalho, data, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodPostoTrabalho2, '22/02/2017', '1518.80', @vLoginAtualizacao, @vDataAtualizacao);
+        INSERT INTO tb_convencao_coletiva (cod_cargo_contrato, data_convencao, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '22/01/2017', '22/01/2017', '1320.40', @vLoginAtualizacao, @vDataAtualizacao);
+	    INSERT INTO tb_convencao_coletiva (cod_cargo_contrato, data_convencao, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '22/02/2017', '22/01/2017', '1518.80', @vLoginAtualizacao, @vDataAtualizacao);
 
       END;
   
