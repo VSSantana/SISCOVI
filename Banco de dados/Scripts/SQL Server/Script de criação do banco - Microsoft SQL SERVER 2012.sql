@@ -1,14 +1,16 @@
 -- Gerado por Oracle SQL Developer Data Modeler 4.2.0.932
---   em:        2017-09-06 16:19:44 BRT
+--   em:        2017-09-08 13:11:53 BRT
 --   site:      SQL Server 2012
 --   tipo:      SQL Server 2012
+
+
 
 CREATE TABLE TB_CARGO 
     (
      COD INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
      NOME VARCHAR (150) NOT NULL , 
      DESCRICAO VARCHAR (400) , 
-     LOGIN_ATUALIZCAO VARCHAR (100) NOT NULL , 
+     LOGIN_ATUALIZACAO VARCHAR (100) NOT NULL , 
      DATA_ATUALIZACAO DATETIME NOT NULL 
     )
     ON "default"
