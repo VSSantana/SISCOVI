@@ -15,13 +15,11 @@ BEGIN
     FROM tb_convencao_coletiva
     WHERE data_aditamento IS NOT NULL
       AND cod_cargo_contrato = pCodCargoContrato
-      AND (((EXTRACT(month FROM data_convencao) = pMes AND EXTRACT(year FROM data_convencao) = pAno)
+      AND (((EXTRACT(month FROM data_inicio_convencao) = pMes AND EXTRACT(year FROM data_inicio_convencao) = pAno)
            AND
            (EXTRACT(month FROM data_aditamento) = pMes AND EXTRACT(year FROM data_aditamento) = pAno))
            OR
-           ((EXTRACT(month FROM F_ULTIMO_DIA_CONVENCAO(cod)) = pMes AND EXTRACT(year FROM F_ULTIMO_DIA_CONVENCAO(cod)) = pAno)
-           AND
-           (EXTRACT(month FROM F_ULTIMO_DIA_CONVENCAO(cod)) = pMes AND EXTRACT(year FROM F_ULTIMO_DIA_CONVENCAO(cod)) = pAno)));
+           ((EXTRACT(month FROM data_fim_convencao) = pMes AND EXTRACT(year FROM data_fim_convencao) = pAno)));
 
   IF (vCount IS NOT NULL) THEN
   
