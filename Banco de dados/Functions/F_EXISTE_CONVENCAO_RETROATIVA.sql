@@ -1,49 +1,66 @@
-create or replace function "F_EXISTE_CONVENCAO_RETROATIVA"(pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
+create or replace function "F_EXISTE_CONVENCAO_RETROATIVA"(pCodConvencao NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
 IS
 
 --Função que retorna se em um determinado mês, para um determindado cargo, existe caso de retroatividade.
 
-  vCodConvencao NUMBER := 0;
   vDataConvencao DATE;
   vDataAditamento DATE;
+  vCount NUMBER := 0;
+  vCodCargoContrato NUMBER;
+  vDataCalculoAnterior DATE;
 
 BEGIN
     
-  --Determina o código da convenção do período informado baseado na data do aditamento.
+  --Determina os dados da convenção.
   
-  SELECT cod, data_inicio_convencao, data_aditamento 
-    INTO vCodConvencao, vDataConvencao, vDataAditamento
+  SELECT data_inicio_convencao, data_aditamento, cod_cargo_contrato 
+    INTO vDataConvencao, vDataAditamento, vCodCargoContrato
     FROM tb_convencao_coletiva
-    WHERE cod_cargo_contrato = pCodCargoContrato
-	  AND data_aditamento IS NOT NULL
-      AND EXTRACT(month FROM data_aditamento) = pMes
-      AND EXTRACT(year FROM data_aditamento) = pAno;
-
-  --Se existir convenção aditada ao período informado.  
-	  
-  IF(vCodConvencao IS NOT NULL) THEN
+    WHERE cod = pCodConvencao
+	  AND data_aditamento IS NOT NULL;
+      
+  --O primeiro caso é o de calcular um mês com aditamento.
   
-    --Se a data de inicio da convenção é superior a data referência e o mês de aditamento é
-	--maior que o mês da data da convenção, então há retroatividade.
-
-    IF((EXTRACT(month FROM vDataAditamento) > EXTRACT(month FROM vDataConvencao)) AND (EXTRACT(year FROM vDataAditamento) = EXTRACT(year FROM vDataConvencao))) THEN
+  IF (EXTRACT(month FROM vDataAditamento) = pMes AND (EXTRACT(year FROM vDataAditamento) = pAno)) THEN
+  
+    IF (TRUNC(vDataAditamento) <= TRUNC(SYSDATE)) THEN
     
-      RETURN TRUE;
-      
-    END IF;
-	
-	IF((EXTRACT(year FROM vDataAditamento) > EXTRACT(year FROM vDataConvencao)) AND (EXTRACT(month FROM vDataAditamento) < EXTRACT(month FROM vDataConvencao))) THEN
+      RETURN TRUE;      
     
-      RETURN TRUE;
-      
     END IF;
     
   END IF;
-
+  
+  --O segundo caso é o de calcular em um mês seguinte ao de aditamento.
+  
+  IF (EXTRACT(month FROM vDataAditamento) + 1 = pMes AND (EXTRACT(year FROM vDataAditamento) = pAno)) THEN
+  
+    SELECT COUNT(cod)
+      INTO vCount
+	  FROM tb_total_mensal_a_reter
+	  WHERE cod_cargo_contrato = vCodCargoContrato
+	    AND EXTRACT(month FROM data_referencia) = pMes - 1
+	    AND EXTRACT(year FROM data_referencia) = pAno;
+        
+    IF (vCount > 0) THEN
+    
+      SELECT MAX(DISTINCT(data_referencia))
+        INTO vDataCalculoAnterior
+	    FROM tb_total_mensal_a_reter
+	    WHERE cod_cargo_contrato = vCodCargoContrato
+	      AND EXTRACT(month FROM data_referencia) = pMes - 1
+	      AND EXTRACT(year FROM data_referencia) = pAno;
+          
+      IF (TRUNC(vDataAditamento) > TRUNC(vDataCalculoAnterior)) THEN
+    
+        RETURN TRUE;      
+    
+      END IF;      
+    
+    END IF;
+  
+  END IF;
+  
   RETURN FALSE;
-  
-  EXCEPTION WHEN NO_DATA_FOUND THEN
-  
-    RETURN NULL;
   
 END;
