@@ -1,45 +1,70 @@
-create or replace function "F_EXISTE_DUPLO_PERCENTUAL"(pCodContrato NUMBER, pRubrica VARCHAR2, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
+create or replace function "F_RETORNA_PERCENTUAL_PERIODO" (pCodContrato NUMBER, pRubrica VARCHAR2, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN FLOAT
 IS
+
+--O período passado deve ser exato, não podendo compreender
+--aquele em que há dupla vigência.
+
+  vPercentual FLOAT;
+  vCodRubrica NUMBER;
+  vDataReferencia DATE;
   
---Função que retorna se em um dado mês existe um caso de cálculo parcial
---por existirem dois percentuais da mesma rubrica vigentes no mesmo mês.  
-  
-  vCount NUMBER;
- 
+  --Operação 1: Percentual do mês em que não há dupla vigência ou percentual atual. 
+  --Operação 2: Percentual encerrado do mês em que há dupla vigência.
+
 BEGIN
+
+  vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'); 
+
+  --Definição do percentual.
+
+  IF (pOperacao = 1) THEN
+
+    SELECT pc.percentual
+      INTO vPercentual 
+      FROM tb_percentual_contrato pc
+        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+      WHERE pc.cod_contrato = pCodContrato --Contrato.
+        AND UPPER(r.nome) = UPPER(pRubrica) --Rubrica.
+        AND pc.data_aditamento IS NOT NULL --Aditamento.
+        AND ((((TRUNC(pc.data_inicio) <= TRUNC(vDataReferencia)) --Início em mês anterior.
+	         AND
+		     (TRUNC(pc.data_inicio) <= TRUNC(LAST_DAY(vDataReferencia)))) --Início menor que o último dia do mês referência.
+        AND (((TRUNC(pc.data_fim) >= TRUNC(vDataReferencia)) --Fim maior que a data referência.
+	  	     AND 
+		     (TRUNC(pc.data_fim) >= TRUNC(LAST_DAY(vDataReferencia)))) --Fim maior ou igual ao último dia do mês.
+		      OR pc.data_fim IS NULL)) --Ou fim nulo.
+             OR (EXTRACT(month FROM data_inicio) = EXTRACT(month FROM vDataReferencia) --Ou início no mês referência.
+             AND EXTRACT(year FROM data_inicio) = EXTRACT(year FROM vDataReferencia)));
+
+  END IF;
   
-  --Conta o número de percentuais da mesma rubrica vigentes no mês.
-  
-  SELECT COUNT(pc.cod)
-    INTO vCount
-    FROM tb_percentual_contrato pc
-      JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
-    WHERE pc.cod_contrato = pCodContrato
-      AND UPPER(r.nome) = UPPER(pRubrica)
-      AND ((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
-           OR
-           (EXTRACT(month FROM pc.data_fim) = pMes AND EXTRACT(year FROM pc.data_fim) = pAno));
+  IF (pOperacao = 2) THEN
 
-  IF (vCount IS NOT NULL) THEN
-  
-    --Se houverem dois percentuais da mesma rubrica no mês passado retorna VERDADEIRO.
-  
-    IF (vCount = 2) THEN
-
-      RETURN TRUE;
-
-    ELSE
-
-      RETURN FALSE;
-
-    END IF;
+    SELECT pc.percentual
+      INTO vPercentual 
+      FROM tb_percentual_contrato pc
+        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+      WHERE pc.cod_contrato = pCodContrato --Contrato.
+        AND UPPER(r.nome) = UPPER(pRubrica) --Rubrica.
+        AND pc.data_aditamento IS NOT NULL --Aditamento.
+        AND (EXTRACT(month FROM data_fim) = EXTRACT(month FROM vDataReferencia) --Fim no mês referência.
+             AND EXTRACT(year FROM data_fim) = EXTRACT(year FROM vDataReferencia));
 
   END IF;
 
-  RETURN FALSE;
+  RETURN vPercentual;
   
-  EXCEPTION WHEN OTHERS THEN
+  EXCEPTION WHEN NO_DATA_FOUND THEN
   
-    RETURN NULL;
+    IF(pOperacao = 2) THEN
+    
+      vPercentual := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, pRubrica, pMes, pAno, 1);
+      
+      RETURN vPercentual;
+        
+    ELSE
 
+      RETURN NULL;
+      
+    END IF;
 END;

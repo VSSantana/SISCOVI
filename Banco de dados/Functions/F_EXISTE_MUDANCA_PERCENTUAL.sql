@@ -10,14 +10,16 @@ BEGIN
   
   --Conta o número de percentuais da mesma rubrica vigentes no mês.
   
-  SELECT COUNT(pc.cod)
+  SELECT COUNT(cod_rubrica)
     INTO vCount
-    FROM tb_percentual_contrato pc
-      JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
-    WHERE pc.cod_contrato = pCodContrato
-      AND ((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
-           OR
-           (EXTRACT(month FROM pc.data_fim) = pMes AND EXTRACT(year FROM pc.data_fim) = pAno));
+    FROM (SELECT cod_rubrica, COUNT(pc.cod) AS "CONTAGEM"
+            FROM tb_percentual_contrato pc
+            WHERE pc.cod_contrato = pCodContrato
+              AND ((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
+                   OR
+                   (EXTRACT(month FROM pc.data_fim) = pMes AND EXTRACT(year FROM pc.data_fim) = pAno))
+            GROUP BY cod_rubrica)
+    WHERE CONTAGEM > 1;
 
   IF (vCount IS NOT NULL) THEN
   

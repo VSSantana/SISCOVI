@@ -1,13 +1,16 @@
 create or replace function "F_FUNC_RETENCAO_INTEGRAL"(pCodCargoFuncionario NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
 IS
 
+--Função que retorna se um funcionário trabalhou período igual ou superior a 30
+--dias em um determinado mês.
+
   vDataDisponibilizacao DATE;
   vDataDesligamento DATE;
   vDataReferencia DATE;
 
 BEGIN
 
-  vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno);
+  vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
  
   SELECT data_disponibilizacao, 
          data_desligamento
@@ -15,75 +18,99 @@ BEGIN
 	     vDataDesligamento
     FROM tb_cargo_funcionario
 	WHERE cod = pCodCargoFuncionario;
-
---Caso em que o cálculo está sendo feito dentro do mês em que o funcionário começou a prestar serviço para o Tribunal
---e a data de desligamento é nula ou maior que o mês de cálculo.	
-
-  IF ((EXTRACT(month FROM vDataDisponibilizacao) = pMes AND EXTRACT(month FROM vDataDisponibilizacao) = pAno)
-       AND (vDataDesligamento IS NULL OR TRUNC(vDataDesligamento) >= LAST_DAY(TRUNC(vDataReferencia)))) THEN
-	   
-    IF (LAST_DAY(TRUNC(vDataReferencia)) - TRUNC(vDataDisponibilizacao) >= 15) THEN
-	
-	  RETURN TRUE;
-	  
-	END IF;
-	   
+    
+  --Caso não possua data de desligamento.  
+   
+  IF (vDataDesligamento IS NULL) THEN
+  
+    --Se a data de disponibilização é inferior a data referência então o
+    --funcionário trabalhou os 30 dias do mês referência.
+  
+    IF (vDataDisponibilizacao < vDataReferencia) THEN
+      
+      RETURN TRUE;
+      
+    END IF;
+    
+    --Se a data de disponibilização está no mês referência enão se verifica
+    --a quantidade de dias trabalhados pelo funcionário.
+  
+    IF (vDataDisponibilizacao >= vDataReferencia AND vDataDisponibilizacao <= LAST_DAY(vDataReferencia)) THEN
+    
+      IF (LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao + 1 >= 15) THEN
+  
+        RETURN TRUE;
+    
+      END IF;
+    
+    END IF;
+ 
+  END IF;
+  
+  --Caso possua data de desligamento.
+  
+  IF (vDataDesligamento IS NOT NULL) THEN
+  
+    --Se a data de disponibilização é inferior a data referência e a data de 
+    --desligamento é superior ao último dia do mês referência então o
+    --funcionário trabalhou os 30 dias.
+  
+    IF (vDataDisponibilizacao < vDataReferencia AND vDataDesligamento > LAST_DAY(vDataReferencia)) THEN
+      
+      RETURN TRUE;
+      
+    END IF;  
+    
+    --Se a data de disponibilização está no mês referência e a data de
+    --desligamento é superior mês referência, então se verifica a quantidade
+    --de dias trabalhados pelo funcionário.
+  
+    IF (vDataDisponibilizacao >= vDataReferencia 
+        AND vDataDisponibilizacao <= LAST_DAY(vDataReferencia)
+        AND vDataDesligamento > LAST_DAY(vDataReferencia)) THEN
+    
+      IF (LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao + 1 >= 15) THEN
+  
+        RETURN TRUE;
+    
+      END IF;
+    
+    END IF;
+    
+    --Se a data de disponibilização está no mês referência e também a data de
+    --desligamento, então contam-se os dias trabalhados pelo funcionário.
+    
+    IF (vDataDisponibilizacao >= vDataReferencia 
+        AND vDataDisponibilizacao <= LAST_DAY(vDataReferencia)
+        AND vDataDesligamento >= vDataReferencia
+        AND vDataDesligamento <= LAST_DAY(vDataReferencia)) THEN
+    
+      IF (vDataDesligamento - vDataDisponibilizacao + 1 >= 15) THEN
+  
+        RETURN TRUE;
+    
+      END IF;
+    
+    END IF;
+    
+    --Se a data da disponibilização for inferior ao mês de cálculo e 
+    --o funcionário tiver desligamento no mês referência, então contam-se
+    --os dias trabalhados.
+    
+    IF (vDataDisponibilizacao < vDataReferencia 
+        AND vDataDesligamento >= vDataReferencia
+        AND vDataDesligamento <= LAST_DAY(vDataReferencia)) THEN
+    
+      IF (vDataDesligamento - vDataReferencia + 1 >= 15) THEN
+  
+        RETURN TRUE;
+    
+      END IF;
+    
+    END IF;
+ 
   END IF;
 
-/*
-
-  SELECT COUNT(DISTINCT(cod))
-    INTO vAux
-    FROM tb_cargo_funcionario
-    WHERE cod = pCodCargoFuncionario
-      AND TRUNC(data_disponibilizacao) >= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND TRUNC(data_disponibilizacao) <= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno))))
-      AND (data_desligamento IS NULL OR TRUNC(data_desligamento) >= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))))
-      AND LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))) - TRUNC(data_disponibilizacao) >= 15;
-
---Caso geral, onde a data de disponibilização é inferior ao mês do cálculo e o desligamento é nulo ou superior.
-
-  SELECT COUNT(DISTINCT(cod))
-    INTO vAux
-    FROM tb_cargo_funcionario
-    WHERE cod = pCodCargoFuncionario
-      AND TRUNC(data_disponibilizacao) <= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND (data_desligamento IS NULL OR TRUNC(data_desligamento) >= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))));
-
---Caso com data de desligamento no mês de cálculo e data de disponibilização inferior ao mês de cálculo.
-
-  SELECT COUNT(DISTINCT(cod))
-    INTO vAux
-    FROM tb_cargo_funcionario
-    WHERE cod = pCodCargoFuncionario
-      AND TRUNC(data_disponibilizacao) <= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND data_desligamento IS NOT NULL 
-      AND TRUNC(data_desligamento) <= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno))))
-      AND TRUNC(data_desligamento) >= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND (TRUNC(data_desligamento) - TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno))) + 1) >= 15;
-
---Caso em que o cálculo está sendo feito dentro do mês em que o funcionário começou a prestar serviço para o Tribunal
---e a data de desligamento também está no mesmo mês.
-
-  SELECT COUNT(DISTINCT(cod))
-    INTO vAux
-    FROM tb_cargo_funcionario
-    WHERE cod = pCodCargoFuncionario
-      AND TRUNC(data_disponibilizacao) >= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND TRUNC(data_disponibilizacao) <= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))) 
-      AND data_desligamento IS NOT NULL
-      AND TRUNC(data_desligamento) <= LAST_DAY(TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno))))
-      AND TRUNC(data_desligamento) >= TRUNC(TO_DATE('01/' || TO_CHAR(pMes) || '/' || TO_CHAR(pAno)))
-      AND (TRUNC(data_desligamento) - TRUNC(data_disponibilizacao) + 1) >= 15;
-
-  RETURN vTotalFuncionarios;
-  
-*/
-  
   RETURN FALSE;  
-
-  EXCEPTION WHEN NO_DATA_FOUND THEN
-  
-    RETURN NULL;
 
 END;
