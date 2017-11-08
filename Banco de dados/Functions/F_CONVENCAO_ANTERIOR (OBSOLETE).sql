@@ -1,8 +1,7 @@
-create or replace function "F_RETORNA_CONVENCAO_ANTERIOR" (pCodConvencao NUMBER) RETURN NUMBER
+create or replace function "F_CONVENCAO_ANTERIOR"(pCodConvencao NUMBER) RETURN NUMBER
 IS
 
---Retorna o código (cod) da convenção anterior ao cod da convenção passada.
---Entenda "passada" como referência.
+  --Função que retorna o código da convenção anterior a convenção referência.
 
   vCodConvencaoAnterior NUMBER;
   vCodCargoContrato NUMBER;
@@ -10,16 +9,15 @@ IS
 
 BEGIN
 
-  --Define o cargo e a data referência com base na convenção passada.
-  
+  --Define os dados da convenção referência.
+
   SELECT cod_cargo_contrato, data_inicio_convencao
     INTO vCodCargoContrato, vDataReferencia 
     FROM tb_convencao_coletiva
     WHERE cod = pCodConvencao;
-	
-  --Seleciona o cod da conveção anterior com base na maior data de início
-  --de conveção daquele cargo, anterior a convenção passada.
-	
+    
+  --Busca a convenção com maior data de inicio anterior a convenção referência.
+
   SELECT cod
     INTO vCodConvencaoAnterior
     FROM tb_convencao_coletiva

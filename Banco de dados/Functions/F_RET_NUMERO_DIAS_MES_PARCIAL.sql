@@ -6,6 +6,11 @@ IS
   vDataFimPercentual DATE;
   vDataInicioPercentual DATE;
   vCodContrato NUMBER;
+  
+  --Operação 1: Primeira metade da convenção.
+  --Operação 2: Segunda metade da convenção.
+  --Operação 3: Primeira metade do percentual.
+  --Operação 4: Segunda metade do percentual.
 
 BEGIN
 

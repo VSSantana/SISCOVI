@@ -1,6 +1,8 @@
 create or replace function "F_RETORNA_ANO_CONTRATO"(pCodContrato NUMBER) RETURN VARCHAR
 IS
 
+  --Função que retorna o ano do contrato baseado na data de início deste.
+
   vAnoContrato VARCHAR(4);
 
 BEGIN

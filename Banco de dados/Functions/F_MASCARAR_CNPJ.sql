@@ -1,6 +1,8 @@
 create or replace function "F_MASCARAR_CNPJ" (pCnpj IN VARCHAR2) RETURN VARCHAR2
 IS
 
+  --Função que retorna a string do CNPJ com a máscara.
+
   vRetorno VARCHAR2(18);
 
 BEGIN

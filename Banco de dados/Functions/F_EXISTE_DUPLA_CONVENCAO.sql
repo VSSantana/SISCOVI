@@ -17,7 +17,9 @@ BEGIN
       AND cod_cargo_contrato = pCodCargoContrato
       AND (((EXTRACT(month FROM data_inicio_convencao) = pMes AND EXTRACT(year FROM data_inicio_convencao) = pAno)
            AND
-           (EXTRACT(month FROM data_aditamento) = pMes AND EXTRACT(year FROM data_aditamento) = pAno))
+           (EXTRACT(month FROM data_aditamento) = pMes AND EXTRACT(year FROM data_aditamento) = pAno)
+           AND 
+           (TRUNC(data_aditamento) <= TRUNC(SYSDATE))) --Define a validade da convenção.
            OR
            ((EXTRACT(month FROM data_fim_convencao) = pMes AND EXTRACT(year FROM data_fim_convencao) = pAno)));
 

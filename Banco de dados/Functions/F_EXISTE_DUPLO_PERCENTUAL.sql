@@ -15,11 +15,16 @@ BEGIN
     FROM tb_percentual_contrato pc
       JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
     WHERE pc.cod_contrato = pCodContrato
+      AND data_aditamento IS NOT NULL
       AND UPPER(r.nome) = UPPER(pRubrica)
-      AND ((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
+      AND (((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
+           AND
+           (EXTRACT(month FROM data_aditamento) = pMes AND EXTRACT(year FROM data_aditamento) = pAno)
+           AND 
+           (TRUNC(data_aditamento) <= TRUNC(SYSDATE))) --Define a validade da convenção. 
            OR
            (EXTRACT(month FROM pc.data_fim) = pMes AND EXTRACT(year FROM pc.data_fim) = pAno));
-
+           
   IF (vCount IS NOT NULL) THEN
   
     --Se houverem dois percentuais da mesma rubrica no mês passado retorna VERDADEIRO.

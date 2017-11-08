@@ -1,6 +1,8 @@
 create or replace function "F_MASCARAR_CPF" (pCpf IN VARCHAR2) RETURN VARCHAR2
 IS
 
+  --Função que retorna a string do CPF com a máscara.
+
   vRetorno VARCHAR2(14);
 
 BEGIN
