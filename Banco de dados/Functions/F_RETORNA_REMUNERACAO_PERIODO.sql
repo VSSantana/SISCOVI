@@ -6,11 +6,22 @@ IS
 
   vRemuneracao FLOAT := 0;
   vDataReferencia DATE;
+  vCodContrato NUMBER;
+  vCodConvencao NUMBER;
 
   --Operação 1: Percentual do mês em que não há dupla vigência ou percentual atual. 
   --Operação 2: Percentual encerrado do mês em que há dupla vigência.
 
 BEGIN
+
+  --Definição do cod_contrato.
+  
+  SELECT cod_contrato
+    INTO vCodContrato
+    FROM tb_cargo_contrato
+    WHERE cod = pCodCargoContrato;   
+
+  --Definição da data referência.
 
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'); 
 
@@ -18,11 +29,12 @@ BEGIN
 
   IF (pOperacao = 1) THEN
 
-    SELECT remuneracao 
-      INTO vRemuneracao
+    SELECT remuneracao, cod 
+      INTO vRemuneracao, vCodConvencao
       FROM tb_convencao_coletiva 
       WHERE cod_cargo_contrato = pCodCargoContrato 
 	    AND data_aditamento IS NOT NULL
+        AND TRUNC(data_aditamento) <= TRUNC(SYSDATE)
         AND ((((TRUNC(data_inicio_convencao) <= TRUNC(vDataReferencia))
 	         AND
 	  	     (TRUNC(data_inicio_convencao) <= TRUNC(LAST_DAY(vDataReferencia))))
@@ -45,6 +57,17 @@ BEGIN
         AND (EXTRACT(month FROM data_fim_convencao) = EXTRACT(month FROM vDataReferencia) --Ou início no mês referência.
              AND EXTRACT(year FROM data_fim_convencao) = EXTRACT(year FROM vDataReferencia));
 
+  END IF;
+  
+  IF (pOperacao = 1 AND F_EXISTE_RETROATIVIDADE(vCodContrato, pCodCargoContrato, pMes, pAno, 1) = TRUE) THEN
+  
+    vCodConvencao := F_RETORNA_CONVENCAO_ANTERIOR(vCodConvencao);
+    
+    SELECT remuneracao
+      INTO vRemuneracao
+      FROM tb_convencao_coletiva
+      WHERE cod = vCodConvencao;
+  
   END IF;
 
   RETURN vRemuneracao;
