@@ -1,4 +1,4 @@
-create or replace function "F_RETORNA_REMUNERACAO_PERIODO"(pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN FLOAT
+create or replace function "F_RETORNA_REMUNERACAO_PERIODO"(pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER, pRetroatividade NUMBER) RETURN FLOAT
 IS
 
 --Função que recupera o valor da remuneração vigente para o cargo de um
@@ -8,11 +8,20 @@ IS
   vDataReferencia DATE;
   vCodContrato NUMBER;
   vCodConvencao NUMBER;
+  vRetroatividade BOOLEAN := FALSE;
 
   --Operação 1: Percentual do mês em que não há dupla vigência ou percentual atual. 
   --Operação 2: Percentual encerrado do mês em que há dupla vigência.
 
 BEGIN
+
+  --Definição sobre a consideração da retroatividade.
+  
+  IF (pRetroatividade = 1) THEN
+  
+    vRetroatividade := F_EXISTE_RETROATIVIDADE(vCodContrato, pCodCargoContrato, pMes, pAno, 1);
+    
+  END IF;
 
   --Definição do cod_contrato.
   
@@ -59,7 +68,7 @@ BEGIN
 
   END IF;
   
-  IF (pOperacao = 1 AND F_EXISTE_RETROATIVIDADE(vCodContrato, pCodCargoContrato, pMes, pAno, 1) = TRUE) THEN
+  IF (pOperacao = 1 AND vRetroatividade = TRUE) THEN
   
     vCodConvencao := F_RETORNA_CONVENCAO_ANTERIOR(vCodConvencao);
     
@@ -74,6 +83,24 @@ BEGIN
   
   EXCEPTION WHEN NO_DATA_FOUND THEN
   
-    RETURN NULL;
+    IF (pOperacao = 1 AND pRetroatividade = 1) THEN
+    
+      vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(pCodCargoContrato, pMes, pAno, 2, 1);
+      
+      RETURN vRemuneracao;
+      
+    END IF;
+    
+    IF (pOperacao = 1 AND pRetroatividade = 2) THEN
+    
+      vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(pCodCargoContrato, pMes, pAno, 2, 2);
+      
+      RETURN vRemuneracao;
+    
+    ELSE
+    
+      RETURN NULL;
+      
+    END IF;  
 
 END;
