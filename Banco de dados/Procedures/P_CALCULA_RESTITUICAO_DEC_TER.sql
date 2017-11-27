@@ -1,8 +1,7 @@
-create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodCargoFuncionario NUMBER, 
-                                                            pInicioFerias DATE,
-                                                            pFimFerias DATE, 
-                                                            pInicioPeriodoAquisitivo DATE, 
-                                                            pFimPeriodoAquisitivo DATE) AS
+create or replace procedure "P_CALCULA_RESTITUICAO_DEC_TER" (pCodCargoFuncionario NUMBER, 
+                                                             pInicioPeriodoAquisitivo DATE, 
+                                                             pFimPeriodoAquisitivo DATE) 
+AS
 
 --Procedure que calcula faz o registro de restituição de férias no banco de dados.
 
@@ -42,26 +41,6 @@ BEGIN
 
   vMes := EXTRACT(month FROM pInicioPeriodoAquisitivo);
   vAno := EXTRACT(year FROM pInicioPeriodoAquisitivo);
-
-  --Definir se o período corresponde a férias proporcionais.
-
-  IF (F_RETORNA_NUMERO_DE_MESES(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo) NOT IN (12,13)) THEN
-
-    vSeProporcional := 'S';
-
-  ELSE
-
-    IF ((pFimFerias - pInicioFerias) + 1 = 30) THEN
-
-      vSeProporcional := 'N';
-
-    ELSE
-
-      vSeProporcional := 'S';
-
-    END IF;
-
-  END IF;
 
   --O cálculo é feito mês a mês para preservar os efeitos das alterações contratuais.
 
@@ -334,8 +313,8 @@ BEGIN
             vCodFuncionario,
             pInicioPeriodoAquisitivo,
             pFimPeriodoAquisitivo,
-            pInicioFerias,
-            pFimFerias,
+            pInicioContagem,
+            pFimContagem,
             vTotalFerias,
             vTotalIncidencia,
             vSeProporcional,
