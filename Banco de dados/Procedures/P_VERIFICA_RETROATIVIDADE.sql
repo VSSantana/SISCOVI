@@ -21,12 +21,14 @@ BEGIN
 
     --Definição da existência de cálculo para o mês de aditamento.
 
-    SELECT COUNT(cod)
+    SELECT COUNT(tmr.cod)
       INTO vExisteCalculo
-      FROM tb_total_mensal_a_reter
-      WHERE cod_contrato = pCodContrato
-        AND EXTRACT(month FROM data_referencia) = EXTRACT(month FROM pDataAditamento)
-        AND EXTRACT(year FROM data_referencia) = EXTRACT(year FROM pDataAditamento);
+      FROM tb_total_mensal_a_reter tmr
+        JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
+        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
+      WHERE cc.cod_contrato = pCodContrato
+        AND EXTRACT(month FROM tmr.data_referencia) = EXTRACT(month FROM pDataAditamento)
+        AND EXTRACT(year FROM tmr.data_referencia) = EXTRACT(year FROM pDataAditamento);
       
     EXCEPTION WHEN NO_DATA_FOUND THEN
     
