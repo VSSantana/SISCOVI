@@ -28,11 +28,11 @@ BEGIN
       AND cod_contrato = vCodContrato
       AND cod_rubrica = vCodRubrica
       AND data_inicio = (SELECT MAX(data_inicio)
-                           FROM tb_percentual_contrato
-                           WHERE TO_DATE(TO_CHAR(data_inicio, 'dd/mm/yyyy'), 'dd/mm/yyyy') < TO_DATE(TO_CHAR(vDataReferencia, 'dd/mm/yyyy'), 'dd/mm/yyyy')
-                             AND cod_contrato = vCodContrato
-                             AND cod_rubrica = vCodRubrica
-                             AND data_aditamento IS NOT NULL);
+                                     FROM tb_percentual_contrato
+                                     WHERE TO_DATE(TO_CHAR(data_inicio, 'dd/mm/yyyy'), 'dd/mm/yyyy') < TO_DATE(TO_CHAR(vDataReferencia, 'dd/mm/yyyy'), 'dd/mm/yyyy')
+                                       AND cod_contrato = vCodContrato
+                                       AND cod_rubrica = vCodRubrica
+                                       AND data_aditamento IS NOT NULL);
 
   RETURN vCodPercentualAnterior;
 

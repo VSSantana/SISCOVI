@@ -1,12 +1,24 @@
-create or replace function "F_EXISTE_MUDANCA_PERCENTUAL"(pCodContrato NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
+create or replace function "F_EXISTE_MUDANCA_PERCENTUAL"(pCodContrato NUMBER, pMes NUMBER, pAno NUMBER, pRetroatividade NUMBER) RETURN BOOLEAN
 IS
   
---Função que retorna se em um dado mês existe ao menos um caso
---de mudança de percentual que enseje dupla vigência.  
+  --Função que retorna se em um dado mês existe ao menos um caso
+  --de mudança de percentual que enseje dupla vigência.
+  
+  --pRetroatividade = 1 - Considera a retroatividade.
+  --pRetroatividade = 2 - Desconsidera a retroatividade.
   
   vCount NUMBER := 0;
+  vRetroatividade BOOLEAN := FALSE;
  
 BEGIN
+
+  --Definição do modo de funcionamento da função.
+  
+  IF (pRetroatividade = 1) THEN
+  
+    vRetroatividade := F_EXISTE_RETROATIVIDADE(pCodContrato, NULL, pMes, pAno, 2);
+  
+  END IF;
   
   --Conta o número de percentuais da mesma rubrica vigentes no mês.
   
@@ -15,7 +27,11 @@ BEGIN
     FROM (SELECT cod_rubrica, COUNT(pc.cod) AS "CONTAGEM"
             FROM tb_percentual_contrato pc
             WHERE pc.cod_contrato = pCodContrato
-              AND ((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
+              AND (((EXTRACT(month FROM pc.data_inicio) = pMes AND EXTRACT(year FROM pc.data_inicio) = pAno)
+                   AND
+                    (EXTRACT(month FROM data_aditamento) = pMes AND EXTRACT(year FROM data_aditamento) = pAno)
+                   AND 
+                    (TRUNC(data_aditamento) <= TRUNC(SYSDATE))) --Define a validade da convenção. 
                    OR
                    (EXTRACT(month FROM pc.data_fim) = pMes AND EXTRACT(year FROM pc.data_fim) = pAno))
             GROUP BY cod_rubrica)
@@ -25,7 +41,7 @@ BEGIN
   
     --Se houver qualquer número de percentuais da mesma rubrica no mês passado retorna VERDADEIRO.
   
-    IF (vCount > 0) THEN
+    IF (vCount > 0 AND vRetroatividade = FALSE) THEN
 
       RETURN TRUE;
 

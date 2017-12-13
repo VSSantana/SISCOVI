@@ -31,10 +31,11 @@ BEGIN
   
   IF (pOperacao = 2) THEN
   
-    SELECT COUNT(cod)
+    SELECT COUNT(rp.cod)
       INTO vRetroatividade
-      FROM tb_retroatividade_percentual
-      WHERE cod_contrato = pCodContrato
+      FROM tb_retroatividade_percentual rp
+        JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
+      WHERE pc.cod_contrato = pCodContrato
         AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(inicio, -1)) + 1)
         AND TRUNC(vDataReferencia) <= TRUNC(fim);  
   

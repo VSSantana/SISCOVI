@@ -8,6 +8,7 @@ IS
   vCodPercentual NUMBER;
   vRetroatividade BOOLEAN := FALSE;
   vDataReferencia DATE;
+  vRetroatividadePercentual NUMBER := 0;
   
   
   --pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual. 
@@ -24,10 +25,32 @@ BEGIN
     vRetroatividade := F_EXISTE_RETROATIVIDADE(pCodContrato, NULL, pMes, pAno, 2);
     
   END IF;
-
+  
   --Definição da data referência.
 
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'); 
+  
+  --Verificação de se a retroatividade está ligada ao percentual designado.
+  
+  IF (vRetroatividade = TRUE) THEN
+  
+    SELECT COUNT(rp.cod)
+      INTO vRetroatividadePercentual
+      FROM tb_retroatividade_percentual rp
+        JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
+        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+      WHERE pc.cod_contrato = pCodContrato
+        AND UPPER(r.nome) = UPPER(pRubrica)
+        AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(rp.inicio, -1)) + 1)
+        AND TRUNC(vDataReferencia) <= TRUNC(rp.fim);
+        
+    IF (vRetroatividadePercentual = 0) THEN
+    
+      vRetroatividade := FALSE;
+    
+    END IF;
+  
+  END IF;
 
   --Definição do percentual.
 

@@ -1,12 +1,32 @@
-create or replace function "F_EXISTE_DUPLA_CONVENCAO"(pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
+create or replace function "F_EXISTE_DUPLA_CONVENCAO"(pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER, pRetroatividade NUMBER) RETURN BOOLEAN
 IS
   
---Função que retorna se em um dado mês existe um caso de cálculo parcial
---por existirem duas convenções vigentes no mesmo mês.  
+  --Função que retorna se em um dado mês existe um caso de cálculo parcial
+  --por existirem duas convenções vigentes no mesmo mês. 
+
+  --pRetroatividade = 1 - Considera a retroatividade.
+  --pRetroatividade = 2 - Desconsidera a retroatividade.
   
   vCount NUMBER;
+  vCodContrato NUMBER;
+  vRetroatividade BOOLEAN := FALSE;
  
 BEGIN
+
+  --Definição do modo de funcionamento da função.
+  
+  IF (pRetroatividade = 1) THEN
+  
+    vRetroatividade := F_EXISTE_RETROATIVIDADE(vCodContrato, pCodCargoContrato, pMes, pAno, 1);
+  
+  END IF;  
+
+  --Define o código do contrato.
+  
+  SELECT cod_contrato
+    INTO vCodContrato
+    FROM tb_cargo_contrato
+    WHERE cod = pCodCargoContrato;
   
   --Conta o número de convenções vigentes no mês.
   
@@ -27,7 +47,7 @@ BEGIN
   
     --Se houverem duas convenções no mês passado retorna VERDADEIRO.
   
-    IF (vCount = 2) THEN
+    IF (vCount = 2 AND vRetroatividade = FALSE) THEN
 
       RETURN TRUE;
 

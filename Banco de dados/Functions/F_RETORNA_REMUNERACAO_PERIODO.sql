@@ -9,9 +9,13 @@ IS
   vCodContrato NUMBER;
   vCodConvencao NUMBER;
   vRetroatividade BOOLEAN := FALSE;
+  vDataAditamento DATE;
+  
 
-  --Operação 1: Percentual do mês em que não há dupla vigência ou percentual atual. 
-  --Operação 2: Percentual encerrado do mês em que há dupla vigência.
+  --Operação 1: Remuneração do mês em que não há dupla vigência ou remuneração atual. 
+  --Operação 2: Remuneração encerrada do mês em que há dupla vigência.
+  --pRetroatividade 1: Considera a retroatividade.
+  --pRetroatividade 2: Desconsidera os períodos de retroatividade.
 
 BEGIN
 
@@ -38,8 +42,8 @@ BEGIN
 
   IF (pOperacao = 1) THEN
 
-    SELECT remuneracao, cod 
-      INTO vRemuneracao, vCodConvencao
+    SELECT remuneracao, cod, data_aditamento
+      INTO vRemuneracao, vCodConvencao, vDataAditamento
       FROM tb_convencao_coletiva 
       WHERE cod_cargo_contrato = pCodCargoContrato 
 	    AND data_aditamento IS NOT NULL
@@ -53,7 +57,7 @@ BEGIN
 		      OR data_fim_convencao IS NULL)))
              OR (EXTRACT(month FROM data_inicio_convencao) = EXTRACT(month FROM vDataReferencia) --Ou início no mês referência.
                AND EXTRACT(year FROM data_inicio_convencao) = EXTRACT(year FROM vDataReferencia)));
-
+     
   END IF;
   
   IF (pOperacao = 2) THEN
@@ -67,6 +71,8 @@ BEGIN
              AND EXTRACT(year FROM data_fim_convencao) = EXTRACT(year FROM vDataReferencia));
 
   END IF;
+  
+  
   
   IF (pOperacao = 1 AND vRetroatividade = TRUE) THEN
   
