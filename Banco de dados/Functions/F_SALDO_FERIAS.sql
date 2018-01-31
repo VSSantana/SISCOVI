@@ -2,7 +2,7 @@ create or replace function "F_SALDO_FERIAS" (pCodContrato NUMBER, pCodCargoFunci
 IS
 
   --Função que retorna o número de dias que um funcionários
-  --possui em um determinado período aquisitivo, descontados
+  --possui em um determinado período aquisitivo (de 12 mesesm), descontados
   --aqueles usufruídos.
 
   vDiasUsufruidos NUMBER := 0;
@@ -43,7 +43,15 @@ BEGIN
     vDataContagem := ADD_MONTHS(vDataContagem, 1);
   
   END LOOP;
-
+  
+  --Para controlar possíveis casos de cálculo de 13 meses de férias.
+  
+  IF (vMesesFerias >= 13) THEN
+  
+    vMesesFerias := 12;
+  
+  END IF;
+  
   vDiasAUsufruir := 2.5 * vMesesFerias;
 
   vSaldoDeFerias := vDiasAUsufruir - vDiasUsufruidos;

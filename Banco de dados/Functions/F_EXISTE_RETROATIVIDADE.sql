@@ -18,10 +18,11 @@ BEGIN
 
     --Verifica se o mês se encontra dentro de um período de retroatividade.
 
-    SELECT COUNT(cod)
+    SELECT COUNT(rc.cod)
       INTO vRetroatividade
-      FROM tb_retroatividade_convencao
-      WHERE cod_cargo_contrato = pCodCargoContrato
+      FROM tb_retroatividade_convencao rc
+        JOIN tb_convencao_coletiva cc ON cc.cod = rc.cod_convencao_coletiva
+      WHERE cc.cod_cargo_contrato = pCodCargoContrato
         AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(inicio, -1)) + 1)
         AND TRUNC(vDataReferencia) <= TRUNC(fim);  
             

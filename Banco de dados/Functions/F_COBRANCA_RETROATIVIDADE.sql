@@ -17,7 +17,8 @@ BEGIN
     SELECT COUNT(rc.cod)
       INTO vRetroatividadeConvencao
       FROM tb_retroatividade_convencao rc
-        JOIN tb_cargo_contrato cc ON cc.cod = rc.cod_cargo_contrato
+        JOIN tb_convencao_coletiva cco ON cco.cod = rc.cod_convencao_coletiva
+        JOIN tb_cargo_contrato cc ON cc.cod = cco.cod_cargo_contrato
       WHERE cc.cod_contrato = pCodContrato
         AND EXTRACT(month FROM data_cobranca) = pMes
         AND EXTRACT(year FROM data_cobranca) = pAno;

@@ -30,6 +30,14 @@ BEGIN
     vDataContagem := ADD_MONTHS(vDataContagem, 1);
   
   END LOOP;
+  
+  --Para controlar possíveis casos de cálculo de 13 meses de férias.
+  
+  IF (vMesesFerias >= 13) THEN
+  
+    vMesesFerias := 12;
+  
+  END IF;
 
   --A cada mês de trabalho o funcionário adquire 2.5 dias de férias,
   --considerando um período de 12 meses, óbviamente.
