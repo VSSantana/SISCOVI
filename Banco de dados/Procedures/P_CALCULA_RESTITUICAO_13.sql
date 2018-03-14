@@ -1,5 +1,5 @@
 create or replace procedure "P_CALCULA_RESTITUICAO_13" (pCodCargoFuncionario NUMBER,
-                                                        pCodTipoResgate NUMBER,
+                                                        pCodTipoRestituicao NUMBER,
                                                         pNumeroParcela NUMBER,
                                                         pInicioContagem DATE,
                                                         pFimContagem DATE,
@@ -24,9 +24,6 @@ create or replace procedure "P_CALCULA_RESTITUICAO_13" (pCodCargoFuncionario NUM
   vDataReferencia DATE;
   vDataFimMes DATE;
 
-  vDiasDeFerias NUMBER := 0;
-  vDiasAdquiridos NUMBER := 0;
-  vDiasVendidos NUMBER := 0;
 
 BEGIN
 
@@ -58,8 +55,8 @@ BEGIN
       --Define a remuneração do cargo e os percentuais de décimo terceiro e incidência.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
-      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
       
       --Se existe direito de décimo terceiro para aquele mês.           
 
@@ -79,8 +76,8 @@ BEGIN
       --Define a remuneração do cargo para a primeira metade do mês e os percentuais do mês.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 2, 2);
-      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
       
       --Se existe direito de décimo terceiro para aquele mês.          
 
@@ -105,8 +102,8 @@ BEGIN
       --Define a remuneração do cargo no mês e os percentuais do mês da primeira metade do mês.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
-      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 2, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 2, 2);
+      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 2, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 2, 2);
       
       --Se existe direito de férias para aquele mês.         
 
@@ -115,8 +112,8 @@ BEGIN
 	      vTotalDecimoTerceiro := vTotalDecimoTerceiro + (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
         vTotalIncidencia := vTotalIncidencia + ((((vRemuneracao * (vPercentualDecimoTerceiro/100)) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
 
-        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-        vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
         
         vTotalDecimoTerceiro := vTotalDecimoTerceiro + (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
         vTotalIncidencia := vTotalIncidencia + ((((vRemuneracao * (vPercentualDecimoTerceiro/100)) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
@@ -135,8 +132,8 @@ BEGIN
       
       --Definição do percentual antigo.
       
-      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 2, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 2, 2);
+      vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 2, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 2, 2);
       
       --Definição das datas para os períodos da convenção e percentuais.
       
@@ -205,8 +202,8 @@ BEGIN
      
           --Definição do percentual novo.
 
-          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           
           ----Retenção proporcional da terça parte do mês para a remuneração nova com percentual novo.
         
@@ -233,8 +230,8 @@ BEGIN
           
            --Definição do percentual novo.
 
-          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           
           --Retenção proporcional da segunda porção do mês para a remuneração antiga com percentual novo.
           
@@ -270,8 +267,8 @@ BEGIN
           
           --Definição dos novos percentuais e da nova convenção .
 
-          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Décimo terceiro salário', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 3, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
           
           --Retenção proporcional da segunda porção do mês para a remuneração nova com percentual novo.
@@ -312,7 +309,7 @@ BEGIN
   --A incidência não é restituída para o empregado, portanto na movimentação
   --ela não deve ser computada. 
   
-  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoResgate)) = 'MOVIMENTAÇÃO') THEN
+  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
 
     vTotalIncidencia := 0;
 
@@ -329,7 +326,7 @@ BEGIN
   --Gravação no banco.
   
   INSERT INTO tb_restituicao_decimo_terceiro (cod_cargo_funcionario,
-                                              cod_tipo_resgate,
+                                              cod_tipo_restituicao,
                                               parcela,
                                               data_inicio_contagem,
                                               valor,
@@ -338,7 +335,7 @@ BEGIN
                                               login_atualizacao,
                                               data_atualizacao)
     VALUES (pCodCargoFuncionario,
-            pCodTipoResgate,
+            pCodTipoRestituicao,
             pNumeroParcela,
             pInicioContagem,
             vTotalDecimoTerceiro,

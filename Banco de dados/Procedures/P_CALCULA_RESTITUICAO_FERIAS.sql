@@ -1,12 +1,13 @@
 create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodCargoFuncionario NUMBER,
-                                                            pCodTipoResgate NUMBER,
+                                                            pCodTipoRestituicao NUMBER,
                                                             pDiasVendidos NUMBER,
                                                             pInicioFerias DATE,
                                                             pFimFerias DATE, 
                                                             pInicioPeriodoAquisitivo DATE, 
                                                             pFimPeriodoAquisitivo DATE) AS
 
---Procedure que calcula faz o registro de restituição de férias no banco de dados.
+  --Procedure que calcula faz o registro de restituição de férias no banco de dados.
+  --Considera-se períodos de 12 meses.
 
   vCodContrato NUMBER;
   vCodFuncionario NUMBER;
@@ -18,7 +19,8 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodCargoFuncionario
   vRemuneracao FLOAT := 0;
   vTotalFerias FLOAT := 0;
   vTotalTercoConstitucional FLOAT := 0;
-  vTotalIncidencia FLOAT := 0;
+  vTotalIncidenciaFerias FLOAT := 0;
+  vTotalIncidenciaTerco FLOAT := 0;
   vSeProporcional CHAR;
   vDataInicioConvencao DATE;
   vDataFimConvencao DATE;
@@ -29,9 +31,31 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodCargoFuncionario
   vDiasDeFerias NUMBER := 0;
   vDiasAdquiridos NUMBER := 0;
   vDiasVendidos NUMBER := 0;
+  vNumeroDeMeses NUMBER := 0;
+  vControleMeses NUMBER := 0;
+  
+  parametros_nulos EXCEPTION;
 
 BEGIN
 
+  --Todos os parâmetros estão preenchidos.
+
+  IF (pCodCargoFuncionario IS NULL OR
+      pCodTipoRestituicao IS NULL OR
+      pDiasVendidos IS NULL OR
+      pInicioFerias IS NULL OR
+      pFimFerias IS NULL OR
+      pInicioPeriodoAquisitivo IS NULL OR
+      pFimPeriodoAquisitivo IS NULL) THEN
+  
+    RAISE parametros_nulos;
+  
+  END IF;
+
+  --Carrega o número de meses que compreende o período de férias.
+  
+  vNumeroDeMeses := F_RETORNA_NUMERO_DE_MESES(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo);
+  
   --Carregar o cod do funcionário e do contrato.
 
   SELECT cf.cod_funcionario,
@@ -51,7 +75,7 @@ BEGIN
 
   --Definir se o período corresponde a férias proporcionais.
 
-  IF (F_RETORNA_NUMERO_DE_MESES(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo) NOT IN (12,13)) THEN
+  IF (vNumeroDeMeses < 12) THEN
 
     vSeProporcional := 'S';
 
@@ -71,7 +95,7 @@ BEGIN
 
   --O cálculo é feito mês a mês para preservar os efeitos das alterações contratuais.
 
-  FOR i IN 1 .. F_RETORNA_NUMERO_DE_MESES(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo) LOOP
+  FOR i IN 1 .. vNumeroDeMeses LOOP
 
     --Se não existem alterações nos percentuais ou na convenção.
 
@@ -80,16 +104,19 @@ BEGIN
       --Define a remuneração do cargo e os percentuais de férias e incidência.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
-      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
       
       --Se existe direito de férias para aquele mês.           
 
       IF (F_FUNC_RETENCAO_INTEGRAL(pCodCargoFuncionario, vMes, vAno) = TRUE) THEN
 	  
-	    vTotalFerias := vTotalFerias + ((vRemuneracao * (vPercentualFerias/100)));
-      vTotalTercoConstitucional := vTotalTercoConstitucional + (vRemuneracao * ((vPercentualFerias/100)/3));
-      vTotalIncidencia := vTotalIncidencia + (((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100));
+        vTotalFerias := vTotalFerias + ((vRemuneracao * (vPercentualFerias/100)));
+        vTotalTercoConstitucional := vTotalTercoConstitucional + (vRemuneracao * ((vPercentualFerias/100)/3));
+        vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100));
+        VTotalIncidenciaTerco := VTotalIncidenciaTerco + ((vRemuneracao * ((vPercentualFerias/100)/3)) * (vPercentualIncidencia/100));
+        
+        vControleMeses := vControleMeses + 1;        
       
       END IF;               
   
@@ -102,22 +129,26 @@ BEGIN
       --Define a remuneração do cargo para a primeira metade do mês e os percentuais do mês.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 2, 2);
-      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
       
       --Se existe direito de férias para aquele mês.         
 
       IF (F_FUNC_RETENCAO_INTEGRAL(pCodCargoFuncionario, vMes, vAno) = TRUE) THEN
 	  
-	    vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
-      vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
-      vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+	      vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+        vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+        vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+        VTotalIncidenciaTerco := VTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
 
-      vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
+        vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
         
-      vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
-      vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
-      vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
+        vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
+        vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
+        vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
+        VTotalIncidenciaTerco := VTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 2));
+      
+        vControleMeses := vControleMeses + 1;
       
       END IF;               
   
@@ -130,24 +161,28 @@ BEGIN
       --Define a remuneração do cargo no mês e os percentuais do mês da primeira metade do mês.
             
       vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
-      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 2, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 2, 2);
+      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 2, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 2, 2);
       
       --Se existe direito de férias para aquele mês.         
 
       IF (F_FUNC_RETENCAO_INTEGRAL(pCodCargoFuncionario, vMes, vAno) = TRUE) THEN
 
-	      vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+        vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
         vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
-        vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+        vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+        vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
 
-        vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-        vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+        vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
         
         vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
         vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
-        vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
+        vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
+        vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
       
+        vControleMeses := vControleMeses + 1;
+       
       END IF;               
   
     END IF;
@@ -162,8 +197,8 @@ BEGIN
       
       --Definição do percentual antigo.
       
-      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 2, 2);
-      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 2, 2);
+      vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 2, 2);
+      vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 2, 2);
       
       --Definição das datas para os períodos da convenção e percentuais.
       
@@ -220,7 +255,8 @@ BEGIN
 
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 1));
         
           --Definição da nova remuneração.
           
@@ -230,18 +266,22 @@ BEGIN
           
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30)  * (vDataFimPercentual - vDataInicioConvencao + 1));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * (vDataFimPercentual - vDataInicioConvencao + 1));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimPercentual - vDataInicioConvencao + 1));
-     
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * (vDataFimPercentual - vDataInicioConvencao + 1));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimPercentual - vDataInicioConvencao + 1));
+
           --Definição do percentual novo.
 
-          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           
           ----Retenção proporcional da terça parte do mês para a remuneração nova com percentual novo.
         
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * (vDataFimMes - vDataInicioPercentual + 1));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * (vDataFimMes - vDataInicioPercentual + 1));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioPercentual + 1));
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioPercentual + 1));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioPercentual + 1));
+    
+          vControleMeses := vControleMeses + 1;
     
         END IF;
 
@@ -260,19 +300,21 @@ BEGIN
 
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
-          
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+
            --Definição do percentual novo.
 
-          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           
           --Retenção proporcional da segunda porção do mês para a remuneração antiga com percentual novo.
           
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-          
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
+
           --Definição da nova remuneração.
           
           vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
@@ -281,7 +323,10 @@ BEGIN
         
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * (vDataFimMes - vDataInicioConvencao + 1));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * (vDataFimMes - vDataInicioConvencao + 1));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioConvencao + 1));
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioConvencao + 1));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * (vDataFimMes - vDataInicioConvencao + 1));
+          
+          vControleMeses := vControleMeses + 1;
       
         END IF;
 
@@ -300,20 +345,24 @@ BEGIN
 
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 3));
           
           --Definição dos novos percentuais e da nova convenção .
 
-          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Férias', vMes, vAno, 1, 2);
-          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 'Incidência do submódulo 4.1', vMes, vAno, 1, 2);
+          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 1, vMes, vAno, 1, 2);
+          vPercentualIncidencia := F_RETORNA_PERCENTUAL_PERIODO(vCodContrato, 7, vMes, vAno, 1, 2);
           vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(vCodCargoContrato, vMes, vAno, 1, 2);
           
           --Retenção proporcional da segunda porção do mês para a remuneração nova com percentual novo.
           
           vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
           vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * ((vPercentualFerias/100)/3))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
-          vTotalIncidencia := vTotalIncidencia + (((((vRemuneracao * (vPercentualFerias/100)) + (vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
-      
+          vTotalIncidenciaFerias := vTotalIncidenciaFerias + (((((vRemuneracao * (vPercentualFerias/100))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
+          vTotalIncidenciaTerco := vTotalIncidenciaTerco + (((((vRemuneracao * ((vPercentualFerias/100)/3))) * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(vCodCargoContrato, vMes, vAno, 4));
+        
+          vControleMeses := vControleMeses + 1;
+        
         END IF;
         
       END IF;    
@@ -332,6 +381,12 @@ BEGIN
       vAno := vAno + 1;    
     
     END IF;
+    
+    IF (vControleMeses = 12) THEN
+    
+      EXIT; --Não pode calcular um 13° mês.
+    
+    END IF;
 
   END LOOP;
   
@@ -345,6 +400,8 @@ BEGIN
     
   END IF;
   
+  
+  
   --Total de dias de férias para cálculo proporcional da restituição.
   
   vDiasDeFerias := ((pFimFerias - pInicioFerias) + 1) + vDiasVendidos;
@@ -357,47 +414,55 @@ BEGIN
   
   vTotalFerias := (vTotalFerias/vDiasAdquiridos) * vDiasDeFerias;
   vTotalTercoConstitucional := (vTotalTercoConstitucional/vDiasAdquiridos) * vDiasDeFerias;
-  vTotalIncidencia := (vTotalIncidencia/vDiasAdquiridos) * vDiasDeFerias;
+  vTotalIncidenciaFerias := (vTotalIncidenciaFerias/vDiasAdquiridos) * vDiasDeFerias;
+  vTotalIncidenciaTerco := (vTotalIncidenciaTerco/vDiasAdquiridos) * vDiasDeFerias; 
   
   --A incidência não é restituída para o empregado, portanto na movimentação
   --ela não deve ser computada.
   
-  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoResgate)) = 'MOVIMENTAÇÃO') THEN
+  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
 
-    vTotalIncidencia := 0;
+    vTotalIncidenciaFerias := 0;
+    vTotalIncidenciaTerco := 0;
 
   END IF;
+  
+  --DBMS_OUTPUT.PUT_LINE(vTotalFerias);
+  --DBMS_OUTPUT.PUT_LINE(vTotalTercoConstitucional);
+  --DBMS_OUTPUT.PUT_LINE(vTotalIncidenciaFerias);
+  --DBMS_OUTPUT.PUT_LINE(vSeProporcional);
 
   --Gravação no banco.
   
   INSERT INTO tb_restituicao_ferias (cod_cargo_funcionario,
-                                     cod_tipo_resgate,
+                                     cod_tipo_restituicao,
                                      data_inicio_periodo_aquisitivo,
                                      data_fim_periodo_aquisitivo,
                                      data_inicio_usufruto,
                                      data_fim_usufruto,
                                      valor_ferias,
                                      valor_terco_constitucional,
-                                     valor_incidencia_submodulo_4_1,
+                                     incid_submod_4_1_ferias,
+                                     incid_submod_4_1_terco,
                                      se_proporcional,
                                      dias_vendidos,
                                      data_referencia,
                                      login_atualizacao,
                                      data_atualizacao)
     VALUES (pCodCargoFuncionario,
-            pCodTipoResgate,
+            pCodTipoRestituicao,
             pInicioPeriodoAquisitivo,
             pFimPeriodoAquisitivo,
             pInicioFerias,
             pFimFerias,
             vTotalFerias,
             vTotalTercoConstitucional,
-            vTotalIncidencia,
+            vTotalIncidenciaFerias,
+            vTotalIncidenciaTerco,
             vSeProporcional,
             pDiasVendidos,
             SYSDATE,
            'SYSTEM',
             SYSDATE);
-
     
 END;

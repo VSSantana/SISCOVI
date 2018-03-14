@@ -1,4 +1,4 @@
-create or replace procedure "P_VERIFICA_RETROATIVIDADE" (pCodContrato NUMBER, pCodCargoContrato NUMBER, pCodPercentualContrato NUMBER, pDataInicio DATE, pDataAditamento DATE, pOperacao NUMBER)
+create or replace procedure "P_VERIFICA_RETROATIVIDADE" (pCodContrato NUMBER, pCodConvencaoColetiva NUMBER, pCodPercentualContrato NUMBER, pDataInicio DATE, pDataAditamento DATE, pOperacao NUMBER)
 AS
 
   --Procedimento que verifica se existe uma situação de retroatividade
@@ -14,6 +14,7 @@ AS
   vDataFimRetroatividade DATE;
   vDataCobrancaRetroatividade DATE;
   vLoginAtualizacao VARCHAR2(150) := 'SYSTEM';
+  vCodConvecaoColetiva NUMBER;
 
 BEGIN
 
@@ -36,7 +37,7 @@ BEGIN
 
   END;
 
-  --Para cadastro de convenção.
+  --Para cadastro de convenção ou percentual.
 
   IF (pOperacao = 1) THEN
 
@@ -93,15 +94,15 @@ BEGIN
 
   --Inserir na tabela tb_retroatividade_convencao.
   
-  IF (pCodCargoContrato IS NOT NULL AND vAcao = 1) THEN
+  IF (pCodConvencaoColetiva IS NOT NULL AND vAcao = 1) THEN
 
-    INSERT INTO tb_retroatividade_convencao (cod_cargo_contrato, 
+    INSERT INTO tb_retroatividade_convencao (cod_convencao_coletiva, 
                                              inicio, 
                                              fim, 
                                              data_cobranca, 
                                              login_atualizacao, 
                                              data_atualizacao)
-      VALUES (pCodCargoContrato,
+      VALUES (pCodConvencaoColetiva,
               vDataInicioRetroatividade,
               vDataFimRetroatividade,
               vDataCobrancaRetroatividade,
@@ -112,7 +113,7 @@ BEGIN
   
   --Inserir na tabela tb_retroatividade_percentual.
   
-  IF (pCodCargoContrato IS NULL AND vAcao = 1) THEN
+  IF (pCodConvencaoColetiva IS NULL AND vAcao = 1) THEN
 
     INSERT INTO tb_retroatividade_percentual (cod_percentual_contrato, 
                                               inicio, 
@@ -128,5 +129,5 @@ BEGIN
               SYSDATE);
               
   END IF;
-
+  
 END;
