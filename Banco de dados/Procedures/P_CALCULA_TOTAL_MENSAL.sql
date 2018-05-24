@@ -79,15 +79,15 @@ BEGIN
     
   SELECT MIN(v.data_inicio_vigencia)
     INTO vDataInicioContrato
-    FROM tb_vigencia_contrato v 
+    FROM tb_eventos_contratuais v 
     WHERE v.cod_contrato = pCodContrato;
     
-  SELECT MAX(v.data_inicio_vigencia)
+  SELECT MAX(v.data_fim_vigencia)
     INTO vDataFimContrato
-    FROM tb_vigencia_contrato v 
+    FROM tb_eventos_contratuais v 
     WHERE v.cod_contrato = pCodContrato;
 
-  IF (vDataReferencia < (LAST_DAY((ADD_MONTHS(vDataInicioContrato, -1)) + 1))) THEN
+  IF (vDataReferencia < (LAST_DAY((ADD_MONTHS(TRUNC(vDataInicioContrato), -1)) + 1))) THEN
 
     RETURN;
 
@@ -478,13 +478,13 @@ BEGIN
       
       --Definição das datas para os períodos da convenção e percentuais.
       
-      SELECT data_fim_convencao
+      SELECT data_fim
         INTO vDataFimConvencao
-        FROM tb_convencao_coletiva
+        FROM tb_remuneracao_cargo_contrato
         WHERE cod_cargo_contrato = c1.cod
           AND data_aditamento IS NOT NULL
-          AND (EXTRACT(month FROM data_fim_convencao) = pMes
-               AND EXTRACT(year FROM data_fim_convencao) = pAno);
+          AND (EXTRACT(month FROM data_fim) = pMes
+               AND EXTRACT(year FROM data_fim) = pAno);
                
       SELECT data_fim
         INTO vDataFimPercentual
@@ -773,7 +773,7 @@ BEGIN
           vTotal := (vTotalFerias + vTotalTercoConstitucional + vTotalDecimoTerceiro + vTotalIncidencia + vTotalIndenizacao);
         
         END IF;
-      
+
         INSERT INTO tb_total_mensal_a_reter (cod_cargo_funcionario,
 	    							                         ferias,
 										                         terco_constitucional,
@@ -812,9 +812,9 @@ BEGIN
              MAX(fim)
         INTO vDataRetroatividadeConvencao,
              vFimRetroatividadeConvencao
-        FROM tb_retroatividade_convencao rc
-          JOIN tb_convencao_coletiva cco ON cco.cod = rc.cod_convencao_coletiva
-          JOIN tb_cargo_contrato cc ON cc.cod = cco.cod_cargo_contrato
+        FROM tb_retroatividade_remuneracao rr
+          JOIN tb_remuneracao_cargo_contrato rcco ON rcco.cod = rr.cod_remuneracao_cargo_contrato
+          JOIN tb_cargo_contrato cc ON cc.cod = rcco.cod_cargo_contrato
         WHERE cc.cod_contrato = pCodContrato
           AND EXTRACT(month FROM data_cobranca) = pMes
           AND EXTRACT(year FROM data_cobranca) = pAno; 
