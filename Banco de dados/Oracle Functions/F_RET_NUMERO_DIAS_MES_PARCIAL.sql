@@ -1,5 +1,9 @@
-create or replace function "F_RET_NUMERO_DIAS_MES_PARCIAL" (pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN NUMBER
+create or replace function "F_RET_NUMERO_DIAS_MES_PARCIAL" (pCodFuncaoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN NUMBER
 IS
+
+  --Função que retorna o número de dias trabalhados
+  --por um terceirizado em um período de mudança 
+  --de remuneração ou percentual.
 
   vRetorno NUMBER;
   vDataReferencia DATE;
@@ -7,45 +11,49 @@ IS
   vDataInicioPercentual DATE;
   vCodContrato NUMBER;
   
-  --Operação 1: Primeira metade da convenção.
-  --Operação 2: Segunda metade da convenção.
+  --Operação 1: Primeira metade da remuneração.
+  --Operação 2: Segunda metade da remuneração.
   --Operação 3: Primeira metade do percentual.
   --Operação 4: Segunda metade do percentual.
 
 BEGIN
 
+  --Definição da data referência como primeiro dia do mês de acordo com os argumentos passados.
+
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
+
+  --Carrega o código do contrato.
   
   SELECT cod_contrato
     INTO vCodContrato
-    FROM tb_cargo_contrato
-    WHERE cod = pCodCargoContrato;
+    FROM tb_funcao_contrato
+    WHERE cod = pCodFuncaoContrato;
   
-  --Primeira metade da convenção.
+  --Primeira metade da remuneração.
    
   IF (pOperacao = 1) THEN
   
-    SELECT (data_fim_convencao - vDataReferencia) + 1
+    SELECT (data_fim - vDataReferencia) + 1
       INTO vRetorno
-      FROM tb_convencao_coletiva
+      FROM tb_remuneracao_fun_con
       WHERE data_aditamento IS NOT NULL
-        AND cod_cargo_contrato = pCodCargoContrato
-        AND EXTRACT(month FROM data_fim_convencao) = EXTRACT(month FROM vDataReferencia)
-        AND EXTRACT(year FROM data_fim_convencao) = EXTRACT(year FROM vDataReferencia);
+        AND cod_funcao_contrato = pCodFuncaoContrato
+        AND EXTRACT(month FROM data_fim) = EXTRACT(month FROM vDataReferencia)
+        AND EXTRACT(year FROM data_fim) = EXTRACT(year FROM vDataReferencia);
         
   END IF;
   
-  --Segunda metade da convenção.
+  --Segunda metade da remuneração.
   
   IF (pOperacao = 2) THEN
   
-    SELECT (LAST_DAY(vDataReferencia) - data_inicio_convencao) + 1
+    SELECT (LAST_DAY(vDataReferencia) - data_inicio) + 1
       INTO vRetorno
-      FROM tb_convencao_coletiva
+      FROM tb_remuneracao_fun_con
       WHERE data_aditamento IS NOT NULL
-        AND cod_cargo_contrato = pCodCargoContrato
-        AND EXTRACT(month FROM data_inicio_convencao) = EXTRACT(month FROM vDataReferencia)
-        AND EXTRACT(year FROM data_inicio_convencao) = EXTRACT(year FROM vDataReferencia);
+        AND cod_funcao_contrato = pCodFuncaoContrato
+        AND EXTRACT(month FROM data_inicio) = EXTRACT(month FROM vDataReferencia)
+        AND EXTRACT(year FROM data_inicio) = EXTRACT(year FROM vDataReferencia);
         
     IF (EXTRACT(day FROM LAST_DAY(vDataReferencia)) = 31) THEN
   
@@ -59,10 +67,9 @@ BEGIN
     
   IF (pOperacao = 3) THEN
   
-    SELECT MAX(pc.data_fim)
+    SELECT MIN(pc.data_fim)
       INTO vDataFimPercentual
       FROM tb_percentual_contrato pc
-        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
       WHERE cod_contrato = vCodContrato
         AND pc.data_aditamento IS NOT NULL        
         AND EXTRACT(month FROM pc.data_fim) = EXTRACT(month FROM vDataReferencia)
@@ -76,10 +83,9 @@ BEGIN
   
   IF (pOperacao = 4) THEN
   
-    SELECT MIN(pc.data_inicio)
+    SELECT MAX(pc.data_inicio)
       INTO vDataInicioPercentual
       FROM tb_percentual_contrato pc
-        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
       WHERE cod_contrato = vCodContrato
         AND pc.data_aditamento IS NOT NULL
         AND EXTRACT(month FROM pc.data_inicio) = EXTRACT(month FROM vDataReferencia)

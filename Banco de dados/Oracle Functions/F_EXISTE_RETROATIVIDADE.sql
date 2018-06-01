@@ -1,35 +1,37 @@
-create or replace function "F_EXISTE_RETROATIVIDADE" (pCodContrato NUMBER, pCodCargoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN BOOLEAN
+create or replace function "F_EXISTE_RETROATIVIDADE" (pCodContrato NUMBER, pCodFuncaoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN BOOLEAN
 IS
 
   --Função que retorna se em um determinado mês existe situação de retroatividade.
-  --pOperacao = 1 - Retroatividade para convenção.
+  --pOperacao = 1 - Retroatividade para remuneração.
   --pOperacao = 2 - Retroatividade para percentual do contrato ou estático.
 
   vRetroatividade NUMBER := 0;
   vRetroatividade2 NUMBER := 0;
   vDataReferencia DATE;
   
-  
-
 BEGIN
 
-  --Definição da data referência.
+  --Definição da data referência como primeiro dia do m~es de acordo com os argumentos passados.
   
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'); 
+
+  --Caso de busca de retroatividade na remuneração.
     
   IF (pOperacao = 1) THEN
 
     --Verifica se o mês se encontra dentro de um período de retroatividade.
 
-    SELECT COUNT(rc.cod)
+    SELECT COUNT(rr.cod)
       INTO vRetroatividade
-      FROM tb_retroatividade_convencao rc
-        JOIN tb_convencao_coletiva cc ON cc.cod = rc.cod_convencao_coletiva
-      WHERE cc.cod_cargo_contrato = pCodCargoContrato
-        AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(inicio, -1)) + 1)
-        AND TRUNC(vDataReferencia) <= TRUNC(fim);  
+      FROM tb_retroatividade_remuneracao rr
+        JOIN tb_remuneracao_fun_con rfc ON rfc.cod = rr.cod_rem_funcao_contrato
+      WHERE rfc.cod_funcao_contrato = pCodFuncaoContrato
+        AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(rr.inicio, -1)) + 1)
+        AND TRUNC(vDataReferencia) <= TRUNC(rr.fim);  
             
   END IF;
+
+  --Caso de busca de retroatividade em percentuais.
   
   IF (pOperacao = 2) THEN
   

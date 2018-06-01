@@ -2,7 +2,7 @@ create or replace function "F_EXISTE_ANO_RETENCAO" (pCodContrato NUMBER, pAno NU
 IS
 
   --Verifica se existe ao menos uma retenção feita para o ano passado
-  --no contrato em questão.
+  --como argumento no contrato em questão.
 
   vRetorno NUMBER := 0;
 
@@ -11,9 +11,10 @@ BEGIN
   SELECT COUNT(tmr.cod)
     INTO vRetorno
     FROM tb_total_mensal_a_reter tmr
-      JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
-      JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-      JOIN tb_contrato c ON c.cod = cc.cod_contrato
+      JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato
+      JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod
+      JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+      JOIN tb_contrato c ON c.cod = fc.cod_contrato
     WHERE c.cod = pCodContrato
       AND EXTRACT(year FROM tmr.data_referencia) = pAno;
 

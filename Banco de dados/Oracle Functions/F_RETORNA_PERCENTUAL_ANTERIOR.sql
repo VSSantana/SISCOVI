@@ -1,7 +1,7 @@
 create or replace function "F_RETORNA_PERCENTUAL_ANTERIOR" (pCodPercentual NUMBER) RETURN NUMBER
 IS
 
---Retorna o código (cod) do percentual anterior ao cod do percentual passada.
+--Retorna o código (cod) do percentual anterior ao cod do percentual passado.
 --Entenda "passado" como referência.
 
   vCodPercentualAnterior NUMBER;
@@ -9,22 +9,30 @@ IS
   vCodRubrica NUMBER;
   vDataReferencia DATE;
   vCount NUMBER := 0;
+  
+  Pragma Autonomous_Transaction;
 
 BEGIN
+
+  --Verificação de existência do percentual no contrato (para diferenciar dos percentuais estáticos).
 
   SELECT COUNT(cod)
     INTO vCount
     FROM tb_percentual_contrato
     WHERE cod = pCodPercentual;
 
-  --Se vCount for maior que zero então o percentual é do contrato.
+  --Se vCount for maior que zero então o percentual existe no contrato.
 
   IF (vCount > 0) THEN
 
     --Define o contrato e a data referência com base no percentual referência.
   
-    SELECT cod_contrato, data_inicio, cod_rubrica
-      INTO vCodContrato, vDataReferencia, vCodRubrica
+    SELECT cod_contrato, 
+           data_inicio, 
+           cod_rubrica
+      INTO vCodContrato, 
+           vDataReferencia, 
+           vCodRubrica
       FROM tb_percentual_contrato
       WHERE cod = pCodPercentual;
 	
@@ -46,10 +54,12 @@ BEGIN
 
   ELSE
 
-    --Define o a data referência com base no percentual referência.
+    --Define a data referência com base no percentual referência.
   
-    SELECT data_inicio, cod_rubrica
-      INTO vDataReferencia, vCodRubrica
+    SELECT data_inicio, 
+           cod_rubrica
+      INTO vDataReferencia, 
+           vCodRubrica
       FROM tb_percentual_estatico
       WHERE cod = pCodPercentual;
 	

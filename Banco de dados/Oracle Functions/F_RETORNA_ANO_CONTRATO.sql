@@ -7,11 +7,13 @@ IS
 
 BEGIN
 
-  SELECT TO_CHAR(MIN(v.data_inicio_vigencia), 'yyyy')
+  SELECT TO_CHAR(MIN(ec.data_inicio_vigencia), 'yyyy')
     INTO vAnoContrato
     FROM tb_contrato c
-      JOIN tb_vigencia_contrato v ON v.cod_contrato = c.cod
-    WHERE c.cod = pCodContrato;
+      JOIN tb_evento_contratual ec ON ec.cod_contrato = c.cod
+      JOIN tb_tipo_evento_contratual tec ON tec.cod = ec.cod_tipo_evento
+    WHERE c.cod = pCodContrato
+      AND (UPPER(tec.tipo) = 'CONTRATO' OR (ec.PRORROGACAO = 'S'));
 
   RETURN vAnoContrato;
 

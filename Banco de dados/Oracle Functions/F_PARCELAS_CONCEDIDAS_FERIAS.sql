@@ -1,7 +1,7 @@
-create or replace function "F_PARCELAS_CONCEDIDAS_FERIAS" (pCodContrato NUMBER, pCodCargoFuncionario NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
+create or replace function "F_PARCELAS_CONCEDIDAS_FERIAS" (pCodContrato NUMBER, pCodTerceirizadoContrato NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
 IS
 
-  --Função que retorna o númerode parcelas de férias
+  --Função que retorna o número de parcelas de férias
   --concedidas a um funcionário em um determinado
   --contrato em um período aquisitivo específico.
     
@@ -12,7 +12,7 @@ BEGIN
   SELECT COUNT(cod)
     INTO vParcelasConcedidas
     FROM tb_restituicao_ferias
-    WHERE cod_cargo_funcionario = pCodCargoFuncionario
+    WHERE cod_terceirizado_contrato = pCodTerceirizadoContrato
       AND data_inicio_periodo_aquisitivo = pDataInicio
       AND data_fim_periodo_aquisitivo = pDataFim;
 

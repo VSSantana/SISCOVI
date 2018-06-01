@@ -35,7 +35,7 @@ BEGIN
   SELECT COUNT(pc.cod)
     INTO vCount
     FROM tb_percentual_contrato pc
-      JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+      JOIN tb_rubrica r ON r.cod = pc.cod_rubrica
     WHERE pc.cod_contrato = pCodContrato
       AND data_aditamento IS NOT NULL
       AND r.cod = pCodRubrica
@@ -50,7 +50,7 @@ BEGIN
   SELECT COUNT(pe.cod)
     INTO vCount2
     FROM tb_percentual_estatico pe
-      JOIN tb_rubricas r ON r.cod = pe.cod_rubrica
+      JOIN tb_rubrica r ON r.cod = pe.cod_rubrica
     WHERE pe.data_aditamento IS NOT NULL
       AND r.cod = pCodRubrica
       AND (((EXTRACT(month FROM pe.data_inicio) = pMes AND EXTRACT(year FROM pe.data_inicio) = pAno)

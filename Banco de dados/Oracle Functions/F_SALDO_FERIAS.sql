@@ -1,4 +1,4 @@
-create or replace function "F_SALDO_FERIAS" (pCodContrato NUMBER, pCodCargoFuncionario NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
+create or replace function "F_SALDO_FERIAS" (pCodContrato NUMBER, pCodTerceirizadoContrato NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
 IS
 
   --Função que retorna o número de dias que um funcionários
@@ -17,7 +17,7 @@ BEGIN
   SELECT SUM(data_fim_usufruto - data_inicio_usufruto + dias_vendidos + 1)
     INTO vDiasUsufruidos
     FROM tb_restituicao_ferias
-    WHERE cod_cargo_funcionario = pCodCargoFuncionario
+    WHERE cod_terceirizado_contrato = pCodTerceirizadoContrato
       AND data_inicio_periodo_aquisitivo = pDataInicio
       AND data_fim_periodo_aquisitivo = pDataFim;
       
@@ -34,7 +34,7 @@ BEGIN
 
   FOR i IN 1 .. vNumeroMeses LOOP
 
-    IF (F_FUNC_RETENCAO_INTEGRAL(pCodCargoFuncionario, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) = TRUE) THEN
+    IF (F_FUNC_RETENCAO_INTEGRAL(pCodTerceirizadoContrato, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) = TRUE) THEN
   
       vMesesFerias := vMesesFerias + 1;
     

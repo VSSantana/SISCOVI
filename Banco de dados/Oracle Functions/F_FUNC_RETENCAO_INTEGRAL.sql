@@ -1,7 +1,7 @@
-create or replace function "F_FUNC_RETENCAO_INTEGRAL"(pCodCargoFuncionario NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
+create or replace function "F_FUNC_RETENCAO_INTEGRAL"(pCodTerceirizadoContrato NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
 IS
 
---Função que retorna se um funcionário trabalhou período igual ou superior a 30
+--Função que retorna se um terceirizado trabalhou período igual ou superior a 15
 --dias em um determinado mês.
 
   vDataDisponibilizacao DATE;
@@ -10,14 +10,18 @@ IS
 
 BEGIN
 
+  --Define como data referência o primeiro dia do mês e ano passados como argumentos.
+
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
+
+  --Carrega as datas de disponibilização e desligamento do terceirizado.
  
   SELECT data_disponibilizacao, 
          data_desligamento
     INTO vDataDisponibilizacao,
-	     vDataDesligamento
-    FROM tb_cargo_funcionario
-	WHERE cod = pCodCargoFuncionario;
+	       vDataDesligamento
+    FROM tb_terceirizado_contrato
+  	WHERE cod = pCodTerceirizadoContrato;
     
   --Caso não possua data de desligamento.  
    
@@ -37,7 +41,7 @@ BEGIN
   
     IF (vDataDisponibilizacao >= vDataReferencia AND vDataDisponibilizacao <= LAST_DAY(vDataReferencia)) THEN
     
-      IF (LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao + 1 >= 15) THEN
+      IF (((LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao) + 1) >= 15) THEN
   
         RETURN TRUE;
     
@@ -62,14 +66,14 @@ BEGIN
     END IF;  
     
     --Se a data de disponibilização está no mês referência e a data de
-    --desligamento é superior mês referência, então se verifica a quantidade
+    --desligamento é superior ao mês referência, então se verifica a quantidade
     --de dias trabalhados pelo funcionário.
   
     IF (vDataDisponibilizacao >= vDataReferencia 
         AND vDataDisponibilizacao <= LAST_DAY(vDataReferencia)
         AND vDataDesligamento > LAST_DAY(vDataReferencia)) THEN
     
-      IF (LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao + 1 >= 15) THEN
+      IF (((LAST_DAY(vDataDisponibilizacao) - vDataDisponibilizacao) + 1) >= 15) THEN
   
         RETURN TRUE;
     
@@ -85,7 +89,7 @@ BEGIN
         AND vDataDesligamento >= vDataReferencia
         AND vDataDesligamento <= LAST_DAY(vDataReferencia)) THEN
     
-      IF (vDataDesligamento - vDataDisponibilizacao + 1 >= 15) THEN
+      IF (((vDataDesligamento - vDataDisponibilizacao) + 1) >= 15) THEN
   
         RETURN TRUE;
     
@@ -101,7 +105,7 @@ BEGIN
         AND vDataDesligamento >= vDataReferencia
         AND vDataDesligamento <= LAST_DAY(vDataReferencia)) THEN
     
-      IF (vDataDesligamento - vDataReferencia + 1 >= 15) THEN
+      IF (((vDataDesligamento - vDataReferencia) + 1) >= 15) THEN
   
         RETURN TRUE;
     

@@ -2,35 +2,39 @@ create or replace function "F_COBRANCA_RETROATIVIDADE" (pCodContrato NUMBER, pMe
 IS
 
   --Função que retorna se em um determinado mês
-  --dever ser cobrada a retroatividade.
+  --dever ser cobrada alguma retroatividade.
   
-  --pOperacao = 1 - Retroatividade de convenção.
+  --pOperacao = 1 - Retroatividade de remuneração.
   --pOperacao = 2 - Retroatividade de percentual.
 
-  vRetroatividadeConvencao NUMBER := 0;
+  vRetroatividadeRemuneracao NUMBER := 0;
   vRetroatividadePercentual NUMBER := 0;
   vRetroPercentualEstatico NUMBER := 0;
 
 BEGIN
 
+  --Caso de busca de retroatividade na remuneração.
+
   IF (pOperacao = 1) THEN
 
-    SELECT COUNT(rc.cod)
-      INTO vRetroatividadeConvencao
-      FROM tb_retroatividade_convencao rc
-        JOIN tb_convencao_coletiva cco ON cco.cod = rc.cod_convencao_coletiva
-        JOIN tb_cargo_contrato cc ON cc.cod = cco.cod_cargo_contrato
-      WHERE cc.cod_contrato = pCodContrato
+    SELECT COUNT(rr.cod)
+      INTO vRetroatividadeRemuneracao
+      FROM tb_retroatividade_remuneracao rr
+        JOIN tb_remuneracao_fun_con rcco ON rcco.cod = rr.cod_rem_funcao_contrato
+        JOIN tb_funcao_contrato fc ON fc.cod = rcco.cod_funcao_contrato
+      WHERE fc.cod_contrato = pCodContrato
         AND EXTRACT(month FROM data_cobranca) = pMes
         AND EXTRACT(year FROM data_cobranca) = pAno;
 
-    IF (vRetroatividadeConvencao > 0) THEN
+    IF (vRetroatividadeRemuneracao > 0) THEN
 
       RETURN TRUE;
 
     END IF;
 
   END IF;
+
+  --Caso de busca de retroatividade nos percentuais.
   
   IF (pOperacao = 2) THEN
   

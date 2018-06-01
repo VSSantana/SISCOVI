@@ -1,27 +1,33 @@
-create or replace function "F_DIAS_FERIAS_ADQUIRIDOS" (pCodContrato NUMBER, pCodCargoFuncionario NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
+create or replace function "F_DIAS_FERIAS_ADQUIRIDOS" (pCodContrato NUMBER, pCodTerceirizadoContrato NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
 IS
 
-  --Função que retorna o número de dias que um funcionários
+  --Função que retorna o número de dias que um terceirizado
   --possui em um determinado período aquisitivo.
 
   vDiasAUsufruir NUMBER := 0;
   vNumeroMeses NUMBER := 0;
-  vCodFuncionario NUMBER := 0;
+  vCodTerceirizado NUMBER := 0;
   vMesesFerias NUMBER := 0;
   vDataContagem DATE := pDataInicio;
 
 BEGIN
 
-  SELECT cod_funcionario
-    INTO vCodFuncionario
-    FROM tb_cargo_funcionario
-    WHERE cod = pCodCargoFuncionario;
+  --Seleciona o cod do terceirizado.
+
+  SELECT cod_terceirizado
+    INTO vCodTerceirizado
+    FROM tb_terceirizado_contrato
+    WHERE cod = pCodTerceirizadoContrato;
+
+  --Conta o número de meses dentro do período aquisitivo para o loop.
 
   vNumeroMeses := F_RETORNA_NUMERO_DE_MESES(pDataInicio, pDataFim);
 
+  --Calcula o número de dias baseado no número de meses trabalhados com mais de 15 dias.
+
   FOR i IN 1 .. vNumeroMeses LOOP
 
-    IF (F_FUNC_RETENCAO_INTEGRAL(pCodCargoFuncionario, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) = TRUE) THEN
+    IF (F_FUNC_RETENCAO_INTEGRAL(pCodTerceirizadoContrato, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) = TRUE) THEN
   
       vMesesFerias := vMesesFerias + 1;
     

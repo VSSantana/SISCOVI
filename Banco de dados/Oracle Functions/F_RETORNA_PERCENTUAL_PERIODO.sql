@@ -46,7 +46,7 @@ BEGIN
   SELECT COUNT(DISTINCT(pe.cod))
     INTO vTipoPercentual
     FROM tb_percentual_estatico pe
-      JOIN tb_rubricas r ON r.cod = pe.cod_rubrica
+      JOIN tb_rubrica r ON r.cod = pe.cod_rubrica
     WHERE r.cod = pCodRubrica;
   
   --Definição da data referência.
@@ -61,7 +61,7 @@ BEGIN
       INTO vRetroatividadePercentual
       FROM tb_retroatividade_percentual rp
         JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
-        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pc.cod_rubrica
       WHERE pc.cod_contrato = pCodContrato
         AND r.cod = pCodRubrica
         AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(rp.inicio, -1)) + 1)
@@ -81,7 +81,7 @@ BEGIN
       INTO vRetroatividadePercentual
       FROM tb_retro_percentual_estatico rpe
         JOIN tb_percentual_estatico pe ON pe.cod = rpe.cod_percentual_estatico
-        JOIN tb_rubricas r ON r.cod = pe.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pe.cod_rubrica
       WHERE rpe.cod_contrato = pCodContrato
         AND r.cod = pCodRubrica
         AND TRUNC(vDataReferencia) >= TRUNC(LAST_DAY(ADD_MONTHS(rpe.inicio, -1)) + 1)
@@ -104,7 +104,7 @@ BEGIN
     SELECT pc.percentual, pc.cod
       INTO vPercentual, vCodPercentual
       FROM tb_percentual_contrato pc
-        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pc.cod_rubrica
       WHERE pc.cod_contrato = pCodContrato --Contrato.
         AND r.cod = pCodRubrica --Rubrica.
         AND pc.data_aditamento IS NOT NULL --Aditamento.
@@ -128,7 +128,7 @@ BEGIN
     SELECT pe.percentual, pe.cod
       INTO vPercentual, vCodPercentual
       FROM tb_percentual_estatico pe
-        JOIN tb_rubricas r ON r.cod = pe.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pe.cod_rubrica
       WHERE r.cod = pCodRubrica --Rubrica.
         AND pe.data_aditamento IS NOT NULL --Aditamento.
         AND TRUNC(pe.data_aditamento) <= TRUNC(SYSDATE)
@@ -151,7 +151,7 @@ BEGIN
     SELECT pc.percentual
       INTO vPercentual 
       FROM tb_percentual_contrato pc
-        JOIN tb_rubricas r ON r.cod = pc.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pc.cod_rubrica
       WHERE pc.cod_contrato = pCodContrato --Contrato.
         AND r.cod = pCodRubrica --Rubrica.
         AND pc.data_aditamento IS NOT NULL --Aditamento.
@@ -167,7 +167,7 @@ BEGIN
     SELECT pe.percentual
       INTO vPercentual 
       FROM tb_percentual_estatico pe
-        JOIN tb_rubricas r ON r.cod = pe.cod_rubrica
+        JOIN tb_rubrica r ON r.cod = pe.cod_rubrica
       WHERE r.cod = pCodRubrica --Rubrica.
         AND pe.data_aditamento IS NOT NULL --Aditamento.
         AND (EXTRACT(month FROM pe.data_fim) = EXTRACT(month FROM vDataReferencia) --Fim no mês referência.

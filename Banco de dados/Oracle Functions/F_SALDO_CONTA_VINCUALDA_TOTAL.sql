@@ -1,4 +1,4 @@
-create or replace function "F_SALDO_CONTA_VINCULADA_TOTAL" (pCod NUMBER, pCodCargoContrato NUMBER, pOperacao NUMBER, pCodRubrica NUMBER) RETURN FLOAT
+create or replace function "F_SALDO_CONTA_VINCULADA_TOTAL" (pCod NUMBER, pCodFuncaoContrato NUMBER, pOperacao NUMBER, pCodRubrica NUMBER) RETURN FLOAT
 IS
 
   --Função que retorna um valor relacionado ao saldo da conta vinculada.
@@ -55,11 +55,12 @@ BEGIN
            vMultaFGTSRetido,
            vTotalRetido 
       FROM tb_total_mensal_a_reter tmr
-        JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
+        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato
         LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod
-        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-      WHERE cc.cod_contrato = pCod
-        AND cc.cod = pCodCargoContrato;
+        JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod
+        JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+      WHERE fc.cod_contrato = pCod
+        AND fc.cod = pCodFuncaoContrato;
 
   END IF;
 
@@ -78,10 +79,11 @@ BEGIN
            vIncidenciaTercoRestituido,
            vTotalRestituido 
       FROM tb_restituicao_ferias rf
-        JOIN tb_cargo_funcionario cf ON cf.cod = rf.cod_cargo_funcionario
-        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-      WHERE cc.cod_contrato = pCod
-        AND cc.cod = pCodCargoContrato;
+        JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato
+        JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod
+        JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+      WHERE fc.cod_contrato = pCod
+        AND fc.cod = pCodFuncaoContrato;
 
   END IF;
 
@@ -96,10 +98,11 @@ BEGIN
            vIncidencia13Restituido,
            vTotalRestituido
       FROM tb_restituicao_decimo_terceiro rdt
-        JOIN tb_cargo_funcionario cf ON cf.cod = rdt.cod_cargo_funcionario
-        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-      WHERE cc.cod_contrato = pCod
-        AND cc.cod = pCodCargoContrato;
+        JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato
+        JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod
+        JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+      WHERE fc.cod_contrato = pCod
+        AND fc.cod = pCodFuncaoContrato;
 
   END IF;
   

@@ -1,4 +1,4 @@
-create or replace function "F_SALDO_CONTA_VINCULADA" (pCodCargoFuncionario NUMBER, pAno NUMBER, pOperacao NUMBER, pCodRubrica NUMBER) RETURN FLOAT
+create or replace function "F_SALDO_CONTA_VINCULADA" (pCodTerceirizadoContrato NUMBER, pAno NUMBER, pOperacao NUMBER, pCodRubrica NUMBER) RETURN FLOAT
 IS
 
   --Função que retorna um valor relacionado ao saldo da conta vinculada.
@@ -55,10 +55,10 @@ BEGIN
            vMultaFGTSRetido,
            vTotalRetido 
       FROM tb_total_mensal_a_reter tmr
-        JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
+        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato
         LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod
       WHERE EXTRACT(year FROM tmr.data_referencia) = pAno
-        AND cf.cod = pCodCargoFuncionario;
+        AND tc.cod = pCodTerceirizadoContrato;
 
   END IF;
 
@@ -77,9 +77,9 @@ BEGIN
            vIncidenciaTercoRestituido,
            vTotalRestituido 
       FROM tb_restituicao_ferias rf
-        JOIN tb_cargo_funcionario cf ON cf.cod = rf.cod_cargo_funcionario
+        JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato
       WHERE EXTRACT(year FROM rf.data_inicio_periodo_aquisitivo) = pAno
-        AND cf.cod = pCodCargoFuncionario;
+        AND tc.cod = pCodTerceirizadoContrato;
 
   END IF;
   
@@ -94,9 +94,9 @@ BEGIN
            vIncidencia13Restituido,
            vTotalRestituido
       FROM tb_restituicao_decimo_terceiro rdt
-        JOIN tb_cargo_funcionario cf ON cf.cod = rdt.cod_cargo_funcionario
+        JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato
       WHERE EXTRACT(year FROM rdt.data_inicio_contagem) = pAno
-        AND cf.cod = pCodCargoFuncionario;
+        AND tc.cod = pCodTerceirizadoContrato;
 
   END IF;
 
