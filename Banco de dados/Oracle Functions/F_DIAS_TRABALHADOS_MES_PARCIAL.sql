@@ -1,4 +1,4 @@
-create or replace function "F_DIAS_TRABALHADOS_MES_PARCIAL"(pCodFuncaoContrato NUMBER, pCodTerceirizadoContrato NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN NUMBER
+create or replace function "F_DIAS_TRABALHADOS_MES_PARCIAL"(pCodFuncaoContrato NUMBER, pCodFuncaoTerceirizado NUMBER, pMes NUMBER, pAno NUMBER, pOperacao NUMBER) RETURN NUMBER
 IS
 
 --Função que retorna o número de dias que um terceirizado
@@ -10,8 +10,8 @@ IS
   vDataInicio DATE;
   vDataFim DATE;
   vCodContrato NUMBER;
-  vDataDisponibilizacao DATE;
-  vDataDesligamento DATE;
+  vDataInicioFuncao DATE;
+  vDataFimFuncao DATE;
   
   --Operação 1: Primeira metade da remuneração.
   --Operação 2: Segunda metade da remuneração.
@@ -33,12 +33,12 @@ BEGIN
 
   --Carregamento das datas de disponibilização e desligamento do terceirizado.
 
-  SELECT data_disponibilizacao, 
-         data_desligamento
-    INTO vDataDisponibilizacao,
-	       vDataDesligamento
-    FROM tb_terceirizado_contrato
-	WHERE cod = pCodTerceirizadoContrato;
+  SELECT data_inicio, 
+         data_fim
+    INTO vDataInicioFuncao,
+	       vDataFimFuncao
+    FROM tb_funcao_terceirizado
+	WHERE cod = pCodFuncaoTerceirizado;
   
   --Primeira metade da remuneração (a remuneração anterior tem data fim naquele mês).
    
@@ -124,11 +124,11 @@ BEGIN
 
     --Se a data de desligamento é nula.
 
-    IF (vDataDesligamento IS NULL) THEN
+    IF (vDataFimFuncao IS NULL) THEN
 
       --Se a disponibilização é inferior a data referência.
 
-      IF (vDataDisponibilizacao < vDataReferencia) THEN
+      IF (vDataInicioFuncao < vDataReferencia) THEN
       
         vRetorno := (vDataFim - vDataReferencia) + 1;
       
@@ -136,9 +136,9 @@ BEGIN
 
       --Se a data de disponilização está dentro do período.
 
-      IF (vDataDisponibilizacao >= vDataReferencia AND vDataDisponibilizacao <= vDataFim) THEN
+      IF (vDataInicioFuncao >= vDataReferencia AND vDataInicioFuncao <= vDataFim) THEN
   
-        vRetorno := (vDataFim - vDataDisponibilizacao) + 1;
+        vRetorno := (vDataFim - vDataInicioFuncao) + 1;
     
       END IF;
 
@@ -146,13 +146,13 @@ BEGIN
 
     --Caso exista uma data de desligamento do terceirizado.
 
-    IF (vDataDesligamento IS NOT NULL) THEN
+    IF (vDataFimFuncao IS NOT NULL) THEN
   
     --Se a data de disponibilização é inferior à data referência e a data de 
     --desligamento é superior ao último dia do mês referência então o
     --terceirizado trabalhou os dias entre o inicio do mês e a data fim.
   
-    IF (vDataDisponibilizacao < vDataReferencia AND vDataDesligamento > vDataFim) THEN
+    IF (vDataInicioFuncao < vDataReferencia AND vDataFimFuncao > vDataFim) THEN
       
       vRetorno := (vDataFim - vDataReferencia) + 1;
       
@@ -162,11 +162,11 @@ BEGIN
     --desligamento é superior mês referência, então se verifica a quantidade
     --de dias trabalhados pelo terceirizado entre a data fim e a disponibilização.
   
-    IF (vDataDisponibilizacao >= vDataReferencia 
-        AND vDataDisponibilizacao <= vDataFim
-        AND vDataDesligamento > vDataFim) THEN
+    IF (vDataInicioFuncao >= vDataReferencia 
+        AND vDataInicioFuncao <= vDataFim
+        AND vDataFimFuncao > vDataFim) THEN
     
-      vRetorno := (vDataFim - vDataDisponibilizacao) + 1;
+      vRetorno := (vDataFim - vDataInicioFuncao) + 1;
     
     END IF;
     
@@ -174,12 +174,12 @@ BEGIN
     --e também a data de desligamento, então contam-se os dias trabalhados 
     --pelo terceirizado entre o desligamento e a disponibilização.
     
-    IF (vDataDisponibilizacao >= vDataReferencia 
-        AND vDataDisponibilizacao <= vDataFim
-        AND vDataDesligamento >= vDataReferencia
-        AND vDataDesligamento <= vDataFim) THEN
+    IF (vDataInicioFuncao >= vDataReferencia 
+        AND vDataInicioFuncao <= vDataFim
+        AND vDataFimFuncao >= vDataReferencia
+        AND vDataFimFuncao <= vDataFim) THEN
   
-      vRetorno := (vDataDesligamento - vDataDisponibilizacao) + 1;
+      vRetorno := (vDataFimFuncao - vDataInicioFuncao) + 1;
     
     END IF;
     
@@ -187,11 +187,11 @@ BEGIN
     --o terceirizado tiver desligamento antes da data fim, então contam-se
     --os dias trabalhados nesse período.
     
-    IF (vDataDisponibilizacao < vDataReferencia 
-        AND vDataDesligamento >= vDataReferencia
-        AND vDataDesligamento <= vDataFim) THEN
+    IF (vDataInicioFuncao < vDataReferencia 
+        AND vDataFimFuncao >= vDataReferencia
+        AND vDataFimFuncao <= vDataFim) THEN
     
-      vRetorno := (vDataDesligamento - vDataReferencia) + 1;
+      vRetorno := (vDataFimFuncao - vDataReferencia) + 1;
     
     END IF;
  
@@ -205,11 +205,11 @@ BEGIN
 
   --Se o terceirizado não possui data de desligamento.
 
-  IF (vDataDesligamento IS NULL) THEN
+  IF (vDataFimFuncao IS NULL) THEN
 
     --Se a disponibilização é inferior a data referência.
 
-    IF (vDataDisponibilizacao < vDataReferencia) THEN
+    IF (vDataInicioFuncao < vDataReferencia) THEN
       
       vRetorno := (vDataFim - vDataInicio) + 1;
       
@@ -217,9 +217,9 @@ BEGIN
 
     --Caso a disponibilização esteja dentro do período.
 
-    IF (vDataDisponibilizacao >= vDataInicio AND vDataDisponibilizacao <= vDataFim) THEN
+    IF (vDataInicioFuncao >= vDataInicio AND vDataInicioFuncao <= vDataFim) THEN
   
-      vRetorno := (vDataFim - vDataDisponibilizacao) + 1;
+      vRetorno := (vDataFim - vDataInicioFuncao) + 1;
     
     END IF;
 
@@ -227,13 +227,13 @@ BEGIN
 
   --Se o terceirizado possuir data de desligamento.
 
-  IF (vDataDesligamento IS NOT NULL) THEN
+  IF (vDataFimFuncao IS NOT NULL) THEN
   
     --Se a data de disponibilização é inferior a data referência e a data de 
     --desligamento é superior ao último dia do mês referência então o
     --terceirizado trabalhou os dias entre o início e o fim.
   
-    IF (vDataDisponibilizacao < vDataReferencia AND vDataDesligamento > vDataFim) THEN
+    IF (vDataInicioFuncao < vDataReferencia AND vDataFimFuncao > vDataFim) THEN
       
       vRetorno := (vDataFim - vDataInicio) + 1;
       
@@ -243,11 +243,11 @@ BEGIN
     --e a data de desligamento superior a data de fim então
     --conta-se o período entre data fim e data de disponibilização.
   
-    IF (vDataDisponibilizacao >= vDataInicio 
-        AND vDataDisponibilizacao <= vDataFim
-        AND vDataDesligamento > vDataFim) THEN
+    IF (vDataInicioFuncao >= vDataInicio 
+        AND vDataInicioFuncao <= vDataFim
+        AND vDataFimFuncao > vDataFim) THEN
     
-      vRetorno := (vDataFim - vDataDisponibilizacao) + 1;
+      vRetorno := (vDataFim - vDataInicioFuncao) + 1;
     
     END IF;
     
@@ -255,12 +255,12 @@ BEGIN
     --e a data de desligamento inferior a data de fim e superior
     --a data de inicio então conta-se este período.
     
-    IF (vDataDisponibilizacao >= vDataInicio 
-        AND vDataDisponibilizacao <= vDataFim
-        AND vDataDesligamento >= vDataInicio
-        AND vDataDesligamento <= vDataFim) THEN
+    IF (vDataInicioFuncao >= vDataInicio 
+        AND vDataInicioFuncao <= vDataFim
+        AND vDataFimFuncao >= vDataInicio
+        AND vDataFimFuncao <= vDataFim) THEN
   
-      vRetorno := (vDataDesligamento - vDataDisponibilizacao) + 1;
+      vRetorno := (vDataFimFuncao - vDataInicioFuncao) + 1;
     
     END IF;
     
@@ -268,11 +268,11 @@ BEGIN
     --o terceirizado tiver desligamento no mês referência, então contam-se
     --os dias trabalhados.
     
-    IF (vDataDisponibilizacao < vDataInicio 
-        AND vDataDesligamento >= vDataInicio
-        AND vDataDesligamento <= vDataFim) THEN
+    IF (vDataInicioFuncao < vDataInicio 
+        AND vDataFimFuncao >= vDataInicio
+        AND vDataFimFuncao <= vDataFim) THEN
     
-      vRetorno := (vDataDesligamento - vDataInicio) + 1;
+      vRetorno := (vDataFimFuncao - vDataInicio) + 1;
     
     END IF;
  

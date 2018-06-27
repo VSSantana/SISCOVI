@@ -46,17 +46,18 @@ BEGIN
       INTO vRemuneracao, vCodRemuneracaoCargoContrato, vDataAditamento
       FROM tb_remuneracao_fun_con 
       WHERE cod_funcao_contrato = pCodFuncaoContrato 
-	    AND data_aditamento IS NOT NULL
+	      AND data_aditamento IS NOT NULL
         AND TRUNC(data_aditamento) <= TRUNC(SYSDATE)
-        AND ((((TRUNC(data_inicio) <= TRUNC(vDataReferencia))
-	         AND
-	  	     (TRUNC(data_inicio) <= TRUNC(LAST_DAY(vDataReferencia))))
-        AND (((TRUNC(data_fim) >= TRUNC(vDataReferencia))
-		     AND 
-		     (TRUNC(data_fim) >= TRUNC(LAST_DAY(vDataReferencia)))
-		      OR data_fim IS NULL)))
+        AND (((((TRUNC(data_inicio) <= TRUNC(vDataReferencia))
+	           AND
+	  	       (TRUNC(data_inicio) <= TRUNC(LAST_DAY(vDataReferencia)))))
+             AND( 
+             ((((TRUNC(data_fim) >= TRUNC(vDataReferencia))
+		         AND 
+		         (TRUNC(data_fim) >= TRUNC(LAST_DAY(vDataReferencia))))
+		         OR data_fim IS NULL)))
              OR (EXTRACT(month FROM data_inicio) = EXTRACT(month FROM vDataReferencia) --Ou início no mês referência.
-               AND EXTRACT(year FROM data_inicio) = EXTRACT(year FROM vDataReferencia)));
+               AND EXTRACT(year FROM data_inicio) = EXTRACT(year FROM vDataReferencia))));
      
   END IF;
   

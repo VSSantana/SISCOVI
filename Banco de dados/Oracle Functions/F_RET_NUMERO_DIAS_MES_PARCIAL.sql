@@ -2,8 +2,10 @@ create or replace function "F_RET_NUMERO_DIAS_MES_PARCIAL" (pCodFuncaoContrato N
 IS
 
   --Função que retorna o número de dias trabalhados
-  --por um terceirizado em um período de mudança 
-  --de remuneração ou percentual.
+  --correspondentes a metade de um percentual ou 
+  --remuneração em um mês de mudança.
+  --Ex.: 13 dias primeirametade rem. e 17 dias segunda
+  --metada da rem..
 
   vRetorno NUMBER;
   vDataReferencia DATE;
