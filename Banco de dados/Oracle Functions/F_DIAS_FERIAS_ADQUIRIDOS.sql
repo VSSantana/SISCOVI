@@ -27,7 +27,7 @@ BEGIN
 
   FOR i IN 1 .. vNumeroMeses LOOP
 
-    IF (F_FUNC_RETENCAO_INTEGRAL(pCodTerceirizadoContrato, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) = TRUE) THEN
+    IF (F_DIAS_TRABALHADOS_TERC(pCodTerceirizadoContrato, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) >= 15) THEN
   
       vMesesFerias := vMesesFerias + 1;
     

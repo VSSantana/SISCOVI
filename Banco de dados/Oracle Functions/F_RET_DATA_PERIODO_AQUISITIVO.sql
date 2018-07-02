@@ -7,47 +7,55 @@ IS
   --1 - Início do período aquisitivo.
   --2 - Fim do período aquisitivo.
 
-  vMaxDataCalculo DATE;
-  vDataRetorno DATE;
+  vDataInicio DATE;
+  vDataFim DATE;
+  vCodContrato NUMBER;
 
 BEGIN
 
-  --Seleciona a máxima data fim dos períodos aquisitivos e adiciona 1 dia.
+  --Seleciona a data de disponibilização do terceirizado no contrato.
 
-  BEGIN
+  SELECT data_disponibilizacao,
+         cod_contrato
+    INTO vDataInicio,
+         vCodContrato
+    FROM tb_terceirizado_contrato
+    WHERE cod = pCodTerceirizadoContrato;
 
-    SELECT MAX(data_fim_periodo_aquisitivo)
-      INTO vMaxDataCalculo
-      FROM tb_restituicao_ferias
-      WHERE cod_terceirizado_contrato = pCodTerceirizadoContrato;
+  vDataFim := vDataInicio + 364;
 
-    vDataRetorno := vMaxDataCalculo + 1;
+  --Loop com limite de 10 anos (para controle de exceções) que verifica qual o período aquisitivo vigente.
 
-    EXCEPTION WHEN OTHERS THEN
+  FOR i IN 1 .. 10 LOOP
+    
+    IF (F_SALDO_FERIAS (vCodContrato, pCodTerceirizadoContrato, vDataInicio, vDataFim) > 0) THEN
 
-      vMaxDataCalculo := NULL;    
+      EXIT;
 
-  END;
+    END IF;
 
-  --Atribui a data de disponibilização a data fim do período aquisitivo caso não exista nenhum.
+    vDataInicio := vDataFim + 1;
 
-  IF (vMaxDataCalculo IS NULL) THEN
+    vDataFim := vDataInicio + 364;
 
-    SELECT data_disponibilizacao
-      INTO vDataRetorno
-      FROM tb_terceirizado_contrato
-      WHERE cod = pCodTerceirizadoContrato;
+  END LOOP;
+
+  --Retorna o início do período aquisitivo válido (corrente).
+
+  IF (pOperacao = 1) THEN
+
+    RETURN vDataInicio;
 
   END IF;
 
-  --Determina o fim do período aquisitivo.
+  --Retorna o fim do período aquisitivo válido (corrente).
 
   IF (pOperacao = 2) THEN
 
-    vDataRetorno := vDataRetorno + 364;
+    RETURN vDataFim;
 
   END IF; 
 
-  RETURN vDataRetorno;
+  RETURN NULL;
 
 END;
