@@ -32,7 +32,7 @@ AS
   vExisteCalculo NUMBER := 0;
   vDataReferencia DATE;
   vDataInicioConvencao DATE;
-  vDataFimConvencao DATE;
+  vDataFimRemuneracao DATE;
   vDataInicioPercentual DATE;
   vDataFimPercentual DATE := NULL;
   vDataFimPercentualEstatico DATE := NULL;
@@ -220,28 +220,24 @@ BEGIN
                
         --Se a retenção for para período integral.           
 
-        IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = TRUE) THEN
-	  
-          vTotalFerias := vRemuneracao * (vPercentualFerias/100);
-          vTotalTercoConstitucional := vRemuneracao * (vPercentualTercoConstitucional/100);
-          vTotalDecimoTerceiro := vRemuneracao * (vPercentualDecimoTerceiro/100);
-          vTotalIncidencia := vRemuneracao * (vPercentualIncidencia/100);
-          vTotalIndenizacao := vRemuneracao * (vPercentualIndenizacao/100);
-      
-        END IF;
-        
-        --Caso o funcionário não tenha trabalhado 15 dias ou mais no período.
-      
-        IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
-        
-          vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 1, 1);
+        vTotalFerias := vRemuneracao * (vPercentualFerias/100);
+        vTotalTercoConstitucional := vRemuneracao * (vPercentualTercoConstitucional/100);
+        vTotalDecimoTerceiro := vRemuneracao * (vPercentualDecimoTerceiro/100);
+        vTotalIncidencia := vRemuneracao * (vPercentualIncidencia/100);
+        vTotalIndenizacao := vRemuneracao * (vPercentualIndenizacao/100);
 
-          vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
-	  
-          vTotalIndenizacao := ((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
-      
+        --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, situação similar para a retenção proporcional.
+
+        IF (F_EXISTE_MUDANCA_FUNCAO(c2.cod_terceirizado_contrato, pMes, pAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
+
+          vTotalFerias := (vTotalFerias/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+          vTotalTercoConstitucional := (vTotalTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+          vTotalDecimoTerceiro := (vTotalDecimoTerceiro/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+          vTotalIncidencia := (vTotalIncidencia/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+          vTotalIndenizacao := (vTotalIndenizacao/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+
         END IF;
-      
+                          
         vTotal := (vTotalFerias + vTotalTercoConstitucional + vTotalDecimoTerceiro + vTotalIncidencia + vTotalIndenizacao);	
       
         INSERT INTO tb_total_mensal_a_reter (cod_terceirizado_contrato,
@@ -309,71 +305,92 @@ BEGIN
         vTotalIncidencia := 0.00;
         vTotalIndenizacao := 0.00;
         
-        --Definição dos percentuais da primeira metade do mês.
-  
-        vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, pMes, pAno, 2, 1);     
-        vPercentualTercoConstitucional := vPercentualFerias/3;
-        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, pMes, pAno, 2, 1);
-        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, pMes, pAno, 2, 1) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-        vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 2, 1);
-        vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 2, 1);
-        vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 2, 1);
-        vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
-                   
-        --Se a retenção for para período integral.           
-
-        IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = TRUE) THEN
+        vValorFerias := 0;
+        vValorTercoConstitucional := 0;
+        vValorDecimoTerceiro := 0;
+        vValorIncidencia := 0;
+        vValorIndenizacao := 0;
         
-          --Recolhimento referente a primeira metade do mês.
-	  
-          vTotalFerias := (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 3));
-          vTotalTercoConstitucional := (((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 3));
-          vTotalDecimoTerceiro := (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 3));
-          vTotalIncidencia := (((vRemuneracao * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 3));
-          vTotalIndenizacao := (((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 3));
-          
-          --Definição dos percentuais da segunda metade do mês.
-  
-          vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, pMes, pAno, 1, 1);     
-          vPercentualTercoConstitucional := vPercentualFerias/3;
-          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, pMes, pAno, 1, 1);
-          vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, pMes, pAno, 1, 1) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-          vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 1, 1);
-          vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 1, 1);
-          vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 1, 1);
-          vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
-          
-          --Recolhimento referente a primeira metade do mês.
-	  
-          vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 4));
-          vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 4));
-          vTotalDecimoTerceiro := vTotalDecimoTerceiro + (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 4));
-          vTotalIncidencia := vTotalIncidencia + (((vRemuneracao * (vPercentualIncidencia/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 4));
-          vTotalIndenizacao := vTotalIndenizacao + (((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, pMes, pAno, 4));
-      
-        END IF;
+        vDataInicio := vDataReferencia;
+
+        FOR c3 IN (SELECT data_inicio AS data 
+                     FROM tb_percentual_contrato
+                     WHERE cod_contrato = 15
+                       AND (EXTRACT(month FROM data_inicio) = 09
+                            AND 
+                            EXTRACT(year FROM data_inicio) = 2016)
+    
+                   UNION
+
+                   SELECT data_fim AS data
+                     FROM tb_percentual_contrato
+                     WHERE cod_contrato = 15
+                       AND (EXTRACT(month FROM data_fim) = 09
+                            AND 
+                            EXTRACT(year FROM data_fim) = 2016)
+
+                   UNION
+
+                   SELECT TO_DATE('30/' || pMes || '/' || pAno, 'dd/mm/yyyy') AS data
+                     FROM DUAL
+
+                   ORDER BY data ASC) LOOP
+
+            --Definição das datas de início e fim do subperíodo.
+
+            vDataFim := c3.data;
         
-        --Caso o funcionário não tenha trabalhado 15 dias ou mais no período.
-      
-        IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
-
-          vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 2, 1);
-
-          vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
-	  
-	        vTotalIndenizacao := (((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_DIAS_TRABALHADOS_MES_PARCIAL(c1.cod, c2.cod, pMes, pAno, 3));
-          
-           --Definição dos percentuais da segunda metade do mês.
+            --Definição dos percentuais da primeira metade do mês.
   
-          vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 1, 1);
-          vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 1, 1);
-          vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 1, 1);
-          vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
-          
-          vTotalIndenizacao := vTotalIndenizacao + (((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_DIAS_TRABALHADOS_MES_PARCIAL(c1.cod, c2.cod, pMes, pAno, 4));
-      
-        END IF;
-      
+            vPercentualFerias := F_RET_PERCENTUAL_CONTRATO(pCodContrato, 1, vDataInicio, vDataFim, 1);     
+            vPercentualTercoConstitucional := vPercentualFerias/3;
+            vPercentualDecimoTerceiro := F_RET_PERCENTUAL_CONTRATO(pCodContrato, 3, vDataInicio, vDataFim 1);
+            vPercentualIncidencia := (F_RET_PERCENTUAL_CONTRATO(pCodContrato, 7, vDataInicio, vDataFim 1) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        
+            IF (F_MUNDANCA_PERCENTUAL_ESTATICO(pCodContrato, pMes, pAno, 1) = TRUE) THEN
+
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 2, 1);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 2, 1);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 2, 1);
+        
+            ELSE
+
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 1, 1);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 1, 1);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 1, 1);
+
+            END IF;
+        
+            vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
+
+            --Calculo da porção correspondente ao subperíodo.
+ 
+            vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
+            vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
+            vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
+            vValorIncidencia := ((vRemuneracao * (vPercentualIncidencia/100))/30) * ((vDataFim - vDataInicio) + 1);
+            vValorIndenizacao := ((vRemuneracao * (vPercentualIndenizacao/100))/30) * ((vDataFim - vDataInicio) + 1);
+
+            --No caso de mudança de função ou retenção parcial temos um recolhimento proporcional ao dias trabalhados no cargo.
+
+            IF (F_EXISTE_MUDANCA_FUNCAO(c2.cod_terceirizado_contrato, pMes, pAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
+
+              vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+              vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+              vValorDecimoTerceiro := (vValorDecimoTerceiro/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+              vValorIncidencia := (vValorIncidencia/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+              vValorIndenizacao := (vValorIndenizacao/30) * F_DIAS_TRABALHADOS_MES(c2.cod, pMes, pAno);
+
+            END IF;
+
+            vTotalFerias := vTotalFerias + vValorFerias;
+            vTotalTercoConstitucional := vTotalTercoConstitucional + vValorTercoConstitucional;
+            vTotalDecimoTerceiro := vTotalDecimoTerceiro + vValorDecimoTerceiro;
+            vTotalIncidencia := vTotalIncidencia + vValorIncidencia;
+            vTotalIndenizacao := vTotalIndenizacao + vValorIndenizacao;
+
+        END LOOP;
+     
         vTotal := (vTotalFerias + vTotalTercoConstitucional + vTotalDecimoTerceiro + vTotalIncidencia + vTotalIndenizacao);	
       
         INSERT INTO tb_total_mensal_a_reter (cod_terceirizado_contrato,
@@ -514,6 +531,10 @@ BEGIN
     --Se existe mudança de percentual e mudança de convenção.
     
     IF (F_EXISTE_DUPLA_CONVENCAO(c1.cod, pMes, pAno, 1) = TRUE AND F_EXISTE_MUDANCA_PERCENTUAL(pCodContrato, pMes, pAno, 1) = TRUE) THEN
+
+      vDataFimPercentual := NULL;
+      vDataFimPercentualEstatico := NULL;
+      vDataFimRemuneracao := NULL;
     
       --Define a remuneração do funcao
             
@@ -523,7 +544,7 @@ BEGIN
       --Definição das datas para os períodos da convenção e percentuais.
    
       SELECT data_fim
-        INTO vDataFimConvencao
+        INTO vDataFimRemuneracao
         FROM tb_remuneracao_fun_con
         WHERE cod_funcao_contrato = c1.cod
           AND data_aditamento IS NOT NULL
@@ -569,7 +590,7 @@ BEGIN
  
       END IF;
                
-      vDataInicioConvencao := vDataFimConvencao + 1;
+      vDataInicioConvencao := vDataFimRemuneracao + 1;
       vDataInicioPercentual := vDataFimPercentual + 1;
          
       --Para cada funcionário que ocupa aquele funcao.
@@ -598,7 +619,7 @@ BEGIN
         
         --Definição do método de cálculo.
         
-        IF (vDataFimConvencao < vDataFimPercentual) THEN
+        IF (vDataFimRemuneracao < vDataFimPercentual) THEN
         
           --Definição dos percentuais da primeira metade do mês.
   
@@ -685,7 +706,7 @@ BEGIN
         
         END IF;
         
-        IF (vDataFimConvencao > vDataFimPercentual) THEN
+        IF (vDataFimRemuneracao > vDataFimPercentual) THEN
         
           --Definição dos percentuais da primeira metade do mês.
   
@@ -723,11 +744,11 @@ BEGIN
           
             --Retenção proporcional da segunda porção do mês.
           
-            vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-            vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-            vTotalDecimoTerceiro := vTotalDecimoTerceiro + (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-            vTotalIncidencia := vTotalIncidencia + (((vRemuneracao * (vPercentualIncidencia/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
-  	        vTotalIndenizacao := vTotalIndenizacao + (((vRemuneracao * (vPercentualIndenizacao/100))/30) * (vDataFimConvencao - vDataInicioPercentual + 1));
+            vTotalFerias := vTotalFerias + (((vRemuneracao * (vPercentualFerias/100))/30) * (vDataFimRemuneracao - vDataInicioPercentual + 1));
+            vTotalTercoConstitucional := vTotalTercoConstitucional + (((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * (vDataFimRemuneracao - vDataInicioPercentual + 1));
+            vTotalDecimoTerceiro := vTotalDecimoTerceiro + (((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * (vDataFimRemuneracao - vDataInicioPercentual + 1));
+            vTotalIncidencia := vTotalIncidencia + (((vRemuneracao * (vPercentualIncidencia/100))/30) * (vDataFimRemuneracao - vDataInicioPercentual + 1));
+  	        vTotalIndenizacao := vTotalIndenizacao + (((vRemuneracao * (vPercentualIndenizacao/100))/30) * (vDataFimRemuneracao - vDataInicioPercentual + 1));
             
             --Retenção proporcional da terceira porção do mês.
           
@@ -774,7 +795,7 @@ BEGIN
         
         --Caso as datas da convenção e do percentual sejam iguais.
         
-        IF (vDataFimConvencao = vDataFimPercentual) THEN
+        IF (vDataFimRemuneracao = vDataFimPercentual) THEN
         
           --Definição dos percentuais da primeira metade do mês.
   
