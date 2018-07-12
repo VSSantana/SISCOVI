@@ -1,12 +1,10 @@
-/*    ==Par‚metros de Script==
-
-    Vers„o do Servidor de Origem : SQL Server 2016 (13.0.4001)
-    EdiÁ„o do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
-    Tipo do Mecanismo de Banco de Dados de Origem : SQL Server AutÙnomo
-
-    Vers„o do Servidor de Destino : SQL Server 2016
-    EdiÁ„o de Mecanismo de Banco de Dados de Destino : Microsoft SQL Server Enterprise Edition
-    Tipo de Mecanismo de Banco de Dados de Destino : SQL Server AutÙnomo
+/*    ==Par√¢metros de Script==
+    Vers√£o do Servidor de Origem : SQL Server 2016 (13.0.4001)
+    Edi√ß√£o do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
+    Tipo do Mecanismo de Banco de Dados de Origem : SQL Server Aut√¥nomo
+    Vers√£o do Servidor de Destino : SQL Server 2016
+    Edi√ß√£o de Mecanismo de Banco de Dados de Destino : Microsoft SQL Server Enterprise Edition
+    Tipo de Mecanismo de Banco de Dados de Destino : SQL Server Aut√¥nomo
 */
 
 USE [SISCOVI]
@@ -98,5 +96,3 @@ END;
 
 ------------------------------------------------------------------------------------------------
 GO
-
-

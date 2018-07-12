@@ -7,6 +7,7 @@ IS
   vDataInicio DATE;
   vDataFim DATE;
   vDataReferencia DATE;
+  vCodTerceirizadoContrato NUMBER;
 
 BEGIN
 
@@ -14,14 +15,54 @@ BEGIN
 
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
 
-  --Carrega as datas de disponibilização e desligamento do terceirizado.
+  --Carrega o cod_terceirizado_contrato.
  
-  SELECT data_inicio, 
-         data_fim
-    INTO vDataInicio,
-	       vDataFim
+  SELECT cod_terceirizado_contrato
+    INTO vCodTerceirizadoContrato
     FROM tb_funcao_terceirizado
   	WHERE cod = pCodFuncaoTerceirizado;
+
+  --Carregamento das datas de disponibilização e desligamento do terceirizado.
+
+  IF (F_EXISTE_MUDANCA_FUNCAO (vCodTerceirizadoContrato, pMes, pAno) = FALSE) THEN
+
+    SELECT data_inicio,
+           data_fim
+      INTO vDataInicio,
+           vDataFim
+      FROM tb_funcao_terceirizado ft
+      WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
+      AND (((TO_DATE('01/' || EXTRACT(month FROM ft.data_inicio) || '/' || EXTRACT(year FROM ft.data_inicio), 'dd/mm/yyyy') <= TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'))
+           AND 
+           (ft.data_fim >= TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy')))
+           OR
+           ((TO_DATE('01/' || EXTRACT(month FROM ft.data_inicio) || '/' || EXTRACT(year FROM ft.data_inicio), 'dd/mm/yyyy') <= TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy'))
+            AND
+            (ft.data_fim IS NULL)));
+
+    ELSE
+
+      SELECT data_inicio
+        INTO vDataInicio     
+        FROM tb_funcao_terceirizado ft
+        WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
+          AND data_fim = (SELECT MIN(data_fim)
+                            FROM tb_funcao_terceirizado
+                            WHERE cod_terceirizado_contrato = vCodTerceirizadoContrato
+                              AND EXTRACT(month FROM data_fim) = pMes
+                              AND EXTRACT(year FROM data_fim) = pAno);
+
+      SELECT data_fim
+        INTO vDataFim     
+        FROM tb_funcao_terceirizado ft
+        WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
+          AND data_inicio = (SELECT MAX(data_inicio)
+                               FROM tb_funcao_terceirizado
+                               WHERE cod_terceirizado_contrato = vCodTerceirizadoContrato
+                                 AND EXTRACT(month FROM data_inicio) = pMes
+                                 AND EXTRACT(year FROM data_inicio) = pAno);
+
+    END IF;
     
   --Caso não possua data de desligamento.  
    

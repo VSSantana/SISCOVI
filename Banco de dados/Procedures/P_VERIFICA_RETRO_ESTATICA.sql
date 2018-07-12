@@ -13,45 +13,45 @@ AS
   vDataCobrancaRetroatividade DATE;
 
   CURSOR contrato_calculado IS
-    SELECT DISTINCT(cc.cod_contrato) AS cod_contrato
+    SELECT DISTINCT(fc.cod_contrato) AS cod_contrato
       FROM tb_total_mensal_a_reter tmr
-        JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
-        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-        JOIN tb_contrato c ON c.cod = cc.cod_contrato
+        JOIN tb_funcao_terceirizado ft ON ft.cod = tmr.cod_funcao_terceirizado
+        JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+        JOIN tb_contrato c ON c.cod = fc.cod_contrato
       WHERE c.se_ativo = 'S'
         AND EXTRACT(month FROM tmr.data_referencia) = EXTRACT(month FROM pDataAditamento)
         AND EXTRACT(year FROM tmr.data_referencia) = EXTRACT(year FROM pDataAditamento)
-        AND pDataAditamento >= (SELECT MIN(v.data_inicio_vigencia)
-                                  FROM tb_vigencia_contrato v 
-                                  WHERE v.cod_contrato = c.cod)
-        AND pDataAditamento <=  (SELECT MAX(v.data_inicio_vigencia)
-                                   FROM tb_vigencia_contrato v 
-                                   WHERE v.cod_contrato = c.cod);
+        AND pDataAditamento >= (SELECT MIN(ec.data_inicio_vigencia)
+                                  FROM tb_evento_contratual ec 
+                                  WHERE ec.cod_contrato = c.cod)
+        AND pDataAditamento <=  (SELECT MAX(ec.data_inicio_vigencia)
+                                   FROM tb_evento_contratual ec 
+                                   WHERE ec.cod_contrato = c.cod);
 
   CURSOR contrato_nao_calculado IS
     SELECT DISTINCT(c.cod) AS cod_contrato
       FROM tb_contrato c
         WHERE c.se_ativo = 'S'
-        AND c.cod NOT IN (SELECT DISTINCT(cc1.cod_contrato) AS cod_contrato
+        AND c.cod NOT IN (SELECT DISTINCT(fc.cod_contrato) AS cod_contrato
                             FROM tb_total_mensal_a_reter tmr
-                              JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
-                              JOIN tb_cargo_contrato cc1 ON cc1.cod = cf.cod_cargo_contrato
-                              JOIN tb_contrato c1 ON c1.cod = cc1.cod_contrato
+                              JOIN tb_funcao_terceirizado ft ON ft.cod = tmr.cod_funcao_terceirizado
+                              JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+                              JOIN tb_contrato c1 ON c1.cod = fc.cod_contrato
                             WHERE c1.se_ativo = 'S'
                               AND EXTRACT(month FROM tmr.data_referencia) = EXTRACT(month FROM pDataAditamento)
                               AND EXTRACT(year FROM tmr.data_referencia) = EXTRACT(year FROM pDataAditamento)
-                              AND pDataAditamento >= (SELECT MIN(v1.data_inicio_vigencia)
-                                                        FROM tb_vigencia_contrato v1 
-                                                        WHERE v1.cod_contrato = c1.cod)
-                              AND pDataAditamento <=  (SELECT MAX(v1.data_inicio_vigencia)
-                                                         FROM tb_vigencia_contrato v1
-                                                         WHERE v1.cod_contrato = c1.cod))
-        AND pDataAditamento >= (SELECT MIN(v.data_inicio_vigencia)
-                                  FROM tb_vigencia_contrato v 
-                                  WHERE v.cod_contrato = c.cod)
-        AND pDataAditamento <=  (SELECT MAX(v.data_inicio_vigencia)
-                                   FROM tb_vigencia_contrato v 
-                                   WHERE v.cod_contrato = c.cod);
+                              AND pDataAditamento >= (SELECT MIN(ec.data_inicio_vigencia)
+                                                        FROM tb_evento_contratual ec 
+                                                        WHERE ec.cod_contrato = c1.cod)
+                              AND pDataAditamento <=  (SELECT MAX(ec1.data_inicio_vigencia)
+                                                         FROM tb_evento_contratual ec1
+                                                         WHERE ec1.cod_contrato = c1.cod))
+        AND pDataAditamento >= (SELECT MIN(ec2.data_inicio_vigencia)
+                                  FROM tb_evento_contratual ec2 
+                                  WHERE ec2.cod_contrato = c.cod)
+        AND pDataAditamento <=  (SELECT MAX(ec3.data_inicio_vigencia)
+                                   FROM tb_evento_contratual ec3
+                                   WHERE ec3.cod_contrato = c.cod);
        
 BEGIN
 
@@ -100,8 +100,6 @@ BEGIN
       --cobrada no mês do aditamento ou no seguinte a depender da
       --existência de cálculo.
 
-
-
       vDataInicioRetroatividade := pDataInicio;
       vDataFimRetroatividade := LAST_DAY(pDataAditamento); 
       vDataCobrancaRetroatividade := LAST_DAY(pDataAditamento) + 1;
@@ -148,8 +146,12 @@ BEGIN
 
       END LOOP;
 
-
-
     END IF; 
+
+    EXCEPTION 
+      
+      WHEN OTHERS THEN
+  
+        RAISE_APPLICATION_ERROR(-20004, 'Erro na execução do procedimento P_VERIFICA_RETRO_ESTATICA: Causa não detectada.');
   
 END;

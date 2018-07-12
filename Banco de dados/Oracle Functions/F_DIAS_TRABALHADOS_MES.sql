@@ -2,7 +2,7 @@ create or replace function "F_DIAS_TRABALHADOS_MES"(pCodFuncaoTerceirizado NUMBE
 IS
 
 --Função que retorna o número de dias que um terceirizado
---trabalhou em determinado mês.
+--trabalhou em determinado mês em uma função.
 
   vDataInicio DATE;
   vDataFim DATE;

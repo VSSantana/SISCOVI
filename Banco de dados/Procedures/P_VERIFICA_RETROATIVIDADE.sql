@@ -1,4 +1,4 @@
-create or replace procedure "P_VERIFICA_RETROATIVIDADE" (pCodContrato NUMBER, pCodConvencaoColetiva NUMBER, pCodPercentualContrato NUMBER, pDataInicio DATE, pDataAditamento DATE, pOperacao NUMBER)
+create or replace procedure "P_VERIFICA_RETROATIVIDADE" (pCodContrato NUMBER, pCodRemFuncaoContrato NUMBER, pCodPercentualContrato NUMBER, pDataInicio DATE, pDataAditamento DATE, pOperacao NUMBER)
 AS
 
   --Procedimento que verifica se existe uma situação de retroatividade
@@ -25,9 +25,10 @@ BEGIN
     SELECT COUNT(tmr.cod)
       INTO vExisteCalculo
       FROM tb_total_mensal_a_reter tmr
-        JOIN tb_cargo_funcionario cf ON cf.cod = tmr.cod_cargo_funcionario
-        JOIN tb_cargo_contrato cc ON cc.cod = cf.cod_cargo_contrato
-      WHERE cc.cod_contrato = pCodContrato
+        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato
+        JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod
+        JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato
+      WHERE fc.cod_contrato = pCodContrato
         AND EXTRACT(month FROM tmr.data_referencia) = EXTRACT(month FROM pDataAditamento)
         AND EXTRACT(year FROM tmr.data_referencia) = EXTRACT(year FROM pDataAditamento);
       
@@ -92,17 +93,17 @@ BEGIN
 
   END IF;
 
-  --Inserir na tabela tb_retroatividade_convencao.
+  --Inserir na tabela tb_retroatividade_remuneracao.
   
-  IF (pCodConvencaoColetiva IS NOT NULL AND vAcao = 1) THEN
+  IF (pCodRemFuncaoContrato IS NOT NULL AND vAcao = 1) THEN
 
-    INSERT INTO tb_retroatividade_convencao (cod_convencao_coletiva, 
-                                             inicio, 
-                                             fim, 
-                                             data_cobranca, 
-                                             login_atualizacao, 
-                                             data_atualizacao)
-      VALUES (pCodConvencaoColetiva,
+    INSERT INTO tb_retroatividade_remuneracao (cod_rem_funcao_contrato, 
+                                               inicio, 
+                                               fim, 
+                                               data_cobranca, 
+                                               login_atualizacao, 
+                                               data_atualizacao)
+      VALUES (pCodRemFuncaoContrato,
               vDataInicioRetroatividade,
               vDataFimRetroatividade,
               vDataCobrancaRetroatividade,
@@ -113,7 +114,7 @@ BEGIN
   
   --Inserir na tabela tb_retroatividade_percentual.
   
-  IF (pCodConvencaoColetiva IS NULL AND vAcao = 1) THEN
+  IF (pCodRemFuncaoContrato IS NULL AND vAcao = 1) THEN
 
     INSERT INTO tb_retroatividade_percentual (cod_percentual_contrato, 
                                               inicio, 

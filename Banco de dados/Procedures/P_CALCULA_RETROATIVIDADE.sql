@@ -45,7 +45,8 @@ AS
   vUltimoDiaConvencao DATE;
   vDataInicioConvencao DATE;
   vDataFimConvencao DATE;
-  vDataInicioPercentual DATE;
+  vDataInicioPercentual DATE := NULL;
+  vDataFimPercentualEstatico DATE := NULL;
   vDataFimPercentual DATE;
   vDataFimMes DATE;
   vDataInicio DATE;
@@ -54,27 +55,54 @@ AS
   vCodTotalMensalAReter NUMBER;
   vExisteCalculo NUMBER := 0;
 
+  vRemuneracaoException EXCEPTION;
+  vPeriodoException EXCEPTION;
+  vContratoException EXCEPTION;
+
   --Cursor que reune a lista dos cargos pertencentes ao contrato em questão.
   
   CURSOR cargo IS
     SELECT cod
-      FROM tb_cargo_contrato
+      FROM tb_funcao_contrato
       WHERE cod_contrato = pCodContrato
-        AND ((cod IN (SELECT cco.cod_cargo_contrato
-                      FROM tb_retroatividade_convencao rc
-                        JOIN tb_convencao_coletiva cco ON cco.cod = rc.cod_convencao_coletiva
-                      WHERE EXTRACT(month FROM rc.data_cobranca) = EXTRACT(month FROM pDataCobranca)
-                        AND EXTRACT(year FROM rc.data_cobranca) = EXTRACT(year FROM pDataCobranca)))
-             OR EXISTS (SELECT cod 
-                          FROM tb_retroatividade_percentual
-                          WHERE EXTRACT(month FROM data_cobranca) = EXTRACT(month FROM pDataCobranca)
-                            AND EXTRACT(year FROM data_cobranca) = EXTRACT(year FROM pDataCobranca)));
+        AND ((cod IN (SELECT rfc.cod_funcao_contrato
+                        FROM tb_retroatividade_remuneracao rr
+                        JOIN tb_remuneracao_fun_con rfc ON rfc.cod = rr.cod_rem_funcao_contrato
+                      WHERE EXTRACT(month FROM rr.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                        AND EXTRACT(year FROM rr.data_cobranca) = EXTRACT(year FROM pDataCobranca)))
+             OR EXISTS (SELECT rp.cod 
+                          FROM tb_retroatividade_percentual rp
+                            JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
+                          WHERE EXTRACT(month FROM rp.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                            AND EXTRACT(year FROM rp.data_cobranca) = EXTRACT(year FROM pDataCobranca)
+                            AND pc.cod_contrato = pCodContrato)
+             OR EXISTS (SELECT rpe.cod 
+                          FROM tb_retro_percentual_estatico rpe
+                          WHERE EXTRACT(month FROM rpe.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                            AND EXTRACT(year FROM rpe.data_cobranca) = EXTRACT(year FROM pDataCobranca)));
 
 BEGIN
 
   --Para cada cargo do contrato.
   
-  FOR c1 IN cargo LOOP
+  FOR c1 IN (SELECT cod
+             FROM tb_funcao_contrato
+             WHERE cod_contrato = pCodContrato
+               AND ((cod IN (SELECT rfc.cod_funcao_contrato
+                               FROM tb_retroatividade_remuneracao rr
+                                 JOIN tb_remuneracao_fun_con rfc ON rfc.cod = rr.cod_rem_funcao_contrato
+                               WHERE EXTRACT(month FROM rr.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                                 AND EXTRACT(year FROM rr.data_cobranca) = EXTRACT(year FROM pDataCobranca)))
+                     OR EXISTS (SELECT rp.cod 
+                                  FROM tb_retroatividade_percentual rp
+                                    JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
+                                  WHERE EXTRACT(month FROM rp.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                                    AND EXTRACT(year FROM rp.data_cobranca) = EXTRACT(year FROM pDataCobranca)
+                                    AND pc.cod_contrato = pCodContrato)
+                     OR EXISTS (SELECT rpe.cod 
+                                  FROM tb_retro_percentual_estatico rpe
+                                  WHERE EXTRACT(month FROM rpe.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+                                    AND EXTRACT(year FROM rpe.data_cobranca) = EXTRACT(year FROM pDataCobranca)))) LOOP
 
     --Configuração da data inicio e fim do perído retroativo.
 
@@ -89,13 +117,13 @@ BEGIN
 
     BEGIN
     
-      SELECT rc.data_cobranca
+      SELECT rr.data_cobranca
         INTO vDataCobranca
-        FROM tb_retroatividade_convencao rc
-          JOIN tb_convencao_coletiva cco ON cco.cod = rc.cod_convencao_coletiva
-        WHERE cco.cod_cargo_contrato = c1.cod
-          AND EXTRACT(month FROM rc.data_cobranca) = EXTRACT(month FROM pDataCobranca)
-          AND EXTRACT(year FROM rc.data_cobranca) = EXTRACT(year FROM pDataCobranca);
+        FROM tb_retroatividade_remuneracao rr
+          JOIN tb_remuneracao_fun_con rfc ON rfc.cod = rr.cod_rem_funcao_contrato
+        WHERE rfc.cod_funcao_contrato = c1.cod
+          AND EXTRACT(month FROM rr.data_cobranca) = EXTRACT(month FROM pDataCobranca)
+          AND EXTRACT(year FROM rr.data_cobranca) = EXTRACT(year FROM pDataCobranca);
 
       EXCEPTION WHEN NO_DATA_FOUND THEN
 
@@ -150,13 +178,13 @@ BEGIN
 	  
         --Definição dos percentuais.
   
-        vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 1, 2);
+        vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 1, 2);
   	    vPercentualTercoConstitucional := vPercentualFerias/3;
-        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 1, 2);
-  	    vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-  	    vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-  	    vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-  	    vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 1, 2);
+  	    vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+  	    vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+  	    vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+  	    vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
   	    vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
 
       END IF;
@@ -168,24 +196,31 @@ BEGIN
         --Define a remuneração do cargo
             
         vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 1, vRetroatividadeRemuneracao);
+
+        IF (vRemuneracao IS NULL) THEN
+      
+          RAISE vRemuneracaoException;
+        
+        END IF;
       
         --Para cada funcionário que ocupa aquele cargo.
       
-        FOR c2 IN (SELECT cod_funcionario, 
-                          cod
-		                 FROM tb_cargo_funcionario
-		                 WHERE cod_cargo_contrato = c1.cod
-                       AND ((data_disponibilizacao <= vDataReferencia)
+        FOR c2 IN (SELECT ft.cod_terceirizado_contrato,
+                          ft.cod
+                     FROM tb_funcao_terceirizado ft
+                     WHERE ft.cod_funcao_contrato = c1.cod
+                       AND ((ft.data_inicio <= vDataReferencia)
+                             OR 
+                             (EXTRACT(month FROM ft.data_inicio) = vMes)
+                              AND 
+                              EXTRACT(year FROM ft.data_inicio) = vAno)
+                       AND ((ft.data_fim IS NULL)
                             OR 
-                            (EXTRACT(month FROM data_disponibilizacao) = vMes)
+                            (ft.data_fim >= LAST_DAY(vDataReferencia))
+                            OR 
+                            (EXTRACT(month FROM ft.data_fim) = vMes)
                              AND 
-                             EXTRACT(year FROm data_disponibilizacao) = vAno)
-                       AND ((data_desligamento IS NULL)
-                            OR 
-                            (data_desligamento >= LAST_DAY(vDataReferencia))
-                            OR 
-                            (EXTRACT(month FROM data_desligamento) = vMes)
-                            AND EXTRACT(year FROm data_desligamento) = vAno)) LOOP
+                             EXTRACT(year FROm ft.data_fim) = vAno)) LOOP
                             
           --Redefine todas as variáveis.
     
@@ -211,7 +246,8 @@ BEGIN
           SELECT cod
             INTO vCodTotalMensalAReter
             FROM tb_total_mensal_a_reter
-            WHERE cod_cargo_funcionario = c2.cod
+            WHERE cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato
               AND EXTRACT(month FROM data_referencia) = EXTRACT(month FROM pDataCobranca)
               AND EXTRACT(year FROM data_referencia) = EXTRACT(year FROM pDataCobranca);
 
@@ -239,7 +275,8 @@ BEGIN
             FROM tb_total_mensal_a_reter
             WHERE EXTRACT(month FROM data_referencia) = vMes
               AND EXTRACT(year FROM data_referencia) = vAno
-              AND cod_cargo_funcionario = c2.cod;
+              AND cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato;
 
           --Se a retenção for para período integral.           
 
@@ -257,7 +294,7 @@ BEGIN
       
           IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
 
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
 
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
 	  
@@ -329,25 +366,31 @@ BEGIN
         --Define a remuneração do cargo
             
         vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 1, vRetroatividadeRemuneracao);
+
+        IF (vRemuneracao IS NULL) THEN
+      
+          RAISE vRemuneracaoException;
+        
+        END IF;
             
         --Para cada funcionário que ocupa aquele cargo.
       
-        FOR c2 IN (SELECT cod_funcionario, 
-                          cod
-		                 FROM tb_cargo_funcionario
-		                WHERE cod_cargo_contrato = c1.cod
-                      AND ((data_disponibilizacao <= vDataReferencia)
-                           OR 
-                           (EXTRACT(month FROM data_disponibilizacao) = vMes)
-                           AND 
-                           EXTRACT(year FROm data_disponibilizacao) = vAno)
-                      AND ((data_desligamento IS NULL)
-                           OR 
-                           (data_desligamento >= LAST_DAY(vDataReferencia))
-                           OR 
-                           (EXTRACT(month FROM data_desligamento) = vMes)
-                           AND 
-                           EXTRACT(year FROm data_desligamento) = vAno)) LOOP
+        FOR c2 IN (SELECT ft.cod_terceirizado_contrato,
+                          ft.cod
+                     FROM tb_funcao_terceirizado ft
+                     WHERE ft.cod_funcao_contrato = c1.cod
+                       AND ((ft.data_inicio <= vDataReferencia)
+                             OR 
+                             (EXTRACT(month FROM ft.data_inicio) = vMes)
+                              AND 
+                              EXTRACT(year FROM ft.data_inicio) = vAno)
+                       AND ((ft.data_fim IS NULL)
+                            OR 
+                            (ft.data_fim >= LAST_DAY(vDataReferencia))
+                            OR 
+                            (EXTRACT(month FROM ft.data_fim) = vMes)
+                             AND 
+                             EXTRACT(year FROm ft.data_fim) = vAno)) LOOP
                    
           --Redefine todas as variáveis.
     
@@ -373,7 +416,8 @@ BEGIN
           SELECT cod
             INTO vCodTotalMensalAReter
             FROM tb_total_mensal_a_reter
-            WHERE cod_cargo_funcionario = c2.cod
+            WHERE cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato
               AND EXTRACT(month FROM data_referencia) = EXTRACT(month FROM pDataCobranca)
               AND EXTRACT(year FROM data_referencia) = EXTRACT(year FROM pDataCobranca);
 
@@ -401,17 +445,18 @@ BEGIN
             FROM tb_total_mensal_a_reter
             WHERE EXTRACT(month FROM data_referencia) = vMes
               AND EXTRACT(year FROM data_referencia) = vAno
-              AND cod_cargo_funcionario = c2.cod;
+              AND cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato;
         
           --Definição dos percentuais da primeira metade do mês.
   
-          vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 2, 2);     
+          vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 2, 2);     
           vPercentualTercoConstitucional := vPercentualFerias/3;
-          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 2, 2);
-          vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-  	      vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
-          vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 2, 2);
-          vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 2, 2);
+          vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 2, 2);
+          vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+  	      vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
+          vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 2, 2);
+          vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 2, 2);
           vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
                    
           --Se a retenção for para período integral.           
@@ -428,13 +473,13 @@ BEGIN
           
             --Definição dos percentuais da segunda metade do mês.
   
-            vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 1, 2);     
+            vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 1, 2);     
   	        vPercentualTercoConstitucional := vPercentualFerias/3;
-            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 1, 2);
-            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 1, 2);
+            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
           
             --Recolhimento referente a primeira metade do mês.
@@ -451,7 +496,7 @@ BEGIN
       
           IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
 
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
 
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
 	  
@@ -459,9 +504,9 @@ BEGIN
           
             --Definição dos percentuais da segunda metade do mês.
   
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
             
             vTotalIndenizacao := vTotalIndenizacao + (((vRemuneracao * (vPercentualIndenizacao/100))/30) * F_RET_NUMERO_DIAS_MES_PARCIAL(c1.cod, vMes, vAno, 4));
@@ -533,25 +578,31 @@ BEGIN
             
         vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 2, vRetroatividadeRemuneracao);
         vRemuneracao2 := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 1, vRetroatividadeRemuneracao);
+
+        IF (vRemuneracao IS NULL OR vRemuneracao2 IS NULL) THEN
+      
+          RAISE vRemuneracaoException;
+        
+        END IF;
       
         --Para cada funcionário que ocupa aquele cargo.
       
-        FOR c2 IN (SELECT cod_funcionario, 
-                          cod
-		                 FROM tb_cargo_funcionario
-		                 WHERE cod_cargo_contrato = c1.cod
-                       AND ((data_disponibilizacao <= vDataReferencia)
+        FOR c2 IN (SELECT ft.cod_terceirizado_contrato,
+                          ft.cod
+                     FROM tb_funcao_terceirizado ft
+                     WHERE ft.cod_funcao_contrato = c1.cod
+                       AND ((ft.data_inicio <= vDataReferencia)
+                             OR 
+                             (EXTRACT(month FROM ft.data_inicio) = vMes)
+                              AND 
+                              EXTRACT(year FROM ft.data_inicio) = vAno)
+                       AND ((ft.data_fim IS NULL)
                             OR 
-                            (EXTRACT(month FROM data_disponibilizacao) = vMes)
+                            (ft.data_fim >= LAST_DAY(vDataReferencia))
+                            OR 
+                            (EXTRACT(month FROM ft.data_fim) = vMes)
                              AND 
-                             EXTRACT(year FROm data_disponibilizacao) = vAno)
-                       AND ((data_desligamento IS NULL)
-                            OR 
-                            (data_desligamento >= LAST_DAY(vDataReferencia))
-                            OR 
-                            (EXTRACT(month FROM data_desligamento) = vMes)
-                             AND 
-                             EXTRACT(year FROm data_desligamento) = vAno)) LOOP
+                             EXTRACT(year FROm ft.data_fim) = vAno)) LOOP
                    
           --Redefine todas as variáveis.
     
@@ -577,7 +628,8 @@ BEGIN
           SELECT cod
             INTO vCodTotalMensalAReter
             FROM tb_total_mensal_a_reter
-            WHERE cod_cargo_funcionario = c2.cod
+            WHERE cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato
               AND EXTRACT(month FROM data_referencia) = EXTRACT(month FROM pDataCobranca)
               AND EXTRACT(year FROM data_referencia) = EXTRACT(year FROM pDataCobranca);
 
@@ -605,7 +657,8 @@ BEGIN
             FROM tb_total_mensal_a_reter
             WHERE EXTRACT(month FROM data_referencia) = vMes
               AND EXTRACT(year FROM data_referencia) = vAno
-              AND cod_cargo_funcionario = c2.cod;  
+              AND cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato;
                    
           --Se a retenção for para período integral.           
 
@@ -633,7 +686,7 @@ BEGIN
       
           IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
           
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
 
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
         
@@ -712,46 +765,83 @@ BEGIN
             
         vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 2, vRetroatividadeRemuneracao);
         vRemuneracao2 := F_RETORNA_REMUNERACAO_PERIODO(c1.cod, vMes, vAno, 1, vRetroatividadeRemuneracao);
+
+        IF (vRemuneracao IS NULL OR vRemuneracao2 IS NULL) THEN
+      
+          RAISE vRemuneracaoException;
+        
+        END IF;
       
         --Definição das datas para os períodos da convenção e percentuais.
       
-        SELECT data_fim_convencao
-          INTO vDataFimConvencao
-          FROM tb_convencao_coletiva
-          WHERE cod_cargo_contrato = c1.cod
-            AND data_aditamento IS NOT NULL
-            AND (EXTRACT(month FROM data_fim_convencao) = vMes
-                 AND EXTRACT(year FROM data_fim_convencao) = vAno);
-               
         SELECT data_fim
-          INTO vDataFimPercentual
-          FROM tb_percentual_contrato
-          WHERE cod_contrato = pCodContrato
-            AND data_aditamento IS NOT NULL
-            AND (EXTRACT(month FROM data_fim) = vMes
-                 AND EXTRACT(year FROM data_fim) = vAno);
+        INTO vDataFimConvencao
+        FROM tb_remuneracao_fun_con
+        WHERE cod_funcao_contrato = c1.cod
+          AND data_aditamento IS NOT NULL
+          AND (EXTRACT(month FROM data_fim) = vMes
+               AND EXTRACT(year FROM data_fim) = vAno);
+               
+        --Observação: datas dos percentuais são todas iguais para um bloco.
+
+        --Para o percentual do contrato.
+
+        IF (F_MUNDANCA_PERCENTUAL_CONTRATO(pCodContrato, vMes, vAno, 1) = TRUE) THEN
+
+          SELECT DISTINCT(data_fim)
+            INTO vDataFimPercentual
+            FROM tb_percentual_contrato
+            WHERE cod_contrato = pCodContrato
+              AND data_aditamento IS NOT NULL
+              AND (EXTRACT(month FROM data_fim) = vMes
+                   AND EXTRACT(year FROM data_fim) = vAno);
+
+        END IF;
+
+        --Para o percentual estático.
+
+        IF (F_MUNDANCA_PERCENTUAL_ESTATICO(pCodContrato, vMes, vAno, 1) = TRUE) THEN
+
+          SELECT DISTINCT(data_fim)
+            INTO vDataFimPercentualEstatico
+            FROM tb_percentual_estatico
+            WHERE data_aditamento IS NOT NULL
+              AND (EXTRACT(month FROM data_fim) = vMes
+                   AND EXTRACT(year FROM data_fim) = vAno);
+
+        END IF;
+
+        --Decisão da data fim do percentual.
+
+        IF (vDataFimPercentual IS NOT NULL AND vDataFimPercentualEstatico IS NOT NULL) THEN
+
+          SELECT GREATEST(vDataFimPercentual, vDataFimPercentualEstatico)
+            INTO vDataFimPercentual
+            FROM DUAL;
+ 
+        END IF;
                
         vDataInicioConvencao := vDataFimConvencao + 1;
         vDataInicioPercentual := vDataFimPercentual + 1;
          
         --Para cada funcionário que ocupa aquele cargo.
       
-        FOR c2 IN (SELECT cod_funcionario, 
-                          cod
-		                 FROM tb_cargo_funcionario
-		                 WHERE cod_cargo_contrato = c1.cod
-                       AND ((data_disponibilizacao <= vDataReferencia)
+        FOR c2 IN (SELECT ft.cod_terceirizado_contrato,
+                          ft.cod
+                     FROM tb_funcao_terceirizado ft
+                     WHERE ft.cod_funcao_contrato = c1.cod
+                       AND ((ft.data_inicio <= vDataReferencia)
+                             OR 
+                             (EXTRACT(month FROM ft.data_inicio) = vMes)
+                              AND 
+                              EXTRACT(year FROM ft.data_inicio) = vAno)
+                       AND ((ft.data_fim IS NULL)
                             OR 
-                            (EXTRACT(month FROM data_disponibilizacao) = vMes)
+                            (ft.data_fim >= LAST_DAY(vDataReferencia))
+                            OR 
+                            (EXTRACT(month FROM ft.data_fim) = vMes)
                              AND 
-                             EXTRACT(year FROm data_disponibilizacao) = vAno)
-                       AND ((data_desligamento IS NULL)
-                            OR 
-                            (data_desligamento >= LAST_DAY(vDataReferencia))
-                            OR 
-                            (EXTRACT(month FROM data_desligamento) = vMes)
-                             AND 
-                             EXTRACT(year FROm data_desligamento) = vAno)) LOOP
+                             EXTRACT(year FROm ft.data_fim) = vAno)) LOOP
                    
           --Redefine todas as variáveis.
     
@@ -777,7 +867,8 @@ BEGIN
           SELECT cod
             INTO vCodTotalMensalAReter
             FROM tb_total_mensal_a_reter
-            WHERE cod_cargo_funcionario = c2.cod
+            WHERE cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato
               AND EXTRACT(month FROM data_referencia) = EXTRACT(month FROM pDataCobranca)
               AND EXTRACT(year FROM data_referencia) = EXTRACT(year FROM pDataCobranca);
 
@@ -805,7 +896,8 @@ BEGIN
             FROM tb_total_mensal_a_reter
             WHERE EXTRACT(month FROM data_referencia) = vMes
               AND EXTRACT(year FROM data_referencia) = vAno
-              AND cod_cargo_funcionario = c2.cod;
+              AND cod_funcao_terceirizado = c2.cod
+              AND cod_terceirizado_contrato = c2.cod_terceirizado_contrato;
         
           --Definição do método de cálculo.
         
@@ -813,13 +905,13 @@ BEGIN
         
             --Definição dos percentuais da primeira metade do mês.
   
-            vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 2, 2);     
+            vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 2, 2);     
             vPercentualTercoConstitucional := vPercentualFerias/3;
-            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 2, 2);
-            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
-            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 2, 2);
-            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 2, 2);
+            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 2, 2);
+            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
+            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 2, 2);
+            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 2, 2);
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
 
             --Se a retenção for para período integral.           
@@ -844,13 +936,13 @@ BEGIN
             
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 2, 2);     
+              vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 2, 2);     
               vPercentualTercoConstitucional := vPercentualFerias/3;
-              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 1, 2);
-              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 1, 2);
+              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
             
               --Retenção proporcional da terceira porção do mês.
@@ -867,7 +959,7 @@ BEGIN
       
             IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
 
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
 
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
         
@@ -881,9 +973,9 @@ BEGIN
             
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
 
               --Retenção proporcional da terceira porção do mês.
@@ -900,13 +992,13 @@ BEGIN
         
             --Definição dos percentuais da primeira metade do mês.
   
-            vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 2, 2);     
+            vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 2, 2);     
             vPercentualTercoConstitucional := vPercentualFerias/3;
-            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 2, 2);
-            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
-            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 2, 2);
-            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 2, 2);
+            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 2, 2);
+            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
+            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 2, 2);
+            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 2, 2);
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
 
             --Se a retenção for para período integral.           
@@ -923,13 +1015,13 @@ BEGIN
           
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 1, 2);     
+              vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 1, 2);     
               vPercentualTercoConstitucional := vPercentualFerias/3;
-              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 1, 2);
-              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 1, 2);
+              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
           
               --Retenção proporcional da segunda porção do mês.
@@ -954,7 +1046,7 @@ BEGIN
       
             IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
 
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
 
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
         
@@ -964,9 +1056,9 @@ BEGIN
           
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
 
               --Retenção proporcional da segunda porção do mês.
@@ -989,13 +1081,13 @@ BEGIN
         
             --Definição dos percentuais da primeira metade do mês.
   
-            vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 2, 2);     
+            vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 2, 2);     
             vPercentualTercoConstitucional := vPercentualFerias/3;
-            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 2, 2);
-            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
-            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 2, 2);
-            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 2, 2);
+            vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 2, 2);
+            vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 2, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+            vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
+            vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 2, 2);
+            vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 2, 2);
             vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
 
             --Se a retenção for para período integral.           
@@ -1012,13 +1104,13 @@ BEGIN
           
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualFerias := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 1, vMes, vAno, 1, 2);     
+              vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, vMes, vAno, 1, 2);     
               vPercentualTercoConstitucional := vPercentualFerias/3;
-              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 3, vMes, vAno, 1, 2);
-              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, vMes, vAno, 1, 2);
+              vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) * (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
           
               --Retenção proporcional da segunda porção do mês.
@@ -1035,7 +1127,7 @@ BEGIN
       
             IF (F_FUNC_RETENCAO_INTEGRAL(c2.cod, vMes, vAno) = FALSE) THEN
 
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 2, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 2, 2);
 
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
         
@@ -1045,9 +1137,9 @@ BEGIN
           
               --Definição dos percentuais da segunda metade do mês.
   
-              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 4, vMes, vAno, 1, 2);
-              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 6, vMes, vAno, 1, 2);
-              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_PERIODO(pCodContrato, 5, vMes, vAno, 1, 2);
+              vPercentualIndenizacao := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, vMes, vAno, 1, 2);
+              vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, vMes, vAno, 1, 2);
+              vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, vMes, vAno, 1, 2);
               vPercentualIndenizacao := (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100))) * 100;
 
               --Retenção proporcional da segunda porção do mês.
