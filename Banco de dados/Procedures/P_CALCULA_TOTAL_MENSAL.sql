@@ -178,7 +178,7 @@ BEGIN
         
       END IF;
           
-      --Para cada funcionário que ocupa aquele função.
+      --Para cada funcionário que ocupa aquela função.
       
       FOR c2 IN (SELECT ft.cod_terceirizado_contrato,
                         ft.cod
@@ -210,7 +210,7 @@ BEGIN
         vTotalIncidencia := vRemuneracao * (vPercentualIncidencia/100);
         vTotalIndenizacao := vRemuneracao * (vPercentualIndenizacao/100);
 
-        --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, situação similar para a retenção proporcional.
+        --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
         IF (F_EXISTE_MUDANCA_FUNCAO(c2.cod_terceirizado_contrato, pMes, pAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
 
