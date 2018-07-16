@@ -6,6 +6,8 @@ AS
   
   --Para fazer DEBUG no Oracle: DBMS_OUTPUT.PUT_LINE(vDataReferencia);
 
+  --Variáveis totalizadoras de valores.
+
   vTotalFerias FLOAT := 0;
   vTotalTercoConstitucional FLOAT := 0;
   vTotalDecimoTerceiro FLOAT := 0;
@@ -13,11 +15,15 @@ AS
   vTotalIndenizacao FLOAT := 0;
   vTotal FLOAT := 0;
 
+  --Variáveis de valores parciais.
+
   vValorFerias FLOAT := 0;
   vValorTercoConstitucional FLOAT := 0;
   vValorDecimoTerceiro FLOAT := 0;
   vValorIncidencia FLOAT := 0;
   vValorIndenizacao FLOAT := 0;
+
+  --Variáveis de percentuais.
 
   vPercentualFerias FLOAT := 0;
   vPercentualTercoConstitucional FLOAT := 0;
@@ -26,30 +32,28 @@ AS
   vPercentualIndenizacao FLOAT := 0;
   vPercentualPenalidadeFGTS FLOAT := 0;
   vPercentualMultaFGTS FLOAT := 0;
+
+  --Variável da remuneração da função do contrato.
+  
   vRemuneracao FLOAT := 0;
-  vRemuneracao2 FLOAT := 0;
+
+  --Variável para a verificação de existência da cálculos realizados.
   
   vExisteCalculo NUMBER := 0;
+  
+  --Variáveis de datas.
+
   vDataReferencia DATE;
-  vDataInicioConvencao DATE;
-  vDataFimRemuneracao DATE;
-  vDataInicioPercentual DATE;
-  vDataFimPercentual DATE := NULL;
-  vDataFimPercentualEstatico DATE := NULL;
-  vDataFimMes DATE;
-  vDataRetroatividadeConvencao DATE;
-  vFimRetroatividadeConvencao DATE;
-  vDataRetroatividadePercentual DATE;
-  vFimRetroatividadePercentual DATE;
-  vDataRetroatividadePercentual2 DATE := NULL;
-  vFimRetroatividadePercentual2 DATE := NULL;
   vDataInicio DATE;
   vDataFim DATE;
-  vDataCobranca DATE;
   vDataInicioContrato DATE;
   vDataFimContrato DATE;
 
+  --Variável de checagem da existência do contrato.
+
   vCheck NUMBER := 0;
+
+  --Variáveis de exceção.
 
   vRemuneracaoException EXCEPTION;
   vPeriodoException EXCEPTION;
@@ -74,26 +78,6 @@ BEGIN
 
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
   
-  vDataFimMes := LAST_DAY(vDataReferencia);
-  
-  IF (EXTRACT(day FROM vDataFimMes) = 31) THEN
-  
-    vDataFimMes := vDataFimMes - 1;
-  
-  END IF;
-  
-  IF (EXTRACT(day FROM vDataFimMes) = 28) THEN
-  
-    vDataFimMes := vDataFimMes + 2;
-  
-  END IF;
-  
-  IF (EXTRACT(day FROM vDataFimMes) = 29) THEN
-  
-    vDataFimMes := vDataFimMes + 1;
-  
-  END IF;
-
   --Se a data passada for anterior ao contrato ou posterior ao seu termino aborta-se.
     
   SELECT MIN(ec.data_inicio_vigencia)
@@ -763,110 +747,7 @@ BEGIN
   
   IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 1) = TRUE OR F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 2) = TRUE) THEN
 
-    IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 1) = TRUE) THEN
-  
-      SELECT MIN(inicio),
-             MAX(fim)
-        INTO vDataRetroatividadeConvencao,
-             vFimRetroatividadeConvencao
-        FROM tb_retroatividade_remuneracao rr
-          JOIN tb_remuneracao_fun_con rcco ON rcco.cod = rr.cod_rem_funcao_contrato
-          JOIN tb_funcao_contrato cc ON cc.cod = rcco.cod_funcao_contrato
-        WHERE cc.cod_contrato = pCodContrato
-          AND EXTRACT(month FROM data_cobranca) = pMes
-          AND EXTRACT(year FROM data_cobranca) = pAno; 
-
-    END IF;
-
-    IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 2) = TRUE) THEN
-
-      BEGIN
-
-        SELECT MIN(rp.inicio),
-               MAX(rp.fim)
-          INTO vDataRetroatividadePercentual,
-               vFimRetroatividadePercentual        
-          FROM tb_retroatividade_percentual rp
-            JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
-          WHERE pc.cod_contrato = pCodContrato
-            AND EXTRACT(month FROM data_cobranca) = pMes
-            AND EXTRACT(year FROM data_cobranca) = pAno;
-
-        EXCEPTION WHEN NO_DATA_FOUND THEN
-
-          vDataRetroatividadePercentual := NULL;
-          vFimRetroatividadePercentual := NULL;
-
-      END;
-
-      BEGIN
-
-        SELECT MIN(rpe.inicio),
-               MAX(rpe.fim)
-          INTO vDataRetroatividadePercentual2,
-               vFimRetroatividadePercentual2      
-          FROM tb_retro_percentual_estatico rpe
-          WHERE rpe.cod_contrato = pCodContrato
-            AND EXTRACT(month FROM rpe.data_cobranca) = pMes
-            AND EXTRACT(year FROM rpe.data_cobranca) = pAno;
-
-        EXCEPTION WHEN NO_DATA_FOUND THEN
-
-          vDataRetroatividadePercentual2 := NULL;
-          vFimRetroatividadePercentual2 := NULL;
-
-      END;
-
-      IF (vDataRetroatividadePercentual2 IS NOT NULL AND vFimRetroatividadePercentual2 IS NOT NULL) THEN
-
-        IF (vDataRetroatividadePercentual IS NOT NULL AND vFimRetroatividadePercentual IS NOT NULL) THEN
-
-          vDataRetroatividadePercentual := LEAST (vDataRetroatividadePercentual, vDataRetroatividadePercentual2);
-          vFimRetroatividadePercentual := GREATEST (vFimRetroatividadePercentual, vFimRetroatividadePercentual2);
-
-        END IF;
-
-        ELSE
- 
-          vDataRetroatividadePercentual := vDataRetroatividadePercentual2;
-          vFimRetroatividadePercentual := vFimRetroatividadePercentual2;
-
-      END IF;
-
-    END IF;
-
-    BEGIN
-
-      IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 1) = TRUE AND F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 2) = TRUE) THEN
-
-        vDataInicio := LEAST(vDataRetroatividadeConvencao, vDataRetroatividadePercentual);
-        vDataFim := GREATEST(vFimRetroatividadeConvencao, vFimRetroatividadePercentual);
-
-      ELSE
-
-        IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 1) = TRUE) THEN
-  
-          vDataInicio := vDataRetroatividadeConvencao;
-          vDataFim := vFimRetroatividadeConvencao;
-
-        ELSE
-
-          IF (F_COBRANCA_RETROATIVIDADE(pCodContrato, pMes, pANo, 2) = TRUE) THEN
-
-            vDataInicio := vDataRetroatividadePercentual;
-            vDataFim := vFimRetroatividadePercentual;
-
-          END IF;
-          
-        END IF;
-        
-      END IF;
-
-      vDataCobranca := vDataReferencia;
-
-      --P_CALCULA_RETROATIVIDADE(pCodContrato, vDataInicio, vDataFim, vDataCobranca);
-
-    END;
+    P_CALCULA_RETROATIVIDADE(pCodContrato, vDataReferencia);
   
   END IF;
 

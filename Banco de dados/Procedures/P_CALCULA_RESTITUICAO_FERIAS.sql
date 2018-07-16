@@ -11,37 +11,76 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
   --Procedure que calcula e faz o registro de restituição de férias no banco de dados.
   --Consideram-se períodos de 12 meses.
 
+  --Chaves primárias
+
   vCodContrato NUMBER;
   vCodTerceirizado NUMBER;
   vCodFuncaoContrato NUMBER;
   vCodTbRestituicaoFerias NUMBER;
-  vAno NUMBER;
-  vMes NUMBER;
-  vPercentualFerias FLOAT := 0;
-  vPercentualIncidencia FLOAT := 0;
-  vRemuneracao FLOAT := 0;
+
+  --Variáveis totalizadoras de valores.
+
   vTotalFerias FLOAT := 0;
   vTotalTercoConstitucional FLOAT := 0;
   vTotalIncidenciaFerias FLOAT := 0;
   vTotalIncidenciaTerco FLOAT := 0;
-  vFerias FLOAT := 0;
-  vTerco FLOAT := 0;
-  vIncidenciaFerias FLOAT := 0;
-  vIncidenciaTerco FLOAT := 0;
-  vSeProporcional CHAR;
+
+  --Variáveis de valores parciais.
+
+  vValorFerias FLOAT := 0;
+  vValorTercoConstitucional FLOAT := 0;
+  vValorIncidenciaFerias FLOAT := 0;
+  vValorIncidenciaTerco FLOAT := 0;
+
+  --Variáveis de percentuais.
+
+  vPercentualFerias FLOAT := 0;
+  vPercentualTercoConstitucional FLOAT := 0;
+  vPercentualIncidencia FLOAT := 0;
+ 
+  --Variável da remuneração da função do contrato.
+  
+  vRemuneracao FLOAT := 0;
+
+  --Variável para a verificação de existência da cálculos realizados.
+  
+  vExisteCalculo NUMBER := 0;
+  
+  --Variáveis de datas.
+
+  vDataReferencia DATE;
+  vDataInicio DATE;
+  vDataFim DATE;
+  vDataInicioContrato DATE;
+  vDataFimContrato DATE;
+  vAno NUMBER;
+  vMes NUMBER;
+
+  --Variável de checagem da existência do contrato.
+
+  vCheck NUMBER := 0;
+
+  --Variáveis de exceção.
+
+  vRemuneracaoException EXCEPTION;
+  vPeriodoException EXCEPTION;
+  vContratoException EXCEPTION;
+  vParametroNulo EXCEPTION;
+
+
+
   vDataInicioConvencao DATE;
   vDataFimRemuneracao DATE;
   vDataInicioPercentual DATE;
   vDataFimPercentual DATE;
   vDataReferencia DATE;
   vDataFimMes DATE;
+  
   vDiasDeFerias NUMBER := 0;
   vDiasAdquiridos NUMBER := 0;
   vDiasVendidos NUMBER := 0;
   vNumeroDeMeses NUMBER := 0;
   vControleMeses NUMBER := 0;
-  
-  vParametroNulo EXCEPTION;
 
 BEGIN
 
@@ -77,29 +116,11 @@ BEGIN
   vMes := EXTRACT(month FROM pInicioPeriodoAquisitivo);
   vAno := EXTRACT(year FROM pInicioPeriodoAquisitivo);
 
-  --Definir se o período corresponde a férias proporcionais.
-
-  IF (vNumeroDeMeses < 12) THEN
-
-    vSeProporcional := 'S';
-
-  ELSE
-
-    IF ((pFimFerias - pInicioFerias) + 1 = 30) THEN
-
-      vSeProporcional := 'N';
-
-    ELSE
-
-      vSeProporcional := 'S';
-
-    END IF;
-
-  END IF;
-
   --O cálculo é feito mês a mês para preservar os efeitos das alterações contratuais.
 
   FOR i IN 1 .. vNumeroDeMeses LOOP
+
+    --Este loop reúne as funções que um determinado terceirizado exerceu no mês de cálculo.
 
     FOR f IN (SELECT ft.cod_funcao_contrato,
                      ft.cod

@@ -1,12 +1,12 @@
-create or replace procedure "P_CALCULA_RETROATIVIDADE" (pCodContrato NUMBER, pDataInicio DATE, pDataFim DATE, pDataCobranca DATE) 
+create or replace procedure "P_CALCULA_RETROATIVIDADE" (pCodContrato NUMBER, pDataCobranca DATE) 
 AS
 
-  --Procedure que calcula o total mensal a reter em um determinado mês para
-  --um determinado contrato.
+  --Procedure que calcula a retroatividade do total mensal a reter 
+  --em um determinado período para um determinado contrato.
   
   --Para fazer DEBUG no Oracle: DBMS_OUTPUT.PUT_LINE(vDataReferencia);
   
-  --Variáveis para inserção.
+ --Variáveis totalizadoras de valores.
 
   vTotalFerias FLOAT := 0;
   vTotalTercoConstitucional FLOAT := 0;
@@ -14,6 +14,14 @@ AS
   vTotalIncidencia FLOAT := 0;
   vTotalIndenizacao FLOAT := 0;
   vTotal FLOAT := 0;
+
+  --Variáveis de valores parciais.
+
+  vValorFerias FLOAT := 0;
+  vValorTercoConstitucional FLOAT := 0;
+  vValorDecimoTerceiro FLOAT := 0;
+  vValorIncidencia FLOAT := 0;
+  vValorIndenizacao FLOAT := 0;
 
   --Variáveis para o montante retido.
 
@@ -24,7 +32,7 @@ AS
   vTotalIndenizacaoRetido FLOAT := 0;
   vTotalRetido FLOAT := 0;
 
-  --Variáveis de cálculo.
+  --Variáveis de percentuais.
 
   vPercentualFerias FLOAT := 0;
   vPercentualTercoConstitucional FLOAT := 0;
@@ -33,8 +41,14 @@ AS
   vPercentualIndenizacao FLOAT := 0;
   vPercentualPenalidadeFGTS FLOAT := 0;
   vPercentualMultaFGTS FLOAT := 0;
+
+  --Variável da remuneração da função do contrato.
+  
   vRemuneracao FLOAT := 0;
-  vRemuneracao2 FLOAT := 0;
+
+  --Variável para a verificação de existência da cálculos realizados.
+  
+  vExisteCalculo NUMBER := 0;
 
   --Variáveis de referêcia.
 
@@ -53,34 +67,13 @@ AS
   vDataFim DATE;
   vDataCobranca DATE;
   vCodTotalMensalAReter NUMBER;
-  vExisteCalculo NUMBER := 0;
+
+  --Variáveis de exceção.
 
   vRemuneracaoException EXCEPTION;
   vPeriodoException EXCEPTION;
   vContratoException EXCEPTION;
-
-  --Cursor que reune a lista dos cargos pertencentes ao contrato em questão.
   
-  CURSOR cargo IS
-    SELECT cod
-      FROM tb_funcao_contrato
-      WHERE cod_contrato = pCodContrato
-        AND ((cod IN (SELECT rfc.cod_funcao_contrato
-                        FROM tb_retroatividade_remuneracao rr
-                        JOIN tb_remuneracao_fun_con rfc ON rfc.cod = rr.cod_rem_funcao_contrato
-                      WHERE EXTRACT(month FROM rr.data_cobranca) = EXTRACT(month FROM pDataCobranca)
-                        AND EXTRACT(year FROM rr.data_cobranca) = EXTRACT(year FROM pDataCobranca)))
-             OR EXISTS (SELECT rp.cod 
-                          FROM tb_retroatividade_percentual rp
-                            JOIN tb_percentual_contrato pc ON pc.cod = rp.cod_percentual_contrato
-                          WHERE EXTRACT(month FROM rp.data_cobranca) = EXTRACT(month FROM pDataCobranca)
-                            AND EXTRACT(year FROM rp.data_cobranca) = EXTRACT(year FROM pDataCobranca)
-                            AND pc.cod_contrato = pCodContrato)
-             OR EXISTS (SELECT rpe.cod 
-                          FROM tb_retro_percentual_estatico rpe
-                          WHERE EXTRACT(month FROM rpe.data_cobranca) = EXTRACT(month FROM pDataCobranca)
-                            AND EXTRACT(year FROM rpe.data_cobranca) = EXTRACT(year FROM pDataCobranca)));
-
 BEGIN
 
   --Para cada cargo do contrato.
