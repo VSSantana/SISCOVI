@@ -171,12 +171,12 @@ BEGIN
 
         --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
-        IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, pMes, pAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, pMes, pAno) = FALSE) THEN
+        IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, vMes, vAno) = FALSE) THEN
 
-          vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, pMes, pAno);
-          vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, pMes, pAno);
-          vValorIncidenciaFerias := (vValorIncidenciaFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, pMes, pAno);
-          vValorIncidenciaTerco := (vValorIncidenciaTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, pMes, pAno);
+          vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
+          vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
+          vValorIncidenciaFerias := (vValorIncidenciaFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
+          vValorIncidenciaTerco := (vValorIncidenciaTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
           
         END IF;
 
@@ -220,11 +220,99 @@ BEGIN
       --Se existe apenas alteração de percentual no mês.
 
       IF (F_EXISTE_DUPLA_CONVENCAO(f.cod_funcao_contrato, vMes, vAno, 2) = FALSE AND F_MUNDANCA_PERCENTUAL_CONTRATO(vCodContrato, vMes, vAno, 2) = TRUE) THEN
+
+        --Define a remuneração do cargo e os percentuais de férias, terço e incidência.
+            
+        vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(f.cod_funcao_contrato, vMes, vAno, 1, 2);
+     
+        IF (vRemuneracao IS NULL) THEN
+       
+          RAISE vRemuneracaoException;
+        
+        END IF;
     
         --Definição da data de início como sendo a data referência (primeiro dia do mês).
 
         vDataInicio := vDataReferencia;
 
+        --Loop contendo das datas das alterações de percentuais que comporão os subperíodos.
+
+        FOR c3 IN (SELECT data_inicio AS data 
+                     FROM tb_percentual_contrato
+                     WHERE cod_contrato = vCodContrato
+                       AND (EXTRACT(month FROM data_inicio) = vMes
+                            AND 
+                            EXTRACT(year FROM data_inicio) = vAno)
+    
+                   UNION
+
+                   SELECT data_fim AS data
+                     FROM tb_percentual_contrato
+                     WHERE cod_contrato = vCodContrato
+                       AND (EXTRACT(month FROM data_fim) = vMes
+                            AND 
+                            EXTRACT(year FROM data_fim) = vAno)
+
+                   UNION
+
+                   SELECT data_inicio AS data 
+                     FROM tb_percentual_estatico
+                     WHERE (EXTRACT(month FROM data_inicio) = vMes
+                            AND 
+                            EXTRACT(year FROM data_inicio) = vAno)
+    
+                   UNION
+
+                   SELECT data_fim AS data
+                     FROM tb_percentual_estatico
+                     WHERE (EXTRACT(month FROM data_fim) = vMes
+                            AND 
+                            EXTRACT(year FROM data_fim) = vAno)
+
+                   UNION
+
+                   SELECT CASE WHEN vMes = 2 THEN 
+                            LAST_DAY(TO_DATE('28/' || vMes || '/' || vAno, 'dd/mm/yyyy')) 
+                          ELSE 
+                            TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy') END AS data
+                     FROM DUAL
+
+                   ORDER BY data ASC) LOOP
+          
+          --Definição da data fim do subperíodo.
+
+          vDataFim := c3.data;
+
+          --Definição dos percentuais do subperíodo.
+  
+          vPercentualFerias := F_RET_PERCENTUAL_CONTRATO(pCodContrato, 1, vDataInicio, vDataFim, 1);     
+          vPercentualTercoConstitucional := vPercentualFerias/3;
+          vPercentualIncidencia := (F_RET_PERCENTUAL_CONTRATO(pCodContrato, 7, vDataInicio, vDataFim, 1);;
+        
+           --Calculo da porção correspondente ao subperíodo.
+ 
+          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidencia := ((vRemuneracao * (vPercentualIncidencia/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorIndenizacao := ((vRemuneracao * (vPercentualIndenizacao/100))/30) * ((vDataFim - vDataInicio) + 1);
+
+          --No caso de mudança de função ou retenção parcial temos um recolhimento proporcional ao dias trabalhados no cargo.
+
+          IF (F_EXISTE_MUDANCA_FUNCAO(c2.cod_terceirizado_contrato, pMes, pAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(c2.cod, pMes, pAno) = FALSE) THEN
+
+            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(c2.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(c2.cod, vDataInicio, vDataFim);
+            vValorDecimoTerceiro := (vValorDecimoTerceiro/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(c2.cod, vDataInicio, vDataFim);
+            vValorIncidencia := (vValorIncidencia/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(c2.cod, vDataInicio, vDataFim);
+            vValorIndenizacao := (vValorIndenizacao/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(c2.cod, vDataInicio, vDataFim);
+
+          END IF;
+
+         
+
+
+        END LOOP;
   
       END IF;
     
