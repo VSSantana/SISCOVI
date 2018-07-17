@@ -54,13 +54,6 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
 
   vCheck NUMBER := 0;
 
-  --Variáveis de exceção.
-
-  vRemuneracaoException EXCEPTION;
-  vPeriodoException EXCEPTION;
-  vContratoException EXCEPTION;
-  vParametroNulo EXCEPTION;
-
   --Variáveis de controle.
   
   vDiasDeFerias NUMBER := 0;
@@ -75,6 +68,13 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
   vIncidenciaTerco FLOAT := 0;
   vTerco FLOAT := 0;
   vFerias FLOAT := 0;
+
+  --Variáveis de exceção.
+
+  vRemuneracaoException EXCEPTION;
+  vPeriodoException EXCEPTION;
+  vTerceirizadoException EXCEPTION;
+  vParametroNulo EXCEPTION;
 
 BEGIN
 
@@ -101,7 +101,7 @@ BEGIN
 
   IF (vCheck = 0) THEN
 
-    RAISE vContratoException;
+    RAISE vTerceirizadoException;
 
   END IF;
 
@@ -662,9 +662,9 @@ BEGIN
 
       RAISE_APPLICATION_ERROR(-20002, 'Erro na execução do procedimento: Período fora da vigência contratual.');
   
-    WHEN vContratoException THEN
+    WHEN vTerceirizadoException THEN
 
-      RAISE_APPLICATION_ERROR(-20003, 'Erro na execução do procedimento: Contrato inexistente.');
+      RAISE_APPLICATION_ERROR(-20003, 'Erro na execução do procedimento: Terceirizado não encontrado no contrato.');
     
     WHEN OTHERS THEN
   
