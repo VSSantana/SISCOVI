@@ -69,6 +69,13 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
   vNumeroDeMeses NUMBER := 0;
   vControleMeses NUMBER := 0;
 
+  --Variáveis auxiliares.
+
+  vIncidenciaFerias FLOAT := 0;
+  vIncidenciaTerco FLOAT := 0;
+  vTerco FLOAT := 0;
+  vFerias FLOAT := 0;
+
 BEGIN
 
   --Todos os parâmetros estão preenchidos.
@@ -170,12 +177,12 @@ BEGIN
         --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
         --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
-        IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, vMes, vAno) = FALSE) THEN
+        IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-          vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
-          vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
-          vValorIncidenciaFerias := (vValorIncidenciaFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
-          vValorIncidenciaTerco := (vValorIncidenciaTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod_funcao_terceirizado, vMes, vAno);
+          vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorIncidenciaFerias := (vValorIncidenciaFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorIncidenciaTerco := (vValorIncidenciaTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
           
         END IF;
 
@@ -255,8 +262,8 @@ BEGIN
           --Definição dos percentuais do subperíodo.
   
           vPercentualFerias := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 1, vDataInicio, vDataFim, 2);     
-          vPercentualTercoConstitucional := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 2, vDataInicio, vDataFim, 2;
-          vPercentualIncidencia := (F_RET_PERCENTUAL_CONTRATO(vCodContrato, 7, vDataInicio, vDataFim, 2);
+          vPercentualTercoConstitucional := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 2, vDataInicio, vDataFim, 2);
+          vPercentualIncidencia := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 7, vDataInicio, vDataFim, 2);
         
           --Calculo da porção correspondente ao subperíodo.
  
@@ -268,12 +275,12 @@ BEGIN
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
-          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, vMes, vAno) = FALSE) THEN
+          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -308,7 +315,7 @@ BEGIN
                      FROM tb_remuneracao_fun_con rfc
                        JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato
                      WHERE fc.cod_contrato = vCodContrato
-                       AND fc.cod = c1.cod
+                       AND fc.cod = f.cod_funcao_contrato
                        AND (EXTRACT(month FROM rfc.data_inicio) = vMes
                             AND 
                             EXTRACT(year FROM rfc.data_inicio) = vAno)
@@ -319,7 +326,7 @@ BEGIN
                      FROM tb_remuneracao_fun_con rfc
                        JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato
                      WHERE fc.cod_contrato = vCodContrato
-                       AND fc.cod = c1.cod
+                       AND fc.cod = f.cod_funcao_contrato
                        AND (EXTRACT(month FROM rfc.data_fim) = vMes
                             AND 
                             EXTRACT(year FROM rfc.data_fim) = vAno)
@@ -358,12 +365,12 @@ BEGIN
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
-          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, vMes, vAno) = FALSE) THEN
+          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -426,7 +433,7 @@ BEGIN
                      FROM tb_remuneracao_fun_con rfc
                        JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato
                      WHERE fc.cod_contrato = vCodContrato
-                       AND fc.cod = c1.cod
+                       AND fc.cod = f.cod_funcao_contrato
                        AND (EXTRACT(month FROM rfc.data_inicio) = vMes
                             AND 
                             EXTRACT(year FROM rfc.data_inicio) = vAno)
@@ -437,7 +444,7 @@ BEGIN
                      FROM tb_remuneracao_fun_con rfc
                        JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato
                      WHERE fc.cod_contrato = vCodContrato
-                       AND fc.cod = c1.cod
+                       AND fc.cod = f.cod_funcao_contrato
                        AND (EXTRACT(month FROM rfc.data_fim) = vMes
                             AND 
                             EXTRACT(year FROM rfc.data_fim) = vAno)
@@ -469,8 +476,8 @@ BEGIN
           --Definição dos percentuais do subperíodo.
   
           vPercentualFerias := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 1, vDataInicio, vDataFim, 2);     
-          vPercentualTercoConstitucional := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 2, vDataInicio, vDataFim, 2;
-          vPercentualIncidencia := (F_RET_PERCENTUAL_CONTRATO(vCodContrato, 7, vDataInicio, vDataFim, 2);
+          vPercentualTercoConstitucional := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 2, vDataInicio, vDataFim, 2);
+          vPercentualIncidencia := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 7, vDataInicio, vDataFim, 2);
 
           --Calculo da porção correspondente ao subperíodo.
  
@@ -482,12 +489,12 @@ BEGIN
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
 
-          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod_funcao_terceirizado, vMes, vAno) = FALSE) THEN
+          IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod_funcao_terceirizado, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
