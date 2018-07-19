@@ -71,11 +71,7 @@ AS
 
   --Variáveis de controle.
   
-  vDiasDeFerias NUMBER := 0;
-  vDiasAdquiridos NUMBER := 0;
-  vDiasVendidos NUMBER := 0;
   vNumeroDeMeses NUMBER := 0;
-  vControleMeses NUMBER := 0;
 
   --Variáveis auxiliares.
 
@@ -103,21 +99,6 @@ AS
   vTerco FLOAT := 0;
   vIncidSubmod41Ferias FLOAT := 0;
   vIncidSubmod41Terco FLOAT := 0;
-
-  --Variáveis de datas. 
-  vDataInicioRemuneracao DATE;
-  vDataFimRemuneracao DATE;
-  vDataInicioPercentual DATE;
-  vDataFimPercentual DATE := NULL;
-  vDataFimPercentualEstatico DATE := NULL;
-  vDataReferencia DATE;
-  vDataFimMes DATE;
-
-  vDiasDeFerias NUMBER := 0;
-  vDiasAdquiridos NUMBER := 0;
-  vDiasVendidos NUMBER := 0;
-  vNumeroDeMeses NUMBER := 0;
-  vNumeroDeAnos NUMBER := 0;
 
 BEGIN
   
@@ -657,7 +638,7 @@ BEGIN
     --Atualização dos valores finais totais devidos.
 
     IF (vMes = 12 OR (vMes = EXTRACT(month FROM pDataDesligamento) AND vAno = EXTRACT(year FROM pDataDesligamento))) THEN
-
+/*      
       --Para o valor do décimo terceiro.
 
       IF (vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3) <= 0) THEN
@@ -683,11 +664,13 @@ BEGIN
         vTotalIncidenciaDecimoTerceiro := 0;
 
       END IF;
-
+*/
       --Contabilização do valor final (valor calculado menos restituições).
 
       vTotalFerias := (vTotalFerias - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 2, 1));
       vTotalTercoConstitucional :=  (vTotalTercoConstitucional - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 2, 2));
+      vTotalDecimoTerceiro := vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3);
+      vTotalIncidenciaDecimoTerceiro := vTotalIncidenciaDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 103);
       vTotalIncidenciaFerias :=  (vTotalIncidenciaFerias - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 2, 101));
       vTotalIncidenciaTerco :=  (vTotalIncidenciaTerco - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 2, 102));
     
@@ -733,7 +716,7 @@ ________________________________________________________________________________
     vAno := vAno + 1;
 
   END LOOP;
-*/
+
   IF (vTotalFerias >= 0) THEN
 
     vFerias := vTotalFerias;
@@ -757,6 +740,7 @@ ________________________________________________________________________________
     vIncidSubmod41Terco := vTotalIncidenciaTerco;
 
   END IF;
+*/
 
   --Chave primária do registro a ser inserido na tabela tb_restituicao_rescisao.
 
@@ -766,18 +750,18 @@ ________________________________________________________________________________
   
   IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
 
-    vIncidDecTer := vIncidSubmod41DecTer;
+    vIncidDecTer := vTotalIncidenciaDecimoTerceiro;
+    vIncidFerias := vTotalIncidenciaFerias;
+    vIncidTerco := vTotalIncidenciaTerco;
     vFGTSDecimoTerceiro := vTotalMultaFGTSDecimoTerceiro;
-    vIncidFerias := vIncidSubmod41Ferias;
-    vIncidTerco :=vIncidSubmod41Terco;
     vFGTSFerias := vTotalMultaFGTSFerias;
     vFGTSTerco := vTotalMultaFGTSTerco;
     vFGTSRemuneracao := vTotalMultaFGTSRemuneracao;
       
-    vIncidSubmod41DecTer := 0;
+    vTotalIncidenciaDecimoTerceiro := 0;
+    vTotalIncidenciaFerias := 0;
+    vTotalIncidenciaTerco := 0;
     vTotalMultaFGTSDecimoTerceiro := 0;
-    vIncidSubmod41Ferias := 0;
-    vIncidSubmod41Terco := 0;
     vTotalMultaFGTSFerias := 0;
     vTotalMultaFGTSTerco := 0;
     vTotalMultaFGTSRemuneracao := 0;
@@ -807,13 +791,13 @@ ________________________________________________________________________________
               pCodTipoRestituicao,
               pCodTipoRescisao,
               pDataDesligamento,
-              vDecimoTerceiro,
-              vIncidSubmod41DecTer,
+              vTotalDecimoTerceiro,
+              vTotalIncidenciaDecimoTerceiro,
               vTotalMultaFGTSDecimoTerceiro,
-              vFerias,
-              vTerco,
-              vIncidSubmod41Ferias,
-              vIncidSubmod41Terco,
+              vTotalFerias,
+              vValorTercoConstitucional,
+              vTotalIncidenciaFerias,
+              vTotalTercoConstitucional,
               vTotalMultaFGTSFerias,
               vTotalMultaFGTSTerco,
               vTotalMultaFGTSRemuneracao,
