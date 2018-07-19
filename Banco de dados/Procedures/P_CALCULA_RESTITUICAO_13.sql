@@ -246,7 +246,7 @@ BEGIN
           --Calculo da porção correspondente ao subperíodo.
  
           vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
@@ -329,7 +329,7 @@ BEGIN
           --Calculo da porção correspondente ao subperíodo.
  
           vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
@@ -446,7 +446,7 @@ BEGIN
           --Calculo da porção correspondente ao subperíodo.
  
           vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.

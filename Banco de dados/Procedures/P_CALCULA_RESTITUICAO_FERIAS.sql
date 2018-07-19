@@ -269,8 +269,8 @@ BEGIN
  
           vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
           vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
+          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
@@ -359,8 +359,8 @@ BEGIN
  
           vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
           vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
+          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
@@ -483,8 +483,8 @@ BEGIN
  
           vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
           vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
-          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100)) * ((vDataFim - vDataInicio) + 1);
+          vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
+          vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
           --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
