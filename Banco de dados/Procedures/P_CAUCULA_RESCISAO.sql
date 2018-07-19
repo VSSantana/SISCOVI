@@ -66,7 +66,7 @@ AS
 
   vRemuneracaoException EXCEPTION;
   vPeriodoException EXCEPTION;
-  vContratoException EXCEPTION;
+  vTerceirizadoException EXCEPTION;
   vParametroNulo EXCEPTION;
 
   --Variáveis de controle.
@@ -141,7 +141,7 @@ BEGIN
 
   IF (vCheck = 0) THEN
 
-    RAISE vContratoException;
+    RAISE vTerceirizadoException;
 
   END IF;
 
@@ -162,12 +162,12 @@ BEGIN
 
   --Carrega o número de meses que compreende o período de férias.
   
-  vNumeroDeMeses := F_RETORNA_NUMERO_DE_MESES(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo);
+  vNumeroDeMeses := F_RETORNA_NUMERO_DE_MESES(vDataDisponibilizacao, pDataDesligamento);
   
   --Definir o valor das variáveis vMes e vAno de acordo com a data de disponibilização.
 
-  vMes := EXTRACT(month FROM pInicioPeriodoAquisitivo);
-  vAno := EXTRACT(year FROM pInicioPeriodoAquisitivo);
+  vMes := EXTRACT(month FROM vDataDisponibilizacao);
+  vAno := EXTRACT(year FROM vDataDisponibilizacao);
 
   --O cálculo é feito mês a mês para preservar os efeitos das alterações contratuais.
 
@@ -181,8 +181,14 @@ BEGIN
 
     vValorFerias := 0;
     vValorTercoConstitucional := 0;
+    vValorDecimoTerceiro := 0;
     vValorIncidenciaFerias := 0;
     vValorIncidenciaTerco := 0;
+    vValorIncidenciaDecimoTerceiro := 0;
+    vValorMultaFGTSRemuneracao := 0;
+    vValorMultaFGTSFerias := 0;
+    vValorMultaFGTSTerco := 0;
+    vValorMultaFGTSDecimoTerceiro := 0;
 
     --Este loop reúne as funções que um determinado terceirizado exerceu no mês de cálculo.
 
@@ -205,10 +211,14 @@ BEGIN
         --Define a remuneração do cargo e os percentuais de férias, terço e incidência.
             
         vRemuneracao := F_RETORNA_REMUNERACAO_PERIODO(f.cod_funcao_contrato, vMes, vAno, 1, 2);
-        vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 1, vMes, vAno, 1, 2);
-        vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 2, vMes, vAno, 1, 2);
-        vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
-     
+        vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 1, pMes, pAno, 1, 2);
+        vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 2, pMes, pAno, 1, 2);
+        vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 3, pMes, pAno, 1, 2);
+        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(pCodContrato, 7, pMes, pAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        vPercentualFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 4, pMes, pAno, 1, 2);
+        vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 6, pMes, pAno, 1, 2);
+        vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(pCodContrato, 5, pMes, pAno, 1, 2);
+            
         IF (vRemuneracao IS NULL) THEN
        
           RAISE vRemuneracaoException;
@@ -219,8 +229,14 @@ BEGIN
 
         vValorFerias := (vRemuneracao * (vPercentualFerias/100));
         vValorTercoConstitucional := (vRemuneracao * (vPercentualTercoConstitucional/100));
+        vValorDecimoTerceiro := (vRemuneracao * (vPercentualDecimoTerceiro/100));
         vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
         vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
+        vValorIncidenciaDecimoTerceiro := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
+        vValorMultaFGTSFerias := (vRemuneracao * ((vPercentualFGTS/100) * (vPercentualMultaFGTS/100) * (vPercentualPenalidadeFGTS/100) * (vPercentualFerias/100)));
+        vValorMultaFGTSTerco := (vRemuneracao * ((vPercentualFGTS/100) * (vPercentualMultaFGTS/100) * (vPercentualPenalidadeFGTS/100) * (vPercentualTercoConstitucional/100)));
+        vValorMultaFGTSDecimoTerceiro := (vRemuneracao * ((vPercentualFGTS/100) * (vPercentualMultaFGTS/100) * (vPercentualPenalidadeFGTS/100) * (vPercentualDecimoTerceiro/100)));
+        vValorMultaFGTSRemuneracao := (vRemuneracao * ((vPercentualFGTS/100) * (vPercentualMultaFGTS/100) * (vPercentualPenalidadeFGTS/100)));
 
         --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
         --situação similar para a retenção proporcional por menos de 14 dias trabalhados.
@@ -229,16 +245,28 @@ BEGIN
 
           vValorFerias := (vValorFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
           vValorTercoConstitucional := (vValorTercoConstitucional/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorDecimoTerceiro := (vValorDecimoTerceiro/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
           vValorIncidenciaFerias := (vValorIncidenciaFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
           vValorIncidenciaTerco := (vValorIncidenciaTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorIncidenciaDecimoTerceiro := (vValorIncidenciaDecimoTerceiro/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorMultaFGTSFerias := (vValorMultaFGTSFerias/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorMultaFGTSTerco := (vValorMultaFGTSTerco/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorMultaFGTSDecimoTerceiro := (vValorMultaFGTSDecimoTerceiro/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
+          vValorMultaFGTSRemuneracao := (vValorMultaFGTSRemuneracao/30) * F_DIAS_TRABALHADOS_MES(f.cod, vMes, vAno);
           
         END IF;
 
         vTotalFerias := vTotalFerias + vValorFerias;
         vTotalTercoConstitucional := vTotalTercoConstitucional + vValorTercoConstitucional;
+        vTotalDecimoTerceiro := vTotalDecimoTerceiro + vValorDecimoTerceiro;
         vTotalIncidenciaFerias := vTotalIncidenciaFerias + vValorIncidenciaFerias;
-        vTotalIncidenciaTerco := vTotalIncidenciaTerco + vValorIncidenciaTerco;            
-  
+        vTotalIncidenciaTerco := vTotalIncidenciaTerco + vValorIncidenciaTerco;
+        vTotalIncidenciaDecimoTerceiro := vTotalIncidenciaDecimoTerceiro + vValorIncidenciaDecimoTerceiro;
+        vTotalMultaFGTSRemuneracao := vTotalMultaFGTSRemuneracao + vValorMultaFGTSRemuneracao;
+        vTotalMultaFGTSFerias := vTotalMultaFGTSFerias + vValorMultaFGTSFerias;
+        vTotalMultaFGTSTerco := vTotalMultaFGTSTerco + vValorMultaFGTSTerco;
+        vTotalMultaFGTSDecimoTerceiro := vTotalMultaFGTSDecimoTerceiro + vValorMultaFGTSDecimoTerceiro;
+           
       END IF;
 
       --Se existe apenas alteração de percentual no mês.
@@ -557,43 +585,39 @@ BEGIN
         
       END IF;
 
-      vControleMeses := vControleMeses + 1;
-
     END LOOP;
 
-      --Atualização dos valores finais totais devidos.
+    --Atualização dos valores finais totais devidos.
 
-      IF (vMes = 12 OR (vMes = EXTRACT(month FROM pDataDesligamento) AND vAno = EXTRACT(year FROM pDataDesligamento))) THEN
+    IF (vMes = 12 OR (vMes = EXTRACT(month FROM pDataDesligamento) AND vAno = EXTRACT(year FROM pDataDesligamento))) THEN
 
-        --Para o valor do décimo terceiro.
+      --Para o valor do décimo terceiro.
 
-        IF (vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3) <= 0) THEN
+      IF (vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3) <= 0) THEN
 
-          vTotalDecimoTerceiro := 0;
+        vTotalDecimoTerceiro := 0;
 
-        ELSE
+      ELSE
 
-          vDecimoTerceiro :=  vDecimoTerceiro + (vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3));
-          vTotalDecimoTerceiro := 0;
+        vDecimoTerceiro :=  vDecimoTerceiro + (vTotalDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 3));
+        vTotalDecimoTerceiro := 0;
 
-        END IF;
-
-        --Para o valor da incidência do décimo terceiro.
-
-        IF (vTotalIncidenciaDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 103) <= 0) THEN
-
-          vTotalIncidenciaDecimoTerceiro := 0;
-
-        ELSE
-
-          vIncidSubmod41DecTer :=  vIncidSubmod41DecTer + (vTotalIncidenciaDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 103));
-          vTotalIncidenciaDecimoTerceiro := 0;
-
-        END IF;
-    
       END IF;
 
-    END LOOP;      
+      --Para o valor da incidência do décimo terceiro.
+
+      IF (vTotalIncidenciaDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 103) <= 0) THEN
+
+        vTotalIncidenciaDecimoTerceiro := 0;
+
+      ELSE
+
+        vIncidSubmod41DecTer :=  vIncidSubmod41DecTer + (vTotalIncidenciaDecimoTerceiro - F_SALDO_CONTA_VINCULADA (pCodTerceirizadoContrato, vAno, 3, 103));
+        vTotalIncidenciaDecimoTerceiro := 0;
+
+      END IF;
+    
+    END IF;
     
     --Atualização do mês e ano conforme a sequência do loop.
     
@@ -1201,7 +1225,7 @@ BEGIN
 
       RAISE_APPLICATION_ERROR(-20002, 'Erro na execução do procedimento: Período fora da vigência contratual.');
   
-    WHEN vContratoException THEN
+    WHEN vTerceirizadoException THEN
 
       RAISE_APPLICATION_ERROR(-20003, 'Erro na execução do procedimento: Contrato inexistente.');
     
