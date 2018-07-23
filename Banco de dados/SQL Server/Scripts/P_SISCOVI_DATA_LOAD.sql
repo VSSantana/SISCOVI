@@ -8,9 +8,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-
-
 CREATE procedure [dbo].[P_SISCOVI_DATA_LOAD]
 AS
 
