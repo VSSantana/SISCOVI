@@ -1,0 +1,11 @@
+table.highlight tbody tr:hover {
+  background-color: #9e9e9e;
+  cursor: context-menu; }
+
+.pagination li .active {
+  background-color: #263238 !important; }
+
+li.waves-effect.active {
+  background-color: #263238; }
+
+/*# sourceMappingURL=funcionarios.components.css.map */

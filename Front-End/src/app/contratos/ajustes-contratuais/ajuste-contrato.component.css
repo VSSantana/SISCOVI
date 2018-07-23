@@ -1,0 +1,12 @@
+div#modal1.modal.open {
+  position: absolute;
+  background-color: white;
+  display: block;
+  opacity: 1;
+  transform: scaleX(1);
+  top: 5ch !important;
+  left: 4ch !important;
+  width: 165ch !important;
+  max-height: 260ch !important; }
+
+/*# sourceMappingURL=ajuste-contrato.component.css.map */

@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Convenções Coletivas</h2>
+    <div class="row">
+      <div class="center-align">
+        <div class="input-field col s12 xl4 l5 m12">
+          <select  name="contrato" materialize="material_select" [ngModel]="contratos" (change)="onChange($event.target.value)">
+            <option value="" disabled selected >Selecione o contrato</option>
+            <option class="truncate" *ngFor="let contrato of contratos" [value]="contrato.codigo">{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}/{{contrato.anoDoContrato}}</option>
+          </select>
+          <label>Selecione o contrato</label>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="valid" class="container left-align ">
+  <h5 >Gestor: {{convencoes[0].gestor}}</h5>
+  <div class="section">
+    <div *ngFor="let lista of convencoes" class="container left-align">
+      <h5>{{lista.nomeCargo}}</h5>
+      <table class="highlight centered responsive-table z-depth-1 hoverable bordered">
+        <thead>
+        <tr>
+          <th>Remuneração</th>
+          <th>Início da Convenção</th>
+          <th>Fim da Convenção</th>
+          <th>Data do aditamento</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let convencao of lista.convencoes">
+          <td>R$ {{ convencao.remuneracao }}</td>
+          <td>{{ convencao.dataInicioConvencao | datePipe }}</td>
+          <td>{{ convencao.dataFimConvencao | datePipe}}</td>
+          <td>{{ convencao.dataAditamento | datePipe}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

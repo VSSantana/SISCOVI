@@ -1,0 +1,64 @@
+<div class="container" >
+    <div class="row">
+        <div class="input-field col s10 center">
+            <select class="black-text" name="contrato" materialize="material_select"
+                    [materializeSelectOptions]="contratos" (load)="onLoad()" (change)="onChange($event.target.value)" *ngIf="contratoSelecionado" required>
+                <option disabled>Selecione</option>
+                <option class="black-text" *ngFor="let contrato of contratos" [value]="contrato.codigo" [selected]="contrato.codigo == contratoSelecionado">{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}</option>
+
+            </select>
+            <select class="black-text" name="contrato" materialize="material_select" [materializeSelectOptions]="contratos" (change)="onChange($event.target.value)" *ngIf="!contratoSelecionado" required>
+                <option disabled>Selecione</option>
+                <option class="black-text" *ngFor="let contrato of contratos" [value]="contrato.codigo" >{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}</option>
+
+            </select>
+            <label style="font-size: 0.85vw">Selecione um Contrato</label>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="!calculos && codContrato" (load)="onLoad()">
+    <div class="row">
+        <div class="col s12 grey lighten-4" style="margin-top: 1em">
+            <br>
+            <h5 class="center-align">Não há cálculos realizados ainda ! <i class="small material-icons">mood_bad</i></h5>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="calculos && codContrato">
+    <div>
+        <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" >
+            <li *ngFor="let calculo of calculos">
+                <div class="collapsible-header">
+                    <h5>Data Referência: {{calculo.dataReferencia}}</h5>
+                </div>
+                <div class="collapsible-body">
+                    <table class="highlight centered">
+                        <thead>
+                        <tr>
+                            <th>Função</th>
+                            <th>Férias</th>
+                            <th>Terço Constitucional</th>
+                            <th>Décimo Terceiro</th>
+                            <th>Incidência Retido</th>
+                            <th>Multa do FGTS</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr *ngFor="let total of calculo.totais">
+                            <td>{{total.funcao}}</td>
+                            <td>{{total.ferias}}</td>
+                            <td>{{total.tercoConstitucional}}</td>
+                            <td>{{total.decimoTerceiro}}</td>
+                            <td>{{total.incidencia}}</td>
+                            <td>{{total.multaFGTS}}</td>
+                            <td>{{total.total}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

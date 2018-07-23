@@ -1,0 +1,50 @@
+<div class="container">
+  <h2 class="center-align">Contratos</h2>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s6 l3 xl3 offset-xl11 offset-l11 ">
+      <button class="waves-effect  btn large blue-grey darken-3" (click)="$event.preventDefault(); loadMyChildComponent(); openModal();" >
+        <a class="white-text">Novo Contrato<i class="material-icons left">add</i></a>
+      </button>
+      <div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+        <div class="modal-content">
+          <app-cadastro-contrato *ngIf="render"></app-cadastro-contrato>
+        </div>
+        <div class="modal-footer">
+          <button class="waves-effect waves-light btn left" (click)="closeModal()">Cancelar</button>
+          <button class="waves-effect waves-light btn right right-align" [disabled]="!contServ.formValido" (click)="cadastrarContrato()">Cadastrar Contrato</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  <table class="centered highlight responsive-table bordered z-depth-2 hoverable">
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>CNPJ</th>
+        <th>Número do Contrato</th>
+        <th>Ano do Contrato</th>
+        <th>Objeto</th>
+        <th>Início</th>
+        <th>Fim</th>
+        <th>Ativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contrato of contratos">
+        <td>{{contrato.nomeDaEmpresa}}</td>
+        <td>{{contrato.cnpj | cnpjPipe}}</td>
+        <td>{{contrato.numeroDoContrato}}</td>
+        <td>{{contrato.anoDoContrato}}</td>
+        <td>{{contrato.objeto}}</td>
+        <td>{{contrato.dataInicio}}</td>
+        <td>{{contrato.dataFim | datePipe}}</td>
+        <td>{{contrato.seAtivo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
