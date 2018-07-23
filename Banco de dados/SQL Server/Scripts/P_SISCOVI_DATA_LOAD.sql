@@ -71,13 +71,13 @@ BEGIN
 
   --Insert em tb_usuario
 
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'EDSON ARANTES DO NASCIMENTO', 'PELE', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'CRISTIANO RONALDO', 'CRONALDO', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'LIONEL MESSI', 'LMESSI', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'MATHEUS MIRANDA DE SOUSA', 'VSSOUSA', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'VINICIUS DE SOUSA SANTANA', 'MMSOUSA', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'DIOCESIO SANTANNA DA SILVA', 'DIOCESIO', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'MARIA ELIZABETH CANUTO CALAIS', 'MARIACAL', 'E10ADC3949BA59ABBE56E057F20F883E', @vLoginAtualizacao, @vDataAtualizacao); 
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'EDSON ARANTES DO NASCIMENTO', 'PELE', '$2a$10$KSJ./ss8UB471O.rxtOVpOSW1W.h7Up9EE2Xg8zZkjA3Qlw/CUNOO', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'CRISTIANO RONALDO', 'CRONALDO', '$2a$10$iUkpU7ws5EPgUANP1Gd7Uuz.giSQ4tjilSgffGKkmzIh1zRWGa/Um', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilGestor, 'LIONEL MESSI', 'LMESSI', '$2a$10$2oyyMmYgu9IhUkOJsrAO/OgnUBGRpFeOEGRkbiARTsrOaxAs05Z86', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'MATHEUS MIRANDA DE SOUSA', 'VSSOUSA', '$2a$10$2x4QECPV08i8MMIhVDFD0eGfBWlOAKOxWc/Xdiei7KuYWUuWu0IlC', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'VINICIUS DE SOUSA SANTANA', 'MMSOUSA', '$2a$10$dwq63Qgvw0WtP9Vau2e6F.Ne7oSZEcdcOlRgYaR8pf0Uzdk1tytO2', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'DIOCESIO SANTANNA DA SILVA', 'DIOCESIO', '$2a$10$3watKJAOWSmYWNt6.kIJtOHsAfx7raCAcLgAJB0NNZ95W7/dkZI8G', @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_usuario (cod_perfil, nome, login, password, login_atualizacao, data_atualizacao) VALUES (@vCodPerfilAdmin, 'MARIA ELIZABETH CANUTO CALAIS', 'MARIACAL', '$2a$10$tHc1Rr6XfNNZjd6y2.9eY.w13hj1e0uvFSFgTv7Gzz/QpffezNNke', @vLoginAtualizacao, @vDataAtualizacao); 
 
   --Insert em tb_rubricas
   
