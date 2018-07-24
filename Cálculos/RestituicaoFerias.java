@@ -5,21 +5,24 @@ import br.jus.stj.siscovi.model.CodTerceirizadoECodFuncaoTerceirizadoModel;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class TotalMensalAReter {
+public class RestituicaoFerias {
     private Connection connection;
-    public TotalMensalAReter(Connection connection) {
+    public RestituicaoFerias(Connection connection) {
         this.connection = connection;
     }
 
     /**
-     * Método que calcula o total mensal a reter em um determinado mês para
-     * um determinado contrato.
+     * Método que calcula o total de férias a ser restituído para um
+     *determinado período aquisitivo.
+     * 
      *
      * @param pCodContrato
      * @param pMes
      * @param pAno
      */
-    public void CalculaTotalMensal(int pCodContrato, int pMes, int pAno) {
+    public void CalculaRestituicaoFerias(int pCodTerceirizadoContrato, int pCodTipoRestituicao, int pDiasVendidos, Date pInicioFerias, Date pFimFerias, Date pInicioPeriodoAquisitivo, Date pFimPeriodoAquisitivo
+                                         float pValorMovimentado, char pProporcional) {
+    
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Retencao retencao = new Retencao(connection);
@@ -27,56 +30,81 @@ public class TotalMensalAReter {
         Periodos periodo = new Periodos(connection);
         Remuneracao remuneracao = new Remuneracao(connection);
 
+        //Chaves primárias.
+        
+        int vCodContrato = 0;
+        int vCodTbRestituicaoFerias = 0;
+
+        //Variáveis totalizadoras de valores.
+
         float vTotalFerias = 0;
         float vTotalTercoConstitucional = 0;
-        float vTotalDecimoTerceiro = 0;
-        float vTotalIncidencia = 0;
-        float vTotalIndenizacao = 0;
-        float vTotal = 0;
+        float vTotalIncidenciaFerias = 0;
+        float vTotalIncidenciaTerco = 0;
+
+        //Variáveis de valores parciais.
 
         float vValorFerias = 0;
         float vValorTercoConstitucional = 0;
-        float vValorDecimoTerceiro = 0;
-        float vValorIncidencia = 0;
-        float vValorIndenizacao = 0 ;
+        float vValorIncidenciaFerias = 0;
+        float vValorIncidenciaTerco = 0;
+
+        //Variáveis de percentuais.
 
         float vPercentualFerias = 0;
         float vPercentualTercoConstitucional = 0;
-        float vPercentualDecimoTerceiro = 0;
         float vPercentualIncidencia = 0;
-        float vPercentualIndenizacao = 0;
-        float vPercentualPenalidadeFGTS = 0;
-        float vPercentualMultaFGTS = 0;
-        float vRemuneracao = 0;
-        float vRemuneracao2 = 0;
+ 
+        //Variável de remuneração da função.
 
-        int vExisteCalculo = 0;
-        Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
-        Date vDataInicioConvencao = null;
-        Date vDataFimConvencao = null;
-        Date vDataInicioPercentual = null;
-        Date vDataFimPercentual = null;
-        Date vDataFimPercentualEstatico = null;
-        Date vDataFimMes = Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()));
-        Date vDataRetroatividadeConvencao = null;
-        Date vFimRetroatividadeConvencao = null;
-        Date vDataRetroatividadePercentual = null;
-        Date vFimRetroatividadePercentual = null;
-        Date vDataRetroatividadePercentual2 = null;
-        Date vDataFimRetroatividadePercentual2 = null;
+        float vRemuneracao = 0;
+ 
+        //Variáveis de data.
+
+        Date vDataReferencia = null;
         Date vDataInicio = null;
         Date vDataFim = null;
-        Date vDataCobranca = null;
-        Date vDataInicioContrato = null;
-        Date vDataFimContrato = null;
+        int vAno = null;
+        int vMes = null;
+
+        //Variável para a checagem de existência do terceirizado.
 
         int vCheck = 0;
 
-        /* --Checagem da validade do contrato passado (existe). */
+        //Variáveis de controle.
+
+        int vDiasDeFerias = 0;
+        int vDiasAdquiridos = 0;
+        int vDiasVendidos = 0;
+        int vNumeroDeMeses = 0;
+        int vControleMeses = 0;
+
+        //Variáveis auxiliares.
+        
+        float vIncidenciaFerias = 0;
+        float vIncidenciaTerco = 0;
+        float vTerco = 0;
+        float vFerias = 0;
+
+        //Checagem dos parâmetros passados.
+
+        if(pCodTerceirizadoContrato == null || 
+           pCodTipoRestituicao == null ||
+           pDiasVendidos == null ||
+           pInicioFerias == null ||
+           pFimFerias == null ||
+           pInicioPeriodoAquisitivo == null ||
+           pFimPeriodoAquisitivo == null){
+
+            return;    
+
+        }
+
+        //Checagem da existência do terceirizado no contrato.
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_CONTRATO WHERE COD=?");
-            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD=?");
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 vCheck = resultSet.getInt(1);
@@ -84,57 +112,10 @@ public class TotalMensalAReter {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        vDataFimMes = adaptaDataPara360(vDataFimMes);
 
-        /*--Se a data passada for anterior ao contrato ou posterior ao seu termino aborta-se.*/
-        try{
-            preparedStatement = connection.prepareStatement("SELECT MIN(EC.DATA_INICIO_VIGENCIA), MAX(EC.DATA_FIM_VIGENCIA) FROM tb_evento_contratual EC WHERE EC.COD_CONTRATO=?");
-            preparedStatement.setInt(1, pCodContrato);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                vDataInicioContrato = resultSet.getDate(1);
-                vDataFimContrato = resultSet.getDate(2);
-            }
-        }catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        Date dataTemp = Date.valueOf(vDataFimContrato.toLocalDate().minusMonths(1).plusDays(1));
-        if(vDataReferencia.after(Date.valueOf(dataTemp.toLocalDate().withDayOfMonth(dataTemp.toLocalDate().lengthOfMonth())))) {
-            return;
-        }
+        
 
-        /*--Verificação da existência de cálculo para aquele mês e consequente deleção.*/
 
-        try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT (TMR.COD) FROM TB_TOTAL_MENSAL_A_RETER TMR JOIN TB_TERCEIRIZADO_CONTRATO TC ON TC.COD=TMR.COD_TERCEIRIZADO_CONTRATO" +
-                    " WHERE MONTH(TMR.DATA_REFERENCIA)=? AND YEAR(TMR.DATA_REFERENCIA)=? AND TC.COD_CONTRATO=?");
-            preparedStatement.setInt(1, pMes);
-            preparedStatement.setInt(2, pAno);
-            preparedStatement.setInt(3, pCodContrato);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                vExisteCalculo = resultSet.getInt(1);
-            }
-            if(vExisteCalculo > 0) {
-                /*--Deleta as retroatividades associadas aquele mês/ano.*/
-                preparedStatement = connection.prepareStatement("DELETE FROM TB_RETROATIVIDADE_TOTAL_MENSAL WHERE COD_TOTAL_MENSAL_A_RETER IN (SELECT TMR.COD" +
-                        " FROM TB_TOTAL_MENSAL_A_RETER TMR JOIN TB_TERCEIRIZADO_CONTRATO TC ON TC.COD=TMR.COD_TERCEIRIZADO_CONTRATO" +
-                        " WHERE MONTH(TMR.DATA_REFERENCIA)=? AND YEAR(TMR.DATA_REFERENCIA)=? AND TC.COD_CONTRATO=?)");
-                preparedStatement.setInt(1, pMes);
-                preparedStatement.setInt(2, pAno);
-                preparedStatement.setInt(3, pCodContrato);
-                preparedStatement.executeUpdate();
-                /*--Deleta os recolhimentos realizados naquele mês/ano.*/
-                preparedStatement = connection.prepareStatement("DELETE FROM TB_TOTAL_MENSAL_A_RETER WHERE MONTH(DATA_REFERENCIA)=? AND YEAR(DATA_REFERENCIA)=?" +
-                        " AND COD_TERCEIRIZADO_CONTRATO IN (SELECT TC.COD FROM TB_TERCEIRIZADO_CONTRATO TC WHERE TC.COD_CONTRATO=?)");
-                preparedStatement.setInt(1, pMes);
-                preparedStatement.setInt(2, pAno);
-                preparedStatement.setInt(3, pCodContrato);
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao deletar as retroatividades ");
-        }
         /*--Caso não haja mudaça de percentual no mês designado carregam-se os valores.*/
 
         if(!percentual.ExisteMudancaPercentual(pCodContrato, pMes, pAno, 1)) {
@@ -150,6 +131,7 @@ public class TotalMensalAReter {
             vPercentualIndenizacao = (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) *
                     (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
         }
+
         // Busca funções do contrato
         ArrayList<Integer> c1 = new ArrayList<>();
         try {
