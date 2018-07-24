@@ -135,9 +135,7 @@ public class RestituicaoFerias {
 
         vMes = pDataInicio.getMonth();
         vAno = pDataInicio.getYear();
-        
-       
-
+     
         // Busca funções do contrato
         ArrayList<Integer> c1 = new ArrayList<>();
         try {
@@ -150,6 +148,7 @@ public class RestituicaoFerias {
         }catch (SQLException sqle) {
             throw new NullPointerException("Erro ao tentar buscar as funções do contrato !");
         }
+
         // --Para cada função do contrato.
         Convencao convencao = new Convencao(connection);
         for(int i = 0; i < c1.size(); i++) {
