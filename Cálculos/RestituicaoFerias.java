@@ -113,24 +113,30 @@ public class RestituicaoFerias {
             e.printStackTrace();
         }
 
-        
+        if(vCheck == 0){
 
+          return;
 
-        /*--Caso não haja mudaça de percentual no mês designado carregam-se os valores.*/
-
-        if(!percentual.ExisteMudancaPercentual(pCodContrato, pMes, pAno, 1)) {
-            /*--Definição dos percentuais.*/
-            vPercentualFerias = percentual.RetornaPercentualContrato(pCodContrato, 1, pMes, pAno, 1,1);
-            vPercentualTercoConstitucional = vPercentualFerias/3;
-            vPercentualDecimoTerceiro = percentual.RetornaPercentualContrato(pCodContrato, 3, pMes, pAno, 1, 1);
-            vPercentualIncidencia = (percentual.RetornaPercentualContrato(pCodContrato, 7, pMes, pAno, 1, 1) *
-                    (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
-            vPercentualIndenizacao = percentual.RetornaPercentualEstatico(pCodContrato, 4, pMes, pAno, 1, 1);
-            vPercentualPenalidadeFGTS = percentual.RetornaPercentualEstatico(pCodContrato, 6, pMes, pAno, 1, 1);
-            vPercentualMultaFGTS = percentual.RetornaPercentualEstatico(pCodContrato, 5, pMes, pAno, 1, 1);
-            vPercentualIndenizacao = (((vPercentualIndenizacao/100) *  (vPercentualPenalidadeFGTS/100) * (vPercentualMultaFGTS/100)) *
-                    (1 + (vPercentualFerias/100) + (vPercentualDecimoTerceiro/100) + (vPercentualTercoConstitucional/100))) * 100;
         }
+
+        //Carrega o código do contrato.
+        try {
+            preparedStatement = connection.prepareStatement("SELECT tc.cod_contrato FROM tb_terceirizado_contrato tc WHERE tc.cod=?");
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                vCodContrato = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //Define o vvalor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.
+
+        vMes = pDataInicio.getMonth();
+        vAno = pDataInicio.getYear();
+        
+       
 
         // Busca funções do contrato
         ArrayList<Integer> c1 = new ArrayList<>();

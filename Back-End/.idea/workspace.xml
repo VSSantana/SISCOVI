@@ -19,8 +19,8 @@
       <file leaf-file-name="TotalMensalAReter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="162" column="42" lean-forward="false" selection-start-line="162" selection-start-column="22" selection-end-line="162" selection-end-column="42" />
+            <state relative-caret-position="-85">
+              <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
               <folding>
                 <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
                 <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
@@ -140,7 +140,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="2027" />
     <option name="y" value="-8" />
     <option name="width" value="1346" />
@@ -402,15 +402,15 @@
       <workItem from="1532373997311" duration="297000" />
       <workItem from="1532374710085" duration="1042000" />
       <workItem from="1532447482687" duration="938000" />
-      <workItem from="1532448767555" duration="2695000" />
+      <workItem from="1532448767555" duration="2922000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4972000" />
+    <option name="totallyTimeSpent" value="5199000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -587,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="162" column="42" lean-forward="false" selection-start-line="162" selection-start-column="22" selection-end-line="162" selection-end-column="42" />
+        <state relative-caret-position="-85">
+          <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
           <folding>
             <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
             <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
