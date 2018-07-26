@@ -19,8 +19,8 @@
       <file leaf-file-name="TotalMensalAReter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
-              <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+            <state relative-caret-position="-653">
+              <caret line="113" column="57" lean-forward="true" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
               <folding>
                 <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
                 <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
@@ -35,112 +35,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestituicaoFerias.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RestituicaoFerias.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="745">
-              <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+            <state relative-caret-position="308">
+              <caret line="163" column="39" lean-forward="true" selection-start-line="163" selection-start-column="39" selection-end-line="163" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#284#285#0" expanded="true" />
-                <element signature="e#328#329#0" expanded="true" />
-                <marker date="1532460797158" expanded="true" signature="3255:3314" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
-                <marker date="1532460797158" expanded="true" signature="3793:3863" ph="SELECT tc.co... tb_terceirizado_contrato" />
+                <marker date="1532635046226" expanded="true" signature="3364:3423" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+                <marker date="1532635046226" expanded="true" signature="3902:3972" ph="SELECT tc.co... tb_terceirizado_contrato" />
+                <marker date="1532635046226" expanded="true" signature="6329:6462" ph="SELECT ft.co... " />
+                <marker date="1532635046226" expanded="true" signature="6329:6583" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:6930" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:7034" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:7154" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:7257" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:7582" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                <marker date="1532635046226" expanded="true" signature="6329:7706" ph="SELECT ft.co... tb_funcao_terceirizado" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TesteRestituicaoFerias.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TesteRestituicaoFerias.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TotalMensalController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Retencao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Retencao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="289">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <marker date="1532447304586" expanded="true" signature="406:450" ph="SELECT NOME TB_TIPO_RESGATE" />
-                <marker date="1532447304586" expanded="true" signature="1465:1535" ph="SELECT DATA_... tb_funcao_terceirizado" />
-                <marker date="1532447304586" expanded="true" signature="7362:7563" ph="SELECT COUNT... TB_FUNCAO_TERCEIRIZADO" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Percentual.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Percentual.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-646">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding>
-                <marker date="1532447304583" expanded="true" signature="1329:1971" ph="SELECT COUNT... cod_rubrica" />
-                <marker date="1532447304583" expanded="true" signature="1361:1944" ph="SELECT cod_r... tb_percentual_contrato" />
-                <marker date="1532447304583" expanded="true" signature="2618:3205" ph="SELECT COUNT... cod_rubrica" />
-                <marker date="1532447304583" expanded="true" signature="2650:3178" ph="SELECT pe.co... tb_percentual_estatico" />
-                <marker date="1532447304583" expanded="true" signature="5014:5610" ph="SELECT COUNT... cod_rubrica" />
-                <marker date="1532447304583" expanded="true" signature="5046:5590" ph="SELECT pe.co... tb_percentual_estatico" />
-                <marker date="1532447304583" expanded="true" signature="7553:8186" ph="SELECT COUNT... cod_rubrica" />
-                <marker date="1532447304583" expanded="true" signature="7585:8166" ph="SELECT cod_r... tb_percentual_contrato" />
-                <marker date="1532447304583" expanded="true" signature="10526:10640" ph="SELECT COUNT... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="11580:11954" ph="SELECT COUNT... TB_RETROATIVIDADE_PERCENTUAL" />
-                <marker date="1532447304583" expanded="true" signature="13019:13960" ph="SELECT pc.pe... tb_percentual_contrato" />
-                <marker date="1532447304583" expanded="true" signature="15288:15592" ph="SELECT PC.PE... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="16699:16758" ph="SELECT PERCE... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="17959:18016" ph="SELECT COUNT... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="18665:18750" ph="SELECT COD_C... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="19389:19717" ph="SELECT COD F... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="19574:19716" ph="SELECT MAX(D... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304583" expanded="true" signature="21831:21886" ph="SELECT COUNT... TB_RUBRICA" />
-                <marker date="1532447304583" expanded="true" signature="23096:23447" ph="SELECT COUNT... TB_RETRO_PERCENTUAL_ESTATICO" />
-                <marker date="1532447304583" expanded="true" signature="24400:24998" ph="SELECT PE.pe... TB_PERCENTUAL_ESTATICO" />
-                <marker date="1532447304583" expanded="true" signature="26130:26331" ph="SELECT PE.PE... TB_PERCENTUAL_ESTATICO" />
-                <marker date="1532447304583" expanded="true" signature="27261:27318" ph="SELECT PERCE... TB_PERCENTUAL_ESTATICO" />
-                <marker date="1532447304583" expanded="true" signature="28929:29439" ph="SELECT COUNT... cod_rubrica" />
-                <marker date="1532447304583" expanded="true" signature="28961:29412" ph="SELECT cod_r... tb_percentual_contrato" />
-                <marker date="1532447304583" expanded="true" signature="31396:31840" ph="SELECT COUNT... COD_RUBRICA" />
-                <marker date="1532447304583" expanded="true" signature="31428:31814" ph="SELECT PE.CO... TB_PERCENTUAL_ESTATICO" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Periodos.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Periodos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <marker date="1532447304584" expanded="true" signature="773:820" ph="SELECT DATA_... TB_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="2270:2324" ph="SELECT COD_C... TB_CARGO_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="2715:2800" ph="SELECT DATA_... TB_CARGO_FUNCIONARIO" />
-                <marker date="1532447304584" expanded="true" signature="3533:3815" ph="SELECT DATA_... TB_REMUNERACAO_FUN_CON" />
-                <marker date="1532447304584" expanded="true" signature="4640:4933" ph="SELECT (EOMO... TB_REMUNERACAO_FUN_CON" />
-                <marker date="1532447304584" expanded="true" signature="6128:6377" ph="SELECT MIN(p... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="7133:7428" ph="SELECT MAX(P... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="19855:19923" ph="SELECT DATA_... TB_FUNCAO_TERCEIRIZADO" />
-                <marker date="1532447304584" expanded="true" signature="25342:25397" ph="SELECT COD_C... TB_FUNCAO_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="25986:26198" ph="SELECT DATED... TB_REMUNERACAO_FUN_CON" />
-                <marker date="1532447304584" expanded="true" signature="26972:27198" ph="SELECT DATED... TB_REMUNERACAO_FUN_CON" />
-                <marker date="1532447304584" expanded="true" signature="28098:28299" ph="SELECT MIN(P... TB_PERCENTUAL_CONTRATO" />
-                <marker date="1532447304584" expanded="true" signature="29006:29216" ph="SELECT MAX(P... TB_PERCENTUAL_CONTRATO" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,8 +86,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestAuxiliateCalc.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CodFuncaoContratoECodFuncaoTerceirizadoModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java" />
       </list>
     </option>
   </component>
@@ -182,7 +108,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="367" />
+    <option name="x" value="2451" />
     <option name="y" value="-8" />
     <option name="width" value="1346" />
     <option name="height" value="688" />
@@ -202,9 +128,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,11 +170,41 @@
               <item name="siscovi" type="462c0819:PsiDirectoryNode" />
               <item name="calculos" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,7 +228,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.SISCOVI">
+  <component name="RunManager" selected="Application.TesteRestituicaoFerias">
     <configuration name="SISCOVI" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.50" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -347,6 +300,44 @@
           <artifact name="SISCOVI" />
         </option>
       </method>
+    </configuration>
+    <configuration name="TestAuxiliateCalc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.jus.stj.siscovi.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.test.TestAuxiliateCalc" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Back-End" />
+      <envs />
+    </configuration>
+    <configuration name="TesteRestituicaoFerias" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.jus.stj.siscovi.calculos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.calculos.TesteRestituicaoFerias" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Back-End" />
+      <envs />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -429,6 +420,17 @@
       <properties />
       <listeners />
     </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.SISCOVI" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TesteRestituicaoFerias" />
+      <item index="2" class="java.lang.String" itemvalue="Application.TestAuxiliateCalc" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.TesteRestituicaoFerias" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestAuxiliateCalc" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -444,39 +446,41 @@
       <workItem from="1532374710085" duration="1042000" />
       <workItem from="1532447482687" duration="938000" />
       <workItem from="1532448767555" duration="5155000" />
+      <workItem from="1532533836076" duration="7044000" />
+      <workItem from="1532625060584" duration="9852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7432000" />
+    <option name="totallyTimeSpent" value="24328000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.44791666" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39877924" sideWeight="0.50416666" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31536114" sideWeight="0.48958334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24270834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24270834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39877924" sideWeight="0.49583334" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -515,38 +519,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CodTerceirizadoECodFuncaoTerceirizadoModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="2499">
+          <caret line="153" column="1" lean-forward="true" selection-start-line="153" selection-start-column="1" selection-end-line="153" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1532635046226" expanded="true" signature="3364:3423" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+            <marker date="1532635046226" expanded="true" signature="3902:3972" ph="SELECT tc.co... tb_terceirizado_contrato" />
+            <marker date="1532635046226" expanded="true" signature="6329:6462" ph="SELECT ft.co... " />
+            <marker date="1532635046226" expanded="true" signature="6329:6583" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:6930" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7034" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7154" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7257" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7582" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7706" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestAuxiliateCalc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
-          <caret line="25" column="56" lean-forward="true" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+        <state relative-caret-position="289">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <marker date="1532447304616" expanded="true" signature="927:3026" ph="SELECT u.nom... tb_funcao_contrato" />
-            <marker date="1532447304616" expanded="true" signature="4595:4857" ph="SELECT DISTI... TB_TOTAL_MENSAL_A_RETER" />
-            <marker date="1532447304616" expanded="true" signature="5785:7760" ph="SELECT u.nom... tb_funcao_contrato" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/RubricasDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1247">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="1853">
+          <caret line="114" column="34" lean-forward="false" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
           <folding>
-            <marker date="1532447304615" expanded="true" signature="791:815" ph="SELECT * FRO... TB_RUBRICA" />
-            <marker date="1532447304615" expanded="true" signature="2036:2191" ph="SELECT NOME,... tb_percentual_estatico" />
-            <marker date="1532447304615" expanded="true" signature="3124:3247" ph="INSERT INTO TB_RUBRICA... " />
-            <marker date="1532447304615" expanded="true" signature="3943:4005" ph="SELECT COD, TB_RUBRICA" />
-            <marker date="1532447304615" expanded="true" signature="4829:4863" ph="DELETE FROM " />
-            <marker date="1532447304615" expanded="true" signature="5295:5414" ph="UPDATE TB_RU... " />
+            <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
+            <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
+            <marker date="1532447304589" expanded="true" signature="4249:4491" ph="SELECT COUNT... TB_TOTAL_MENSAL_A_RETER" />
+            <marker date="1532447304589" expanded="true" signature="4982:5328" ph="DELETE FROM " />
+            <marker date="1532447304589" expanded="true" signature="5683:5912" ph="DELETE FROM " />
+            <marker date="1532447304589" expanded="true" signature="7752:7807" ph="SELECT COD F... TB_FUNCAO_CONTRATO" />
+            <marker date="1532447304589" expanded="true" signature="11173:11508" ph="INSERT INTO TB_TOTAL_MENSAL_A_RETER... " />
+            <marker date="1532447304589" expanded="true" signature="30350:30700" ph="SELECT ft.co... tb_funcao_terceirizado" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2397">
+          <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1532635046226" expanded="true" signature="3364:3423" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+            <marker date="1532635046226" expanded="true" signature="3902:3972" ph="SELECT tc.co... tb_terceirizado_contrato" />
+            <marker date="1532635046226" expanded="true" signature="6329:6462" ph="SELECT ft.co... " />
+            <marker date="1532635046226" expanded="true" signature="6329:6583" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:6930" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7034" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7154" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7257" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7582" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7706" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -564,7 +616,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Percentual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
+        <state relative-caret-position="68">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <marker date="1532447304583" expanded="true" signature="1329:1971" ph="SELECT COUNT... cod_rubrica" />
@@ -619,18 +671,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
             <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
@@ -644,6 +698,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Percentual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304583" expanded="true" signature="1329:1971" ph="SELECT COUNT... cod_rubrica" />
+            <marker date="1532447304583" expanded="true" signature="1361:1944" ph="SELECT cod_r... tb_percentual_contrato" />
+            <marker date="1532447304583" expanded="true" signature="2618:3205" ph="SELECT COUNT... cod_rubrica" />
+            <marker date="1532447304583" expanded="true" signature="2650:3178" ph="SELECT pe.co... tb_percentual_estatico" />
+            <marker date="1532447304583" expanded="true" signature="5014:5610" ph="SELECT COUNT... cod_rubrica" />
+            <marker date="1532447304583" expanded="true" signature="5046:5590" ph="SELECT pe.co... tb_percentual_estatico" />
+            <marker date="1532447304583" expanded="true" signature="7553:8186" ph="SELECT COUNT... cod_rubrica" />
+            <marker date="1532447304583" expanded="true" signature="7585:8166" ph="SELECT cod_r... tb_percentual_contrato" />
+            <marker date="1532447304583" expanded="true" signature="10526:10640" ph="SELECT COUNT... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="11580:11954" ph="SELECT COUNT... TB_RETROATIVIDADE_PERCENTUAL" />
+            <marker date="1532447304583" expanded="true" signature="13019:13960" ph="SELECT pc.pe... tb_percentual_contrato" />
+            <marker date="1532447304583" expanded="true" signature="15288:15592" ph="SELECT PC.PE... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="16699:16758" ph="SELECT PERCE... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="17959:18016" ph="SELECT COUNT... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="18665:18750" ph="SELECT COD_C... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="19389:19717" ph="SELECT COD F... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="19574:19716" ph="SELECT MAX(D... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304583" expanded="true" signature="21831:21886" ph="SELECT COUNT... TB_RUBRICA" />
+            <marker date="1532447304583" expanded="true" signature="23096:23447" ph="SELECT COUNT... TB_RETRO_PERCENTUAL_ESTATICO" />
+            <marker date="1532447304583" expanded="true" signature="24400:24998" ph="SELECT PE.pe... TB_PERCENTUAL_ESTATICO" />
+            <marker date="1532447304583" expanded="true" signature="26130:26331" ph="SELECT PE.PE... TB_PERCENTUAL_ESTATICO" />
+            <marker date="1532447304583" expanded="true" signature="27261:27318" ph="SELECT PERCE... TB_PERCENTUAL_ESTATICO" />
+            <marker date="1532447304583" expanded="true" signature="28929:29439" ph="SELECT COUNT... cod_rubrica" />
+            <marker date="1532447304583" expanded="true" signature="28961:29412" ph="SELECT cod_r... tb_percentual_contrato" />
+            <marker date="1532447304583" expanded="true" signature="31396:31840" ph="SELECT COUNT... COD_RUBRICA" />
+            <marker date="1532447304583" expanded="true" signature="31428:31814" ph="SELECT PE.CO... TB_PERCENTUAL_ESTATICO" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Periodos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304584" expanded="true" signature="773:820" ph="SELECT DATA_... TB_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="2270:2324" ph="SELECT COD_C... TB_CARGO_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="2715:2800" ph="SELECT DATA_... TB_CARGO_FUNCIONARIO" />
+            <marker date="1532447304584" expanded="true" signature="3533:3815" ph="SELECT DATA_... TB_REMUNERACAO_FUN_CON" />
+            <marker date="1532447304584" expanded="true" signature="4640:4933" ph="SELECT (EOMO... TB_REMUNERACAO_FUN_CON" />
+            <marker date="1532447304584" expanded="true" signature="6128:6377" ph="SELECT MIN(p... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="7133:7428" ph="SELECT MAX(P... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="19855:19923" ph="SELECT DATA_... TB_FUNCAO_TERCEIRIZADO" />
+            <marker date="1532447304584" expanded="true" signature="25342:25397" ph="SELECT COD_C... TB_FUNCAO_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="25986:26198" ph="SELECT DATED... TB_REMUNERACAO_FUN_CON" />
+            <marker date="1532447304584" expanded="true" signature="26972:27198" ph="SELECT DATED... TB_REMUNERACAO_FUN_CON" />
+            <marker date="1532447304584" expanded="true" signature="28098:28299" ph="SELECT MIN(P... TB_PERCENTUAL_CONTRATO" />
+            <marker date="1532447304584" expanded="true" signature="29006:29216" ph="SELECT MAX(P... TB_PERCENTUAL_CONTRATO" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Retencao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304586" expanded="true" signature="406:450" ph="SELECT NOME TB_TIPO_RESGATE" />
+            <marker date="1532447304586" expanded="true" signature="1465:1535" ph="SELECT DATA_... tb_funcao_terceirizado" />
+            <marker date="1532447304586" expanded="true" signature="7362:7563" ph="SELECT COUNT... TB_FUNCAO_TERCEIRIZADO" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/sql/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteCalculoTotalMesal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -652,25 +791,165 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestAuxiliateCalc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+        <state relative-caret-position="347">
+          <caret line="54" column="44" lean-forward="false" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CodTerceirizadoECodFuncaoTerceirizadoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CodFuncaoContratoECodFuncaoTerceirizadoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroUsuarioModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/RubricasDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <marker date="1532460797158" expanded="true" signature="3255:3314" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
-            <marker date="1532460797158" expanded="true" signature="3793:3863" ph="SELECT tc.co... tb_terceirizado_contrato" />
+            <marker date="1532447304615" expanded="true" signature="791:815" ph="SELECT * FRO... TB_RUBRICA" />
+            <marker date="1532447304615" expanded="true" signature="2036:2191" ph="SELECT NOME,... tb_percentual_estatico" />
+            <marker date="1532447304615" expanded="true" signature="3124:3247" ph="INSERT INTO TB_RUBRICA... " />
+            <marker date="1532447304615" expanded="true" signature="3943:4005" ph="SELECT COD, TB_RUBRICA" />
+            <marker date="1532447304615" expanded="true" signature="4829:4863" ph="DELETE FROM " />
+            <marker date="1532447304615" expanded="true" signature="5295:5414" ph="UPDATE TB_RU... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/CargoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-894">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304606" expanded="true" signature="646:683" ph="SELECT * FRO... TB_FUNCAO" />
+            <marker date="1532447304606" expanded="true" signature="1744:1959" ph="SELECT CC.CO... tb_cargo_contrato" />
+            <marker date="1532447304606" expanded="true" signature="3145:3257" ph="INSERT INTO TB_FUNCAO... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/AuxiliateCalcDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304608" expanded="true" signature="746:839" ph="SELECT SIGLA... TB_PERFIL_USUARIO" />
+            <marker date="1532447304608" expanded="true" signature="1121:1332" ph="SELECT DISTI... TB_CONTRATO" />
+            <marker date="1532447304608" expanded="true" signature="2837:3257" ph="SELECT DISTI... TB_CONTRATO" />
+            <marker date="1532447304608" expanded="true" signature="4963:5144" ph="SELECT U.NOM... TB_USUARIO" />
+            <marker date="1532447304608" expanded="true" signature="5651:5955" ph="SELECT PU.SI... TB_USUARIO" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="90" column="81" lean-forward="true" selection-start-line="90" selection-start-column="81" selection-end-line="90" selection-end-column="81" />
+          <folding>
+            <marker date="1532447304616" expanded="true" signature="927:3026" ph="SELECT u.nom... tb_funcao_contrato" />
+            <marker date="1532447304616" expanded="true" signature="4595:4857" ph="SELECT DISTI... TB_TOTAL_MENSAL_A_RETER" />
+            <marker date="1532447304616" expanded="true" signature="5785:7760" ph="SELECT u.nom... tb_funcao_contrato" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-653">
+          <caret line="113" column="57" lean-forward="true" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+          <folding>
+            <marker date="1532447304589" expanded="true" signature="2784:2830" ph="SELECT COUNT... TB_CONTRATO" />
+            <marker date="1532447304589" expanded="true" signature="3345:3460" ph="SELECT MIN(E... tb_evento_contratual" />
+            <marker date="1532447304589" expanded="true" signature="4249:4491" ph="SELECT COUNT... TB_TOTAL_MENSAL_A_RETER" />
+            <marker date="1532447304589" expanded="true" signature="4982:5328" ph="DELETE FROM " />
+            <marker date="1532447304589" expanded="true" signature="5683:5912" ph="DELETE FROM " />
+            <marker date="1532447304589" expanded="true" signature="7752:7807" ph="SELECT COD F... TB_FUNCAO_CONTRATO" />
+            <marker date="1532447304589" expanded="true" signature="11173:11508" ph="INSERT INTO TB_TOTAL_MENSAL_A_RETER... " />
+            <marker date="1532447304589" expanded="true" signature="30350:30700" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Convencao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <marker date="1532447304581" expanded="true" signature="479:566" ph="SELECT COD_C... TB_CONVENCAO_COLETIVA" />
+            <marker date="1532447304581" expanded="true" signature="840:1134" ph="SELECT COD F... TB_CONVENCAO_COLETIVA" />
+            <marker date="1532447304581" expanded="true" signature="984:1133" ph="SELECT MAX(D... TB_CONVENCAO_COLETIVA" />
+            <marker date="1532447304581" expanded="true" signature="2187:2242" ph="SELECT cod_c... tb_funcao_contrato" />
+            <marker date="1532447304581" expanded="true" signature="2991:3455" ph="SELECT COUNT... tb_remuneracao_fun_con" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="163" column="39" lean-forward="true" selection-start-line="163" selection-start-column="39" selection-end-line="163" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1532635046226" expanded="true" signature="3364:3423" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+            <marker date="1532635046226" expanded="true" signature="3902:3972" ph="SELECT tc.co... tb_terceirizado_contrato" />
+            <marker date="1532635046226" expanded="true" signature="6329:6462" ph="SELECT ft.co... " />
+            <marker date="1532635046226" expanded="true" signature="6329:6583" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:6930" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7034" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7154" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7257" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7582" ph="SELECT ft.co... tb_funcao_terceirizado" />
+            <marker date="1532635046226" expanded="true" signature="6329:7706" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
         </state>
       </provider>
     </entry>

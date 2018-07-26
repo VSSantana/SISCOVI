@@ -51,7 +51,7 @@ public class TestAuxiliateCalc {
             System.out.println(date.toLocalDate().format(DateTimeFormatter.ofPattern("cccc, dd 'de' "+ "MMMM" +" 'de' uuuu")));
             connectSQLServer.dbConnect().close();
             System.out.println(date.toLocalDate().getDayOfMonth());
-
+            System.out.print(ChronoUnit.DAYS.between(Date.valueOf("2017-07-01").toLocalDate(), Date.valueOf("2017-12-31").toLocalDate()));
         } catch (SQLServerException sqlse) {
             sqlse.printStackTrace();
         } catch(SQLException sqle){
