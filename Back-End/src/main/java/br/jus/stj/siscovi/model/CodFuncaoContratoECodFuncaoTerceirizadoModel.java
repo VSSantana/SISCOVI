@@ -11,7 +11,7 @@ public class CodFuncaoContratoECodFuncaoTerceirizadoModel {
         return cod;
     }
 
-    public int getCodTerceirizadoContrato() {
+    public int getCodFuncaoTerceirizado() {
         return codFuncaoTerceirizado;
     }
 }
