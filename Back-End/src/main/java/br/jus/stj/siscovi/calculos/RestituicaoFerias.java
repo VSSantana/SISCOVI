@@ -147,7 +147,7 @@ public class RestituicaoFerias {
         vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
         vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
 
-        //System.out.print(Date.valueOf(LocalDate.now()));
+        System.out.print(Date.valueOf(LocalDate.now()));
 
         //Início da contabilização de férias do período.
 
