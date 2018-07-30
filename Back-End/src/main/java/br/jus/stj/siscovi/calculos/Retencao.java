@@ -54,12 +54,13 @@ public class Retencao {
             preparedStatement = connection.prepareStatement("SELECT cod_terceirizado_contrato" +
                                                                  " FROM tb_funcao_terceirizado" +
                                                                  " WHERE cod = ?");
+
             preparedStatement.setInt(1, pCodFuncaoTerceirizado);
             resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
 
-                vCodTerceirizadoContrato = resultSet.getInt("COD_TERCEIRIZADO_CONTRATO");
+                vCodTerceirizadoContrato = resultSet.getInt("cod_terceirizado_contrato");
 
             }
 
@@ -170,7 +171,6 @@ public class Retencao {
 
         }
 
-
         //Caso não possua data de desligamento.
 
         if (vDataFim == null) {
@@ -191,16 +191,22 @@ public class Retencao {
 
             if((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
                             (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef)))) {
-                        LocalDate dataDisp = vDataInicio.toLocalDate().withDayOfMonth(vDataInicio.toLocalDate().lengthOfMonth());
-                        if(ChronoUnit.DAYS.between(dataDisp, vDataInicio.toLocalDate()) + 1 >= 15) {
-                            return true;
-                        }
-                    }
+
+                LocalDate dataDisp = vDataInicio.toLocalDate().withDayOfMonth(vDataInicio.toLocalDate().lengthOfMonth());
+
+                if(ChronoUnit.DAYS.between(dataDisp, vDataInicio.toLocalDate()) + 1 >= 15) {
+
+                    return true;
+
                 }
-                /*
+            }
+        }
+
+        /*
                  * --Caso possua data de desligamento.
                  */
-                if(vDataFim != null) {
+        if(vDataFim != null) {
+
                     LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); // Data com o último dia do mês da data de Referência
 
                     /*

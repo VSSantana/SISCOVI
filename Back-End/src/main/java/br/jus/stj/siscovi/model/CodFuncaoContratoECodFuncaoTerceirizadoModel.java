@@ -1,17 +1,29 @@
 package br.jus.stj.siscovi.model;
 
 public class CodFuncaoContratoECodFuncaoTerceirizadoModel {
-    private int codFuncaoTerceirizado;
+
+    private int codFuncaoContrato;
+
     private int cod;
-    public CodFuncaoContratoECodFuncaoTerceirizadoModel(int cod, int codFuncaoTerceirizado) {
+
+    public CodFuncaoContratoECodFuncaoTerceirizadoModel(int cod, int codFuncaoContrato) {
+
         this.cod = cod;
-        this.codFuncaoTerceirizado = codFuncaoTerceirizado;
+
+        this.codFuncaoContrato = codFuncaoContrato;
+
     }
+
     public int getCod() {
+
         return cod;
+
     }
 
     public int getCodFuncaoTerceirizado() {
-        return codFuncaoTerceirizado;
+
+        return codFuncaoContrato;
+
     }
+
 }

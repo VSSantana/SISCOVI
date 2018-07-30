@@ -147,7 +147,7 @@ public class RestituicaoFerias {
         vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
         vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
 
-        System.out.print(Date.valueOf(LocalDate.now()));
+        //System.out.print(Date.valueOf(LocalDate.now()));
 
         //Início da contabilização de férias do período.
 
@@ -216,7 +216,8 @@ public class RestituicaoFerias {
                     vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
                     vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
                     vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
-                    System.out.print(vDataReferencia + "\n");
+
+                    //System.out.print(vDataReferencia + "\n");
                 }
 
 
@@ -270,10 +271,15 @@ public class RestituicaoFerias {
             preparedStatement.setDate(4, pDataReferencia);
 
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 while (resultSet.next()) {
-                    CodFuncaoContratoECodFuncaoTerceirizadoModel tupla = new CodFuncaoContratoECodFuncaoTerceirizadoModel(resultSet.getInt("COD_FUNCAO_CONTRATO"), resultSet.getInt("COD"));
+
+                    CodFuncaoContratoECodFuncaoTerceirizadoModel tupla = new CodFuncaoContratoECodFuncaoTerceirizadoModel(resultSet.getInt("COD"), resultSet.getInt("COD_FUNCAO_CONTRATO"));
+
                     tuplas.add(tupla);
+
                 }
+
             }
 
         }catch(SQLException slqe) {
