@@ -3,15 +3,22 @@ package br.jus.stj.siscovi.calculos;
 import java.sql.*;
 
 public class Convencao {
+
     private Connection connection;
-    Convencao(Connection connection) {
+
+    Convencao (Connection connection) {
+
         this.connection = connection;
+
     }
-    public int RetornaConvencaoAnterior(int codConvencao) throws SQLException {
+
+    public int RetornaConvencaoAnterior (int codConvencao) throws SQLException {
+
         int codConvencaoAnterior = 0;
         int codCargoContrato = 0;
         Date dataRef = null;
         ResultSet rs;
+
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT COD_CARGO_CONTRATO, DATA_INICIO_CONVENCAO FROM TB_CONVENCAO_COLETIVA WHERE COD=?");
         preparedStatement.setInt(1,codConvencao);
         rs = preparedStatement.executeQuery();
@@ -32,14 +39,21 @@ public class Convencao {
         }
         return -1;
     }
-    public boolean ExisteDuplaConvencao(int pCodFuncaoContrato, int pMes, int pAno, int pRetroatividade) {
-        /**
-         --Função que retorna se em um dado mês existe um caso de cálculo parcial
-         --por existirem duas convenções vigentes no mesmo mês.
 
-         --pRetroatividade = 1 - Considera a retroatividade.
-         --pRetroatividade = 2 - Desconsidera a retroatividade.
-         */
+    /**
+     * Função que retorna se em um dado mês existe um caso de cálculo parcial
+     * por existirem duas ou mais convenções vigentes no mesmo mês.
+     * @param pCodFuncaoContrato
+     * @param pMes
+     * @param pAno
+     * @param pRetroatividade
+     * @return boolean
+     */
+
+    public boolean ExisteDuplaConvencao (int pCodFuncaoContrato, int pMes, int pAno, int pRetroatividade) {
+
+        //pRetroatividade = 1 - Considera a retroatividade.
+        //pRetroatividade = 2 - Desconsidera a retroatividade.
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -48,27 +62,38 @@ public class Convencao {
         int vCodContrato = 0;
         boolean vRetroatividade = false;
 
-        /** --Define o código do contrato. */
+        //Define o código do contrato.
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT cod_contrato FROM tb_funcao_contrato WHERE cod=?");
+
+            preparedStatement = connection.prepareStatement("SELECT cod_contrato" +
+                                                                 " FROM tb_funcao_contrato" +
+                                                                 " WHERE cod=?");
+
             preparedStatement.setInt(1, pCodFuncaoContrato);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
                 vCodContrato = resultSet.getInt(1);
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
-        }
-
-        /*--Definição do modo de funcionamento da função. */
-
-        if(pRetroatividade == 1) {
-                Retroatividade retroatividade = new Retroatividade(connection);
-                vRetroatividade = retroatividade.ExisteRetroatividade(vCodContrato, pCodFuncaoContrato, pMes, pAno, 1);
-
 
         }
+
+        //Definição do modo de funcionamento da função.
+
+        if (pRetroatividade == 1) {
+
+            Retroatividade retroatividade = new Retroatividade(connection);
+            vRetroatividade = retroatividade.ExisteRetroatividade(vCodContrato, pCodFuncaoContrato, pMes, pAno, 1);
+
+        }
+
         /* --Conta o número de convenções vigentes no mês.*/
 
         try {

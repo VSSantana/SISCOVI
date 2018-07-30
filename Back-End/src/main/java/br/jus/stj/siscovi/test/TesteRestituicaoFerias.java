@@ -2,15 +2,43 @@ package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.dao.ConnectSQLServer;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 
 public class TesteRestituicaoFerias {
     public static void main(String[] args){
 
+        String result = null;
+        long dias = 0;
+        Date inicio = Date.valueOf("2018-07-23");
+        Date fim = Date.valueOf("2018-07-27");
 
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
-        restituicaoFerias.CalculaRestituicaoFerias(53,4,0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
+        Retencao retencao = new Retencao(connectSQLServer.dbConnect());
+        restituicaoFerias.CalculaRestituicaoFerias(417, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
+
+        try {
+
+            result = retencao.TipoDeRestituicao(22);
+
+            System.out.print(result);
+
+        } catch(SQLException sqle) {
+
+            throw new NullPointerException ("Falha no teste de recuperação do tipo de restituição.");
+
+        }
+
+        dias = ChronoUnit.DAYS.between(inicio.toLocalDate(), fim.toLocalDate());
+
+        System.out.print("\n");
+
+        System.out.println(dias);
+
         //TotalMensalDAO totalMensalDAO  = new TotalMensalDAO(connectSQLServer.dbConnect());
         //totalMensalDAO.recuperaAnosDeCalculosAnteriores(1);
         //new TotalMensalController().getValoresCalculados(1,8);

@@ -77,7 +77,7 @@ BEGIN
       
     END IF;
     
-    --Se a data de disponibilização está no mês referência enão se verifica
+    --Se a data de disponibilização está no mês referência então se verifica
     --a quantidade de dias trabalhados pelo funcionário.
   
     IF (vDataInicio >= vDataReferencia AND vDataInicio <= LAST_DAY(vDataReferencia)) THEN

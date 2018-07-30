@@ -2,16 +2,18 @@ package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
 import br.jus.stj.siscovi.model.CodTerceirizadoECodFuncaoTerceirizadoModel;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RestituicaoFerias {
+
     private Connection connection;
 
     public RestituicaoFerias(Connection connection) {
+
         this.connection = connection;
+
     }
 
     /**
@@ -19,7 +21,7 @@ public class RestituicaoFerias {
      * determinado período aquisitivo.
      *
      * @param pCodTerceirizadoContrato;
-     * @param pCodTipoRestituicao;
+     * @param pTipoRestituicao;
      * @param pDiasVendidos;
      * @param pInicioFerias;
      * @param pFimFerias;
@@ -28,8 +30,16 @@ public class RestituicaoFerias {
      * @param pValorMovimentado;
      * @param pProporcional;
      */
-    public void CalculaRestituicaoFerias(int pCodTerceirizadoContrato, int pCodTipoRestituicao, int pDiasVendidos, Date pInicioFerias, Date pFimFerias, Date pInicioPeriodoAquisitivo, Date pFimPeriodoAquisitivo,
-                                         float pValorMovimentado, char pProporcional) {
+
+    public void CalculaRestituicaoFerias (int pCodTerceirizadoContrato,
+                                          String pTipoRestituicao,
+                                          int pDiasVendidos,
+                                          Date pInicioFerias,
+                                          Date pFimFerias,
+                                          Date pInicioPeriodoAquisitivo,
+                                          Date pFimPeriodoAquisitivo,
+                                          float pValorMovimentado,
+                                          char pProporcional) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -42,6 +52,7 @@ public class RestituicaoFerias {
 
         int vCodContrato = 0;
         int vCodTbRestituicaoFerias = 0;
+        int vCodTipoRestituicao = 0;
 
         //Variáveis totalizadoras de valores.
 
@@ -97,7 +108,7 @@ public class RestituicaoFerias {
         //Checagem dos parâmetros passados.
 /*
         if (pCodTerceirizadoContrato == null ||
-            pCodTipoRestituicao == null ||
+            pTipoRestituicao == null ||
             pDiasVendidos == null ||
             pInicioFerias == null ||
             pFimFerias == null ||
@@ -111,35 +122,80 @@ public class RestituicaoFerias {
 
 */
 
+        //Atribuição do cod do tipo de restituição.
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT COD" +
+                                                                 " FROM TB_TIPO_RESTITUICAO" +
+                                                                 " WHERE UPPER(nome) = UPPER(?)");
+
+            preparedStatement.setString(1, pTipoRestituicao);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTipoRestituicao = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        if (vCodTipoRestituicao == 0) {
+
+            throw new NullPointerException("Tipo de restituição não encontrada.");
+
+        }
+
         //Checagem da existência do terceirizado no contrato.
 
         try {
+
             preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD=?");
+
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
+
                 vCheck = resultSet.getInt(1);
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
 
         if (vCheck == 0) {
 
-            return;
+            throw new NullPointerException("Terceirizado não encontrado no contrato.");
 
         }
 
         //Carrega o código do contrato.
         try {
+
             preparedStatement = connection.prepareStatement("SELECT tc.cod_contrato FROM tb_terceirizado_contrato tc WHERE tc.cod=?");
+
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
+
                 vCodContrato = resultSet.getInt(1);
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
 
         //Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.
@@ -247,7 +303,7 @@ public class RestituicaoFerias {
 
     //Seleção do código da função terceirizado e da função contrato.
 
-    ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> selecionaFuncaoContratoEFuncaoTerceirizado(int pCodTerceirizadoContrato, Date pDataReferencia) {
+    ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> selecionaFuncaoContratoEFuncaoTerceirizado (int pCodTerceirizadoContrato, Date pDataReferencia) {
 
         //Busca as funções que um funcionário exerceu no mês de cálculo.
 
@@ -270,7 +326,7 @@ public class RestituicaoFerias {
             preparedStatement.setDate(3, pDataReferencia);
             preparedStatement.setDate(4, pDataReferencia);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
 
@@ -282,13 +338,14 @@ public class RestituicaoFerias {
 
             }
 
-        }catch(SQLException slqe) {
+        } catch(SQLException slqe) {
             //slqe.printStackTrace();
             throw new NullPointerException("Problemas durante a consulta ao banco em relação ao terceirizado: " + pCodTerceirizadoContrato);
 
         }
 
         return tuplas;
+
     }
 
 }

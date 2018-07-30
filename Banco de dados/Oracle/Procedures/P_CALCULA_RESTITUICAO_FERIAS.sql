@@ -1,5 +1,5 @@
 create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoContrato NUMBER,
-                                                            pCodTipoRestituicao NUMBER,
+                                                            pTipoRestituicao VARCHAR2,
                                                             pDiasVendidos NUMBER,
                                                             pInicioFerias DATE,
                                                             pFimFerias DATE, 
@@ -17,6 +17,7 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
 
   vCodContrato NUMBER;
   vCodTbRestituicaoFerias NUMBER;
+  vCodTipoRestituicao NUMBER;
 
   --Variáveis totalizadoras de valores.
 
@@ -75,13 +76,14 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
   vPeriodoException EXCEPTION;
   vTerceirizadoException EXCEPTION;
   vParametroNulo EXCEPTION;
+  vTipoRestituicao EXCEPTION;
 
 BEGIN
 
   --Todos os parâmetros estão preenchidos.
 
   IF (pCodTerceirizadoContrato IS NULL OR
-      pCodTipoRestituicao IS NULL OR
+      vCodTipoRestituicao IS NULL OR
       pDiasVendidos IS NULL OR
       pInicioFerias IS NULL OR
       pFimFerias IS NULL OR
@@ -90,6 +92,27 @@ BEGIN
   
     RAISE vParametroNulo;
   
+  END IF;
+
+  --Atribuição do cod da do tipo de restituição.
+
+  BEGIN
+
+    SELECT cod
+      INTO vCodTipoRestituicao
+      FROM tb_tipo_restituicao
+      WHERE UPPER(nome) = UPPER(pTipoRestituicao);
+
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+
+      vCodTipoRestituicao := NULL;
+
+  END;
+
+  IF (vCodTipoRestituicao IS NULL) THEN
+
+    RAISE vTipoRestituicao;
+
   END IF;
 
   --Checagem da validade do terceirizado passado (existe).
@@ -162,7 +185,7 @@ BEGIN
         vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
      
         IF (vRemuneracao IS NULL) THEN
-       
+        
           RAISE vRemuneracaoException;
         
         END IF;
@@ -573,7 +596,7 @@ BEGIN
   --A incidência não é restituída para o empregado, portanto na movimentação
   --ela não deve ser computada, mas deve ser colocada como saldo residual.
   
-  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
+  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(vCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
 
     vIncidenciaFerias :=  vTotalIncidenciaFerias;
     vIncidenciaTerco := vTotalIncidenciaTerco;
@@ -612,7 +635,7 @@ BEGIN
                                      data_atualizacao)
     VALUES (vCodTbRestituicaoFerias,
             pCodTerceirizadoContrato,
-            pCodTipoRestituicao,
+            vCodTipoRestituicao,
             pInicioPeriodoAquisitivo,
             pFimPeriodoAquisitivo,
             pInicioFerias,
@@ -627,7 +650,7 @@ BEGIN
            'SYSTEM',
             SYSDATE);
 
-  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(pCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
+  IF (UPPER(F_RETORNA_TIPO_RESTITUICAO(vCodTipoRestituicao)) = 'MOVIMENTAÇÃO') THEN
 
     INSERT INTO tb_saldo_residual_ferias (cod_restituicao_ferias,
                                           valor_ferias,
@@ -665,6 +688,14 @@ BEGIN
     WHEN vTerceirizadoException THEN
 
       RAISE_APPLICATION_ERROR(-20003, 'Erro na execução do procedimento: Terceirizado não encontrado no contrato.');
+
+    WHEN vTipoRestituicao THEN
+
+      RAISE_APPLICATION_ERROR(-20007, 'O tipo de restituição passado não foi encontrado.');
+
+    WHEN NO_DATA_FOUND THEN
+
+      RAISE_APPLICATION_ERROR(-20006, 'Dados não encontrados.')
     
     WHEN OTHERS THEN
   
