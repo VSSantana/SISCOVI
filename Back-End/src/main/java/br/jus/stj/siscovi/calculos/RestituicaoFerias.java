@@ -48,37 +48,37 @@ public class RestituicaoFerias {
         Periodos periodo = new Periodos(connection);
         Remuneracao remuneracao = new Remuneracao(connection);
 
-        //Chaves primárias.
+        /**Chaves primárias.*/
 
         int vCodContrato = 0;
         int vCodTbRestituicaoFerias = 0;
         int vCodTipoRestituicao = 0;
 
-        //Variáveis totalizadoras de valores.
+        /**Variáveis totalizadoras de valores.*/
 
         float vTotalFerias = 0;
         float vTotalTercoConstitucional = 0;
         float vTotalIncidenciaFerias = 0;
         float vTotalIncidenciaTerco = 0;
 
-        //Variáveis de valores parciais.
+        /**Variáveis de valores parciais.*/
 
         float vValorFerias = 0;
         float vValorTercoConstitucional = 0;
         float vValorIncidenciaFerias = 0;
         float vValorIncidenciaTerco = 0;
 
-        //Variáveis de percentuais.
+        /**Variáveis de percentuais.*/
 
         float vPercentualFerias = 0;
         float vPercentualTercoConstitucional = 0;
         float vPercentualIncidencia = 0;
 
-        //Variável de remuneração da função.
+        /**Variável de remuneração da função.*/
 
         float vRemuneracao = 0;
 
-        //Variáveis de data.
+        /**Variáveis de data.*/
 
         Date vDataReferencia = null;
         Date vDataInicio = null;
@@ -86,11 +86,11 @@ public class RestituicaoFerias {
         int vAno = 0;
         int vMes = 0;
 
-        //Variável para a checagem de existência do terceirizado.
+        /**Variável para a checagem de existência do terceirizado.*/
 
         int vCheck = 0;
 
-        //Variáveis de controle.
+        /**Variáveis de controle.*/
 
         int vDiasDeFerias = 0;
         int vDiasAdquiridos = 0;
@@ -98,14 +98,14 @@ public class RestituicaoFerias {
         int vNumeroDeMeses = 0;
         int vControleMeses = 0;
 
-        //Variáveis auxiliares.
+        /**Variáveis auxiliares.*/
 
         float vIncidenciaFerias = 0;
         float vIncidenciaTerco = 0;
         float vTerco = 0;
         float vFerias = 0;
 
-        //Checagem dos parâmetros passados.
+        /**Checagem dos parâmetros passados.*/
 /*
         if (pCodTerceirizadoContrato == null ||
             pTipoRestituicao == null ||
@@ -122,7 +122,7 @@ public class RestituicaoFerias {
 
 */
 
-        //Atribuição do cod do tipo de restituição.
+        /**Atribuição do cod do tipo de restituição.*/
 
         try {
 
@@ -151,7 +151,7 @@ public class RestituicaoFerias {
 
         }
 
-        //Checagem da existência do terceirizado no contrato.
+        /**Checagem da existência do terceirizado no contrato.*/
 
         try {
 
@@ -178,7 +178,8 @@ public class RestituicaoFerias {
 
         }
 
-        //Carrega o código do contrato.
+        /**Carrega o código do contrato.*/
+
         try {
 
             preparedStatement = connection.prepareStatement("SELECT tc.cod_contrato FROM tb_terceirizado_contrato tc WHERE tc.cod=?");
@@ -198,43 +199,43 @@ public class RestituicaoFerias {
 
         }
 
-        //Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.
+        /**Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.*/
 
         vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
         vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
 
         //System.out.print(Date.valueOf(LocalDate.now()));
 
-        //Início da contabilização de férias do período.
+        /**Início da contabilização de férias do período.*/
 
         do{
 
-            //Definição da data referência (sempre o primeiro dia do mês).
+            /**Definição da data referência (sempre o primeiro dia do mês).*/
 
             vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
 
-            //Reset das variáveis que contém valores parciais.
+            /**Reset das variáveis que contém valores parciais.*/
 
             vValorFerias = 0;
             vValorTercoConstitucional = 0;
             vValorIncidenciaFerias = 0;
             vValorIncidenciaTerco = 0;
 
-            //Seleciona as funções que o terceirizado ocupou no mês avaliado.
+            /**Seleciona as funções que o terceirizado ocupou no mês avaliado.*/
 
             ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> tuplas = selecionaFuncaoContratoEFuncaoTerceirizado(pCodTerceirizadoContrato, vDataReferencia);
 
             Convencao convencao = new Convencao(connection);
 
-            //Para cada função que o terceirizado ocupou no mês avaliado.
+            /**Para cada função que o terceirizado ocupou no mês avaliado.*/
 
             for(int i = 0; i < tuplas.size(); i++){
 
-                //Caso não exista mais de uma remuneração vigente no mês e não tenha havido alteração nos percentuais do contrato ou nos percentuais estáticos.
+                /**Caso não exista mais de uma remuneração vigente no mês e não tenha havido alteração nos percentuais do contrato ou nos percentuais estáticos.*/
 
                 if(!convencao.ExisteDuplaConvencao(tuplas.get(i).getCodFuncaoTerceirizado(), vMes, vAno, 2) && !percentual.ExisteMudancaPercentual(vCodContrato, vMes, vAno, 2)) {
 
-                    //Define o valor da remuneração da função e dos percentuais do contrato.
+                    /**Define o valor da remuneração da função e dos percentuais do contrato.*/
 
                     vRemuneracao = remuneracao.RetornaRemuneracaoPeriodo(tuplas.get(i).getCodFuncaoTerceirizado(), vMes, vAno, 1, 2);
                     vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vMes, vAno, 1, 2);
@@ -247,15 +248,15 @@ public class RestituicaoFerias {
 
                     }
 
-                    //Cálculo do valor integral correspondente ao mês avaliado.
+                    /**Cálculo do valor integral correspondente ao mês avaliado.*/
 
                     vValorFerias = (vRemuneracao * (vPercentualFerias/100));
                     vValorTercoConstitucional = (vRemuneracao * (vPercentualTercoConstitucional/100));
                     vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
                     vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
-                    //No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
-                    //situação similar para a retenção proporcional por menos de 14 dias trabalhados.
+                    /**o caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
+                    situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
 
                     if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
@@ -266,7 +267,7 @@ public class RestituicaoFerias {
 
                     }
 
-                    //Contabilização do valor calculado.
+                    /**Contabilização do valor calculado.*/
 
                     vTotalFerias = vTotalFerias + vValorFerias;
                     vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
@@ -301,11 +302,11 @@ public class RestituicaoFerias {
 
     }
 
-    //Seleção do código da função terceirizado e da função contrato.
+    /**Seleção do código da função terceirizado e da função contrato.*/
 
     ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> selecionaFuncaoContratoEFuncaoTerceirizado (int pCodTerceirizadoContrato, Date pDataReferencia) {
 
-        //Busca as funções que um funcionário exerceu no mês de cálculo.
+        /**Busca as funções que um funcionário exerceu no mês de cálculo.*/
 
         ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> tuplas = new ArrayList<>();
 

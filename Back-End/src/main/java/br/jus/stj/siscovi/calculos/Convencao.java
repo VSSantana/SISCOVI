@@ -19,25 +19,46 @@ public class Convencao {
         Date dataRef = null;
         ResultSet rs;
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT COD_CARGO_CONTRATO, DATA_INICIO_CONVENCAO FROM TB_CONVENCAO_COLETIVA WHERE COD=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT COD_CARGO_CONTRATO," +
+                                                                                     " DATA_INICIO_CONVENCAO" +
+                                                                               " FROM TB_CONVENCAO_COLETIVA" +
+                                                                               " WHERE COD = ?");
+
         preparedStatement.setInt(1,codConvencao);
         rs = preparedStatement.executeQuery();
-        if(rs.next()){
+
+        if (rs.next()) {
+
             codCargoContrato = rs.getInt(1);
             dataRef = rs.getDate(2);
 
         }
-        preparedStatement = connection.prepareStatement("SELECT COD FROM TB_CONVENCAO_COLETIVA WHERE DATA_ADITAMENTO IS NOT NULL AND COD_CARGO_CONTRATO=? AND DATA_INICIO_CONVENCAO="+
-                "(SELECT MAX(DATA_INICIO_CONVENCAO) FROM TB_CONVENCAO_COLETIVA WHERE DATA_INICIO_CONVENCAO < ? AND COD_CARGO_CONTRATO=? AND DATA_ADITAMENTO IS NOT NULL)");
+
+        preparedStatement = connection.prepareStatement("SELECT COD" +
+                                                             " FROM TB_CONVENCAO_COLETIVA" +
+                                                             " WHERE DATA_ADITAMENTO IS NOT NULL" +
+                                                               " AND COD_CARGO_CONTRATO = ?" +
+                                                               " AND DATA_INICIO_CONVENCAO = (SELECT MAX(DATA_INICIO_CONVENCAO)" +
+                                                                                              " FROM TB_CONVENCAO_COLETIVA" +
+                                                                                              " WHERE DATA_INICIO_CONVENCAO < ?" +
+                                                                                                " AND COD_CARGO_CONTRATO = ?" +
+                                                                                                " AND DATA_ADITAMENTO IS NOT NULL)");
+
         preparedStatement.setInt(1, codCargoContrato);
         preparedStatement.setDate(2, dataRef);
         preparedStatement.setInt(3, codCargoContrato);
         rs = preparedStatement.executeQuery();
-        if(rs.next()){
+
+        if (rs.next()) {
+
             codConvencaoAnterior = rs.getInt(1);
+
             return codConvencaoAnterior;
+
         }
+
         return -1;
+
     }
 
     /**
@@ -52,8 +73,8 @@ public class Convencao {
 
     public boolean ExisteDuplaConvencao (int pCodFuncaoContrato, int pMes, int pAno, int pRetroatividade) {
 
-        //pRetroatividade = 1 - Considera a retroatividade.
-        //pRetroatividade = 2 - Desconsidera a retroatividade.
+        /**pRetroatividade = 1 - Considera a retroatividade.
+           pRetroatividade = 2 - Desconsidera a retroatividade.*/
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -62,7 +83,7 @@ public class Convencao {
         int vCodContrato = 0;
         boolean vRetroatividade = false;
 
-        //Define o código do contrato.
+        /**Define o código do contrato.*/
 
         try {
 
@@ -85,7 +106,7 @@ public class Convencao {
 
         }
 
-        //Definição do modo de funcionamento da função.
+        /**Definição do modo de funcionamento da função.*/
 
         if (pRetroatividade == 1) {
 
@@ -94,14 +115,22 @@ public class Convencao {
 
         }
 
-        /* --Conta o número de convenções vigentes no mês.*/
+        /**Conta o número de convenções vigentes no mês.*/
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM tb_remuneracao_fun_con WHERE DATA_ADITAMENTO IS NOT NULL AND COD_FUNCAO_CONTRATO=? AND " +
-                    " (((MONTH(data_inicio)=? AND YEAR(data_inicio)=?) " +
-                    "AND (MONTH(data_aditamento)=? AND YEAR(data_aditamento)=?) " +
-                    "AND (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE))) "+ //--Define a validade da convenção.
-                    "OR ((MONTH(data_fim)=? AND YEAR(data_fim)=?)))");
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD)" +
+                                                                 " FROM tb_remuneracao_fun_con" +
+                                                                 " WHERE DATA_ADITAMENTO IS NOT NULL" +
+                                                                   " AND COD_FUNCAO_CONTRATO = ?" +
+                                                                   " AND (((MONTH(data_inicio) = ? AND YEAR(data_inicio) = ?) " +
+                                                                          " AND" +
+                                                                         " (MONTH(data_aditamento) = ? AND YEAR(data_aditamento) = ?) " +
+                                                                          " AND" +
+                                                                         " (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE))) "+ //Define a validade da convenção.
+                                                                        " OR" +
+                                                                        " ((MONTH(data_fim) = ? AND YEAR(data_fim) = ?)))");
+
             preparedStatement.setInt(1, pCodFuncaoContrato);
             preparedStatement.setInt(2, pMes);
             preparedStatement.setInt(3, pAno);
@@ -110,19 +139,35 @@ public class Convencao {
             preparedStatement.setInt(6, pMes);
             preparedStatement.setInt(7, pAno);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
                 vCount = resultSet.getInt(1);
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
-        if(vCount != 0) {
-            if((vCount == 2) && (vRetroatividade == false)) {
+
+        if (vCount != 0) {
+
+            if ((vCount > 2) && (vRetroatividade == false)) {
+
                 return true;
-            }else {
+
+            } else {
+
                 return false;
+
             }
+
         }
+
         return false;
+
     }
+
 }

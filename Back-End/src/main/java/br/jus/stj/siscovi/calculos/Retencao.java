@@ -64,20 +64,20 @@ public class Retencao {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
-        //Datas utilizadas na análise da integralidade da prestação de serviço do terceirizado.
+        /**Datas utilizadas na análise da integralidade da prestação de serviço do terceirizado.*/
 
         Date vDataInicio = null;
         Date vDataFim = null;
 
-        // Define como data referência o primeiro dia do mês e ano passados como argumentos.
+        /**Define como data referência o primeiro dia do mês e ano passados como argumentos.*/
 
         Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
 
-        //Variável que guarda o cod_terceirizado_contrato.
+        /**Variável que guarda o cod_terceirizado_contrato.*/
 
         int vCodTerceirizadoContrato = 0;
 
-        //Carrega o cod_terceirizado_contrato.
+        /**Carrega o cod_terceirizado_contrato.*/
 
         try {
 
@@ -100,7 +100,7 @@ public class Retencao {
 
         }
 
-        // Carrega as datas de disponibilização e desligamento do terceirizado na função.
+        /**Carrega as datas de disponibilização e desligamento do terceirizado na função.*/
 
         if (!ExisteMudancaFuncao(vCodTerceirizadoContrato, pMes, pAno)) {
 
@@ -201,12 +201,12 @@ public class Retencao {
 
         }
 
-        //Caso não possua data de desligamento.
+        /**Caso não possua data de desligamento.*/
 
         if (vDataFim == null) {
 
             //Se a data de disponibilização é inferior a data referência então o
-            //terceirizado trabalhou os 30 dias do mês referência.
+            //terceirizado trabalhou os 30 dias do mês referência.*/
 
             if (vDataInicio.before(vDataReferencia)) {
 
@@ -214,8 +214,8 @@ public class Retencao {
 
             }
 
-            //Se a data de disponibilização está no mês referência então se verifica
-            //a quantidade de dias trabalhados pelo terceirizado.
+            /**Se a data de disponibilização está no mês referência então se verifica
+            a quantidade de dias trabalhados pelo terceirizado.*/
 
             LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); //Último dia do mês da data de referência.
 
@@ -232,15 +232,15 @@ public class Retencao {
 
         }
 
-        //Caso possua data de desligamento.
+        /**Caso possua data de desligamento.*/
 
         if (vDataFim != null) {
 
             LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); // Data com o último dia do mês da data de referência
 
-            //Se a data de disponibilização é inferior a data referência e a data de
-            //desligamento é superior ao último dia do mês referência então o
-            //terceirizado trabalhou os 30 dias.
+            /**Se a data de disponibilização é inferior a data referência e a data de
+            desligamento é superior ao último dia do mês referência então o
+            terceirizado trabalhou os 30 dias.*/
 
             if (vDataInicio.before(vDataReferencia) && vDataFim.after(Date.valueOf(dataRef))) {
 
@@ -248,9 +248,9 @@ public class Retencao {
 
             }
 
-            //Se a data de disponibilização está no mês referência e a data de
-            //desligamento é superior ao mês referência, então se verifica a quantidade
-            //de dias trabalhados pelo terceirizado.
+            /**Se a data de disponibilização está no mês referência e a data de
+            desligamento é superior ao mês referência, então se verifica a quantidade
+            de dias trabalhados pelo terceirizado.*/
 
 
             if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
@@ -265,8 +265,8 @@ public class Retencao {
 
             }
 
-            //Se a data de disponibilização está no mês referência e também a data de
-            //desligamento, então contam-se os dias trabalhados pelo terceirizado.
+            /**Se a data de disponibilização está no mês referência e também a data de
+            desligamento, então contam-se os dias trabalhados pelo terceirizado.*/
 
             if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
                 (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef)) &&
@@ -281,9 +281,9 @@ public class Retencao {
 
             }
 
-            //Se a data da disponibilização for inferior ao mês de cálculo e
-            //o funcionário tiver desligamento no mês referência, então contam-se
-            //os dias trabalhados.
+            /**Se a data da disponibilização for inferior ao mês de cálculo e
+            o funcionário tiver desligamento no mês referência, então contam-se
+            os dias trabalhados.*/
 
             if(vDataInicio.before(vDataReferencia) && (vDataFim.after(vDataReferencia) || vDataFim.equals(vDataReferencia)) &&
                (vDataFim.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef)))) {
@@ -312,16 +312,14 @@ public class Retencao {
 
     public boolean ExisteMudancaFuncao(int pCodTerceirizadoContrato, int pMes, int pAno) {
 
-        //Determina se o terceirizado mudou de função em um determinado mês.
-
-        //Definição da data referência como primeiro dia do mês de acordo com os argumentos passados.
+        /**Definição da data referência como primeiro dia do mês de acordo com os argumentos passados.*/
 
         Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
 
         int vNumeroRegistros = 0;
         boolean vRetorno = false;
 
-        //Contagem do número de cargos ocupados por um determinado terceirizado no mês referência.
+        /**Contagem do número de cargos ocupados por um determinado terceirizado no mês referência.*/
 
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(COD)" +
                                                                                     " FROM TB_FUNCAO_TERCEIRIZADO" +

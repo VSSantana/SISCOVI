@@ -4,14 +4,18 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 
 public class Remuneracao {
+
     private Connection connection;
+
     Remuneracao(Connection connection) {
+
         this.connection = connection;
+
     }
 
     /**
      * Função que recupera o valor da remuneração vigente para o cargo de um
-     * contrato em um determinado perído em dupla vigência de convenção.
+     * contrato em um determinado perído com vigência de mais de uma convenção.
      * @param pCodFuncaoContrato
      * @param pMes
      * @param pAno
@@ -19,7 +23,8 @@ public class Remuneracao {
      * @param pRetroatividade
      * @return vRemuneracao
      */
-    public float RetornaRemuneracaoPeriodo(int pCodFuncaoContrato, int pMes, int pAno, int pOperacao, int pRetroatividade) {
+
+    public float RetornaRemuneracaoPeriodo (int pCodFuncaoContrato, int pMes, int pAno, int pOperacao, int pRetroatividade) {
 
 
         float vRemuneracao = 0;
@@ -29,48 +34,76 @@ public class Remuneracao {
         boolean vRetroatividade = false;
         Date vDataAditamento = null;
 
-        /*
-         --Operação 1: Remuneração do mês em que não há dupla vigência ou remuneração atual.
-         --Operação 2: Remuneração encerrada do mês em que há dupla vigência.
-         --pRetroatividade 1: Considera a retroatividade.
-         --pRetroatividade 2: Desconsidera os períodos de retroatividade.
+        /**
+         Operação 1: Remuneração do mês em que há somente uma remuneração ou remuneração atual.
+         Operação 2: Remuneração encerrada do mês em que há mais de uma remuneração.
+         pRetroatividade 1: Considera a retroatividade.
+         pRetroatividade 2: Desconsidera os períodos de retroatividade.
          */
 
         ResultSet rs;
         PreparedStatement preparedStatement;
 
-        /* Definição do cod_contrato. */
+        /** Definição do cod_contrato. */
+
         try{
-            preparedStatement = connection.prepareStatement("SELECT COD_CONTRATO FROM tb_funcao_contrato WHERE COD=?");
+
+            preparedStatement = connection.prepareStatement("SELECT COD_CONTRATO" +
+                                                                 " FROM tb_funcao_contrato" +
+                                                                 " WHERE COD = ?");
+
             preparedStatement.setInt(1, pCodFuncaoContrato);
             rs = preparedStatement.executeQuery();
+
             if(rs.next()) {
+
                 vCodContrato = rs.getInt(1);
-            }else {
+
+            } else {
+
                 return -1;
+
             }
-        }catch(SQLException sqle){
+
+        } catch(SQLException sqle) {
+
             sqle.printStackTrace();
+
         }
-        // Definição sobre a consideração da retroatividade.
-        if(pRetroatividade == 1) {
-                Retroatividade retroatividade = new Retroatividade(connection);
-                vRetroatividade = retroatividade.ExisteRetroatividade(vCodContrato, pCodFuncaoContrato, pMes, pAno, 1);
+
+        /** Definição sobre a consideração da retroatividade.*/
+
+        if (pRetroatividade == 1) {
+
+            Retroatividade retroatividade = new Retroatividade(connection);
+            vRetroatividade = retroatividade.ExisteRetroatividade(vCodContrato, pCodFuncaoContrato, pMes, pAno, 1);
+
         }
+
         // Definição do percentual.
-        if(pOperacao == 1) {
+        if (pOperacao == 1) {
+
             try {
-                preparedStatement = connection.prepareStatement("SELECT remuneracao, cod, data_aditamento FROM tb_remuneracao_fun_con" +
-                        " WHERE COD_FUNCAO_CONTRATO = ?  AND data_aditamento IS NOT NULL" +
-                        " AND (SELECT CAST(CAST(DATA_ADITAMENTO AS DATE) AS DATETIME) ) <= (SELECT CAST(CAST(getdate() AS DATE) AS DATETIME))" +
-                        "  AND data_aditamento IS NOT NULL" +
-                                " AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)" +
-                                " AND ((((CAST(data_inicio AS DATE) <= CAST(? AS DATE))" +
-                                " AND (CAST(data_inicio AS DATE) < EOMONTH(CAST(? AS DATE))))" +
-                                " AND (((CAST(data_fim AS DATE) >= CAST(? AS DATE))" +
-                                " AND (CAST(data_fim AS DATE) >= EOMONTH(CAST(? AS DATE))" +
-                                " OR data_fim IS NULL))) OR (MONTH(DATA_INICIO) = MONTH(?)" + // --Ou início no mês referência
-                                " AND YEAR(data_inicio) = YEAR(?))))");
+
+                preparedStatement = connection.prepareStatement("SELECT remuneracao," +
+                                                                           " cod," +
+                                                                           " data_aditamento" +
+                                                                     " FROM tb_remuneracao_fun_con" +
+                                                                     " WHERE COD_FUNCAO_CONTRATO = ?" +
+                                                                      " AND data_aditamento IS NOT NULL" +
+                                                                      " AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)" +
+                                                                      " AND ((((CAST(data_inicio AS DATE) <= CAST(? AS DATE))" +
+                                                                              " AND" +
+                                                                             " (CAST(data_inicio AS DATE) < EOMONTH(CAST(? AS DATE))))" +
+                                                                              " AND" +
+                                                                              " (((CAST(data_fim AS DATE) >= CAST(? AS DATE))" +
+                                                                                " AND" +
+                                                                                " (CAST(data_fim AS DATE) >= EOMONTH(CAST(? AS DATE))" +
+                                                                                " OR" +
+                                                                                 " data_fim IS NULL)))" +
+                                                                              " OR" +
+                                                                              " (MONTH(DATA_INICIO) = MONTH(?) AND YEAR(data_inicio) = YEAR(?))))");
+
                 preparedStatement.setInt(1, pCodFuncaoContrato);
                 preparedStatement.setDate(2, vDataReferencia);
                 preparedStatement.setDate(3, vDataReferencia);
@@ -79,47 +112,86 @@ public class Remuneracao {
                 preparedStatement.setDate(6, vDataReferencia);
                 preparedStatement.setDate(7, vDataReferencia);
                 rs = preparedStatement.executeQuery();
+
                 if (rs.next()) {
+
                     vRemuneracao = rs.getFloat("REMUNERACAO");
                     vCodRemuneracaoCargoContrato = rs.getInt("COD");
                     vDataAditamento = rs.getDate("DATA_ADITAMENTO");
+
                 }
-            }catch(SQLException sqle){
+
+            } catch(SQLException sqle) {
+
                 throw new NullPointerException("Erro ao tentar Definir remuneracao na função 'Retorna Remuneração Periodo'. Operação: 1");
+
             }
+
         }
 
-        if(pOperacao == 2) {
+        if (pOperacao == 2) {
+
             try {
-                preparedStatement = connection.prepareStatement("SELECT REMUNERACAO FROM tb_remuneracao_fun_con WHERE COD_FUNCAO_CONTRATO=? AND DATA_ADITAMENTO IS NOT NULL AND" +
-                        " ((SELECT DATEPART(MONTH, DATA_FIM_CONVENCAO)) = (SELECT DATEPART(MONTH , ?))" + // --Ou início no mês referência.
-                        " AND (SELECT DATEPART(YEAR, DATA_FIM_CONVENCAO)) = (SELECT DATEPART(YEAR, ?)))");
+
+                preparedStatement = connection.prepareStatement("SELECT REMUNERACAO" +
+                                                                     " FROM tb_remuneracao_fun_con" +
+                                                                     " WHERE COD_FUNCAO_CONTRATO = ?" +
+                                                                       " AND DATA_ADITAMENTO IS NOT NULL" +
+                                                                       " AND ((MONTH(DATA_FIM) = MONTH(?))" + // --Ou início no mês referência.
+                                                                             " AND" +
+                                                                            " (YEAR(DATA_FIM)) = YEAR(?))");
+
                 preparedStatement.setInt(1, pCodFuncaoContrato);
                 preparedStatement.setDate(2, vDataReferencia);
                 preparedStatement.setDate(3, vDataReferencia);
                 rs = preparedStatement.executeQuery();
+
                 if (rs.next()) {
+
                     vRemuneracao = rs.getFloat("REMUNERACAO");
+
                 }
-            }catch(SQLException sqle){
+
+            } catch(SQLException sqle) {
+
                 throw new NullPointerException("Erro ao tentar definir remuneracao na função 'Retorna Remuneração Periodo'. Operação: 2");
+
             }
+
         }
-        if((pOperacao == 1) && (vRetroatividade == true)){
+
+        /**Caso haja retroatividade para o mês se retorna a remuneração anterior.*/
+
+        if ((pOperacao == 1) && (vRetroatividade == true)) {
+
             try {
+
                 Convencao convencao = new Convencao(connection);
                 vCodRemuneracaoCargoContrato = convencao.RetornaConvencaoAnterior(vCodRemuneracaoCargoContrato);
-                preparedStatement = connection.prepareStatement("SELECT REMUNERACAO FROM tb_remuneracao_fun_con WHERE COD=?");
+
+                preparedStatement = connection.prepareStatement("SELECT REMUNERACAO" +
+                                                                     " FROM tb_remuneracao_fun_con" +
+                                                                     " WHERE COD = ?");
+
                 preparedStatement.setInt(1, vCodRemuneracaoCargoContrato);
                 rs = preparedStatement.executeQuery();
+
                 if (rs.next()) {
+
                     vRemuneracao = rs.getFloat("REMUNERACAO");
+
                     return vRemuneracao;
+
                 }
-            }catch(SQLException sqle){
+
+            } catch(SQLException sqle) {
+
                 throw new NullPointerException("Erro ao tentar definir remuneração em 'FuncaoRemuneracaoPeriodo'. Operação = 1 e Retroatividade = true");
+
             }
+
         }
+
         /*if((pRetroatividade == 1) && (pOperacao == 1)){
             vRemuneracao = RetornaRemuneracaoPeriodo(pCodFuncaoContrato, pMes, pAno, 2, 1);
             return vRemuneracao;
@@ -130,6 +202,7 @@ public class Remuneracao {
         }*/
 
         return vRemuneracao;
+
     }
 
     /**

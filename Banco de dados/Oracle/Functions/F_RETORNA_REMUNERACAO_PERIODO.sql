@@ -2,7 +2,7 @@ create or replace function "F_RETORNA_REMUNERACAO_PERIODO"(pCodFuncaoContrato NU
 IS
 
 --Função que recupera o valor da remuneração vigente para o cargo de um
---contrato em uma determinada perído em dupla vigência de convenção.
+--contrato em um determinado perído com vigência de mais de uma convenção.
 
   vRemuneracao FLOAT := 0;
   vDataReferencia DATE;
