@@ -2,7 +2,7 @@ create or replace function "F_EXISTE_MUDANCA_ESTATICO"(pCodContrato NUMBER, pMes
 IS
   
   --Função que retorna se em um dado mês existe ao menos um caso
-  --de mudança de percentual estático que enseje dupla vigência.
+  --de mudança de percentual estático que enseje mais de uma vigência.
   
   --pRetroatividade = 1 - Considera a retroatividade.
   --pRetroatividade = 2 - Desconsidera a retroatividade.

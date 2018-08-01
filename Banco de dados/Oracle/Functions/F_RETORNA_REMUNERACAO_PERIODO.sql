@@ -12,8 +12,8 @@ IS
   vDataAditamento DATE;
   
 
-  --Operação 1: Remuneração do mês em que não há dupla vigência ou remuneração atual. 
-  --Operação 2: Remuneração encerrada do mês em que há dupla vigência.
+  --Operação 1: Remuneração do mês em que há somente uma remuneração ou remuneração atual. 
+  --Operação 2: Remuneração encerrada do mês em que há mais de uma remuneração.
   --pRetroatividade 1: Considera a retroatividade.
   --pRetroatividade 2: Desconsidera os períodos de retroatividade.
 

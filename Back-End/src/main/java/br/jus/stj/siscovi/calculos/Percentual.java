@@ -1,7 +1,6 @@
 package br.jus.stj.siscovi.calculos;
 
 import com.sun.scenario.effect.impl.prism.ps.PPSBlend_REDPeer;
-
 import javax.validation.constraints.Null;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
@@ -140,17 +139,26 @@ public class Percentual {
     }
 
     /**
-     --Função que retorna se em um dado mês existe ao menos um caso
-     --de mudança de percentual estático que enseje dupla vigência.
-    */
-     public boolean ExisteMudancaEstatico(int pCodContrato, int pMes, int pAno, int pRetroatividade) {
+     * Função que retorna se em um dado mês existe ao menos um caso
+     * de mudança de percentual estático que enseje mais de uma vigência.
+     * @param pCodContrato
+     * @param pMes
+     * @param pAno
+     * @param pRetroatividade
+     * @return boolean
+     */
+
+     public boolean ExisteMudancaEstatico (int pCodContrato, int pMes, int pAno, int pRetroatividade) {
+
+         //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Retroatividade retroatividade = new Retroatividade(connection);
 
-        /*
-         --pRetroatividade = 1 - Considera a retroatividade.
-         --pRetroatividade = 2 - Desconsidera a retroatividade.
+        /**
+         pRetroatividade = 1 - Considera a retroatividade.
+         pRetroatividade = 2 - Desconsidera a retroatividade.
          */
 
         int vCount = 0;
@@ -158,18 +166,30 @@ public class Percentual {
 
         /**--Definição do modo de funcionamento da função.*/
 
-        if(pRetroatividade == 1) {
+        if (pRetroatividade == 1) {
+
                 vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+
         }
+
         /** --Conta o número de percentuais da mesma rubrica vigentes no mês. */
+
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD_RUBRICA) FROM (SELECT pe.cod_rubrica, COUNT(pe.cod) AS \"CONTAGEM\"\n" +
-                    " FROM tb_percentual_estatico pe" +
-                    " WHERE (((MONTH(pe.data_inicio) = ? AND YEAR(pe.data_inicio) = ?)" +
-                    " AND (MONTH(data_aditamento) = ? AND YEAR(data_aditamento) = ?)" +
-                    " AND (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)))" + /*--Define a validade da convenção.*/
-                    " OR (MONTH(pe.data_fim) = ? AND YEAR(pe.data_fim) = ?))" +
-                    " GROUP BY pe.cod_rubrica) WHERE CONTAGEM > 1");
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD_RUBRICA)" +
+                                                                 " FROM (SELECT pe.cod_rubrica," +
+                                                                              " COUNT(pe.cod) AS \"CONTAGEM\"\n" +
+                                                                         " FROM tb_percentual_estatico pe" +
+                                                                         " WHERE (((MONTH(pe.data_inicio) = ? AND YEAR(pe.data_inicio) = ?)" +
+                                                                                  " AND" +
+                                                                                  "(MONTH(data_aditamento) = ? AND YEAR(data_aditamento) = ?)" +
+                                                                                  " AND" +
+                                                                                 " (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)))" + /*--Define a validade da convenção.*/
+                                                                                " OR" +
+                                                                               " (MONTH(pe.data_fim) = ? AND YEAR(pe.data_fim) = ?))" +
+                                                                        " GROUP BY pe.cod_rubrica)" +
+                                                                 " WHERE CONTAGEM > 1");
+
             preparedStatement.setInt(1, pMes);
             preparedStatement.setInt(2, pAno);
             preparedStatement.setInt(3, pMes);
@@ -178,61 +198,85 @@ public class Percentual {
             preparedStatement.setInt(6, pAno);
             resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
+
                 vCount = resultSet.getInt(1);
+
             }
-            if(vCount != 0) {
+
+            if (vCount != 0) {
+
                 /**--Se houver qualquer número de percentuais da mesma rubrica no mês passado retorna VERDADEIRO.*/
-                if((vCount > 0) && (vRetroatividade == false)) {
+
+                if ((vCount > 0) && (vRetroatividade == false)) {
+
                     return true;
+
                 }
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
+
         return false;
+
     }
 
     /**
      * Função que retorna se em um dado mês existe ao menos um caso
-     * de mudança de percentual do contrato que enseje dupla vigência.
+     * de mudança de percentual do contrato que enseje mais de uma vigência.
      * @param pCodContrato
      * @param pMes
      * @param pAno
      * @param pRetroatividade
      * @return boolean
      */
-    public boolean ExisteMudancaContrato(int pCodContrato, int pMes, int pAno, int pRetroatividade) {
+
+    public boolean ExisteMudancaContrato (int pCodContrato, int pMes, int pAno, int pRetroatividade) {
+
+        //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
-        /* pRetroatividade = 1 - Considera a retroatividade.
-         * pRetroatividade = 2 - Desconsidera a retroatividade.
-         */
+        /**pRetroatividade = 1 - Considera a retroatividade.
+            pRetroatividade = 2 - Desconsidera a retroatividade.*/
 
         int vCount = 0;
         boolean vRetroatividade = false;
 
-        /* Definição do modo de funcionamento da função. */
+        /**Definição do modo de funcionamento da função.*/
 
-        if(pRetroatividade == 1) {
+        if (pRetroatividade == 1) {
+
             Retroatividade retroatividade = new Retroatividade(this.connection);
-                vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+            vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+
         }
 
-        /*
-         *  Conta o número de percentuais da mesma rubrica vigentes no mês.
-         */
+        /**Conta o número de percentuais da mesma rubrica vigentes no mês.*/
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD_RUBRICA) FROM (SELECT cod_rubrica, COUNT(pc.cod) AS \"CONTAGEM\"" +
-                    " FROM tb_percentual_contrato pc" +
-                    " WHERE pc.cod_contrato = ?" +
-                    " AND (((MONTH(data_inicio) = ? AND YEAR(pc.data_inicio) = ?)" +
-                    " AND (MONTH(data_aditamento) = ? AND YEAR(data_aditamento) = ?)" +
-                    " AND (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)))" + /* Define a validade da convenção.*/
-                    " OR (MONTH(pc.data_fim) = ? AND YEAR(pc.data_fim) = ?))" +
-                    " GROUP BY cod_rubrica) WHERE CONTAGEM > 1");
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD_RUBRICA)" +
+                                                                 " FROM (SELECT cod_rubrica," +
+                                                                              " COUNT(pc.cod) AS \"CONTAGEM\"" +
+                                                                         " FROM tb_percentual_contrato pc" +
+                                                                         " WHERE pc.cod_contrato = ?" +
+                                                                           " AND (((MONTH(data_inicio) = ? AND YEAR(pc.data_inicio) = ?)" +
+                                                                                 " AND" +
+                                                                                 " (MONTH(data_aditamento) = ? AND YEAR(data_aditamento) = ?)" +
+                                                                                 " AND" +
+                                                                                 " (CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)))" + /* Define a validade da convenção.*/
+                                                                                " OR" +
+                                                                                " (MONTH(pc.data_fim) = ? AND YEAR(pc.data_fim) = ?))" +
+                                                                       " GROUP BY cod_rubrica)" +
+                                                                 " WHERE CONTAGEM > 1");
+
             int i = 1;
             preparedStatement.setInt(i++, pCodContrato);
             preparedStatement.setInt(i++, pMes);
@@ -242,26 +286,36 @@ public class Percentual {
             preparedStatement.setInt(i++, pMes);
             preparedStatement.setInt(i++, pAno);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
                 vCount = resultSet.getInt(1);
+
             }
 
-            if(vCount != 0) {
+            if (vCount != 0) {
 
-                /* Se houver qualquer número de percentuais da mesma rubrica no mês passado retorna VERDADEIRO. */
+                /**Se houver qualquer número de percentuais da mesma rubrica no mês passado retorna VERDADEIRO.*/
 
-                if((vCount > 0 ) && (vRetroatividade == false)) {
+                if ((vCount > 0 ) && (vRetroatividade == false)) {
+
                     return true;
+
                 }
+
             }
+
         } catch (SQLException e) {
+
             e.printStackTrace();
+
         }
+
         return false;
+
     }
 
     /**--Função que retorna o percentual de um contrato em um período específico.
-     *
      * @param pCodContrato
      * @param pCodRubrica
      * @param pMes
@@ -270,159 +324,243 @@ public class Percentual {
      * @param pRetroatividade
      * @return
      */
-    public float RetornaPercentualContrato (int pCodContrato, int pCodRubrica, int pMes, int pAno, int pOperacao, int pRetroatividade){
+
+    public float RetornaPercentualContrato (int pCodContrato, int pCodRubrica, int pMes, int pAno, int pOperacao, int pRetroatividade) {
+
+        //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
-         float vPercentual = 0;
-         int vCodPercentual = 0;
-         int vRubricaCheck = 0;
-         boolean vRetroatividade = false;
-         int vRetroatividadePercentual = 0;
-         Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
+        float vPercentual = 0;
+        int vCodPercentual = 0;
+        int vRubricaCheck = 0;
+        boolean vRetroatividade = false;
+        int vRetroatividadePercentual = 0;
+        Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
 
-         /*
-              --pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual (contrato).
-              --pOperação = 2: Percentual encerrado do mês em que há dupla vigência (contrato).
-              --pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
-              --pRetroatividade = 2: Desconsidera a retroatividade para realizar o cálculo desta.
+        /**pOperação = 1: Percentual do mês em que não há vigência de mais de um percentual ou percentual atual (contrato).
+           pOperação = 2: Percentual encerrado do mês em que há dupla vigência (contrato).
+           pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
+           pRetroatividade = 2: Desconsidera a retroatividade para realizar o cálculo desta.
 
-              --Legenda de rúbricas (usar esses códigos):
-              --1 - Férias
-              --2 - Terço constitucional
-              --3 - Décimo terceiro
-              --4 - FGTS
-              --5 - Multa do FGTS
-              --6 - Penalidade do FGTS
-              --7 - Incidência do submódulo 4.1
+           Legenda de rúbricas (usar esses códigos):
+
+            1 - Férias
+            2 - Terço constitucional
+            3 - Décimo terceiro
+            4 - FGTS
+            5 - Multa do FGTS
+            6 - Penalidade do FGTS
+            7 - Incidência do submódulo 4.1
           */
 
-         // --Confere se o cod da rubrica passada existe.
+         /**Confere se o cod da rubrica passada existe.*/
+
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(DISTINCT(PC.COD_RUBRICA)) FROM TB_PERCENTUAL_CONTRATO PC WHERE PC.COD_RUBRICA=? AND PC.COD_CONTRATO=?");
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(DISTINCT(PC.COD_RUBRICA))" +
+                                                                 " FROM TB_PERCENTUAL_CONTRATO PC" +
+                                                                 " WHERE PC.COD_RUBRICA = ?" +
+                                                                   " AND PC.COD_CONTRATO = ?");
+
             preparedStatement.setInt(1, pCodRubrica);
             preparedStatement.setInt(2, pCodContrato);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
                 vRubricaCheck = resultSet.getInt(1);
+
             }
-            if(vRubricaCheck == 0) {
-                throw new NullPointerException("Rubrica Inexistente !");
+
+            if (vRubricaCheck == 0) {
+
+                throw new NullPointerException("Rubrica Inexistente!");
+
             }
+
         } catch (SQLException sqle) {
+
             throw new IllegalArgumentException("Erro ao tentar acessar o banco de Dados");
+
         }
-        // --Confere o status de retroatividade para o período.
-        if(pRetroatividade == 1) {
+
+        /**Confere o status de retroatividade para o período.*/
+
+        if (pRetroatividade == 1) {
+
             Retroatividade retroatividade = new Retroatividade(connection);
-                vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+            vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
 
-            if(vRetroatividade) {
-                try {
-                    preparedStatement = connection.prepareStatement("SELECT COUNT(RP.COD) FROM TB_RETROATIVIDADE_PERCENTUAL RP JOIN TB_PERCENTUAL_CONTRATO PC ON PC.COD=RP.COD_PERCENTUAL_CONTRATO" +
-                            " WHERE PC.COD_CONTRATO=? AND PC.COD_RUBRICA= ? AND CAST(? AS DATE) >= CAST(DATEADD(DAY, 1, EOMONTH(DATEADD(MONTH, -1, RP.INICIO))) AS DATE)" +
-                            " AND CAST(? AS DATE) <= CAST(RP.FIM AS DATE)");
-                    preparedStatement.setInt(1, pCodContrato);
-                    preparedStatement.setInt(2, pCodRubrica);
-                    preparedStatement.setDate(3, vDataReferencia);
-                    preparedStatement.setDate(4, vDataReferencia);
-                    resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()) {
-                        vRetroatividadePercentual = resultSet.getInt(1);
-                    }
-                    if (vRetroatividadePercentual == 0) {
-                        vRetroatividade = false;
-                    }
-                } catch (SQLException e) {
-                    throw new NullPointerException("Erro ao tentar determinar existência de retroativade para a Determinada Rubrica");
+        }
+
+        if (vRetroatividade) {
+
+            /**Estabelece se a retroatividade observada é em relação à rubrica passada.*/
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT COUNT(RP.COD)" +
+                                                                     " FROM TB_RETROATIVIDADE_PERCENTUAL RP" +
+                                                                       " JOIN TB_PERCENTUAL_CONTRATO PC ON PC.COD = RP.COD_PERCENTUAL_CONTRATO" +
+                                                                     " WHERE PC.COD_CONTRATO = ?" +
+                                                                       " AND PC.COD_RUBRICA = ?" +
+                                                                       " AND CAST(? AS DATE) >= CAST(DATEADD(DAY, 1, EOMONTH(DATEADD(MONTH, -1, RP.INICIO))) AS DATE)" +
+                                                                       " AND CAST(? AS DATE) <= CAST(RP.FIM AS DATE)");
+
+                preparedStatement.setInt(1, pCodContrato);
+                preparedStatement.setInt(2, pCodRubrica);
+                preparedStatement.setDate(3, vDataReferencia);
+                preparedStatement.setDate(4, vDataReferencia);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vRetroatividadePercentual = resultSet.getInt(1);
+
                 }
+
+                if (vRetroatividadePercentual == 0) {
+
+                    vRetroatividade = false;
+
+                }
+
+            } catch (SQLException e) {
+
+                throw new NullPointerException("Erro ao tentar determinar existência de retroativade para a rubrica passda.");
+
             }
-                // --Definição do percentual.
-                // --Busca realizada na tabela de percentuais do contrato.
 
-                if(pOperacao == 1) {
-                    try {
-                        preparedStatement = connection.prepareStatement("SELECT pc.percentual, pc.cod" +
-                                " FROM tb_percentual_contrato pc" +
-                                " WHERE pc.cod_contrato = ?" +
-                                " AND pc.cod_rubrica = ?" +
-                                " AND pc.data_aditamento IS NOT NULL\n" +
-                                " AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)" +
-                                " AND ((((CAST(pc.data_inicio AS DATE) <= CAST(? AS DATE))" +
-                                " AND (CAST(pc.data_inicio AS DATE) <= EOMONTH(CAST(? AS DATE))))" +
-                                " AND (((CAST(pc.data_fim AS DATE) >= CAST(? AS DATE))" +
-                                " AND (CAST(pc.data_fim AS DATE) >= EOMONTH(CAST(? AS DATE))))" +
-                                " OR pc.data_fim IS NULL)) OR (MONTH(data_inicio) = MONTH(?)" +
-                                " AND YEAR(data_inicio) = YEAR(?)))");
-                        preparedStatement.setInt(1, pCodContrato);
-                        preparedStatement.setInt(2, pCodRubrica);
-                        preparedStatement.setDate(3, vDataReferencia);
-                        preparedStatement.setDate(4, vDataReferencia);
-                        preparedStatement.setDate(5, vDataReferencia);
-                        preparedStatement.setDate(6, vDataReferencia);
-                        preparedStatement.setDate(7, vDataReferencia);
-                        preparedStatement.setDate(8, vDataReferencia);
-                        resultSet = preparedStatement.executeQuery();
-                        if(resultSet.next()) {
-                            vPercentual = resultSet.getFloat(1);
-                            vCodPercentual = resultSet.getInt(2);
-                        }
-                    } catch (SQLException e) {
-                        throw new NullPointerException("Erro na busca do percentual do contrato !");
-                    }
+        }
+
+        /**Definição do percentual. Busca realizada na tabela de percentuais do contrato.*/
+
+        if (pOperacao == 1) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT pc.percentual," +
+                                                                           " pc.cod" +
+                                                                     " FROM tb_percentual_contrato pc" +
+                                                                     " WHERE pc.cod_contrato = ?" +
+                                                                       " AND pc.cod_rubrica = ?" +
+                                                                       " AND pc.data_aditamento IS NOT NULL\n" +
+                                                                       " AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)" +
+                                                                       " AND ((((CAST(pc.data_inicio AS DATE) <= CAST(? AS DATE))" +
+                                                                              " AND" +
+                                                                              " (CAST(pc.data_inicio AS DATE) <= EOMONTH(CAST(? AS DATE))))" +
+                                                                              " AND" +
+                                                                              " (((CAST(pc.data_fim AS DATE) >= CAST(? AS DATE))" +
+                                                                               " AND" +
+                                                                              " (CAST(pc.data_fim AS DATE) >= EOMONTH(CAST(? AS DATE))))" +
+                                                                               " OR pc.data_fim IS NULL)) OR (MONTH(data_inicio) = MONTH(?)" +
+                                                                                 " AND YEAR(data_inicio) = YEAR(?)))");
+
+                preparedStatement.setInt(1, pCodContrato);
+                preparedStatement.setInt(2, pCodRubrica);
+                preparedStatement.setDate(3, vDataReferencia);
+                preparedStatement.setDate(4, vDataReferencia);
+                preparedStatement.setDate(5, vDataReferencia);
+                preparedStatement.setDate(6, vDataReferencia);
+                preparedStatement.setDate(7, vDataReferencia);
+                preparedStatement.setDate(8, vDataReferencia);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vPercentual = resultSet.getFloat(1);
+                    vCodPercentual = resultSet.getInt(2);
+
                 }
 
-                /*--Busca realizada na tabela de percentuais do contrato para percentual com data fim
-                  --no mês de referência.
-                  */
+            } catch (SQLException e) {
 
-                if(pOperacao == 2) {
-                    try {
-                        preparedStatement = connection.prepareStatement("SELECT PC.PERCENTUAL FROM TB_PERCENTUAL_CONTRATO PC WHERE PC.COD_CONTRATO=?" +
-                                " AND PC.COD_RUBRICA=?" +
-                                " AND PC.DATA_ADITAMENTO IS NOT NULL" +
-                                " AND (MONTH(DATA_FIM) = MONTH(?)) AND YEAR(DATA_FIM) = YEAR(?)");
-                        preparedStatement.setInt(1, pCodContrato);
-                        preparedStatement.setInt(2, pCodRubrica);
-                        preparedStatement.setDate(3, vDataReferencia);
-                        preparedStatement.setDate(4, vDataReferencia);
-                        resultSet = preparedStatement.executeQuery();
-                        if(resultSet.next()) {
-                            vPercentual = resultSet.getFloat(1);
-                            vCodPercentual = resultSet.getInt(2);
-                        }
-                    } catch (SQLException e) {
-                        throw new NullPointerException("Erro ao buscar percentual do contrato com data fim no mês de referência !");
-                    }
-                }
+                    throw new NullPointerException("Erro na busca do percentual do contrato!");
 
-                // --Em caso de consideração da retroatividade se retorna o percentual anterior.
-
-                if(pOperacao == 1 && vRetroatividade) {
-                    vCodPercentual = RetornaPercentualAnterior(vCodPercentual);
-                    try {
-                        preparedStatement = connection.prepareStatement("SELECT PERCENTUAL FROM TB_PERCENTUAL_CONTRATO WHERE COD = ?");
-                        preparedStatement.setInt(1, vCodPercentual);
-                        resultSet = preparedStatement.executeQuery();
-                        if(resultSet.next()) {
-                            vPercentual = resultSet.getFloat("PERCENTUAL");
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return vPercentual;
             }
+
+        }
+
+        /**Busca realizada na tabela de percentuais do contrato para percentual com data fim no mês de referência.*/
+
+        if (pOperacao == 2) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT PC.PERCENTUAL" +
+                                                                     " FROM TB_PERCENTUAL_CONTRATO PC" +
+                                                                     " WHERE PC.COD_CONTRATO = ?" +
+                                                                       " AND PC.COD_RUBRICA = ?" +
+                                                                       " AND PC.DATA_ADITAMENTO IS NOT NULL" +
+                                                                       " AND (MONTH(DATA_FIM) = MONTH(?)) AND YEAR(DATA_FIM) = YEAR(?)");
+
+                preparedStatement.setInt(1, pCodContrato);
+                preparedStatement.setInt(2, pCodRubrica);
+                preparedStatement.setDate(3, vDataReferencia);
+                preparedStatement.setDate(4, vDataReferencia);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vPercentual = resultSet.getFloat(1);
+                    vCodPercentual = resultSet.getInt(2);
+
+                }
+
+            } catch (SQLException e) {
+
+                throw new NullPointerException("Erro ao buscar percentual do contrato com data fim no mês de referência!");
+
+            }
+
+        }
+
+        /**Em caso de consideração da retroatividade se retorna o percentual anterior.*/
+
+        if (pOperacao == 1 && vRetroatividade) {
+
+            vCodPercentual = RetornaPercentualAnterior(vCodPercentual);
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT PERCENTUAL" +
+                                                                     " FROM TB_PERCENTUAL_CONTRATO" +
+                                                                     " WHERE COD = ?");
+
+                preparedStatement.setInt(1, vCodPercentual);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vPercentual = resultSet.getFloat("PERCENTUAL");
+
+                }
+
+            } catch (SQLException e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
         return vPercentual;
+
     }
 
     /**
-     * -- Retorna o código (cod) do percentual anterior ao cod do percentual passado.
-     * -- Entenda "passado" como referência.
+     * Retorna o código (cod) do percentual anterior ao cod do percentual passado.
+     * Entenda "passado" como referência.
      * @param pCodPercentual
      * @return vCodPercentual
      */
-    public int RetornaPercentualAnterior(int pCodPercentual) {
+
+    public int RetornaPercentualAnterior (int pCodPercentual) {
+
+        //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
@@ -432,57 +570,97 @@ public class Percentual {
         Date vDataReferencia = null;
         int vCount = 0;
 
-        // --Verificação de existência do percentual no contrato (para diferenciar dos percentuais estáticos).
+        /**Verificação de existência do percentual no contrato (para diferenciar dos percentuais estáticos).*/
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_PERCENTUAL_CONTRATO WHERE COD=?");
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD)" +
+                                                                 " FROM TB_PERCENTUAL_CONTRATO" +
+                                                                 " WHERE COD = ?");
+
             preparedStatement.setInt(1, pCodPercentual);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
                 vCount = resultSet.getInt(1);
+
             }
+
         } catch (SQLException e) {
-            throw new NullPointerException("Não foi encontrada uma percentual com esse código no contrato !");
+
+            throw new NullPointerException("Não foi encontrada uma percentual com esse código no contrato!");
+
         }
 
-        // --Se vCount for maior que zero então o percentual existe no contrato.
-        if(vCount > 0) {
-            //--Define o contrato e a data referência com base no percentual referência.
+        /**Se vCount for maior que zero então o percentual existe no contrato.*/
+
+        if (vCount > 0) {
+
+            /**Define o contrato e a data referência com base no percentual referência.*/
+
             try {
-                preparedStatement = connection.prepareStatement("SELECT COD_CONTRATO, DATA_INICIO, COD_RUBRICA FROM TB_PERCENTUAL_CONTRATO WHERE COD=?");
+
+                preparedStatement = connection.prepareStatement("SELECT COD_CONTRATO," +
+                                                                           " DATA_INICIO," +
+                                                                           " COD_RUBRICA" +
+                                                                     " FROM TB_PERCENTUAL_CONTRATO" +
+                                                                     " WHERE COD = ?");
+
                 preparedStatement.setInt(1, pCodPercentual);
                 resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()) {
+
+                if (resultSet.next()) {
+
                     vCodContrato = resultSet.getInt("COD_CONTRATO");
                     vDataReferencia = resultSet.getDate("DATA_INICIO");
                     vCodRubrica = resultSet.getInt("COD_RUBRICA");
+
                 }
 
-                // --Seleciona o cod do percentual anterior com base na maior data de início
-                // --de percentual daquela rubrica, anterior ao percentual referência.
+                /**Seleciona o cod do percentual anterior com base na maior data de início
+                de percentual daquela rubrica, anterior ao percentual referência.*/
 
-                preparedStatement = connection.prepareStatement("SELECT COD FROM TB_PERCENTUAL_CONTRATO WHERE DATA_ADITAMENTO IS NOT NULL AND COD_CONTRATO=?" +
-                        " AND COD_RUBRICA=?" +
-                        " AND DATA_INICIO=(SELECT MAX(DATA_INICIO) FROM TB_PERCENTUAL_CONTRATO WHERE DATA_INICIO < ? AND COD_CONTRATO=? AND COD_RUBRICA=? AND DATA_ADITAMENTO IS NOT NULL)");
+                preparedStatement = connection.prepareStatement("SELECT COD" +
+                                                                     " FROM TB_PERCENTUAL_CONTRATO" +
+                                                                     " WHERE DATA_ADITAMENTO IS NOT NULL" +
+                                                                       " AND COD_CONTRATO = ?" +
+                                                                       " AND COD_RUBRICA = ?" +
+                                                                       " AND DATA_INICIO = (SELECT MAX(DATA_INICIO)" +
+                                                                                            " FROM TB_PERCENTUAL_CONTRATO" +
+                                                                                            " WHERE DATA_INICIO < ?" +
+                                                                                              " AND COD_CONTRATO = ?" +
+                                                                                              " AND COD_RUBRICA = ?" +
+                                                                                              " AND DATA_ADITAMENTO IS NOT NULL)");
+
                 preparedStatement.setInt(1, vCodContrato);
                 preparedStatement.setInt(2, vCodRubrica);
                 preparedStatement.setDate(3, vDataReferencia);
                 preparedStatement.setInt(4, vCodContrato);
                 preparedStatement.setInt(5, vCodRubrica);
                 resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()) {
+
+                if (resultSet.next()) {
+
                     vCodPercentualAnterior = resultSet.getInt("COD");
+
                 }
+
                 return vCodPercentualAnterior;
+
             } catch (SQLException e) {
-                throw new NullPointerException("Não foi contrado nenhum dado !");
+
+                throw new NullPointerException("Não foi contrado nenhum dado!");
+
             }
+
         }
+
         return 0;
+
     }
 
     /**--Função que retorna o percentual estático em um período específico.
-     *
      * @param pCodContrato
      * @param pCodRubrica
      * @param pMes
@@ -491,19 +669,25 @@ public class Percentual {
      * @param pRetroatividade
      * @return
      */
-     public float RetornaPercentualEstatico(int pCodContrato, int pCodRubrica, int pMes, int pAno, int pOperacao, int pRetroatividade) {
-         PreparedStatement preparedStatement;
-         ResultSet resultSet;
 
-         float vPercentual = 0;
-         int vCodPercentual = 0;
-         int vRubricaCheck = 0;
-         boolean vRetroatividade = false;
-         int vRetroatividadePercentual = 0;
-         // --Definição da data referência.
-         Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
+    public float RetornaPercentualEstatico(int pCodContrato, int pCodRubrica, int pMes, int pAno, int pOperacao, int pRetroatividade) {
 
-         /*
+        //
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        float vPercentual = 0;
+        int vCodPercentual = 0;
+        int vRubricaCheck = 0;
+        boolean vRetroatividade = false;
+        int vRetroatividadePercentual = 0;
+
+        /**Definição da data referência.*/
+
+        Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
+
+        /**
           * pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual.
           * pOperação = 2: Percentual encerrado do mês em que há dupla vigência.
           * pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
