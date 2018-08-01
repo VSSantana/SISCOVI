@@ -1,7 +1,7 @@
 create or replace function "F_RETORNA_REMUNERACAO_ANTERIOR" (pCodRemuneracao NUMBER) RETURN NUMBER
 IS
 
---Retorna o código (cod) da convenção anterior ao cod da convenção passada.
+--Retorna o código (cod) da remuneração anterior ao cod da remuneração passada.
 --Entenda "passada" como referência.
 
   vCodRemuneracaoAnterior NUMBER;

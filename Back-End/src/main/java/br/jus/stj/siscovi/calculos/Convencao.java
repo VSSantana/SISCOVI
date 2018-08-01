@@ -12,6 +12,8 @@ public class Convencao {
 
     }
 
+    //Essa função está depreciada.
+
     public int RetornaConvencaoAnterior (int codConvencao) throws SQLException {
 
         int codConvencaoAnterior = 0;

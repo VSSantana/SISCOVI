@@ -1,8 +1,8 @@
 create or replace function "F_RET_REMUNERACAO_PERIODO"(pCodFuncaoContrato NUMBER, pDataInicio DATE, pDataFim DATE, pRetroatividade NUMBER) RETURN FLOAT
 IS
 
---Função que recupera o valor da remuneração vigente para o cargo de um
---contrato em uma determinada perído em dupla vigência de convenção.
+--Função que recupera o valor da remuneração vigente para uma função de um
+--contrato em um determinado perído de vigência.
 
   vRemuneracao FLOAT := 0;
   vDataReferencia DATE;
@@ -25,8 +25,8 @@ BEGIN
     FROM tb_funcao_contrato
     WHERE cod = pCodFuncaoContrato;   
 
-  --Definição do percentual.
-
+  --Definição da remuneração.
+  
   SELECT cod,
          remuneracao
     INTO vCodRemuneracaoFunCon,

@@ -28,13 +28,14 @@ public class Percentual {
 
     public boolean ExisteMudancaPercentual (int pCodContrato, int pMes, int pAno, int pRetroatividade) {
 
+        //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
         /**
          pRetroatividade = 1 - Considera a retroatividade.
-         pRetroatividade = 2 - Desconsidera a retroatividade.
-         */
+         pRetroatividade = 2 - Desconsidera a retroatividade.*/
 
         int vCount = 0;
         int vCount2 = 0;
