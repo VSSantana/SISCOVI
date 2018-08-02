@@ -672,7 +672,7 @@ public class Percentual {
 
     public float RetornaPercentualEstatico(int pCodContrato, int pCodRubrica, int pMes, int pAno, int pOperacao, int pRetroatividade) {
 
-        //
+        //Checked.
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -704,6 +704,7 @@ public class Percentual {
           */
 
         /**Confere se o cod da rubrica passada existe.*/
+<<<<<<< HEAD
 
         try {
 
@@ -731,51 +732,109 @@ public class Percentual {
              throw  new NullPointerException("Erro na execução da função F_RETORNA_PERCENTUAL_CONTRATO: Código da rubrica é inexistente. CÓDIGO: -20001");
 
         }
+=======
+>>>>>>> 8f8e50116e425196d4dcc08556f63ea7994c7df7
 
-         // --Confere o status de retroatividade para o período.
-         if(pRetroatividade == 1) {
-                 Retroatividade retroatividade = new Retroatividade(connection);
-                 vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(DISTINCT(COD))" +
+                                                                 " FROM TB_RUBRICA" +
+                                                                 " WHERE COD = ?");
+
+            preparedStatement.setInt(1, pCodRubrica);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vRubricaCheck = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            throw new IllegalArgumentException("Erro ao tentar encontrar um Percentual Estático para a rubrica: " + pCodRubrica);
+
+        }
+
+        if (vRubricaCheck == 0) {
+
+            throw  new NullPointerException("Erro na execução da função F_RETORNA_PERCENTUAL_CONTRATO: Código da rubrica é inexistente. CÓDIGO: -20001");
+
+        }
+
+        /**Confere o status de retroatividade para o período.*/
+
+        if (pRetroatividade == 1) {
+
+            Retroatividade retroatividade = new Retroatividade(connection);
+            vRetroatividade = retroatividade.ExisteRetroatividade(pCodContrato, 0, pMes, pAno, 2);
+
+        }
+
+        /**Se o status de retroatividade para o período for TRUE
+        então ele verifica se a rubrica do argumento deu origem
+        a retroatividade.*/
+
+        if(vRetroatividade) {
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT COUNT(RPE.COD)" +
+                                                                     " FROM TB_RETRO_PERCENTUAL_ESTATICO RPE" +
+                                                                       " JOIN TB_PERCENTUAL_ESTATICO PE ON PE.COD = RPE.COD_PERCENTUAL_ESTATICO" +
+                                                                      " WHERE PE.COD_RUBRICA = ?" +
+                                                                        " AND CAST(? AS DATE) >= DATEADD( DAY, 1, EOMONTH(DATEADD(MONTH, -1,CAST (RPE.INICIO AS DATE))))" +
+                                                                        " AND CAST(? AS DATE) <= CAST(RPE.FIM AS DATE)");
+
+                preparedStatement.setInt(1, pCodRubrica);
+                preparedStatement.setDate(2, vDataReferencia);
+                preparedStatement.setDate(3, vDataReferencia);
+                resultSet = preparedStatement.executeQuery();
+
+                if(resultSet.next()){
+
+                    vRetroatividadePercentual = resultSet.getInt(1);
+
+                }
+
+                if(vRetroatividadePercentual == 0) {
+
+                    vRetroatividade = false;
+
+                }
+
+            } catch (SQLException e) {
+
+                throw new NullPointerException("Erro ao tentar verificar se existe retroatividade do percentual estático: " + pCodRubrica);
+
+            }
+
          }
 
-         /*
-            --Se o status de retroatividade para o período for TRUE
-            --então ele verifica se a rubrica do argumento deu origem
-            --a retroatividade.
-        */
+         /**Definição do percentual.
+            Busca realizada na tabela de percentuais estáticos.*/
 
-         if(vRetroatividade) {
-             try {
-                 preparedStatement = connection.prepareStatement("SELECT COUNT(RPE.COD) FROM TB_RETRO_PERCENTUAL_ESTATICO RPE JOIN TB_PERCENTUAL_ESTATICO PE ON PE.COD=RPE.COD_PERCENTUAL_ESTATICO" +
-                         " WHERE PE.COD_RUBRICA=? AND CAST(? AS DATE) >= DATEADD( DAY, 1, EOMONTH(DATEADD(MONTH, -1,CAST (RPE.INICIO AS DATE))))" +
-                         " AND CAST(? AS DATE) <= CAST(RPE.FIM AS DATE)");
-                 preparedStatement.setInt(1, pCodRubrica);
-                 preparedStatement.setDate(2, vDataReferencia);
-                 preparedStatement.setDate(3, vDataReferencia);
-                 resultSet = preparedStatement.executeQuery();
-                 if(resultSet.next()){
-                     vRetroatividadePercentual = resultSet.getInt(1);
-                 }
-                 if(vRetroatividadePercentual == 0) {
-                     vRetroatividade = false;
-                 }
+        if (pOperacao == 1) {
 
-             } catch (SQLException e) {
-                 throw new NullPointerException("Erro ao tentar verificar se existe retroatividade do percentual estático: " + pCodRubrica);
-             }
-         }
-
-         /*
-            --Definição do percentual.
-            --Busca realizada na tabela de percentuais estáticos.
-          */
-
-         if(pOperacao == 1) {
             try{
-                preparedStatement = connection.prepareStatement("SELECT PE.percentual, PE.cod FROM TB_PERCENTUAL_ESTATICO PE WHERE PE.COD_RUBRICA = ? AND PE.DATA_ADITAMENTO IS NOT NULL" +
-                        " AND CAST(PE.DATA_ADITAMENTO AS DATE) <= CAST(GETDATE() AS DATE) AND ((((CAST(PE.DATA_INICIO AS DATE) <= CAST(? AS DATE)) AND" +
-                        " (CAST(PE.DATA_INICIO AS DATE) <= EOMONTH(CAST(? AS DATE)))) AND (((CAST(pe.data_fim AS DATE) >= CAST(? AS DATE)) AND (CAST(PE.DATA_FIM AS DATE) >= EOMONTH(CAST(? AS DATE))))" +
-                        " OR pe.data_fim IS NULL)) OR (MONTH(DATA_INICIO) = MONTH(?) AND YEAR(DATA_INICIO) = YEAR(?)))");
+
+                preparedStatement = connection.prepareStatement("SELECT PE.percentual," +
+                                                                           " PE.cod" +
+                                                                     " FROM TB_PERCENTUAL_ESTATICO PE" +
+                                                                     " WHERE PE.COD_RUBRICA = ?" +
+                                                                       " AND PE.DATA_ADITAMENTO IS NOT NULL" +
+                                                                       " AND CAST(PE.DATA_ADITAMENTO AS DATE) <= CAST(GETDATE() AS DATE)" +
+                                                                       " AND ((((CAST(PE.DATA_INICIO AS DATE) <= CAST(? AS DATE)) " +
+                                                                               " AND" +
+                                                                              " (CAST(PE.DATA_INICIO AS DATE) <= EOMONTH(CAST(? AS DATE))))" +
+                                                                               " AND" +
+                                                                              " (((CAST(pe.data_fim AS DATE) >= CAST(? AS DATE))" +
+                                                                                 " AND" +
+                                                                                " (CAST(PE.DATA_FIM AS DATE) >= EOMONTH(CAST(? AS DATE))))" +
+                                                                                 " OR pe.data_fim IS NULL))" +
+                                                                           " OR" +
+                                                                          " (MONTH(DATA_INICIO) = MONTH(?) AND YEAR(DATA_INICIO) = YEAR(?)))");
+
                 preparedStatement.setInt(1, pCodRubrica);
                 preparedStatement.setDate(2, vDataReferencia);
                 preparedStatement.setDate(3, vDataReferencia);
@@ -784,53 +843,82 @@ public class Percentual {
                 preparedStatement.setDate(6, vDataReferencia);
                 preparedStatement.setDate(7, vDataReferencia);
                 resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()) {
+
+                if (resultSet.next()) {
+
                     vPercentual = resultSet.getFloat(1);
                     vCodPercentual = resultSet.getInt(2);
+
                 }
-            }catch(SQLException sqle) {
+
+            } catch(SQLException sqle) {
+
                 throw new NullPointerException("Erro ao tentar encontrar um percentual estático ! Operação do erro: 1");
+
             }
-         }
 
-         /*
-            --Busca realizada na tabela de percentuais estáticos para percentual com data fim
-            --no mês de referência.
-          */
+        }
 
-         if(pOperacao == 2) {
+         /**Busca realizada na tabela de percentuais estáticos para percentual com data fim no mês de referência.*/
+
+         if (pOperacao == 2) {
+
              try {
+
                  preparedStatement = connection.prepareStatement("SELECT PE.PERCENTUAL FROM TB_PERCENTUAL_ESTATICO PE WHERE PE.COD_RUBRICA=? AND PE.DATA_ADITAMENTO IS NOT NULL" +
                          " AND (MONTH(DATA_FIM)= MONTH(?)) AND (YEAR(DATA_FIM)= YEAR(?))");
+
                  preparedStatement.setInt(1, pCodRubrica);
                  preparedStatement.setDate(2, vDataReferencia);
                  preparedStatement.setDate(3, vDataReferencia);
                  resultSet = preparedStatement.executeQuery();
-                 if(resultSet.next()) {
+
+                 if (resultSet.next()) {
+
                      vPercentual = resultSet.getFloat(1);
+
                  }
+
              } catch (SQLException e) {
+
                  throw new NullPointerException("Erro ao tentar encontrar um percentual estático ! Operação: 2");
+
              }
+
          }
 
-         // --Em caso de consideração da retroatividade se retorna o percentual anterior.
+         /**Em caso de consideração da retroatividade se retorna o percentual anterior.*/
 
-         if((pOperacao == 1) && (vRetroatividade)) {
+         if ((pOperacao == 1) && (vRetroatividade)) {
+
              Percentual percentual = new Percentual(connection);
              vCodPercentual = percentual.RetornaPercentualAnterior(vCodPercentual);
+
              try {
-                 preparedStatement = connection.prepareStatement("SELECT PERCENTUAL FROM TB_PERCENTUAL_ESTATICO WHERE COD=?");
+
+                 preparedStatement = connection.prepareStatement("SELECT PERCENTUAL" +
+                                                                      " FROM TB_PERCENTUAL_ESTATICO" +
+                                                                      " WHERE COD = ?");
+
                  preparedStatement.setInt(1, vCodPercentual);
                  resultSet = preparedStatement.executeQuery();
-                 if(resultSet.next()) {
+
+                 if (resultSet.next()) {
+
                      vPercentual = resultSet.getFloat("PERCENTUAL");
+
                  }
-             }catch(SQLException sqle){
+
+             } catch(SQLException sqle) {
+
                  throw new NullPointerException("Erro ao tentar recuperar percentual estático ! Operação: 1. Retroatividade: true");
+
              }
+
          }
+
          return vPercentual;
+
      }
 
     /**
@@ -842,7 +930,8 @@ public class Percentual {
      * @param pRetroatividade
      * @return boolean
      */
-     public boolean MudancaPercentualContrato(int pCodContrato, int pMes, int pAno, int pRetroatividade){
+
+     public boolean MudancaPercentualContrato (int pCodContrato, int pMes, int pAno, int pRetroatividade) {
          PreparedStatement preparedStatement;
          ResultSet  resultSet;
          Retroatividade retroatividade = new Retroatividade(connection);
@@ -956,8 +1045,10 @@ public class Percentual {
      * @param pRetroatividade
      * @return vPercentual
      */
-     public float RetornaPercentualContrato(int pCodContrato, int pCodRubrica, Date pDataInicio, Date pDataFim, int pRetroatividade) {
 
+     public float RetornaPercentualContrato (int pCodContrato, int pCodRubrica, Date pDataInicio, Date pDataFim, int pRetroatividade) {
+
+         //Checked.
 
          float vPercentual = 0;
          // int vCodPercentual = 0;
@@ -968,12 +1059,12 @@ public class Percentual {
          int vAno;
          int vMes;
 
-         /*   pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual (contrato).
-              pOperação = 2: Percentual encerrado do mês em que há dupla vigência (contrato).
-              pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
-              pRetroatividade = 2: Desconsidera a retroatividade para realizar o cálculo desta.
+         /**pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual (contrato).
+            pOperação = 2: Percentual encerrado do mês em que há dupla vigência (contrato).
+            pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
+            pRetroatividade = 2: Desconsidera a retroatividade para realizar o cálculo desta.
 
-              Legenda de rúbricas (usar esses códigos):
+            Legenda de rúbricas (usar esses códigos):
 
               1 - Férias (percentual contrato)
               2 - Terço constitucional (percentual contrato)
@@ -981,44 +1072,80 @@ public class Percentual {
               4 - FGTS (percentual estático)
               5 - Multa do FGTS (percentual estático)
               6 - Penalidade do FGTS (percentual estático)
-              7 - Incidência do submódulo 4.1 (percentual contrato)
-          */
+              7 - Incidência do submódulo 4.1 (percentual contrato)*/
 
-         // Confere se o cod da rubrica passada existe.
-         String sql = "SELECT COUNT(DISTINCT(PC.COD_RUBRICA)) FROM TB_PERCENTUAL_CONTRATO PC WHERE PC.COD_RUBRICA=? AND PC.COD_CONTRATO=?";
-         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+         /**Confere se o cod da rubrica passada existe.*/
+
+         String sql = "SELECT COUNT(DISTINCT(PC.COD_RUBRICA))" +
+                       " FROM TB_PERCENTUAL_CONTRATO PC" +
+                       " WHERE PC.COD_RUBRICA = ?" +
+                         " AND PC.COD_CONTRATO = ?";
+
+         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
              preparedStatement.setInt(1, pCodRubrica);
              preparedStatement.setInt(2, pCodContrato);
-             try(ResultSet resultSet = preparedStatement.executeQuery()){
-                 if(resultSet.next()) {
+
+             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                 if (resultSet.next()) {
+
                      vRubricaCheck = resultSet.getInt(1);
+
                  }
+
              }
+
          } catch (SQLException e) {
+
              throw new NullPointerException("Erro ao tentar verfificar a existência da rubrica: " + pCodRubrica + ", na função RetornaPercentualContrato.");
+
          }
+
          if(vRubricaCheck == 0) {
+
              throw new NullPointerException("Erro na execução da função RetornaPercentualContrato: Código da rubrica é inexistente");
+
          }
-         /* Definição do percentual.
-            Busca realizada na tabela de percentuais do contrato.
-          */
-         sql = "SELECT COD, PERCENTUAL FROM TB_PERCENTUAL_CONTRATO WHERE COD_CONTRATO=? AND DATA_ADITAMENTO IS NOT NULL AND COD_RUBRICA=? AND DATA_INICIO <= ? AND (DATA_FIM >= ? OR DATA IS NULL)";
-         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+         /**Definição do percentual.
+            Busca realizada na tabela de percentuais do contrato.*/
+
+         sql = "SELECT COD," +
+                     " PERCENTUAL" +
+                " FROM TB_PERCENTUAL_CONTRATO" +
+                " WHERE COD_CONTRATO = ?" +
+                  " AND DATA_ADITAMENTO IS NOT NULL" +
+                  " AND COD_RUBRICA = ?" +
+                  " AND DATA_INICIO <= ?" +
+                  " AND (DATA_FIM >= ? OR DATA_FIM IS NULL)";
+
+         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
              preparedStatement.setInt(1, pCodContrato);
              preparedStatement.setInt(2, pCodRubrica);
              preparedStatement.setDate(3, pDataInicio);
              preparedStatement.setDate(4, pDataFim);
-             try(ResultSet resultSet = preparedStatement.executeQuery()){
-                 if(resultSet.next()){
+
+             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                 if (resultSet.next()) {
+
                      vPercentual = resultSet.getFloat("PERCENTUAL");
+
                  }
+
              }
+
          } catch (SQLException e) {
+
              throw new NullPointerException("Erro ao tentar buscar o percentual do contrato para o período passado. Data Inicio: " + pDataInicio.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
              + "Data Fim: " + pDataInicio.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
          }
+
          return vPercentual;
+
      }
 
     /**
@@ -1030,8 +1157,12 @@ public class Percentual {
      * @param pRetroatividade
      * @return vPercentual
      */
-     public float RetornaPercentualEstatico(int pCodContrato, int pCodRubrica, Date pDataInicio, Date pDataFim, int pRetroatividade) {
-         /* pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual (contrato).
+
+     public float RetornaPercentualEstatico (int pCodContrato, int pCodRubrica, Date pDataInicio, Date pDataFim, int pRetroatividade) {
+
+         //Checked.
+
+         /**pOperação = 1: Percentual do mês em que não há dupla vigência ou percentual atual (contrato).
             pOperação = 2: Percentual encerrado do mês em que há dupla vigência (contrato).
             pRetroatividade = 1: Leva em consideração a retroatividade (funcionamento normal).
             pRetroatividade = 2: Desconsidera a retroatividade para realizar o cálculo desta.
@@ -1043,8 +1174,8 @@ public class Percentual {
             4 - FGTS (percentual estático)
             5 - Multa do FGTS (percentual estático)
             6 - Penalidade do FGTS (percentual estático)
-            7 - Incidência do submódulo 4.1 (percentual contrato)
-          */
+            7 - Incidência do submódulo 4.1 (percentual contrato)*/
+
          float vPercentual = 0;
          int vCodPercentual = 0;
          int vRubricaCheck = 0;
@@ -1054,36 +1185,71 @@ public class Percentual {
          int vAno;
          int vMes;
 
-         /* Confere se o cod da rubrica passada existe.*/
-         String sql = "SELECT COUNT(DISTINCT(PE.COD_RUBRICA)) FROM TB_PERCENTUAL_ESTATICO PE WHERE PE.COD_RUBRICA=?";
-         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+         /**Confere se o cod da rubrica passada existe.*/
+
+         String sql = "SELECT COUNT(DISTINCT(PE.COD_RUBRICA))" +
+                       " FROM TB_PERCENTUAL_ESTATICO PE" +
+                       " WHERE PE.COD_RUBRICA = ?";
+
+         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
              preparedStatement.setInt(1, pCodRubrica);
-             try(ResultSet resultSet = preparedStatement.executeQuery()){
-                 if(resultSet.next()) {
+
+             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                 if (resultSet.next()) {
+
                      vRubricaCheck = resultSet.getInt(1);
-                     if(vRubricaCheck == 0) {
+
+                     if (vRubricaCheck == 0) {
+
                          throw new NullPointerException("Erro na execução da função RetornaPercentualEstatico: Código da rubrica é inexistente.");
+
                      }
+
                  }
+
              }
+
          } catch (SQLException e) {
+
              throw new NullPointerException("Erro ao tentar verificar a existência da rubrica: " + pCodRubrica);
+
          }
-         sql = "SELECT COD, PERCENTUAL FROM TB_PERCENTUAL_ESTATICO PE WHERE DATA_ADITAMENTO IS NOT NULL AND COD_RUBRICA=? AND DATA_INICIO <= ? AND (DATA_FIM >= ? OR DATA_FIM IS NULL)";
-         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+         sql = "SELECT COD," +
+                     " PERCENTUAL" +
+                " FROM TB_PERCENTUAL_ESTATICO PE" +
+                " WHERE DATA_ADITAMENTO IS NOT NULL" +
+                  " AND COD_RUBRICA = ?" +
+                  " AND DATA_INICIO <= ?" +
+                  " AND (DATA_FIM >= ? OR DATA_FIM IS NULL)";
+
+         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
              preparedStatement.setInt(1, pCodRubrica);
              preparedStatement.setDate(2, pDataInicio);
              preparedStatement.setDate(3, pDataFim);
-             try(ResultSet resultSet  = preparedStatement.executeQuery()){
-                 if(resultSet.next()) {
-                     vPercentual = resultSet.getFloat(1);
+
+             try (ResultSet resultSet  = preparedStatement.executeQuery()) {
+
+                 if (resultSet.next()) {
+
+                     vPercentual = resultSet.getFloat(2);
+
                  }
+
              }
+
          } catch (SQLException e) {
+
              throw new NullPointerException("Erro ao tentar carregar o percentual estático : " + pCodRubrica + ". No período especificado. Data inicio: "
                      + pDataInicio.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ". Data fim: " + pDataFim.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
          }
 
          return vPercentual;
+
      }
+
 }

@@ -20,7 +20,7 @@ public class CodFuncaoContratoECodFuncaoTerceirizadoModel {
 
     }
 
-    public int getCodFuncaoTerceirizado() {
+    public int getCodFuncaoContrato() {
 
         return codFuncaoContrato;
 

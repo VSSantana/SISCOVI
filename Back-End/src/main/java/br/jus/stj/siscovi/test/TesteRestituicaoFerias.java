@@ -20,7 +20,7 @@ public class TesteRestituicaoFerias {
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         Retencao retencao = new Retencao(connectSQLServer.dbConnect());
         restituicaoFerias.CalculaRestituicaoFerias(417, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
-
+/*
         try {
 
             result = retencao.TipoDeRestituicao(22);
@@ -42,6 +42,6 @@ public class TesteRestituicaoFerias {
         //TotalMensalDAO totalMensalDAO  = new TotalMensalDAO(connectSQLServer.dbConnect());
         //totalMensalDAO.recuperaAnosDeCalculosAnteriores(1);
         //new TotalMensalController().getValoresCalculados(1,8);
-
+*/
     }
 }

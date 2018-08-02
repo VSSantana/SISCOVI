@@ -162,6 +162,8 @@ public class Retroatividade {
 
     public boolean ExisteRetroatividade (int pCodContrato, int pCodFuncaoContrato, int pMes, int pAno, int pOperacao ) {
 
+        //Checked.
+
         /**pOperacao = 1 - Retroatividade para remuneração.
            pOperacao = 2 - Retroatividade para percentual do contrato ou estático.*/
 
