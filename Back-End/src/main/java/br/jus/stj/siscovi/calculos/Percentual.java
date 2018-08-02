@@ -703,20 +703,34 @@ public class Percentual {
           * 7 - Incidência do submódulo 4.1
           */
 
-         // --Confere se o cod da rubrica passada existe.
-         try {
-             preparedStatement = connection.prepareStatement("SELECT COUNT(DISTINCT(COD)) FROM TB_RUBRICA WHERE COD=?");
-             preparedStatement.setInt(1, pCodRubrica);
-             resultSet = preparedStatement.executeQuery();
-             if(resultSet.next()) {
+        /**Confere se o cod da rubrica passada existe.*/
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(DISTINCT(COD))" +
+                                                                 " FROM TB_RUBRICA" +
+                                                                 " WHERE COD = ?");
+
+            preparedStatement.setInt(1, pCodRubrica);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
                  vRubricaCheck = resultSet.getInt(1);
-             }
+
+            }
+
          } catch (SQLException e) {
+
              throw new IllegalArgumentException("Erro ao tentar encontrar um Percentual Estático para a rubrica: " + pCodRubrica);
-         }
-         if(vRubricaCheck == 0) {
+
+        }
+
+         if (vRubricaCheck == 0) {
+
              throw  new NullPointerException("Erro na execução da função F_RETORNA_PERCENTUAL_CONTRATO: Código da rubrica é inexistente. CÓDIGO: -20001");
-         }
+
+        }
 
          // --Confere o status de retroatividade para o período.
          if(pRetroatividade == 1) {
