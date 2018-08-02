@@ -22,6 +22,8 @@ public class Retencao {
 
     public String TipoDeRestituicao(int pCodTipoResgate) throws SQLException {
 
+        //Checked.
+
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT NOME" +
@@ -60,6 +62,8 @@ public class Retencao {
      */
 
     public boolean FuncaoRetencaoIntegral(int pCodFuncaoTerceirizado, int pMes, int pAno) {
+
+        //Checked.
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -311,6 +315,8 @@ public class Retencao {
      */
 
     public boolean ExisteMudancaFuncao(int pCodTerceirizadoContrato, int pMes, int pAno) {
+
+        //Checked.
 
         /**Definição da data referência como primeiro dia do mês de acordo com os argumentos passados.*/
 

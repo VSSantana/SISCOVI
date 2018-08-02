@@ -334,6 +334,7 @@ public class TotalMensalAReter {
                         throw new NullPointerException("Erro ao tentar carregar as datas de inicio e fim do contrato. Para a função: " + c1.get(i) + ". Terceirizado: " + tuplas.get(j).getCodTerceirizadoContrato()
                         + "Contrato: " + pCodContrato + ". No perídodo: " + vDataReferencia.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                     }
+
                     for(Date data: datas) {
                         /* Definição das datas de início e fim do subperíodo.*/
 
