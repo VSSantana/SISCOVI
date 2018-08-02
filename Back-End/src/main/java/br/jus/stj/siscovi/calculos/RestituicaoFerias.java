@@ -626,8 +626,62 @@ public class RestituicaoFerias {
 
                     }
 
+                    for (Date data: datas) {
+
+                        /**Definição da data fim do subperíodo.*/
+
+                        vDataFim = data;
+
+                        /**Define a remuneração do cargo, que não se altera no período.*/
+
+                        vRemuneracao = remuneracao.RetornaRemuneracaoPeriodo(tuplas.get(i).getCodFuncaoContrato(),  vDataInicio, vDataFim, 2);
+
+                        if (vRemuneracao == 0) {
+
+                            throw new NullPointerException("Erro na execução do procedimento: Remuneração não encontrada. Código -20001");
+
+                        }
+
+                        /**Definição dos percentuais do subperíodo.*/
+
+                        vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vDataInicio, vDataFim, 2);
+                        vPercentualTercoConstitucional = percentual.RetornaPercentualContrato(vCodContrato, 2, vDataInicio, vDataFim, 2);
+                        vPercentualIncidencia = percentual.RetornaPercentualContrato(vCodContrato, 7, vDataInicio, vDataFim, 2);
+
+                        /**Calculo da porção correspondente ao subperíodo.*/
+
+                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+                        vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
+                        vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
+
+                        /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
+                         situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
+
+                        if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
+
+                            vValorFerias = (vValorFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorTercoConstitucional = (vValorTercoConstitucional/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaFerias = (vValorIncidenciaFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaTerco = (vValorIncidenciaTerco/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+
+                        }
+
+                        /**Contabilização do valor calculado.*/
+
+                        vTotalFerias = vTotalFerias + vValorFerias;
+                        vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
+                        vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
+                        vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
+
+                        vDataInicio = Date.valueOf(vDataFim.toLocalDate().plusDays(1));
+
+                    }
+
 
                 }
+
+                vControleMeses = vControleMeses + 1;
 
             }
 

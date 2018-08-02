@@ -704,7 +704,6 @@ public class Percentual {
           */
 
         /**Confere se o cod da rubrica passada existe.*/
-<<<<<<< HEAD
 
         try {
 
@@ -732,8 +731,6 @@ public class Percentual {
              throw  new NullPointerException("Erro na execução da função F_RETORNA_PERCENTUAL_CONTRATO: Código da rubrica é inexistente. CÓDIGO: -20001");
 
         }
-=======
->>>>>>> 8f8e50116e425196d4dcc08556f63ea7994c7df7
 
         try {
 
