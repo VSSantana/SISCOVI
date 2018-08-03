@@ -13,8 +13,9 @@ public class TesteRestituicaoFerias {
 
         String result = null;
         long dias = 0;
-        Date inicio = Date.valueOf("2018-07-23");
-        Date fim = Date.valueOf("2018-07-27");
+        Date inicio = Date.valueOf("2017-08-05");
+        Date fim = Date.valueOf("2018-08-05");
+        int meses = 0;
 
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
@@ -43,5 +44,17 @@ public class TesteRestituicaoFerias {
         //totalMensalDAO.recuperaAnosDeCalculosAnteriores(1);
         //new TotalMensalController().getValoresCalculados(1,8);
 */
+
+        meses = (int)ChronoUnit.DAYS.between(inicio.toLocalDate(), fim.toLocalDate());
+
+        System.out.println(meses);
+
+
+
     }
+
+
+
+
+
 }

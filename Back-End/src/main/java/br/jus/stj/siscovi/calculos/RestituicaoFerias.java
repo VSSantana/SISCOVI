@@ -2,6 +2,8 @@ package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
 import br.jus.stj.siscovi.model.CodTerceirizadoECodFuncaoTerceirizadoModel;
+import com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -681,8 +683,6 @@ public class RestituicaoFerias {
 
                 }
 
-                vControleMeses = vControleMeses + 1;
-
             }
 
             if (vMes != 12) {
@@ -703,6 +703,155 @@ public class RestituicaoFerias {
         System.out.println(vTotalTercoConstitucional);
         System.out.println(vTotalIncidenciaFerias);
         System.out.println(vTotalIncidenciaTerco);
+
+        /**Atribuição de valor a vDiasVendidos*/
+
+        if (pDiasVendidos == 0) {
+
+            vDiasVendidos = 0;
+
+        } else {
+
+            vDiasVendidos = pDiasVendidos;
+
+        }
+
+        /**Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_ferias.*/
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_FERIAS')");
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTbRestituicaoFerias = resultSet.getInt(1);
+                vCodTbRestituicaoFerias = vCodTbRestituicaoFerias + 1;
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
+
+        }
+
+        /**Dias de férias usufruídos para o cálculo proporcional.*/
+
+        vDiasDeFerias =  (int)(ChronoUnit.DAYS.between(pInicioFerias.toLocalDate(), pFimFerias.toLocalDate()) + 1 + vDiasVendidos);
+
+        /**Dias de férias adquiridos no período aquisitivo.*/
+
+        vDiasAdquiridos = 0;
+
+        /**Definição do montante proporcional a ser restituído*/
+
+        vTotalFerias = (vTotalFerias/vDiasAdquiridos) * vDiasDeFerias;
+        vTotalIncidenciaFerias = (vTotalIncidenciaFerias/vDiasAdquiridos) * vDiasDeFerias;
+        vTotalIncidenciaTerco = (vTotalIncidenciaTerco/vDiasAdquiridos) * vDiasDeFerias;
+
+        /**Cancelamento do terço constitucional para parcela diferente da única ou primeira.*/
+
+
+        /**Provisionamento da incidência para o saldo residual no caso de movimentação.*/
+
+        if (pTipoRestituicao == "MOVIMENTAÇÃO") {
+
+            vIncidenciaFerias = vTotalIncidenciaFerias;
+            vIncidenciaTerco = vTotalIncidenciaTerco;
+
+            vTerco = vTotalTercoConstitucional;
+            vFerias = vTotalFerias;
+
+            vTotalTercoConstitucional = pValorMovimentado/4;
+            vTotalFerias = pValorMovimentado - vTotalTercoConstitucional;
+
+            vTerco = vTerco - vTotalTercoConstitucional;
+            vFerias = vFerias - vTotalFerias;
+
+            vTotalIncidenciaFerias = 0;
+            vTotalIncidenciaTerco = 0;
+
+        }
+
+        /**Gravação no banco*/
+
+        try {
+
+            String sql = "INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
+                                                           " COD_TERCEIRIZADO_CONTRATO," +
+                                                           " COD_TIPO_RESTITUICAO," +
+                                                           " DATA_INICIO_PERIODO_AQUISITIVO," +
+                                                           " DATA_FIM_PERIODO_AQUISITIVO," +
+                                                           " DATA_INICIO_USUFRUTO," +
+                                                           " DATA_FIM_USUFRUTO," +
+                                                           " VALOR_FERIAS," +
+                                                           " VALOR_TERCO_CONSTITUCIONAL," +
+                                                           " INCID_SUBMOD_4_1_FERIAS," +
+                                                           " INCID_SUBMOD_4_1_TERCO," +
+                                                           " SE_PROPORCIONAL," +
+                                                           " DIAS_VENDIDOS," +
+                                                           " DATA_REFERENCIA," +
+                                                           " LOGIN_ATUALIZACAO," +
+                                                           " DATA_ATUALIZACAO)" +
+                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP)";
+
+                preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
+                preparedStatement.setInt(2, pCodTerceirizadoContrato);
+                preparedStatement.setInt(3, vCodTipoRestituicao);
+                preparedStatement.setDate(4, pInicioPeriodoAquisitivo);
+                preparedStatement.setDate(5, pFimPeriodoAquisitivo);
+                preparedStatement.setDate(6, pInicioFerias);
+                preparedStatement.setDate(7, pFimFerias);
+                preparedStatement.setFloat(8, vTotalFerias);
+                preparedStatement.setFloat(9, vTotalTercoConstitucional);
+                preparedStatement.setFloat(10, vTotalIncidenciaFerias);
+                preparedStatement.setFloat(11, vTotalIncidenciaTerco);
+                preparedStatement.setString(12, String.valueOf(pProporcional));
+                preparedStatement.setInt(13, pDiasVendidos);
+                preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
+
+        }
+
+        if (pTipoRestituicao == "MOVIMENTAÇÃO") {
+
+            try {
+
+                String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
+                                                                  " VALOR_FERIAS," +
+                                                                  " VALOR_TERCO," +
+                                                                  " INCID_SUBMOD_4_1_FERIAS," +
+                                                                  " INCID_SUBMOD_4_1_TERCO," +
+                                                                  " RESTITUIDO," +
+                                                                  " LOGIN_ATUALIZACAO," +
+                                                                  " DATA_ATUALIZACAO)" +
+                             " VALUES (?, ?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
+
+                preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
+                preparedStatement.setFloat(2, vFerias);
+                preparedStatement.setFloat(3, vTerco);
+                preparedStatement.setFloat(4, vIncidenciaFerias);
+                preparedStatement.setFloat(5, vIncidenciaTerco);
+                preparedStatement.setString(6, String.valueOf("N"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+
+                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
+
+            }
+
+        }
 
     }
 
