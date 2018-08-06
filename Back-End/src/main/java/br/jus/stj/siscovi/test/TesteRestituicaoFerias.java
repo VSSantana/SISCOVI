@@ -16,11 +16,17 @@ public class TesteRestituicaoFerias {
         Date inicio = Date.valueOf("2017-08-05");
         Date fim = Date.valueOf("2018-08-05");
         int meses = 0;
+        boolean resultado;
 
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         Retencao retencao = new Retencao(connectSQLServer.dbConnect());
-        restituicaoFerias.CalculaRestituicaoFerias(417, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
+
+        resultado = retencao.FuncaoRetencaoIntegral(53, 10, 2016);
+
+        System.out.print(resultado);
+
+        //restituicaoFerias.CalculaRestituicaoFerias(53, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
 /*
         try {
 
@@ -45,9 +51,9 @@ public class TesteRestituicaoFerias {
         //new TotalMensalController().getValoresCalculados(1,8);
 */
 
-        meses = (int)ChronoUnit.DAYS.between(inicio.toLocalDate(), fim.toLocalDate());
+        //meses = (int)ChronoUnit.DAYS.between(inicio.toLocalDate(), fim.toLocalDate());
 
-        System.out.println(meses);
+        //System.out.println(meses);
 
 
 

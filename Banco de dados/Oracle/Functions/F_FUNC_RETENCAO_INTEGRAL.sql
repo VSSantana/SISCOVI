@@ -1,13 +1,14 @@
 create or replace function "F_FUNC_RETENCAO_INTEGRAL"(pCodFuncaoTerceirizado NUMBER, pMes NUMBER, pAno NUMBER) RETURN BOOLEAN
 IS
 
---Função que retorna se um terceirizado trabalhou período igual ou superior a 15
---dias em um determinado mês.
+--Função que retorna se um terceirizado trabalhou período integral (30 dias)
+--ou não em um determinado mês.
 
   vDataInicio DATE;
   vDataFim DATE;
   vDataReferencia DATE;
   vCodTerceirizadoContrato NUMBER;
+  vContagemDeDias NUMBER := 0;
 
 BEGIN
 
@@ -134,31 +135,74 @@ BEGIN
 
   ELSE
 
-      SELECT data_inicio
-        INTO vDataInicio     
-        FROM tb_funcao_terceirizado ft
-        WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
-          AND data_fim = (SELECT MIN(data_fim)
-                            FROM tb_funcao_terceirizado
-                            WHERE cod_terceirizado_contrato = vCodTerceirizadoContrato
-                              AND EXTRACT(month FROM data_fim) = pMes
-                              AND EXTRACT(year FROM data_fim) = pAno);
+    DECLARE 
 
-      SELECT data_fim
-        INTO vDataFim     
-        FROM tb_funcao_terceirizado ft
-        WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
-          AND data_inicio = (SELECT MAX(data_inicio)
-                               FROM tb_funcao_terceirizado
-                               WHERE cod_terceirizado_contrato = vCodTerceirizadoContrato
-                                 AND EXTRACT(month FROM data_inicio) = pMes
-                                 AND EXTRACT(year FROM data_inicio) = pAno);
-
-    END IF;
+            --Cursor com todas as datas de início do mês referência.
     
-  
-   
-  
+            CURSOR d1 IS SELECT ft.data_inicio AS data_inicio
+                           FROM tb_funcao_terceirizado ft
+                           WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
+                             AND ((EXTRACT(MONTH FROM ft.data_inicio) = pMes
+                                   AND
+                                   EXTRACT (YEAR FROM ft.data_inicio) = pAno)
+                                  OR
+                                  (EXTRACT(MONTH FROM ft.data_fim) = pMes
+                                   AND
+                                   EXTRACT (YEAR FROM ft.data_fim) = pAno))
+                         ORDER BY 1 ASC;
+
+            --Cursor com todas as datas de fim do mês referência.
+
+            CURSOR d2 IS SELECT ft.data_fim AS data_fim
+                           FROM tb_funcao_terceirizado ft
+                           WHERE ft.cod_terceirizado_contrato = vCodTerceirizadoContrato
+                             AND ((EXTRACT(MONTH FROM ft.data_inicio) = pMes
+                                   AND
+                                   EXTRACT (YEAR FROM ft.data_inicio) = pAno)
+                                  OR
+                                  (EXTRACT(MONTH FROM ft.data_fim) = pMes
+                                   AND
+                                   EXTRACT (YEAR FROM ft.data_fim) = pAno))
+                         ORDER BY 1 ASC;
+                          
+    BEGIN
+
+      OPEN d1;
+      OPEN d2;
+
+      --Contagem dos dias trabalhados no mês.
+
+      FOR i IN d1 LOOP
+
+        vDataInicio := i.data_inicio;
+         
+        FETCH d2 INTO vDataFim;
+
+        IF (vDataInicio < vDataReferencia) THEN
+
+          vDataInicio := vDataReferencia;
+
+        END IF;
+
+        IF (vDataFim IS NULL OR vDataFim > LAST_DAY(vDataReferencia)) THEN
+
+          vDataFim := LAST_DAY(vDataReferencia);
+
+        END IF;
+
+        vContagemDeDias := vContagemDeDias + ((vDataFim - vDataInicio) + 1);
+
+      END LOOP;
+      
+      IF (vContagemDeDias >= 30) THEN
+
+        RETURN TRUE;
+
+      END IF;
+    
+    END; 
+
+  END IF;
 
   RETURN FALSE;  
 

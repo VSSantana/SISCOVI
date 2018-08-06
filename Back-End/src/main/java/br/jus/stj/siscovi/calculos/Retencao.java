@@ -3,6 +3,8 @@ package br.jus.stj.siscovi.calculos;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Retencao {
 
@@ -80,6 +82,7 @@ public class Retencao {
         /**Variável que guarda o cod_terceirizado_contrato.*/
 
         int vCodTerceirizadoContrato = 0;
+        int vContagemDeDias = 0;
 
         /**Carrega o cod_terceirizado_contrato.*/
 
@@ -130,14 +133,111 @@ public class Retencao {
 
                 if (resultSet.next()) {
 
-                    vDataInicio = resultSet.getDate("DATA_INICIO");
-                    vDataFim = resultSet.getDate("DATA_FIM");
+                    vDataInicio = resultSet.getDate(1);
+                    vDataFim = resultSet.getDate(2);
 
                 }
 
             } catch (SQLException sqle) {
 
                 throw new NullPointerException("Erro ao carregar as datas de Inicio e Fim na 'FuncaoRetencaoIntegral'");
+
+            }
+
+            /**Caso não possua data de desligamento.*/
+
+            if (vDataFim == null) {
+
+                //Se a data de disponibilização é inferior a data referência então o
+                //terceirizado trabalhou os 30 dias do mês referência.*/
+
+                if (vDataInicio.before(vDataReferencia)) {
+
+                    return true;
+
+                }
+
+                /**Se a data de disponibilização está no mês referência então se verifica
+                 a quantidade de dias trabalhados pelo terceirizado.*/
+
+                LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); //Último dia do mês da data de referência.
+
+                if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
+                        (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef)))) {
+
+                    if(ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), dataRef) + 1 >= 30) {
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+            /**Caso possua data de desligamento.*/
+
+            if (vDataFim != null) {
+
+                LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); // Data com o último dia do mês da data de referência
+
+                /**Se a data de disponibilização é inferior a data referência e a data de
+                 desligamento é superior ao último dia do mês referência então o
+                 terceirizado trabalhou os 30 dias.*/
+
+                if (vDataInicio.before(vDataReferencia) && vDataFim.after(Date.valueOf(dataRef))) {
+
+                    return true;
+
+                }
+
+                /**Se a data de disponibilização está no mês referência e a data de
+                 desligamento é superior ao mês referência, então se verifica a quantidade
+                 de dias trabalhados pelo terceirizado.*/
+
+
+                if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
+                        (vDataInicio.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef))) &&
+                        vDataFim.after(Date.valueOf(dataRef))) {
+
+                    if (ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), dataRef) + 1 >= 30) {
+
+                        return true;
+
+                    }
+
+                }
+
+                /**Se a data de disponibilização está no mês referência e também a data de
+                 desligamento, então contam-se os dias trabalhados pelo terceirizado.*/
+
+                if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
+                        (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef))) &&
+                                (vDataFim.after(vDataReferencia) || vDataFim.equals(vDataReferencia)) &&
+                                (vDataFim.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef)))) {
+
+                    if(ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate()) + 1 >= 30) {
+
+                        return true;
+
+                    }
+
+                }
+
+                /**Se a data da disponibilização for inferior ao mês de cálculo e
+                 o funcionário tiver desligamento no mês referência, então contam-se
+                 os dias trabalhados.*/
+
+                if(vDataInicio.before(vDataReferencia) && (vDataFim.after(vDataReferencia) || vDataFim.equals(vDataReferencia)) &&
+                        (vDataFim.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef)))) {
+
+                    if(ChronoUnit.DAYS.between(vDataReferencia.toLocalDate(), vDataFim.toLocalDate()) + 1 >= 30) {
+
+                        return true;
+
+                    }
+
+                }
 
             }
 
@@ -145,26 +245,68 @@ public class Retencao {
 
         else {
 
+            List<Date> d1 = new ArrayList<>();
+            List<Date> d2 = new ArrayList<>();
+
             try {
 
-                preparedStatement = connection.prepareStatement("SELECT ft.data_inicio "  +
-                                                                     " FROM tb_funcao_terceirizado ft" +
-                                                                     " WHERE ft.cod_terceirizado_contrato = ?" +
-                                                                       " AND ft.data_fim = (SELECT MIN(data_fim)" +
-                                                                                            " FROM tb_funcao_terceirizado" +
-                                                                                            " WHERE cod_terceirizado_contrato = ?" +
-                                                                                            "   AND MONTH(data_inicio) = ?" +
-                                                                                            "   AND YEAR(data_inicio) = ?");
+                preparedStatement = connection.prepareStatement("SELECT ft.data_inicio AS data_inicio\n" +
+                                                                      "FROM tb_funcao_terceirizado ft\n" +
+                                                                      "WHERE ft.cod_terceirizado_contrato = ?\n" +
+                                                                  "      AND ((MONTH(ft.data_inicio) = ?\n" +
+                                                                  "            AND\n" +
+                                                                  "            YEAR(ft.data_inicio) = ?)\n" +
+                                                                  "           OR\n" +
+                                                                  "           (MONTH(ft.data_fim) = ?\n" +
+                                                                  "            AND\n" +
+                                                                  "            YEAR(ft.data_fim) = ?))\n" +
+                                                                      "ORDER BY 1 ASC");
 
                 preparedStatement.setInt(1, vCodTerceirizadoContrato);
-                preparedStatement.setInt(2, vCodTerceirizadoContrato);
-                preparedStatement.setInt(3, pMes);
-                preparedStatement.setInt(4, pAno);
+                preparedStatement.setInt(2, pMes);
+                preparedStatement.setInt(3, pAno);
+                preparedStatement.setInt(4, pMes);
+                preparedStatement.setInt(5, pAno);
                 resultSet = preparedStatement.executeQuery();
 
-                if (resultSet.next()) {
+                while (resultSet.next()) {
 
-                    vDataInicio = resultSet.getDate("DATA_INICIO");
+                    d1.add(resultSet.getDate(1));
+
+                }
+
+            } catch (SQLException sqle) {
+
+                sqle.printStackTrace();
+
+                throw new NullPointerException("Erro ao carregar as datas de Inicio na 'FuncaoRetencaoIntegral'");
+
+            }
+
+            try {
+
+                preparedStatement = connection.prepareStatement("SELECT ft.data_fim AS data_inicio\n" +
+                                                                      "FROM tb_funcao_terceirizado ft\n" +
+                                                                      "WHERE ft.cod_terceirizado_contrato = ?\n" +
+                                                                  "      AND ((MONTH(ft.data_inicio) = ?\n" +
+                                                                  "            AND\n" +
+                                                                  "            YEAR(ft.data_inicio) = ?)\n" +
+                                                                  "           OR\n" +
+                                                                  "           (MONTH(ft.data_fim) = ?\n" +
+                                                                  "            AND\n" +
+                                                                  "            YEAR(ft.data_fim) = ?))\n" +
+                                                                     "ORDER BY 1 ASC");
+
+                preparedStatement.setInt(1, vCodTerceirizadoContrato);
+                preparedStatement.setInt(2, pMes);
+                preparedStatement.setInt(3, pAno);
+                preparedStatement.setInt(4, pMes);
+                preparedStatement.setInt(5, pAno);
+                resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    d2.add(resultSet.getDate(1));
 
                 }
 
@@ -174,129 +316,36 @@ public class Retencao {
 
             }
 
-            try {
+            int aux = 0;
 
-                preparedStatement = connection.prepareStatement("SELECT ft.data_fim "  +
-                                                                     " FROM tb_funcao_terceirizado ft" +
-                                                                     " WHERE ft.cod_terceirizado_contrato = ?" +
-                                                                       " AND ft.data_inicio = (SELECT MAX(data_inicio)" +
-                                                                                               " FROM tb_funcao_terceirizado" +
-                                                                                               " WHERE cod_terceirizado_contrato = ?" +
-                                                                                               "   AND MONTH(data_inicio) = ?" +
-                                                                                               "   AND YEAR(data_inicio) = ?");
+            for (Date data: d1) {
 
-                preparedStatement.setInt(1, vCodTerceirizadoContrato);
-                preparedStatement.setInt(2, vCodTerceirizadoContrato);
-                preparedStatement.setInt(3, pMes);
-                preparedStatement.setInt(4, pAno);
-                resultSet = preparedStatement.executeQuery();
+                vDataInicio = data;
 
-                if (resultSet.next()) {
+                vDataFim = d2.get(aux);
 
-                    vDataFim = resultSet.getDate("DATA_FIM");
+                if (vDataInicio.before(vDataReferencia)) {
+
+                    vDataInicio = vDataReferencia;
 
                 }
 
-            } catch (SQLException sqle) {
+                if (vDataFim == null || vDataFim.after(Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())))) {
 
-                throw new NullPointerException("Erro ao carregar as datas de Inicio e Fim na 'FuncaoRetencaoIntegral'");
+                    vDataFim = Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()));
+
+                }
+
+                vContagemDeDias = vContagemDeDias + (int)(ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate()) + 1);
+
+                aux++;
+
 
             }
 
-        }
-
-        /**Caso não possua data de desligamento.*/
-
-        if (vDataFim == null) {
-
-            //Se a data de disponibilização é inferior a data referência então o
-            //terceirizado trabalhou os 30 dias do mês referência.*/
-
-            if (vDataInicio.before(vDataReferencia)) {
+            if (vContagemDeDias >= 30) {
 
                 return true;
-
-            }
-
-            /**Se a data de disponibilização está no mês referência então se verifica
-            a quantidade de dias trabalhados pelo terceirizado.*/
-
-            LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); //Último dia do mês da data de referência.
-
-            if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
-                (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef)))) {
-
-                if(ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), dataRef) + 1 >= 15) {
-
-                    return true;
-
-                }
-
-            }
-
-        }
-
-        /**Caso possua data de desligamento.*/
-
-        if (vDataFim != null) {
-
-            LocalDate dataRef = vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()); // Data com o último dia do mês da data de referência
-
-            /**Se a data de disponibilização é inferior a data referência e a data de
-            desligamento é superior ao último dia do mês referência então o
-            terceirizado trabalhou os 30 dias.*/
-
-            if (vDataInicio.before(vDataReferencia) && vDataFim.after(Date.valueOf(dataRef))) {
-
-                return true;
-
-            }
-
-            /**Se a data de disponibilização está no mês referência e a data de
-            desligamento é superior ao mês referência, então se verifica a quantidade
-            de dias trabalhados pelo terceirizado.*/
-
-
-            if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
-                (vDataInicio.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef))) &&
-                 vDataFim.after(Date.valueOf(dataRef))) {
-
-                if (ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), dataRef) + 1 >= 15) {
-
-                    return true;
-
-                }
-
-            }
-
-            /**Se a data de disponibilização está no mês referência e também a data de
-            desligamento, então contam-se os dias trabalhados pelo terceirizado.*/
-
-            if ((vDataInicio.after(vDataReferencia) || vDataInicio.equals(vDataReferencia)) &&
-                (vDataInicio.before(Date.valueOf(dataRef)) || vDataInicio.equals(Date.valueOf(dataRef)) &&
-                (vDataFim.after(vDataReferencia) || vDataFim.equals(vDataReferencia)) &&
-                (vDataFim.before(Date.valueOf(dataRef)) || vDataFim.equals(vDataReferencia)))) {
-
-                if(ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate()) + 1 >= 15) {
-
-                    return true;
-
-                }
-
-            }
-
-            /**Se a data da disponibilização for inferior ao mês de cálculo e
-            o funcionário tiver desligamento no mês referência, então contam-se
-            os dias trabalhados.*/
-
-            if(vDataInicio.before(vDataReferencia) && (vDataFim.after(vDataReferencia) || vDataFim.equals(vDataReferencia)) &&
-               (vDataFim.before(Date.valueOf(dataRef)) || vDataFim.equals(Date.valueOf(dataRef)))) {
-
-                if(ChronoUnit.DAYS.between(vDataReferencia.toLocalDate(), vDataFim.toLocalDate()) + 1 >= 15) {
-
-                    return true;
-
-                }
 
             }
 
