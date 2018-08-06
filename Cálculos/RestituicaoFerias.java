@@ -3,26 +3,33 @@ package br.jus.stj.siscovi.calculos;
 import br.jus.stj.siscovi.model.CodTerceirizadoECodFuncaoTerceirizadoModel;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RestituicaoFerias {
     private Connection connection;
+
     public RestituicaoFerias(Connection connection) {
         this.connection = connection;
     }
 
     /**
      * Método que calcula o total de férias a ser restituído para um
-     *determinado período aquisitivo.
-     * 
+     * determinado período aquisitivo.
      *
-     * @param pCodContrato
-     * @param pMes
-     * @param pAno
+     * @param pCodTerceirizadoContrato;
+     * @param pCodTipoRestituicao;
+     * @param pDiasVendidos;
+     * @param pInicioFerias;
+     * @param pFimFerias;
+     * @param pInicioPeriodoAquisitivo;
+     * @param pFimPeriodoAquisitivo;
+     * @param pValorMovimentado;
+     * @param pProporcional;
      */
-    public void CalculaRestituicaoFerias(int pCodTerceirizadoContrato, int pCodTipoRestituicao, int pDiasVendidos, Date pInicioFerias, Date pFimFerias, Date pInicioPeriodoAquisitivo, Date pFimPeriodoAquisitivo
+    public void CalculaRestituicaoFerias(int pCodTerceirizadoContrato, int pCodTipoRestituicao, int pDiasVendidos, Date pInicioFerias, Date pFimFerias, Date pInicioPeriodoAquisitivo, Date pFimPeriodoAquisitivo,
                                          float pValorMovimentado, char pProporcional) {
-    
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Retencao retencao = new Retencao(connection);
@@ -31,7 +38,7 @@ public class RestituicaoFerias {
         Remuneracao remuneracao = new Remuneracao(connection);
 
         //Chaves primárias.
-        
+
         int vCodContrato = 0;
         int vCodTbRestituicaoFerias = 0;
 
@@ -54,18 +61,18 @@ public class RestituicaoFerias {
         float vPercentualFerias = 0;
         float vPercentualTercoConstitucional = 0;
         float vPercentualIncidencia = 0;
- 
+
         //Variável de remuneração da função.
 
         float vRemuneracao = 0;
- 
+
         //Variáveis de data.
 
         Date vDataReferencia = null;
         Date vDataInicio = null;
         Date vDataFim = null;
-        int vAno = null;
-        int vMes = null;
+        int vAno = 0;
+        int vMes = 0;
 
         //Variável para a checagem de existência do terceirizado.
 
@@ -80,25 +87,28 @@ public class RestituicaoFerias {
         int vControleMeses = 0;
 
         //Variáveis auxiliares.
-        
+
         float vIncidenciaFerias = 0;
         float vIncidenciaTerco = 0;
         float vTerco = 0;
         float vFerias = 0;
 
         //Checagem dos parâmetros passados.
+/*
+        if (pCodTerceirizadoContrato == null ||
+            pCodTipoRestituicao == null ||
+            pDiasVendidos == null ||
+            pInicioFerias == null ||
+            pFimFerias == null ||
+            pInicioPeriodoAquisitivo == null ||
+            pFimPeriodoAquisitivo == null) {
 
-        if(pCodTerceirizadoContrato == null || 
-           pCodTipoRestituicao == null ||
-           pDiasVendidos == null ||
-           pInicioFerias == null ||
-           pFimFerias == null ||
-           pInicioPeriodoAquisitivo == null ||
-           pFimPeriodoAquisitivo == null){
-
-            return;    
+            return;
 
         }
+
+
+*/
 
         //Checagem da existência do terceirizado no contrato.
 
@@ -106,16 +116,16 @@ public class RestituicaoFerias {
             preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD=?");
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 vCheck = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(vCheck == 0){
+        if (vCheck == 0) {
 
-          return;
+            return;
 
         }
 
@@ -124,18 +134,43 @@ public class RestituicaoFerias {
             preparedStatement = connection.prepareStatement("SELECT tc.cod_contrato FROM tb_terceirizado_contrato tc WHERE tc.cod=?");
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 vCodContrato = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        //Define o vvalor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.
+        //Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.
 
-        vMes = pDataInicio.getMonth();
-        vAno = pDataInicio.getYear();
-     
+        vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
+        vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
+
+        //System.out.print(Date.valueOf(LocalDate.now()));
+
+        //Início da contabilização de férias do período.
+
+        do{
+
+            vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
+
+            System.out.print(vDataReferencia);
+
+
+            if (vMes != 12) { 
+                
+                vMes = vMes + 1;
+            }
+
+            else {
+
+                vMes = 1;
+                vAno = vAno + 1;
+
+            }
+
+        } while (vMes != pFimPeriodoAquisitivo.toLocalDate().getMonthValue() && vAno != pFimPeriodoAquisitivo.toLocalDate().getYear());
+   
         // Busca funções do contrato
         ArrayList<Integer> c1 = new ArrayList<>();
         try {

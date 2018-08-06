@@ -7,12 +7,25 @@ IS
   vDataInicio DATE;
   vDataFim DATE;
   vDataReferencia DATE;
+  vFimDoMes DATE;
+  vContagemDeDias NUMBER := 0;
 
 BEGIN
 
-  --Data de referência definida como o primeiro dia do mês correspondente aos argumentos passados.
+  --Data de referência e fim do mês definidas como o primeiro e o último dia
+  --do mês correspondente aos argumentos passados.
 
   vDataReferencia := TO_DATE('01/' || pMes || '/' || pAno, 'dd/mm/yyyy');
+  
+  IF (pMes != 2) THEN
+
+    vFimDoMes := TO_DATE('30/' || pMes || '/' || pAno, 'dd/mm/yyyy');
+
+  ELSE
+
+    vFimDoMes := LAST_DAY(vDataReferencia);
+
+  END IF;
  
   --Carregamento das datas de disponibilização e desligamento do terceirizado.
 
@@ -40,9 +53,9 @@ BEGIN
     --Se a data de disponibilização está no mês referência enão se verifica
     --a quantidade de dias trabalhados pelo terceirizado.
   
-    IF (vDataInicio >= vDataReferencia AND vDataInicio <= LAST_DAY(vDataReferencia)) THEN
-  
-      RETURN (LAST_DAY(vDataInicio) - vDataInicio) + 1;
+    IF (vDataInicio >= vDataReferencia AND vDataInicio <= vFimDoMes) THEN
+
+      vContagemDeDias := (vFimDoMes - vDataInicio) + 1;
     
     END IF;
  
@@ -56,7 +69,7 @@ BEGIN
     --desligamento é superior ao último dia do mês referência então o
     --terceirizado trabalhou os 30 dias.
   
-    IF (vDataInicio < vDataReferencia AND vDataFim > LAST_DAY(vDataReferencia)) THEN
+    IF (vDataInicio < vDataReferencia AND vDataFim > vFimDoMes) THEN
       
       RETURN 30;
       
@@ -67,10 +80,10 @@ BEGIN
     --de dias trabalhados pelo terceirizado.
   
     IF (vDataInicio >= vDataReferencia 
-        AND vDataInicio <= LAST_DAY(vDataReferencia)
-        AND vDataFim > LAST_DAY(vDataReferencia)) THEN
+        AND vDataInicio <= vFimDoMes
+        AND vDataFim > vFimDoMes) THEN
     
-      RETURN (LAST_DAY(vDataInicio) - vDataInicio) + 1;
+      vContagemDeDias := (vFimDoMes - vDataInicio) + 1;
     
     END IF;
     
@@ -78,11 +91,11 @@ BEGIN
     --desligamento, então contam-se os dias trabalhados pelo terceirizado.
     
     IF (vDataInicio >= vDataReferencia 
-        AND vDataInicio <= LAST_DAY(vDataReferencia)
+        AND vDataInicio <= vFimDoMes
         AND vDataFim >= vDataReferencia
-        AND vDataFim <= LAST_DAY(vDataReferencia)) THEN
+        AND vDataFim <= vFimDoMes) THEN
   
-      RETURN (vDataFim - vDataInicio) + 1;
+      vContagemDeDias := (vDataFim - vDataInicio) + 1;
     
     END IF;
     
@@ -92,13 +105,47 @@ BEGIN
     
     IF (vDataInicio < vDataReferencia 
         AND vDataFim >= vDataReferencia
-        AND vDataFim <= LAST_DAY(vDataReferencia)) THEN
+        AND vDataFim <= vFimDoMes) THEN
     
-      RETURN (vDataFim - vDataReferencia) + 1;
+      vContagemDeDias := (vDataFim - vDataReferencia) + 1;
     
     END IF;
  
   END IF;
+
+  --Para o mês de fevereiro se equaliza o número de dias contados.
+
+  IF (EXTRACT(MONTH FROM vFimDoMes) = 2) THEN
+  
+    --Caso tenha-se contado mais de de 27 dias.
+
+    IF (vContagemDeDias >= 28) THEN
+
+      --Se o mês for de 28 dias então soma-se 2 a contagem.
+
+      IF (EXTRACT(DAY FROM vFimDoMes) = 28) THEN
+
+        vContagemDeDias := vContagemDeDias + 2;
+
+      ELSE
+
+        --Se o mês não for de 28 dias ele é de 29.
+        --Caso tenham-se contados 29 dias no mês de 
+        --29 então soma-se 1a contagem.
+
+        IF (vContagemDeDias = 29) THEN
+      
+          vContagemDeDias := vContagemDeDias + 1;
+
+        END IF;
+
+      END IF;
+
+    END IF;
+
+  END IF;
+
+  RETURN vContagemDeDias;
   
   EXCEPTION WHEN OTHERS THEN
 
