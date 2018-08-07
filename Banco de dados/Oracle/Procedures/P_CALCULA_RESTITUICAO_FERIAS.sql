@@ -62,6 +62,7 @@ create or replace procedure "P_CALCULA_RESTITUICAO_FERIAS" (pCodTerceirizadoCont
   vDiasVendidos NUMBER := 0;
   vNumeroDeMeses NUMBER := 0;
   vControleMeses NUMBER := 0;
+  vDiasSubperiodo NUMBER := 0;
 
   --Variáveis auxiliares.
 
@@ -83,7 +84,7 @@ BEGIN
   --Todos os parâmetros estão preenchidos.
 
   IF (pCodTerceirizadoContrato IS NULL OR
-      vCodTipoRestituicao IS NULL OR
+      pTipoRestituicao IS NULL OR
       pDiasVendidos IS NULL OR
       pInicioFerias IS NULL OR
       pFimFerias IS NULL OR
@@ -94,7 +95,7 @@ BEGIN
   
   END IF;
 
-  --Atribuição do cod da do tipo de restituição.
+  --Atribuição do cod do tipo de restituição.
 
   BEGIN
 
@@ -276,11 +277,41 @@ BEGIN
                             TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy') END AS data
                      FROM DUAL
 
-                   ORDER BY data ASC) LOOP
+                   MINUS
+
+                   SELECT CASE WHEN EXTRACT(DAY FROM LAST_DAY(TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy'))) = 31 THEN
+                            TO_DATE('31/' || vMes || '/' || vAno, 'dd/mm/yyyy')
+                          ELSE
+                            NULL END AS data
+                    FROM DUAL
+
+                  ORDER BY data ASC) LOOP
           
           --Definição da data fim do subperíodo.
 
           vDataFim := c3.data;
+
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
 
           --Definição dos percentuais do subperíodo.
   
@@ -290,8 +321,8 @@ BEGIN
         
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
           vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
           vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
@@ -300,10 +331,10 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -362,11 +393,41 @@ BEGIN
                           TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy') END AS data
                      FROM DUAL
 
+                   MINUS
+
+                   SELECT CASE WHEN EXTRACT(DAY FROM LAST_DAY(TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy'))) = 31 THEN
+                            TO_DATE('31/' || vMes || '/' || vAno, 'dd/mm/yyyy')
+                          ELSE
+                            NULL END AS data
+                    FROM DUAL
+
                    ORDER BY data ASC) LOOP
           
           --Definição da data fim do subperíodo.
 
           vDataFim := c3.data;
+
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
 
           --Define a remuneração do cargo, que não se altera no período.
             
@@ -380,8 +441,8 @@ BEGIN
 
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
           vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
           vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
@@ -390,10 +451,10 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -480,11 +541,41 @@ BEGIN
                           TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy') END AS data
                      FROM DUAL
 
+                   MINUS
+
+                   SELECT CASE WHEN EXTRACT(DAY FROM LAST_DAY(TO_DATE('30/' || vMes || '/' || vAno, 'dd/mm/yyyy'))) = 31 THEN
+                            TO_DATE('31/' || vMes || '/' || vAno, 'dd/mm/yyyy')
+                          ELSE
+                            NULL END AS data
+                    FROM DUAL
+
                    ORDER BY data ASC) LOOP
           
           --Definição da data fim do subperíodo.
 
           vDataFim := c3.data;
+
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
 
           --Define a remuneração da função no subperíodo.
             
@@ -504,8 +595,8 @@ BEGIN
 
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * ((vDataFim - vDataInicio) + 1);
-          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorFerias := ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+          vValorTercoConstitucional := ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
           vValorIncidenciaFerias := (vValorFerias * (vPercentualIncidencia/100));
           vValorIncidenciaTerco := (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
@@ -514,10 +605,10 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorFerias := (vValorFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorTercoConstitucional := (vValorTercoConstitucional/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaFerias := (vValorIncidenciaFerias/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidenciaTerco := (vValorIncidenciaTerco/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorFerias := (vValorFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorTercoConstitucional := (vValorTercoConstitucional/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaFerias := (vValorIncidenciaFerias/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidenciaTerco := (vValorIncidenciaTerco/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -695,7 +786,7 @@ BEGIN
 
     WHEN NO_DATA_FOUND THEN
 
-      RAISE_APPLICATION_ERROR(-20006, 'Dados não encontrados.')
+      RAISE_APPLICATION_ERROR(-20006, 'Dados não encontrados.');
     
     WHEN OTHERS THEN
   

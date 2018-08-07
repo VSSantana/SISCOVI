@@ -14,7 +14,7 @@ BEGIN
   SELECT data_inicio, 
          data_fim
     INTO vDataInicio,
-	     vDataFim
+	       vDataFim
     FROM tb_funcao_terceirizado
 	WHERE cod = pCodFuncaoTerceirizado;
     

@@ -102,6 +102,7 @@ public class RestituicaoFerias {
         int vDiasVendidos = 0;
         int vNumeroDeMeses = 0;
         int vControleMeses = 0;
+        int vDiasSubperiodo = 0;
 
         /**Variáveis auxiliares.*/
 
@@ -335,6 +336,11 @@ public class RestituicaoFerias {
                                                                                      " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" +
                                                                                    " ELSE" +
                                                                                      " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" +
+                                                                            " EXCEPT" +
+                                                                            " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" +
+                                                                                     " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" +
+                                                                                   " ELSE" +
+                                                                                     " NULL END AS data" +
                                                                             " ORDER BY data ASC");
 
                         preparedStatement.setInt(1, vCodContrato);
@@ -372,6 +378,28 @@ public class RestituicaoFerias {
 
                         vDataFim = data;
 
+                        /**Definição dos dias contidos no subperíodo*/
+
+                        vDiasSubperiodo = (int)((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+
+                        if (vMes == 2) {
+
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
+
+                        }
+
                         /**Definição dos percentuais do subperíodo.*/
 
                         vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vDataInicio, vDataFim, 2);
@@ -380,20 +408,20 @@ public class RestituicaoFerias {
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
                         vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
                         vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
                         /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
-                         situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
+                         situação similar para a retenção proporcional por menos de 30 dias trabalhados.*/
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
@@ -454,6 +482,11 @@ public class RestituicaoFerias {
                                                                                      " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" +
                                                                                     " ELSE" +
                                                                                      " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" +
+                                                                            " EXCEPT" +
+                                                                            " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" +
+                                                                                     " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" +
+                                                                                   " ELSE" +
+                                                                                     " NULL END AS data" +
                                                                             " ORDER BY DATA ASC");
 
                         preparedStatement.setInt(1, vCodContrato);
@@ -486,6 +519,28 @@ public class RestituicaoFerias {
 
                         vDataFim = data;
 
+                        /**Definição dos dias contidos no subperíodo*/
+
+                        vDiasSubperiodo = (int)((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+
+                        if (vMes == 2) {
+
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
+
+                        }
+
                         /**Define a remuneração do cargo, que não se altera no período.*/
 
                         vRemuneracao = remuneracao.RetornaRemuneracaoPeriodo(tuplas.get(i).getCodFuncaoContrato(),  vDataInicio, vDataFim, 2);
@@ -498,8 +553,8 @@ public class RestituicaoFerias {
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
                         vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
                         vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
@@ -508,10 +563,10 @@ public class RestituicaoFerias {
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
@@ -588,6 +643,11 @@ public class RestituicaoFerias {
                                                                                       " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" +
                                                                                      " ELSE" +
                                                                                       " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" +
+                                                                             " EXCEPT" +
+                                                                             " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" +
+                                                                                      " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" +
+                                                                                    " ELSE" +
+                                                                                      " NULL END AS data" +
                                                                              " ORDER BY DATA ASC");
 
                         preparedStatement.setInt(1, vCodContrato);
@@ -634,6 +694,28 @@ public class RestituicaoFerias {
 
                         vDataFim = data;
 
+                        /**Definição dos dias contidos no subperíodo*/
+
+                        vDiasSubperiodo = (int)((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+
+                        if (vMes == 2) {
+
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
+
+                        }
+
                         /**Define a remuneração do cargo, que não se altera no período.*/
 
                         vRemuneracao = remuneracao.RetornaRemuneracaoPeriodo(tuplas.get(i).getCodFuncaoContrato(),  vDataInicio, vDataFim, 2);
@@ -652,8 +734,8 @@ public class RestituicaoFerias {
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * ((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1);
+                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
+                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
                         vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
                         vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
 
@@ -662,10 +744,10 @@ public class RestituicaoFerias {
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/((ChronoUnit.DAYS.between(vDataInicio.toLocalDate(), vDataFim.toLocalDate())) + 1)) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
@@ -739,7 +821,7 @@ public class RestituicaoFerias {
 
         /**Dias de férias usufruídos para o cálculo proporcional.*/
 
-        vDiasDeFerias =  (int)(ChronoUnit.DAYS.between(pInicioFerias.toLocalDate(), pFimFerias.toLocalDate()) + 1 + vDiasVendidos);
+        vDiasDeFerias = (int)(ChronoUnit.DAYS.between(pInicioFerias.toLocalDate(), pFimFerias.toLocalDate()) + 1 + vDiasVendidos);
 
         /**Dias de férias adquiridos no período aquisitivo.*/
 
