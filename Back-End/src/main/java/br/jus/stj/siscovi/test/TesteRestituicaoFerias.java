@@ -13,7 +13,7 @@ public class TesteRestituicaoFerias {
     public static void main(String[] args){
 
         String result = null;
-        long dias = 0;
+        float dias = 0;
         Date inicio = Date.valueOf("2017-08-05");
         Date fim = Date.valueOf("2018-08-05");
         int meses = 0;
@@ -23,11 +23,12 @@ public class TesteRestituicaoFerias {
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         Retencao retencao = new Retencao(connectSQLServer.dbConnect());
         Periodos periodo = new Periodos(connectSQLServer.dbConnect());
+        Ferias ferias = new Ferias(connectSQLServer.dbConnect());
 
-        dias = periodo.DiasTrabalhadosMes(105, 9, 2016);
-        resultado = retencao.FuncaoRetencaoIntegral(53, 10, 2016);
+        dias = ferias.DiasPeriodoAquisitivo(Date.valueOf("2016-01-01"),Date.valueOf("2016-07-25"));
+        //resultado = retencao.FuncaoRetencaoIntegral(53, 10, 2016);
 
-        System.out.print(dias);
+        System.out.printf("O valor da ação é %.2f %n", dias);
 
         //restituicaoFerias.CalculaRestituicaoFerias(53, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
 /*

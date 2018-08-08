@@ -1,59 +1,73 @@
-create or replace function "F_DIAS_FERIAS_ADQUIRIDOS" (pCodContrato NUMBER, pCodTerceirizadoContrato NUMBER, pDataInicio DATE, pDataFim DATE) RETURN NUMBER
+create or replace function "F_DIAS_FERIAS_ADQUIRIDOS" (pDataInicio DATE, pDataFim DATE) RETURN NUMBER
 IS
 
   --Função que retorna o número de dias que um terceirizado
   --possui em um determinado período aquisitivo.
 
   vDiasAUsufruir NUMBER := 0;
-  vNumeroMeses NUMBER := 0;
-  vCodTerceirizado NUMBER := 0;
-  vMesesFerias NUMBER := 0;
-  vDataContagem DATE := pDataInicio;
+  vContagemDeDias NUMBER := 0;
+  vDataInicio DATE := NULL;
+  vDataFim DATE := NULL;
+
+  vPeriodo EXCEPTION;
 
 BEGIN
 
-  --Seleciona o cod do terceirizado.
+  --Calcula o número de dias baseado no período aquisitivo.
 
-  SELECT cod_terceirizado
-    INTO vCodTerceirizado
-    FROM tb_terceirizado_contrato
-    WHERE cod = pCodTerceirizadoContrato;
+  LOOP
 
-  --Conta o número de meses dentro do período aquisitivo para o loop.
+    --Inicializa a data de início no primeiro laço.
 
-  vNumeroMeses := F_RETORNA_NUMERO_DE_MESES(pDataInicio, pDataFim);
+    IF (vDataInicio IS NULL) THEN
 
-  --Calcula o número de dias baseado no número de meses trabalhados com mais de 15 dias.
+      vDataInicio := pDataInicio;
 
-  FOR i IN 1 .. vNumeroMeses LOOP
-
-    IF (F_DIAS_TRABALHADOS_TERC(pCodTerceirizadoContrato, EXTRACT(month FROM vDataContagem), EXTRACT(year FROM vDataContagem)) >= 15) THEN
-  
-      vMesesFerias := vMesesFerias + 1;
-    
     END IF;
-    
-    vDataContagem := ADD_MONTHS(vDataContagem, 1);
+
+    --Define o fim do mês como dia 30 exceto para fevereiro.
+
+    IF (EXTRACT(MONTH FROM vDataInicio) != 2) THEN
+
+      vDataFim := TO_DATE('30/' || EXTRACT(MONTH FROM vDataInicio) || '/' || EXTRACT(YEAR FROM vDataInicio), 'dd/mm/yyyy');
+
+    ELSE
+
+      vDataFim := LAST_DAY(vDataInicio);
+
+    END IF;
+
+    --Ajusta a data fim para o final do período aquisitivo no mês correspondente.
+
+    IF ((EXTRACT(MONTH FROM vDataFim) = EXTRACT(MONTH FROM pDataFim)) AND (EXTRACT(YEAR FROM vDataFim) = EXTRACT(YEAR FROM pDataFim))) THEN
+
+      vDataFim := pDataFim;
+
+    END IF;
+
+    vContagemDeDias := vContagemDeDias + ((vDataFim - vDataInicio) + 1);
+
+    vDataInicio := LAST_DAY(vDataInicio) + 1;    
+
+    EXIT WHEN (vDataFim = pDataFim);
   
   END LOOP;
-  
-  --Para controlar possíveis casos de cálculo de 13 meses de férias.
-  
-  IF (vMesesFerias >= 13) THEN
-  
-    vMesesFerias := 12;
-  
+
+  IF (vContagemDeDias > 360) THEN
+
+    RAISE vPeriodo;
+
   END IF;
+  
+  --A cada 12 dias de trabalho o funcionário adquire 1 dias de férias,
+  --considerando um período de 360 dias, óbviamente.
 
-  --A cada mês de trabalho o funcionário adquire 2.5 dias de férias,
-  --considerando um período de 12 meses, óbviamente.
-
-  vDiasAUsufruir := 2.5 * vMesesFerias;
+  vDiasAUsufruir := vContagemDeDias *  (30/360);
 
   RETURN vDiasAUsufruir;
   
-  EXCEPTION WHEN NO_DATA_FOUND THEN
+  EXCEPTION WHEN vPeriodo THEN
   
-    RETURN NULL;
+    RAISE_APPLICATION_ERROR(-20001, 'O período aquisitivo informado gera uma contagem superior a 360 dias.');
 
 END;
