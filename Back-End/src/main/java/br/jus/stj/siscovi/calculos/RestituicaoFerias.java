@@ -52,6 +52,7 @@ public class RestituicaoFerias {
         Percentual percentual = new Percentual(connection);
         Periodos periodo = new Periodos(connection);
         Remuneracao remuneracao = new Remuneracao(connection);
+        Ferias ferias = new Ferias(connection);
 
         /**Chaves primárias.*/
 
@@ -98,7 +99,7 @@ public class RestituicaoFerias {
         /**Variáveis de controle.*/
 
         int vDiasDeFerias = 0;
-        int vDiasAdquiridos = 0;
+        float vDiasAdquiridos = 0;
         int vDiasVendidos = 0;
         int vNumeroDeMeses = 0;
         int vControleMeses = 0;
@@ -161,7 +162,7 @@ public class RestituicaoFerias {
 
         try {
 
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD=?");
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD = ?");
 
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
@@ -781,10 +782,10 @@ public class RestituicaoFerias {
 
         } while (vMes != pFimPeriodoAquisitivo.toLocalDate().getMonthValue() && vAno != pFimPeriodoAquisitivo.toLocalDate().getYear());
 
-        System.out.println(vTotalFerias);
-        System.out.println(vTotalTercoConstitucional);
-        System.out.println(vTotalIncidenciaFerias);
-        System.out.println(vTotalIncidenciaTerco);
+//        System.out.println(vTotalFerias);
+ //       System.out.println(vTotalTercoConstitucional);
+  //      System.out.println(vTotalIncidenciaFerias);
+   //     System.out.println(vTotalIncidenciaTerco);
 
         /**Atribuição de valor a vDiasVendidos*/
 
@@ -825,9 +826,15 @@ public class RestituicaoFerias {
 
         /**Dias de férias adquiridos no período aquisitivo.*/
 
-        vDiasAdquiridos = 0;
+        vDiasAdquiridos = ferias.DiasPeriodoAquisitivo(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo);
 
         /**Definição do montante proporcional a ser restituído*/
+
+        if (vDiasDeFerias > vDiasAdquiridos) {
+
+            throw new NullPointerException("Foram concedidos mais dias de férias do que o disponível para o período aquisitivo informado.");
+
+        }
 
         vTotalFerias = (vTotalFerias/vDiasAdquiridos) * vDiasDeFerias;
         vTotalIncidenciaFerias = (vTotalIncidenciaFerias/vDiasAdquiridos) * vDiasDeFerias;
@@ -835,6 +842,11 @@ public class RestituicaoFerias {
 
         /**Cancelamento do terço constitucional para parcela diferente da única ou primeira.*/
 
+        if (ferias.ParcelasConcedidas(pCodTerceirizadoContrato, pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo) > 0) {
+
+            vTotalTercoConstitucional = 0;
+
+        }
 
         /**Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -861,7 +873,8 @@ public class RestituicaoFerias {
 
         try {
 
-            String sql = "INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
+            String sql = "SET IDENTITY_INSERT tb_restituicao_ferias ON;" +
+                        " INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
                                                            " COD_TERCEIRIZADO_CONTRATO," +
                                                            " COD_TIPO_RESTITUICAO," +
                                                            " DATA_INICIO_PERIODO_AQUISITIVO," +
@@ -877,7 +890,8 @@ public class RestituicaoFerias {
                                                            " DATA_REFERENCIA," +
                                                            " LOGIN_ATUALIZACAO," +
                                                            " DATA_ATUALIZACAO)" +
-                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP)";
+                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP);" +
+                         " SET IDENTITY_INSERT tb_restituicao_ferias OFF;";
 
                 preparedStatement = connection.prepareStatement(sql);
 
@@ -897,6 +911,8 @@ public class RestituicaoFerias {
                 preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
+
+            e.printStackTrace();
 
             throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
 
@@ -928,6 +944,8 @@ public class RestituicaoFerias {
                 preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
+
+                e.printStackTrace();
 
                 throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
 

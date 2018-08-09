@@ -503,29 +503,18 @@ public class Periodos {
 
         if (pMes == 2) {
 
-            /**Caso tenha-se contado mais de de 27 dias.*/
+            /**Se o mês for de 28 dias então soma-se 2 a contagem.*/
 
-            if (vContagemDeDias >= 28) {
+            if (vFimDoMes.toLocalDate().getDayOfMonth() == 28) {
 
-                /**Se o mês for de 28 dias então soma-se 2 a contagem.*/
+                vContagemDeDias = vContagemDeDias + 2;
 
-                if (vFimDoMes.toLocalDate().getDayOfMonth() == 28) {
+            } else {
 
-                    vContagemDeDias = vContagemDeDias + 2;
+                /**Se o mês não for de 28 dias ele é de 29.
+                 Então soma-se 1a contagem.*/
 
-                } else {
-
-                    /**Se o mês não for de 28 dias ele é de 29.
-                     Caso tenham-se contados 29 dias no mês de
-                     29 então soma-se 1a contagem.*/
-
-                    if (vContagemDeDias == 29) {
-
-                        vContagemDeDias = vContagemDeDias + 1;
-
-                    }
-
-                }
+                vContagemDeDias = vContagemDeDias + 1;
 
             }
 

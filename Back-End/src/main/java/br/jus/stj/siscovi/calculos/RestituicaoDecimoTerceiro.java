@@ -22,29 +22,23 @@ public class RestituicaoDecimoTerceiro {
     }
 
     /**
-     * Método que calcula o total de férias a ser restituído para um
+     * Método que calcula o total de 13° a ser restituído para um
      * determinado período aquisitivo.
      *
      * @param pCodTerceirizadoContrato;
      * @param pTipoRestituicao;
-     * @param pDiasVendidos;
-     * @param pInicioFerias;
-     * @param pFimFerias;
-     * @param pInicioPeriodoAquisitivo;
-     * @param pFimPeriodoAquisitivo;
+     * @param pNumeroParcela;
+     * @param pInicioContagem;
+     * @param pFimContagem;
      * @param pValorMovimentado;
-     * @param pProporcional;
      */
 
     public void CalculaRestituicaoDecimoTerceiro (int pCodTerceirizadoContrato,
-                                          String pTipoRestituicao,
-                                          int pDiasVendidos,
-                                          Date pInicioFerias,
-                                          Date pFimFerias,
-                                          Date pInicioPeriodoAquisitivo,
-                                          Date pFimPeriodoAquisitivo,
-                                          float pValorMovimentado,
-                                          char pProporcional) {
+                                                  String pTipoRestituicao,
+                                                  int pNumeroParcela,
+                                                  Date pInicioContagem,
+                                                  Date pFimContagem,
+                                                  float pValorMovimentado) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -56,27 +50,22 @@ public class RestituicaoDecimoTerceiro {
         /**Chaves primárias.*/
 
         int vCodContrato = 0;
-        int vCodTbRestituicaoFerias = 0;
+        int vCodTbRestituicao13 = 0;
         int vCodTipoRestituicao = 0;
 
         /**Variáveis totalizadoras de valores.*/
 
-        float vTotalFerias = 0;
-        float vTotalTercoConstitucional = 0;
-        float vTotalIncidenciaFerias = 0;
-        float vTotalIncidenciaTerco = 0;
+        float vTotalDecimoTerceiro = 0;
+        float vTotalIncidencia = 0;
 
         /**Variáveis de valores parciais.*/
 
-        float vValorFerias = 0;
-        float vValorTercoConstitucional = 0;
-        float vValorIncidenciaFerias = 0;
-        float vValorIncidenciaTerco = 0;
+        float vValorDecimoTerceiro = 0;
+        float vValorIncidencia = 0;
 
         /**Variáveis de percentuais.*/
 
-        float vPercentualFerias = 0;
-        float vPercentualTercoConstitucional = 0;
+        float vPercentualDecimoTerceiro = 0;
         float vPercentualIncidencia = 0;
 
         /**Variável de remuneração da função.*/
@@ -97,19 +86,12 @@ public class RestituicaoDecimoTerceiro {
 
         /**Variáveis de controle.*/
 
-        int vDiasDeFerias = 0;
-        int vDiasAdquiridos = 0;
-        int vDiasVendidos = 0;
-        int vNumeroDeMeses = 0;
-        int vControleMeses = 0;
         int vDiasSubperiodo = 0;
 
         /**Variáveis auxiliares.*/
 
-        float vIncidenciaFerias = 0;
-        float vIncidenciaTerco = 0;
-        float vTerco = 0;
-        float vFerias = 0;
+        float vValor = 0;
+        float vIncidencia = 0;
 
         /**Checagem dos parâmetros passados.*/
 /*
@@ -207,8 +189,8 @@ public class RestituicaoDecimoTerceiro {
 
         /**Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.*/
 
-        vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
-        vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
+        vMes = pInicioContagem.toLocalDate().getMonthValue();
+        vAno = pInicioContagem.toLocalDate().getYear();
 
         /**Início da contabilização de férias do período.*/
 
@@ -220,10 +202,8 @@ public class RestituicaoDecimoTerceiro {
 
             /**Reset das variáveis que contém valores parciais.*/
 
-            vValorFerias = 0;
-            vValorTercoConstitucional = 0;
-            vValorIncidenciaFerias = 0;
-            vValorIncidenciaTerco = 0;
+            vValorDecimoTerceiro = 0;
+            vValorIncidencia = 0;
 
             /**Seleciona as funções que o terceirizado ocupou no mês avaliado.*/
 
@@ -242,8 +222,7 @@ public class RestituicaoDecimoTerceiro {
                     /**Define o valor da remuneração da função e dos percentuais do contrato.*/
 
                     vRemuneracao = remuneracao.RetornaRemuneracaoPeriodo(tuplas.get(i).getCodFuncaoContrato(), vMes, vAno, 1, 2);
-                    vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vMes, vAno, 1, 2);
-                    vPercentualTercoConstitucional = percentual.RetornaPercentualContrato(vCodContrato, 2, vMes, vAno, 1, 2);
+                    vPercentualDecimoTerceiro = percentual.RetornaPercentualContrato(vCodContrato, 3, vMes, vAno, 1, 2);
                     vPercentualIncidencia = percentual.RetornaPercentualContrato(vCodContrato, 7, vMes, vAno, 1, 2);
 
                     if (vRemuneracao == 0) {
@@ -254,29 +233,23 @@ public class RestituicaoDecimoTerceiro {
 
                     /**Cálculo do valor integral correspondente ao mês avaliado.*/
 
-                    vValorFerias = (vRemuneracao * (vPercentualFerias/100));
-                    vValorTercoConstitucional = (vRemuneracao * (vPercentualTercoConstitucional/100));
-                    vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
-                    vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
+                    vValorDecimoTerceiro = (vRemuneracao * (vPercentualDecimoTerceiro/100));
+                    vValorIncidencia = (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
                     /**o caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
                      situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
 
                     if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                        vValorFerias = (vValorFerias/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
-                        vValorTercoConstitucional = (vValorTercoConstitucional/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
-                        vValorIncidenciaFerias = (vValorIncidenciaFerias/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
-                        vValorIncidenciaTerco = (vValorIncidenciaTerco/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
+                        vValorDecimoTerceiro = (vValorDecimoTerceiro/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
+                        vValorIncidencia = (vValorIncidencia/30) * periodo.DiasTrabalhadosMes(tuplas.get(i).getCod(), vMes, vAno);
 
                     }
 
                     /**Contabilização do valor calculado.*/
 
-                    vTotalFerias = vTotalFerias + vValorFerias;
-                    vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
-                    vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
-                    vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
+                    vTotalDecimoTerceiro = vTotalDecimoTerceiro + vValorDecimoTerceiro;
+                    vTotalIncidencia = vTotalIncidencia + vValorIncidencia;
 
                 }
 
@@ -402,35 +375,28 @@ public class RestituicaoDecimoTerceiro {
 
                         /**Definição dos percentuais do subperíodo.*/
 
-                        vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vDataInicio, vDataFim, 2);
-                        vPercentualTercoConstitucional = percentual.RetornaPercentualContrato(vCodContrato, 2, vDataInicio, vDataFim, 2);
+                        vPercentualDecimoTerceiro = percentual.RetornaPercentualContrato(vCodContrato, 3, vDataInicio, vDataFim, 2);
                         vPercentualIncidencia = percentual.RetornaPercentualContrato(vCodContrato, 7, vDataInicio, vDataFim, 2);
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
-                        vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
-                        vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
+                        vValorDecimoTerceiro = ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
+                        vValorIncidencia = (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
                         /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
                          situação similar para a retenção proporcional por menos de 30 dias trabalhados.*/
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorDecimoTerceiro = (vValorDecimoTerceiro/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidencia = (vValorIncidencia/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
                         /**Contabilização do valor calculado.*/
 
-                        vTotalFerias = vTotalFerias + vValorFerias;
-                        vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
-                        vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
-                        vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
+                        vTotalDecimoTerceiro = vTotalDecimoTerceiro + vValorDecimoTerceiro;
+                        vTotalIncidencia = vTotalIncidencia + vValorIncidencia;
 
                         vDataInicio = Date.valueOf(vDataFim.toLocalDate().plusDays(1));
 
@@ -444,8 +410,7 @@ public class RestituicaoDecimoTerceiro {
 
                     /**Definição dos percentuais, que não se alteram no período.*/
 
-                    vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vMes, vAno, 1, 2);
-                    vPercentualTercoConstitucional = percentual.RetornaPercentualContrato(vCodContrato, 2, vMes, vAno, 1, 2);
+                    vPercentualDecimoTerceiro = percentual.RetornaPercentualContrato(vCodContrato, 3, vMes, vAno, 1, 2);
                     vPercentualIncidencia = percentual.RetornaPercentualContrato(vCodContrato, 7, vMes, vAno, 1, 2);
 
                     /**Definição da data de início como sendo a data referência (primeiro dia do mês).*/
@@ -553,29 +518,23 @@ public class RestituicaoDecimoTerceiro {
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
-                        vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
-                        vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
+                        vValorDecimoTerceiro = ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
+                        vValorIncidencia = (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
                         /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
                          situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorDecimoTerceiro = (vValorDecimoTerceiro/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidencia = (vValorIncidencia/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
                         /**Contabilização do valor calculado.*/
 
-                        vTotalFerias = vTotalFerias + vValorFerias;
-                        vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
-                        vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
-                        vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
+                        vTotalDecimoTerceiro = vTotalDecimoTerceiro + vValorDecimoTerceiro;
+                        vTotalIncidencia = vTotalIncidencia + vValorIncidencia;
 
                         vDataInicio = Date.valueOf(vDataFim.toLocalDate().plusDays(1));
 
@@ -728,35 +687,28 @@ public class RestituicaoDecimoTerceiro {
 
                         /**Definição dos percentuais do subperíodo.*/
 
-                        vPercentualFerias = percentual.RetornaPercentualContrato(vCodContrato, 1, vDataInicio, vDataFim, 2);
-                        vPercentualTercoConstitucional = percentual.RetornaPercentualContrato(vCodContrato, 2, vDataInicio, vDataFim, 2);
+                        vPercentualDecimoTerceiro = percentual.RetornaPercentualContrato(vCodContrato, 3, vDataInicio, vDataFim, 2);
                         vPercentualIncidencia = percentual.RetornaPercentualContrato(vCodContrato, 7, vDataInicio, vDataFim, 2);
 
                         /**Calculo da porção correspondente ao subperíodo.*/
 
-                        vValorFerias = ((vRemuneracao * (vPercentualFerias/100))/30) * vDiasSubperiodo;
-                        vValorTercoConstitucional = ((vRemuneracao * (vPercentualTercoConstitucional/100))/30) * vDiasSubperiodo;
-                        vValorIncidenciaFerias = (vValorFerias * (vPercentualIncidencia/100));
-                        vValorIncidenciaTerco = (vValorTercoConstitucional * (vPercentualIncidencia/100));
+                        vValorDecimoTerceiro = ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
+                        vValorIncidencia = (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
                         /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo,
                          situação similar para a retenção proporcional por menos de 14 dias trabalhados.*/
 
                         if (retencao.ExisteMudancaFuncao(pCodTerceirizadoContrato, vMes, vAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(i).getCod(), vMes, vAno)) {
 
-                            vValorFerias = (vValorFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorTercoConstitucional = (vValorTercoConstitucional/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaFerias = (vValorIncidenciaFerias/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
-                            vValorIncidenciaTerco = (vValorIncidenciaTerco/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorDecimoTerceiro = (vValorDecimoTerceiro/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
+                            vValorIncidencia = (vValorIncidencia/vDiasSubperiodo) * periodo.DiasTrabalhadosPeriodo(tuplas.get(i).getCod(), vDataInicio, vDataFim);
 
                         }
 
                         /**Contabilização do valor calculado.*/
 
-                        vTotalFerias = vTotalFerias + vValorFerias;
-                        vTotalTercoConstitucional = vTotalTercoConstitucional + vValorTercoConstitucional;
-                        vTotalIncidenciaFerias = vTotalIncidenciaFerias + vValorIncidenciaFerias;
-                        vTotalIncidenciaTerco = vTotalIncidenciaTerco + vValorIncidenciaTerco;
+                        vTotalDecimoTerceiro = vTotalDecimoTerceiro + vValorDecimoTerceiro;
+                        vTotalIncidencia = vTotalIncidencia + vValorIncidencia;
 
                         vDataInicio = Date.valueOf(vDataFim.toLocalDate().plusDays(1));
 
@@ -779,37 +731,45 @@ public class RestituicaoDecimoTerceiro {
 
             }
 
-        } while (vMes != pFimPeriodoAquisitivo.toLocalDate().getMonthValue() && vAno != pFimPeriodoAquisitivo.toLocalDate().getYear());
+        } while (vMes != pFimContagem.toLocalDate().getMonthValue() && vAno != pFimContagem.toLocalDate().getYear());
 
-        System.out.println(vTotalFerias);
-        System.out.println(vTotalTercoConstitucional);
-        System.out.println(vTotalIncidenciaFerias);
-        System.out.println(vTotalIncidenciaTerco);
+        System.out.println(vTotalDecimoTerceiro);
+        System.out.println(vTotalIncidencia);
 
-        /**Atribuição de valor a vDiasVendidos*/
+        /**No caso de segunda parcela a movimentação gera resíduos referentes ao
+         valor do décimo terceiro que é afetado pelos descontos (IRPF, INSS e etc.)*/
 
-        if (pDiasVendidos == 0) {
+        if (pNumeroParcela == 1 || pNumeroParcela == 2) {
 
-            vDiasVendidos = 0;
+            vTotalDecimoTerceiro = vTotalDecimoTerceiro/2;
 
-        } else {
-
-            vDiasVendidos = pDiasVendidos;
+            vTotalIncidencia = vTotalIncidencia/2;
 
         }
 
-        /**Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_ferias.*/
+        /**No caso de segunda parcela a movimentação gera resíduos referentes ao
+         valor do décimo terceiro que é afetado pelos descontos (IRPF, INSS e etc.)*/
+
+        if ((pNumeroParcela == 2 || pNumeroParcela == 0) && (pTipoRestituicao == "MOVIMENTAÇÃO")) {
+
+            vValor = vTotalDecimoTerceiro - pValorMovimentado;
+
+            vTotalDecimoTerceiro = pValorMovimentado;
+
+        }
+
+        /**Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_decimo_terceiro.*/
 
         try {
 
-            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_FERIAS')");
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_DECIMO_TERCEIRO')");
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
-                vCodTbRestituicaoFerias = resultSet.getInt(1);
-                vCodTbRestituicaoFerias = vCodTbRestituicaoFerias + 1;
+                vCodTbRestituicao13 = resultSet.getInt(1);
+                vCodTbRestituicao13 = vCodTbRestituicao13 + 1;
 
             }
 
@@ -819,41 +779,13 @@ public class RestituicaoDecimoTerceiro {
 
         }
 
-        /**Dias de férias usufruídos para o cálculo proporcional.*/
-
-        vDiasDeFerias = (int)(ChronoUnit.DAYS.between(pInicioFerias.toLocalDate(), pFimFerias.toLocalDate()) + 1 + vDiasVendidos);
-
-        /**Dias de férias adquiridos no período aquisitivo.*/
-
-        vDiasAdquiridos = 0;
-
-        /**Definição do montante proporcional a ser restituído*/
-
-        vTotalFerias = (vTotalFerias/vDiasAdquiridos) * vDiasDeFerias;
-        vTotalIncidenciaFerias = (vTotalIncidenciaFerias/vDiasAdquiridos) * vDiasDeFerias;
-        vTotalIncidenciaTerco = (vTotalIncidenciaTerco/vDiasAdquiridos) * vDiasDeFerias;
-
-        /**Cancelamento do terço constitucional para parcela diferente da única ou primeira.*/
-
-
         /**Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
         if (pTipoRestituicao == "MOVIMENTAÇÃO") {
 
-            vIncidenciaFerias = vTotalIncidenciaFerias;
-            vIncidenciaTerco = vTotalIncidenciaTerco;
+            vIncidencia = vTotalIncidencia;
 
-            vTerco = vTotalTercoConstitucional;
-            vFerias = vTotalFerias;
-
-            vTotalTercoConstitucional = pValorMovimentado/4;
-            vTotalFerias = pValorMovimentado - vTotalTercoConstitucional;
-
-            vTerco = vTerco - vTotalTercoConstitucional;
-            vFerias = vFerias - vTotalFerias;
-
-            vTotalIncidenciaFerias = 0;
-            vTotalIncidenciaTerco = 0;
+            vIncidencia = 0;
 
         }
 
@@ -861,44 +793,32 @@ public class RestituicaoDecimoTerceiro {
 
         try {
 
-            String sql = "INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
-                    " COD_TERCEIRIZADO_CONTRATO," +
-                    " COD_TIPO_RESTITUICAO," +
-                    " DATA_INICIO_PERIODO_AQUISITIVO," +
-                    " DATA_FIM_PERIODO_AQUISITIVO," +
-                    " DATA_INICIO_USUFRUTO," +
-                    " DATA_FIM_USUFRUTO," +
-                    " VALOR_FERIAS," +
-                    " VALOR_TERCO_CONSTITUCIONAL," +
-                    " INCID_SUBMOD_4_1_FERIAS," +
-                    " INCID_SUBMOD_4_1_TERCO," +
-                    " SE_PROPORCIONAL," +
-                    " DIAS_VENDIDOS," +
-                    " DATA_REFERENCIA," +
-                    " LOGIN_ATUALIZACAO," +
-                    " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP)";
+            String sql = "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
+                                                                    " COD_TERCEIRIZADO_CONTRATO," +
+                                                                    " COD_TIPO_RESTITUICAO," +
+                                                                    " PARCELA," +
+                                                                    " DATA_INICIO_CONTAGEM," +
+                                                                    " VALOR," +
+                                                                    " INCIDENCIA_SUBMODULO_4_1," +
+                                                                    " DATA_REFERENCIA," +
+                                                                    " LOGIN_ATUALIZACAO," +
+                                                                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP)";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, vCodTbRestituicaoFerias);
+            preparedStatement.setInt(1, vCodTbRestituicao13);
             preparedStatement.setInt(2, pCodTerceirizadoContrato);
             preparedStatement.setInt(3, vCodTipoRestituicao);
-            preparedStatement.setDate(4, pInicioPeriodoAquisitivo);
-            preparedStatement.setDate(5, pFimPeriodoAquisitivo);
-            preparedStatement.setDate(6, pInicioFerias);
-            preparedStatement.setDate(7, pFimFerias);
-            preparedStatement.setFloat(8, vTotalFerias);
-            preparedStatement.setFloat(9, vTotalTercoConstitucional);
-            preparedStatement.setFloat(10, vTotalIncidenciaFerias);
-            preparedStatement.setFloat(11, vTotalIncidenciaTerco);
-            preparedStatement.setString(12, String.valueOf(pProporcional));
-            preparedStatement.setInt(13, pDiasVendidos);
+            preparedStatement.setInt(4, pNumeroParcela);
+            preparedStatement.setDate(5, pInicioContagem);
+            preparedStatement.setFloat(6, vTotalDecimoTerceiro);
+            preparedStatement.setFloat(7, vTotalIncidencia);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
 
-            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
+            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13° no banco de dados!");
 
         }
 
@@ -906,30 +826,26 @@ public class RestituicaoDecimoTerceiro {
 
             try {
 
-                String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
-                        " VALOR_FERIAS," +
-                        " VALOR_TERCO," +
-                        " INCID_SUBMOD_4_1_FERIAS," +
-                        " INCID_SUBMOD_4_1_TERCO," +
-                        " RESTITUIDO," +
-                        " LOGIN_ATUALIZACAO," +
-                        " DATA_ATUALIZACAO)" +
-                        " VALUES (?, ?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
+                String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
+                                                                   " VALOR," +
+                                                                   " INCIDENCIA_SUBMODULO_4_1," +
+                                                                   " RESTITUIDO," +
+                                                                   " LOGIN_ATUALIZACAO," +
+                                                                   " DATA_ATUALIZACAO)" +
+                              " VALUES (?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
 
                 preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
-                preparedStatement.setFloat(2, vFerias);
-                preparedStatement.setFloat(3, vTerco);
-                preparedStatement.setFloat(4, vIncidenciaFerias);
-                preparedStatement.setFloat(5, vIncidenciaTerco);
-                preparedStatement.setString(6, String.valueOf("N"));
+                preparedStatement.setInt(1, vCodTbRestituicao13);
+                preparedStatement.setFloat(2, vValor);
+                preparedStatement.setFloat(3, vIncidencia);
+                preparedStatement.setString(4, String.valueOf("N"));
 
                 preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
 
-                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
+                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13º no banco de dados!");
 
             }
 

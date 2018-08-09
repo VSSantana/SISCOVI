@@ -9,7 +9,7 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 
-public class TesteRestituicaoFerias {
+public class TesteRestituicaoDecimoTerceiro {
     public static void main(String[] args){
 
         String result = null;

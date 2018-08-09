@@ -39,7 +39,7 @@ BEGIN
 
     --Ajusta a data fim para o final do período aquisitivo no mês correspondente.
 
-    IF ((EXTRACT(MONTH FROM vDataFim) = EXTRACT(MONTH FROM pDataFim)) AND (EXTRACT(YEAR FROM vDataFim) = EXTRACT(YEAR FROM pDataFim))) THEN
+    IF ((EXTRACT(MONTH FROM vDataFim) = EXTRACT(MONTH FROM pDataFim)) AND (EXTRACT(YEAR FROM vDataFim) = EXTRACT(YEAR FROM pDataFim)) AND (EXTRACT(DAY FROM pDataFim) != 31)) THEN
 
       vDataFim := pDataFim;
 
@@ -47,9 +47,33 @@ BEGIN
 
     vContagemDeDias := vContagemDeDias + ((vDataFim - vDataInicio) + 1);
 
+    --Para o mês de fevereiro se equaliza o número de dias contados.
+
+    IF (EXTRACT(MONTH FROM vDataFim) = 2) THEN
+  
+      --Se o mês for de 28 dias então soma-se 2 a contagem.
+
+      IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+        vContagemDeDias := vContagemDeDias + 2;
+
+      ELSE
+
+        --Se o mês não for de 28 dias ele é de 29.
+        
+        IF (EXTRACT(DAY FROM vDataFim) = 29) THEN
+     
+          vContagemDeDias := vContagemDeDias + 1;
+
+        END IF;
+
+      END IF;
+
+    END IF;
+
     vDataInicio := LAST_DAY(vDataInicio) + 1;    
 
-    EXIT WHEN (vDataFim = pDataFim);
+    EXIT WHEN ((EXTRACT(MONTH FROM vDataFim) = EXTRACT(MONTH FROM pDataFim)) AND (EXTRACT(YEAR FROM vDataFim) = EXTRACT(YEAR FROM pDataFim)));
   
   END LOOP;
 

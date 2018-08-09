@@ -120,4 +120,55 @@ public class Ferias {
 
     }
 
+    /**
+     * Função que retorna o número de parcelas de férias
+     * concedidas a um funcionário em um determinado
+     * contrato em um período aquisitivo específico.
+     * período aquisitivo.
+     * @param pCodTerceirizadoContrato
+     * @param pDataInicio
+     * @param pDataFim
+     * @return int
+     */
+
+    public int ParcelasConcedidas (int pCodTerceirizadoContrato, Date pDataInicio, Date pDataFim) {
+
+        //Checked.
+
+        int vParcelasConcedidas = 0;
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT COUNT(cod)" +
+                                                                 " FROM tb_restituicao_ferias" +
+                                                                 " WHERE cod_terceirizado_contrato = ?" +
+                                                                   " AND data_inicio_periodo_aquisitivo = ?" +
+                                                                   " AND data_fim_periodo_aquisitivo = ?");
+
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            preparedStatement.setDate(2, pDataFim);
+            preparedStatement.setDate(3, pDataFim);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vParcelasConcedidas = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+            throw new NullPointerException("Erro ao verificar parcelas de férias concedidas no período.");
+
+        }
+
+        return vParcelasConcedidas;
+
+    }
+
 }

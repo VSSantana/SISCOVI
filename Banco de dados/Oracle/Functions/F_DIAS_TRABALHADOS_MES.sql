@@ -117,29 +117,19 @@ BEGIN
 
   IF (EXTRACT(MONTH FROM vFimDoMes) = 2) THEN
   
-    --Caso tenha-se contado mais de de 27 dias.
+    --Se o mês for de 28 dias então soma-se 2 a contagem.
 
-    IF (vContagemDeDias >= 28) THEN
+    IF (EXTRACT(DAY FROM vFimDoMes) = 28) THEN
 
-      --Se o mês for de 28 dias então soma-se 2 a contagem.
+      vContagemDeDias := vContagemDeDias + 2;
 
-      IF (EXTRACT(DAY FROM vFimDoMes) = 28) THEN
+    ELSE
 
-        vContagemDeDias := vContagemDeDias + 2;
-
-      ELSE
-
-        --Se o mês não for de 28 dias ele é de 29.
-        --Caso tenham-se contados 29 dias no mês de 
-        --29 então soma-se 1a contagem.
-
-        IF (vContagemDeDias = 29) THEN
+      --Se o mês não for de 28 dias ele é de 29.
+      --Caso tenham-se contados 29 dias no mês de 
+      --29 então soma-se 1a contagem.
       
-          vContagemDeDias := vContagemDeDias + 1;
-
-        END IF;
-
-      END IF;
+        vContagemDeDias := vContagemDeDias + 1;
 
     END IF;
 

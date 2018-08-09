@@ -54,11 +54,8 @@ create or replace procedure "P_CALCULA_RESTITUICAO_13" (pCodTerceirizadoContrato
 
   --Variáveis de controle.
   
-  vDiasDeFerias NUMBER := 0;
-  vDiasAdquiridos NUMBER := 0;
-  vDiasVendidos NUMBER := 0;
   vNumeroDeMeses NUMBER := 0;
-  vControleMeses NUMBER := 0;
+  vDiasSubperiodo NUMBER := 0;
 
   --Variáveis auxiliares.
 
@@ -238,6 +235,28 @@ BEGIN
 
           vDataFim := c3.data;
 
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
+
           --Definição dos percentuais do subperíodo.
   
           vPercentualDecimoTerceiro := F_RET_PERCENTUAL_CONTRATO(vCodContrato, 3, vDataInicio, vDataFim, 2);
@@ -245,7 +264,7 @@ BEGIN
                   
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
           vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
@@ -253,8 +272,8 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorDecimoTerceiro := (vValorDecimoTerceiro/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidencia := (vValorIncidencia/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorDecimoTerceiro := (vValorDecimoTerceiro/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidencia := (vValorIncidencia/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -316,6 +335,28 @@ BEGIN
 
           vDataFim := c3.data;
 
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
+
           --Define a remuneração do cargo, que não se altera no período.
             
           vRemuneracao := F_RET_REMUNERACAO_PERIODO(f.cod_funcao_contrato, vDataInicio, vDataFim, 2);
@@ -328,7 +369,7 @@ BEGIN
 
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
           vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
@@ -336,8 +377,8 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorDecimoTerceiro := (vValorDecimoTerceiro/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidencia := (vValorIncidencia/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorDecimoTerceiro := (vValorDecimoTerceiro/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidencia := (vValorIncidencia/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
@@ -428,6 +469,28 @@ BEGIN
 
           vDataFim := c3.data;
 
+          --Definição dos dias no subperíodo.
+
+          vDiasSubperiodo := ((vDataFim - vDataInicio) + 1);
+
+          IF (vMes = 2) THEN
+
+            IF (EXTRACT(DAY FROM vDataFim) = EXTRACT(DAY FROM LAST_DAY(vDataFim))) THEN
+
+              IF (EXTRACT(DAY FROM vDataFim) = 28) THEN
+
+                vDiasSubperiodo := vDiasSubperiodo + 2;
+
+              ELSE
+
+                vDiasSubperiodo := vDiasSubperiodo + 1;
+
+              END IF;
+
+            END IF;
+
+          END IF;
+
           --Define a remuneração da função no subperíodo.
             
           vRemuneracao := F_RET_REMUNERACAO_PERIODO(f.cod_funcao_contrato, vDataInicio, vDataFim, 2);
@@ -445,7 +508,7 @@ BEGIN
 
           --Calculo da porção correspondente ao subperíodo.
  
-          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * ((vDataFim - vDataInicio) + 1);
+          vValorDecimoTerceiro := ((vRemuneracao * (vPercentualDecimoTerceiro/100))/30) * vDiasSubperiodo;
           vValorIncidencia := (vValorDecimoTerceiro * (vPercentualIncidencia/100));
 
           --No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, 
@@ -453,8 +516,8 @@ BEGIN
 
           IF (F_EXISTE_MUDANCA_FUNCAO(pCodTerceirizadoContrato, vMes, vAno) = TRUE OR F_FUNC_RETENCAO_INTEGRAL(f.cod, vMes, vAno) = FALSE) THEN
 
-            vValorDecimoTerceiro := (vValorDecimoTerceiro/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
-            vValorIncidencia := (vValorIncidencia/((vDataFim - vDataInicio) + 1)) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorDecimoTerceiro := (vValorDecimoTerceiro/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
+            vValorIncidencia := (vValorIncidencia/vDiasSubperiodo) * F_DIAS_TRABALHADOS_PERIOODO(f.cod, vDataInicio, vDataFim);
             
           END IF;
 
