@@ -192,13 +192,13 @@ public class RestituicaoDecimoTerceiro {
         vMes = pInicioContagem.toLocalDate().getMonthValue();
         vAno = pInicioContagem.toLocalDate().getYear();
 
+        /**Definição da data referência (sempre o primeiro dia do mês).*/
+
+        vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
+
         /**Início da contabilização de férias do período.*/
 
         do{
-
-            /**Definição da data referência (sempre o primeiro dia do mês).*/
-
-            vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
 
             /**Reset das variáveis que contém valores parciais.*/
 
@@ -731,10 +731,12 @@ public class RestituicaoDecimoTerceiro {
 
             }
 
-        } while (vMes != pFimContagem.toLocalDate().getMonthValue() && vAno != pFimContagem.toLocalDate().getYear());
+            vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
 
-        System.out.println(vTotalDecimoTerceiro);
-        System.out.println(vTotalIncidencia);
+        } while (vDataReferencia.before(pFimContagem) || vDataReferencia.equals(pFimContagem));
+
+        //System.out.println(vTotalDecimoTerceiro);
+        //System.out.println(vTotalIncidencia);
 
         /**No caso de segunda parcela a movimentação gera resíduos referentes ao
          valor do décimo terceiro que é afetado pelos descontos (IRPF, INSS e etc.)*/
@@ -793,7 +795,8 @@ public class RestituicaoDecimoTerceiro {
 
         try {
 
-            String sql = "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
+            String sql = "SET IDENTITY_INSERT tb_restituicao_decimo_terceiro ON; " +
+                         "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
                                                                     " COD_TERCEIRIZADO_CONTRATO," +
                                                                     " COD_TIPO_RESTITUICAO," +
                                                                     " PARCELA," +
@@ -803,7 +806,8 @@ public class RestituicaoDecimoTerceiro {
                                                                     " DATA_REFERENCIA," +
                                                                     " LOGIN_ATUALIZACAO," +
                                                                     " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP)";
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT tb_restituicao_decimo_terceiro OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -845,6 +849,8 @@ public class RestituicaoDecimoTerceiro {
 
             } catch (SQLException e) {
 
+                e.printStackTrace();
+
                 throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13º no banco de dados!");
 
             }
@@ -862,16 +868,16 @@ public class RestituicaoDecimoTerceiro {
         ArrayList<CodFuncaoContratoECodFuncaoTerceirizadoModel> tuplas = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT ft.cod_funcao_contrato, " +
-                "ft.cod" +
-                " FROM tb_funcao_terceirizado ft" +
-                " WHERE ft.cod_terceirizado_contrato = ?" +
-                " AND ((((CONVERT(date, CONVERT(varchar, year(ft.data_inicio)) + '-' + CONVERT(varchar, month(ft.data_inicio)) + '-01')) <= ?)" +
-                " AND" +
-                " (ft.data_fim >= ?))" +
-                " OR" +
-                " (((CONVERT(date, CONVERT(varchar, year(ft.data_inicio)) + '-' + CONVERT(varchar, month(ft.data_inicio)) + '-01')) <= ?) " +
-                "AND" +
-                " (ft.data_fim IS NULL)))")){
+                                                                                           "ft.cod" +
+                                                                                    " FROM tb_funcao_terceirizado ft" +
+                                                                                    " WHERE ft.cod_terceirizado_contrato = ?" +
+                                                                                      " AND ((((CONVERT(date, CONVERT(varchar, year(ft.data_inicio)) + '-' + CONVERT(varchar, month(ft.data_inicio)) + '-01')) <= ?)" +
+                                                                                            " AND" +
+                                                                                           " (ft.data_fim >= ?))" +
+                                                                                            " OR" +
+                                                                                           " (((CONVERT(date, CONVERT(varchar, year(ft.data_inicio)) + '-' + CONVERT(varchar, month(ft.data_inicio)) + '-01')) <= ?) " +
+                                                                                            "AND" +
+                                                                                           " (ft.data_fim IS NULL)))")){
 
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             preparedStatement.setDate(2, pDataReferencia);

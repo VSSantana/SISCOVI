@@ -6,6 +6,7 @@ IS
 
   vDataInicio DATE;
   vDataFim DATE;
+  vDiasTrabalhados NUMBER := 0;
 
 BEGIN
 
@@ -28,7 +29,7 @@ BEGIN
   
     IF (vDataInicio < pDataInicio) THEN
       
-      RETURN ((pDataFim - pDataInicio) + 1);
+      vDiasTrabalhados := ((pDataFim - pDataInicio) + 1);
       
     END IF;
     
@@ -37,7 +38,7 @@ BEGIN
   
     IF (vDataInicio >= pDataInicio AND vDataInicio <= pDataFim) THEN
   
-      RETURN (pDataFim - vDataInicio) + 1;
+      vDiasTrabalhados := (pDataFim - vDataInicio) + 1;
     
     END IF;
  
@@ -53,7 +54,7 @@ BEGIN
   
     IF (vDataInicio < pDataInicio AND vDataFim > pDataFim) THEN
       
-      RETURN ((pDataFim - pDataInicio) + 1);
+      vDiasTrabalhados := ((pDataFim - pDataInicio) + 1);
       
     END IF;  
     
@@ -65,7 +66,7 @@ BEGIN
         AND vDataInicio <= pDataFim
         AND vDataFim > pDataFim) THEN
     
-      RETURN (pDataFim - vDataInicio) + 1;
+      vDiasTrabalhados := (pDataFim - vDataInicio) + 1;
     
     END IF;
     
@@ -77,7 +78,7 @@ BEGIN
         AND vDataFim >= pDataInicio
         AND vDataFim <= pDataFim) THEN
   
-      RETURN (vDataFim - vDataInicio) + 1;
+      vDiasTrabalhados := (vDataFim - vDataInicio) + 1;
     
     END IF;
     
@@ -89,11 +90,35 @@ BEGIN
         AND vDataFim >= pDataInicio
         AND vDataFim <= pDataFim) THEN
     
-      RETURN (vDataFim - pDataInicio) + 1;
+      vDiasTrabalhados := (vDataFim - pDataInicio) + 1;
     
     END IF;
  
   END IF;
+
+  --Para o mês de fevereiro se equaliza o número de dias contados.
+
+  IF (EXTRACT(MONTH FROM pDataFim) = 2) THEN
+  
+    --Se o mês for de 28 dias então soma-se 2 a contagem.
+
+    IF (EXTRACT(DAY FROM pDataFim) = 28) THEN
+
+      vDiasTrabalhados := vDiasTrabalhados + 2;
+
+    ELSE
+
+      --Se o mês não for de 28 dias ele é de 29.
+      --Caso tenham-se contados 29 dias no mês de 
+      --29 então soma-se 1a contagem.
+      
+        vDiasTrabalhados := vDiasTrabalhados + 1;
+
+    END IF;
+
+  END IF;
+
+  RETURN vDiasTrabalhados;
   
   EXCEPTION WHEN OTHERS THEN
 

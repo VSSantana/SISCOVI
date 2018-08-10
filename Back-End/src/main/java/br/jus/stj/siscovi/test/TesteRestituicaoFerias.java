@@ -19,18 +19,27 @@ public class TesteRestituicaoFerias {
         int meses = 0;
         boolean resultado;
 
+        float resultadoFloat = 0;
+
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         Retencao retencao = new Retencao(connectSQLServer.dbConnect());
         Periodos periodo = new Periodos(connectSQLServer.dbConnect());
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
+        Remuneracao remuneracao = new Remuneracao(connectSQLServer.dbConnect());
+
+
 
         //dias = ferias.DiasPeriodoAquisitivo(Date.valueOf("2016-01-01"),Date.valueOf("2016-07-25"));
         //resultado = retencao.FuncaoRetencaoIntegral(53, 10, 2016);
 
         //System.out.printf("O valor da ação é %.2f %n", dias);
 
-        restituicaoFerias.CalculaRestituicaoFerias(417, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
+        //resultadoFloat = remuneracao.RetornaRemuneracaoPeriodo(145, 10, 2016, 1, 2);
+
+        //System.out.println(resultadoFloat);
+
+        restituicaoFerias.CalculaRestituicaoFerias(729, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
 /*
         try {
 

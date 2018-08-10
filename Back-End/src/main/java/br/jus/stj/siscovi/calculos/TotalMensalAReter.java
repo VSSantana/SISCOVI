@@ -10,20 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotalMensalAReter {
+
     private Connection connection;
-    public TotalMensalAReter(Connection connection) {
+
+    public TotalMensalAReter (Connection connection) {
+
         this.connection = connection;
+
     }
 
     /**
      * Método que calcula o total mensal a reter em um determinado mês para
      * um determinado contrato.
-     *
      * @param pCodContrato
      * @param pMes
      * @param pAno
      */
-    public void CalculaTotalMensal(int pCodContrato, int pMes, int pAno) {
+
+    public void CalculaTotalMensal (int pCodContrato, int pMes, int pAno) {
+
+        //Checked.
+
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Retencao retencao = new Retencao(connection);
@@ -31,20 +38,25 @@ public class TotalMensalAReter {
         Periodos periodo = new Periodos(connection);
         Remuneracao remuneracao = new Remuneracao(connection);
 
-        /* Variáveis totalizadoras de valores.*/
+        /*Variáveis totalizadoras de valores.*/
+
         float vTotalFerias = 0;
         float vTotalTercoConstitucional = 0;
         float vTotalDecimoTerceiro = 0;
         float vTotalIncidencia = 0;
         float vTotalIndenizacao = 0;
         float vTotal = 0;
-        /*--Variáveis de valores parciais.*/
+
+        /*Variáveis de valores parciais.*/
+
         float vValorFerias = 0;
         float vValorTercoConstitucional = 0;
         float vValorDecimoTerceiro = 0;
         float vValorIncidencia = 0;
         float vValorIndenizacao = 0 ;
-        /*--Variáveis de percentuais.*/
+
+        /*Variáveis de percentuais.*/
+
         float vPercentualFerias = 0;
         float vPercentualTercoConstitucional = 0;
         float vPercentualDecimoTerceiro = 0;
@@ -52,63 +64,85 @@ public class TotalMensalAReter {
         float vPercentualIndenizacao = 0;
         float vPercentualPenalidadeFGTS = 0;
         float vPercentualMultaFGTS = 0;
-        /*--Variável da remuneração da função do contrato.*/
+
+        /*Variável da remuneração da função do contrato.*/
+
         float vRemuneracao = 0;
-        float vRemuneracao2 = 0;
-        /*--Variável para a verificação de existência da cálculos realizados.*/
+
+        /*Variável para a verificação de existência da cálculos realizados.*/
+
         int vExisteCalculo = 0;
-        /*--Variáveis de datas.*/
+
+        /*Variáveis de datas.*/
+
         Date vDataReferencia = Date.valueOf(pAno + "-" + pMes + "-01");
-        Date vDataInicioConvencao = null;
-        Date vDataFimConvencao = null;
-        Date vDataInicioPercentual = null;
-        Date vDataFimPercentual = null;
-        Date vDataFimPercentualEstatico = null;
-        Date vDataFimMes = Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth()));
-        Date vDataRetroatividadeConvencao = null;
-        Date vFimRetroatividadeConvencao = null;
-        Date vDataRetroatividadePercentual = null;
-        Date vFimRetroatividadePercentual = null;
-        Date vDataRetroatividadePercentual2 = null;
-        Date vDataFimRetroatividadePercentual2 = null;
         Date vDataInicio = null;
         Date vDataFim = null;
-        Date vDataCobranca = null;
         Date vDataInicioContrato = null;
         Date vDataFimContrato = null;
-        /*--Variável de checagem da existência do contrato.*/
+
+        /*Variável de checagem da existência do contrato.*/
+
         int vCheck = 0;
 
-        /* --Checagem da validade do contrato passado (existe). */
+        /**Checagem da validade do contrato passado (existe).*/
 
         try {
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_CONTRATO WHERE COD=?");
-            preparedStatement.setInt(1, pCodContrato);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                vCheck = resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new NullPointerException("Erro ao checar a existência do contrato.");
-        }
-        vDataFimMes = adaptaDataPara360(vDataFimMes);
 
-        /*--Se a data passada for anterior ao contrato ou posterior ao seu termino aborta-se.*/
-        try{
-            preparedStatement = connection.prepareStatement("SELECT MIN(EC.DATA_INICIO_VIGENCIA), MAX(EC.DATA_FIM_VIGENCIA) FROM tb_evento_contratual EC WHERE EC.COD_CONTRATO=?");
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_CONTRATO WHERE COD = ?");
             preparedStatement.setInt(1, pCodContrato);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+
+            if (resultSet.next()) {
+
+                vCheck = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            throw new NullPointerException("Erro ao checar a existência do contrato.");
+
+        }
+
+        if (vCheck == 0) {
+
+            throw new NullPointerException("O contrato passado não existe ou não foi encontrado.");
+
+        }
+
+        /**Se a data passada for anterior ao contrato ou posterior ao seu termino aborta-se.*/
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT MIN(EC.DATA_INICIO_VIGENCIA), MAX(EC.DATA_FIM_VIGENCIA) FROM tb_evento_contratual EC WHERE EC.COD_CONTRATO = ?");
+            preparedStatement.setInt(1, pCodContrato);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
                 vDataInicioContrato = resultSet.getDate(1);
                 vDataFimContrato = resultSet.getDate(2);
+
             }
-        }catch (SQLException sqle) {
+
+        } catch (SQLException sqle) {
+
             throw new NullPointerException("A data deve estar dentro do período de validade do contrato.");
+
         }
-        Date dataTemp = Date.valueOf(vDataFimContrato.toLocalDate().minusMonths(1).plusDays(1));
-        if(vDataReferencia.after(Date.valueOf(dataTemp.toLocalDate().withDayOfMonth(dataTemp.toLocalDate().lengthOfMonth())))) {
+
+        Date dataTemp = Date.valueOf(vDataInicioContrato.toLocalDate().minusMonths(1).plusDays(1));
+
+        if (vDataReferencia.after(Date.valueOf(dataTemp.toLocalDate().withDayOfMonth(dataTemp.toLocalDate().lengthOfMonth())))) {
+
             throw new NullPointerException("A data passada deve ser anterior a data de validade do contrato.");
+
         }
+
+
+
+
 
         /* Verificação da existência de cálculo para aquele mês e consequente deleção. */
 

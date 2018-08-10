@@ -211,13 +211,13 @@ public class RestituicaoFerias {
         vMes = pInicioPeriodoAquisitivo.toLocalDate().getMonthValue();
         vAno = pInicioPeriodoAquisitivo.toLocalDate().getYear();
 
+        /**Definição da data referência (sempre o primeiro dia do mês).*/
+
+        vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
+
         /**Início da contabilização de férias do período.*/
 
         do{
-
-            /**Definição da data referência (sempre o primeiro dia do mês).*/
-
-            vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
 
             /**Reset das variáveis que contém valores parciais.*/
 
@@ -780,7 +780,9 @@ public class RestituicaoFerias {
 
             }
 
-        } while (vMes != pFimPeriodoAquisitivo.toLocalDate().getMonthValue() && vAno != pFimPeriodoAquisitivo.toLocalDate().getYear());
+            vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
+
+        } while (vDataReferencia.before(pFimPeriodoAquisitivo) || vDataReferencia.equals(pFimPeriodoAquisitivo));
 
 //        System.out.println(vTotalFerias);
  //       System.out.println(vTotalTercoConstitucional);

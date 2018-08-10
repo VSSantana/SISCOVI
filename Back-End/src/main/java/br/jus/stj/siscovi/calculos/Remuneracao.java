@@ -81,29 +81,28 @@ public class Remuneracao {
 
         }
 
-        // Definição do percentual.
+        // Definição da remuneração.
         if (pOperacao == 1) {
 
             try {
 
-                preparedStatement = connection.prepareStatement("SELECT remuneracao," +
-                                                                           " cod," +
-                                                                           " data_aditamento" +
-                                                                     " FROM tb_remuneracao_fun_con" +
-                                                                     " WHERE COD_FUNCAO_CONTRATO = ?" +
-                                                                      " AND data_aditamento IS NOT NULL" +
-                                                                      " AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)" +
-                                                                      " AND ((((CAST(data_inicio AS DATE) <= CAST(? AS DATE))" +
-                                                                              " AND" +
-                                                                             " (CAST(data_inicio AS DATE) < EOMONTH(CAST(? AS DATE))))" +
-                                                                              " AND" +
-                                                                              " (((CAST(data_fim AS DATE) >= CAST(? AS DATE))" +
-                                                                                " AND" +
-                                                                                " (CAST(data_fim AS DATE) >= EOMONTH(CAST(? AS DATE))" +
-                                                                                " OR" +
-                                                                                 " data_fim IS NULL)))" +
-                                                                              " OR" +
-                                                                              " (MONTH(DATA_INICIO) = MONTH(?) AND YEAR(data_inicio) = YEAR(?))))");
+                preparedStatement = connection.prepareStatement("SELECT remuneracao,\n" +
+                        "       cod,\n" +
+                        "       data_aditamento\n" +
+                        " FROM tb_remuneracao_fun_con\n" +
+                        " WHERE cod_funcao_contrato = ?\n" +
+                        "   AND data_aditamento IS NOT NULL\n" +
+                        "   AND CAST(data_aditamento AS DATE) <= CAST(GETDATE() AS DATE)\n" +
+                        "   AND (((((CAST(data_inicio AS DATE) <= CAST(? AS DATE))\n" +
+                        "            AND\n" +
+                        "           (CAST(data_inicio AS DATE) <= CAST(EOMONTH(?) AS DATE))))\n" +
+                        "           AND(\n" +
+                        "               ((((CAST(data_fim AS DATE) >= CAST(? AS DATE))\n" +
+                        "               AND\n" +
+                        "               (CAST(data_fim AS DATE) >= CAST(EOMONTH(?) AS DATE)))\n" +
+                        "               OR data_fim IS NULL)))\n" +
+                        "           OR (MONTH(data_inicio) = MONTH(?) --Ou início no mês referência.\n" +
+                        "              AND YEAR(data_inicio) = YEAR(?))));");
 
                 preparedStatement.setInt(1, pCodFuncaoContrato);
                 preparedStatement.setDate(2, vDataReferencia);

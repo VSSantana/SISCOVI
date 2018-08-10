@@ -623,8 +623,8 @@ BEGIN
     WHERE UPPER(c.nome) = UPPER('ENCARREGADO MECÂNICO')
       AND cc.cod_contrato = @vCodContrato1;
   
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016', '04/08/2017', '05/08/2016', 8237.80, @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016', '04/08/2017', '05/08/2016', 3866.39, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016',  '05/08/2016', 8237.80, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016',  '05/08/2016', 4016.39, @vLoginAtualizacao, @vDataAtualizacao);
   
   SELECT @vCodCargoContrato1 = cc.cod
     FROM tb_funcao_contrato cc
@@ -638,8 +638,8 @@ BEGIN
     WHERE UPPER(c.nome) = UPPER('AUXILIAR DE REFRIGERAÇÃO')
       AND cc.cod_contrato = @vCodContrato1;
   
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016', '04/08/2017', '05/08/2016', 1601.34, @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016', '04/08/2017', '05/08/2016', 1049.10, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016',  '05/08/2016', 1676.43, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016',  '05/08/2016', 1098.30, @vLoginAtualizacao, @vDataAtualizacao);
   
   SELECT @vCodCargoContrato1 = cc.cod
     FROM tb_funcao_contrato cc
@@ -653,8 +653,8 @@ BEGIN
     WHERE UPPER(c.nome) = UPPER('AUXILIAR ADMINISTRATIVO')
       AND cc.cod_contrato = @vCodContrato1;
   
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016', '04/08/2017', '05/08/2016', 1884.74, @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016', '04/08/2017', '05/08/2016', 1340.91, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '05/08/2016',  '05/08/2016', 1973.40, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '05/08/2016',  '05/08/2016', 1403.79, @vLoginAtualizacao, @vDataAtualizacao);
   
   --Dados do contrato 2
 
@@ -670,8 +670,8 @@ BEGIN
     WHERE UPPER(c.nome) = UPPER('BOMBEIRO CIVIL BÁSICO (DIURNO 12X36)')
       AND cc.cod_contrato = @vCodContrato2;
   
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '01/02/2017', '31/01/2018', '01/02/2017', 8237.80, @vLoginAtualizacao, @vDataAtualizacao);
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '01/02/2017', '31/01/2018', '01/02/2017', 3866.39, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '01/02/2017',  '01/02/2017', 5379.99, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato2, '01/02/2017',  '01/02/2017', 3448.69, @vLoginAtualizacao, @vDataAtualizacao);
   
   SELECT @vCodCargoContrato1 = cc.cod
     FROM tb_funcao_contrato cc
@@ -679,7 +679,7 @@ BEGIN
     WHERE UPPER(c.nome) = UPPER('BOMBEIRO CIVIL BÁSICO (NOTURNO 12X36)')
       AND cc.cod_contrato = @vCodContrato2;
 
-  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio, data_fim, data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '01/02/2017', '31/01/2018', '01/02/2017', 3866.39, @vLoginAtualizacao, @vDataAtualizacao);
+  INSERT INTO tb_remuneracao_fun_con (cod_funcao_contrato, data_inicio,  data_aditamento, remuneracao, login_atualizacao, data_atualizacao) VALUES (@vCodCargoContrato1, '01/02/2017',  '01/02/2017', 3946.83, @vLoginAtualizacao, @vDataAtualizacao);
   
   --Insert em tb_terceirizado_contrato.
 
@@ -1008,5 +1008,3 @@ BEGIN
 END;
 
 GO
-
-
