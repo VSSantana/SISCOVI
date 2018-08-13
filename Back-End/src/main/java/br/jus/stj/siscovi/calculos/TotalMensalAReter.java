@@ -279,7 +279,7 @@ public class TotalMensalAReter {
 
                     /**No caso de mudança de função temos um recolhimento proporcional ao dias trabalhados no cargo, situação similar para a retenção proporcional.*/
 
-                    if (retencao.ExisteMudancaFuncao(tuplas.get(j).getCodTerceirizadoContrato(), pMes, pAno) && !retencao.FuncaoRetencaoIntegral(tuplas.get(j).getCod(), pMes, pAno)) {
+                    if (retencao.ExisteMudancaFuncao(tuplas.get(j).getCodTerceirizadoContrato(), pMes, pAno) || !retencao.FuncaoRetencaoIntegral(tuplas.get(j).getCod(), pMes, pAno)) {
 
                         vTotalFerias = (vTotalFerias/30) * periodo.DiasTrabalhadosMes(tuplas.get(j).getCod(), pMes, pAno);
                         vTotalTercoConstitucional = (vTotalTercoConstitucional/30) * periodo.DiasTrabalhadosMes(tuplas.get(j).getCod(), pMes, pAno);
@@ -309,7 +309,9 @@ public class TotalMensalAReter {
 
                     } catch (SQLException e) {
 
-                        throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de Total Mensal a Reter no banco de dados !");
+                        e.printStackTrace();
+
+                        throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de Total Mensal a Reter no banco de dados!");
 
                     }
 
@@ -869,12 +871,17 @@ public class TotalMensalAReter {
         }
         return vDataFimMes;
     }
-    ArrayList<CodTerceirizadoECodFuncaoTerceirizadoModel> selecionaTerceirizadosContratoFuncao(int pCodFuncaoContrato, Date pDataReferencia, int pMes, int pAno) {
+
+    ArrayList<CodTerceirizadoECodFuncaoTerceirizadoModel> selecionaTerceirizadosContratoFuncao (int pCodFuncaoContrato, Date pDataReferencia, int pMes, int pAno) {
+
         // Busca funcionários do contrato na respectiva função c1[i]
+
         ArrayList<CodTerceirizadoECodFuncaoTerceirizadoModel> tuplas = new ArrayList<>();
+
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT ft.cod_terceirizado_contrato, ft.cod FROM tb_funcao_terceirizado ft WHERE ft.cod_funcao_contrato = ?" +
                 " AND ((ft.data_inicio <= ?) OR (MONTH(ft.data_inicio) = ?) AND YEAR(ft.data_inicio) = ?) AND ((ft.data_fim IS NULL) OR (ft.data_fim >= EOMONTH(?))" +
-                " OR (MONTH(ft.data_fim) = ?) AND YEAR(ft.data_fim) = ?)")){
+                " OR (MONTH(ft.data_fim) = ?) AND YEAR(ft.data_fim) = ?)")) {
+
             preparedStatement.setInt(1, pCodFuncaoContrato);
             preparedStatement.setDate(2, pDataReferencia);
             preparedStatement.setInt(3, pMes);
@@ -882,16 +889,27 @@ public class TotalMensalAReter {
             preparedStatement.setDate(5, pDataReferencia);
             preparedStatement.setInt(6, pMes);
             preparedStatement.setInt(7, pAno);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 while (resultSet.next()) {
-                    CodTerceirizadoECodFuncaoTerceirizadoModel tupla = new CodTerceirizadoECodFuncaoTerceirizadoModel(resultSet.getInt("COD_TERCEIRIZADO_CONTRATO"), resultSet.getInt("COD"));
+
+                    CodTerceirizadoECodFuncaoTerceirizadoModel tupla = new CodTerceirizadoECodFuncaoTerceirizadoModel(resultSet.getInt("COD"), resultSet.getInt("COD_TERCEIRIZADO_CONTRATO"));
+
                     tuplas.add(tupla);
+
                 }
+
             }
-        }catch(SQLException slqe) {
+
+        } catch(SQLException slqe) {
+
             throw new NullPointerException("Não foram encontrardos funcionários para a função: " + pCodFuncaoContrato);
+
         }
+
         return tuplas;
+
     }
 
     /**
