@@ -359,6 +359,10 @@ public class RestituicaoFerias {
                         preparedStatement.setInt(13, vAno);
                         preparedStatement.setInt(14, vMes);
                         preparedStatement.setInt(15, vAno);
+                        preparedStatement.setInt(16, vMes);
+                        preparedStatement.setInt(17, vAno);
+                        preparedStatement.setInt(18, vMes);
+                        preparedStatement.setInt(19, vAno);
                         resultSet = preparedStatement.executeQuery();
 
                         while(resultSet.next()){
@@ -499,7 +503,14 @@ public class RestituicaoFerias {
                         preparedStatement.setInt(7, vMes);
                         preparedStatement.setInt(8, vAno);
                         preparedStatement.setInt(9, vMes);
-                        preparedStatement.setInt(10, vAno);
+                        preparedStatement.setInt(10, vMes);
+                        preparedStatement.setInt(11, vAno);
+                        preparedStatement.setInt(12, vMes);
+                        preparedStatement.setInt(13, vAno);
+                        preparedStatement.setInt(14, vMes);
+                        preparedStatement.setInt(15, vAno);
+                        preparedStatement.setInt(16, vMes);
+                        preparedStatement.setInt(17, vAno);
                         resultSet = preparedStatement.executeQuery();
 
                         while (resultSet.next()) {
@@ -674,6 +685,10 @@ public class RestituicaoFerias {
                         preparedStatement.setInt(21, vAno);
                         preparedStatement.setInt(22, vMes);
                         preparedStatement.setInt(23, vAno);
+                        preparedStatement.setInt(24, vMes);
+                        preparedStatement.setInt(25, vAno);
+                        preparedStatement.setInt(26, vMes);
+                        preparedStatement.setInt(27, vAno);
                         resultSet = preparedStatement.executeQuery();
 
                         while (resultSet.next()) {

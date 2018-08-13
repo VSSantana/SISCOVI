@@ -27,6 +27,7 @@ public class TesteRestituicaoFerias {
         Periodos periodo = new Periodos(connectSQLServer.dbConnect());
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
         Remuneracao remuneracao = new Remuneracao(connectSQLServer.dbConnect());
+        Date vDataInicioContrato = Date.valueOf("2016-08-05");
 
 
 
@@ -37,9 +38,9 @@ public class TesteRestituicaoFerias {
 
         //resultadoFloat = remuneracao.RetornaRemuneracaoPeriodo(145, 10, 2016, 1, 2);
 
-        //System.out.println(resultadoFloat);
+        System.out.print(Date.valueOf(vDataInicioContrato.toLocalDate().minusMonths(1).withDayOfMonth(vDataInicioContrato.toLocalDate().lengthOfMonth()).plusDays(1)));
 
-        restituicaoFerias.CalculaRestituicaoFerias(729, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
+        //restituicaoFerias.CalculaRestituicaoFerias(729, "RESGATE",0, Date.valueOf("2017-09-01"),Date.valueOf("2017-09-30"),Date.valueOf("2016-08-05"),Date.valueOf("2017-08-04"),0,'N');
 /*
         try {
 
