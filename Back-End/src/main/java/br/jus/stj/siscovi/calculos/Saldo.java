@@ -10,7 +10,7 @@ public class Saldo {
 
     private Connection connection;
 
-    Ferias(Connection connection) {
+    Saldo (Connection connection) {
 
         this.connection = connection;
 
@@ -72,7 +72,17 @@ public class Saldo {
 
             try {
 
-                preparedStatement = connection.prepareStatement("SELECT SUM(tmr.ferias + DECODE(rtm.ferias, NULL, 0, rtm.ferias)) AS \"Férias retido\",\n" + "           SUM(tmr.terco_constitucional + DECODE(rtm.terco_constitucional, NULL, 0, rtm.terco_constitucional))  AS \"Abono de férias retido\",\n" + "           SUM(tmr.decimo_terceiro + DECODE(rtm.decimo_terceiro, NULL, 0, rtm.decimo_terceiro)) AS \"Décimo terceiro retido\",\n" + "           SUM(tmr.incidencia_submodulo_4_1 + DECODE(rtm.incidencia_submodulo_4_1, NULL, 0, rtm.incidencia_submodulo_4_1)) AS \"Incid. do submód. 4.1 retido\",\n" + "           SUM(tmr.multa_fgts + DECODE(rtm.multa_fgts, NULL, 0, rtm.multa_fgts)) AS \"Multa do FGTS retido\",\n" + "           SUM(tmr.total + DECODE(rtm.total, NULL, 0, rtm.total)) AS \"Total retido\"\n" + "      FROM tb_total_mensal_a_reter tmr\n" + "        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato\n" + "        LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod\n" + "      WHERE EXTRACT(year FROM tmr.data_referencia) = ?\n" + "        AND tc.cod = ?");
+                preparedStatement = connection.prepareStatement("SELECT SUM(tmr.ferias + DECODE(rtm.ferias, NULL, 0, rtm.ferias)) AS \"Férias retido\",\n" +
+                        "           SUM(tmr.terco_constitucional + DECODE(rtm.terco_constitucional, NULL, 0, rtm.terco_constitucional))  AS \"Abono de férias retido\",\n" +
+                        "           SUM(tmr.decimo_terceiro + DECODE(rtm.decimo_terceiro, NULL, 0, rtm.decimo_terceiro)) AS \"Décimo terceiro retido\",\n" +
+                        "           SUM(tmr.incidencia_submodulo_4_1 + DECODE(rtm.incidencia_submodulo_4_1, NULL, 0, rtm.incidencia_submodulo_4_1)) AS \"Incid. do submód. 4.1 retido\",\n" +
+                        "           SUM(tmr.multa_fgts + DECODE(rtm.multa_fgts, NULL, 0, rtm.multa_fgts)) AS \"Multa do FGTS retido\",\n" +
+                        "           SUM(tmr.total + DECODE(rtm.total, NULL, 0, rtm.total)) AS \"Total retido\"\n" +
+                        "      FROM tb_total_mensal_a_reter tmr\n" +
+                        "        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato\n" +
+                        "        LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod\n" +
+                        "      WHERE YEAR(tmr.data_referencia) = ?\n" +
+                        "        AND tc.cod = ?");
 
                 preparedStatement.setInt(1, pAno);
                 preparedStatement.setInt(2, pCodTerceirizadoContrato);
@@ -103,7 +113,15 @@ public class Saldo {
 
             try {
 
-                preparedStatement = connection.prepareStatement("SELECT SUM(rf.valor_ferias) AS \"Férias restituído\",\n" + "           SUM(rf.valor_terco_constitucional) AS \"1/3 constitucional restituído\",\n" + "           SUM(rf.incid_submod_4_1_ferias) AS \"Incid. de férias restituído\",\n" + "           SUM(rf.incid_submod_4_1_terco) AS \"Incod. de terço restituído\",\n" + "           SUM(rf.valor_ferias + rf.valor_terco_constitucional + rf.incid_submod_4_1_ferias + rf.incid_submod_4_1_terco) AS \"Total restituído\"\n" + "      FROM tb_restituicao_ferias rf\n" + "        JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato\n" + "      WHERE EXTRACT(year FROM rf.data_inicio_periodo_aquisitivo) = ?\n" + "        AND tc.cod = ?;");
+                preparedStatement = connection.prepareStatement("SELECT SUM(rf.valor_ferias) AS \"Férias restituído\",\n" +
+                        "           SUM(rf.valor_terco_constitucional) AS \"1/3 constitucional restituído\",\n" +
+                        "           SUM(rf.incid_submod_4_1_ferias) AS \"Incid. de férias restituído\",\n" +
+                        "           SUM(rf.incid_submod_4_1_terco) AS \"Incod. de terço restituído\",\n" +
+                        "           SUM(rf.valor_ferias + rf.valor_terco_constitucional + rf.incid_submod_4_1_ferias + rf.incid_submod_4_1_terco) AS \"Total restituído\"\n" +
+                        "      FROM tb_restituicao_ferias rf\n" +
+                        "        JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato\n" +
+                        "      WHERE YEAR(rf.data_inicio_periodo_aquisitivo) = ?\n" +
+                        "        AND tc.cod = ?;");
 
                 preparedStatement.setInt(1, pAno);
                 preparedStatement.setInt(2, pCodTerceirizadoContrato);
@@ -121,6 +139,8 @@ public class Saldo {
 
             } catch (SQLException sqle) {
 
+                sqle.printStackTrace();
+
                 throw new NullPointerException("Não foi possível recuperar o valor restituído de férias.");
 
             }
@@ -133,7 +153,13 @@ public class Saldo {
 
             try {
 
-                preparedStatement = connection.prepareStatement("SELECT SUM(rdt.valor) AS \"Décimo terceiro restituído\",\n" + "           SUM(rdt.incidencia_submodulo_4_1) AS \"Incid. de 13° restituído\",\n" + "           SUM(rdt.valor + rdt.incidencia_submodulo_4_1) AS \"Total restituído\"\n" + "      FROM tb_restituicao_decimo_terceiro rdt\n" + "        JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato\n" + "      WHERE EXTRACT(year FROM rdt.data_inicio_contagem) = ?\n" + "        AND tc.cod = ?;");
+                preparedStatement = connection.prepareStatement("SELECT SUM(rdt.valor) AS \"Décimo terceiro restituído\",\n" +
+                        "           SUM(rdt.incidencia_submodulo_4_1) AS \"Incid. de 13° restituído\",\n" +
+                        "           SUM(rdt.valor + rdt.incidencia_submodulo_4_1) AS \"Total restituído\"\n" +
+                        "      FROM tb_restituicao_decimo_terceiro rdt\n" +
+                        "        JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato\n" +
+                        "      WHERE YEAR(rdt.data_inicio_contagem) = ?\n" +
+                        "        AND tc.cod = ?;");
 
                 preparedStatement.setInt(1, pAno);
                 preparedStatement.setInt(2, pCodTerceirizadoContrato);
@@ -141,14 +167,15 @@ public class Saldo {
 
                 if (resultSet.next()) {
 
-                    vFeriasRestituido = resultSet.getFloat(1);
-                    vDecimoTerceiroRestituido = resultSet.getFloat(2);
-                    vIncidencia13Restituido = resultSet.getFloat(3);
-                    vTotalRestituido = resultSet.getFloat(4);
+                    vDecimoTerceiroRestituido = resultSet.getFloat(1);
+                    vIncidencia13Restituido = resultSet.getFloat(2);
+                    vTotalRestituido = resultSet.getFloat(3);
 
                 }
 
             } catch (SQLException sqle) {
+
+                sqle.printStackTrace();
 
                 throw new NullPointerException("Não foi possível recuperar o valor restituído de 13°.");
 
@@ -158,9 +185,7 @@ public class Saldo {
 
         /**Retorno do valor de férias retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 1) {
-
-        if (vFeriasRetido == null) { vFeriasRetido := 0; }
+        if ((pOperacao == 1) && (pCodRubrica == 1)) {
 
         return vFeriasRetido;
 
@@ -168,9 +193,7 @@ public class Saldo {
 
         /**Retorno do valor de terço constitucional retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 2) {
-
-        if (vTercoConstitucionalRetido == null) { vTercoConstitucionalRetido := 0; }
+        if (pOperacao == 1 && pCodRubrica == 2) {
 
             return vTercoConstitucionalRetido;
 
@@ -178,9 +201,7 @@ public class Saldo {
 
         /**Retorno do valor de décimo terceiro retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 3) {
-
-        if (vDecimoTerceiroRetido == null) { vDecimoTerceiroRetido := 0; }
+        if (pOperacao == 1 && pCodRubrica == 3) {
 
             return vDecimoTerceiroRetido;
 
@@ -188,9 +209,7 @@ public class Saldo {
 
         /**Retorno do valor de incidência retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 7) {
-
-        if (vIncidenciaRetido == null) { vIncidenciaRetido := 0; }
+        if (pOperacao == 1 && pCodRubrica == 7) {
 
             return vIncidenciaRetido;
 
@@ -198,9 +217,7 @@ public class Saldo {
 
         /**Retorno do valor de multa do FGTS retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 5) {
-
-        if (vMultaFGTSRetido == null) { vMultaFGTSRetido := 0; }
+        if (pOperacao == 1 && pCodRubrica == 5) {
 
             return vMultaFGTSRetido;
 
@@ -208,9 +225,7 @@ public class Saldo {
 
         /**Retorno do valor total retido.*/
 
-        if (pOperacao = 1 && pCodRubrica = 100) {
-
-        if (vTotalRetido == null) { vTotalRetido := 0; }
+        if (pOperacao == 1 && pCodRubrica == 100) {
 
             return vTotalRetido;
 
@@ -218,9 +233,7 @@ public class Saldo {
 
         /**Retorno do valor de férias restituído.*/
 
-        if (pOperacao = 2 && pCodRubrica = 1) {
-
-        if (vFeriasRestituido == null) { vFeriasRestituido := 0; }
+        if (pOperacao == 2 && pCodRubrica == 1) {
 
             return vFeriasRestituido;
 
@@ -228,9 +241,7 @@ public class Saldo {
 
         /**Retorno do valor de terço constitucional restituído.*/
 
-        if (pOperacao = 2 && pCodRubrica = 2) {
-
-        if (vTercoConstitucionalRestituido == null) { vTercoConstitucionalRestituido := 0; }
+        if (pOperacao == 2 && pCodRubrica == 2) {
 
             return vTercoConstitucionalRestituido;
 
@@ -238,9 +249,7 @@ public class Saldo {
 
         /**Retorno do valor de incidência sobre férias restituído.*/
 
-        if (pOperacao = 2 && pCodRubrica = 101) {
-
-        if (vIncidenciaFeriasRestituido == null) { vIncidenciaFeriasRestituido := 0; }
+        if (pOperacao == 2 && pCodRubrica == 101) {
 
             return vIncidenciaFeriasRestituido;
 
@@ -248,9 +257,7 @@ public class Saldo {
 
         /**Retorno do valor de incidência sobre férias restituído.*/
 
-        if (pOperacao = 2 && pCodRubrica = 102) {
-
-        if (vIncidenciaTercoRestituido == null) { vIncidenciaTercoRestituido := 0; }
+        if (pOperacao == 2 && pCodRubrica == 102) {
 
             return vIncidenciaTercoRestituido;
 
@@ -258,9 +265,7 @@ public class Saldo {
 
         /**Retorno do valor total restituído de férias.*/
 
-        if (pOperacao = 2 && pCodRubrica = 100) {
-
-        if (vTotalRestituido == null) { vTotalRestituido := 0; }
+        if (pOperacao == 2 && pCodRubrica == 100) {
 
             return vTotalRestituido;
 
@@ -268,9 +273,7 @@ public class Saldo {
 
         /**Retorno do valor de décimo terceiro restituído.*/
 
-        if (pOperacao = 3 && pCodRubrica = 3) {
-
-        if (vDecimoTerceiroRestituido == null) { vDecimoTerceiroRestituido := 0; }
+        if (pOperacao == 3 && pCodRubrica == 3) {
 
             return vDecimoTerceiroRestituido;
 
@@ -278,9 +281,7 @@ public class Saldo {
 
         /**Retorno do valor de incidência de décimo terceiro restituído.*/
 
-        if (pOperacao = 3 && pCodRubrica = 103) {
-
-        if (vIncidencia13Restituido == null) { vIncidencia13Restituido := 0; }
+        if (pOperacao == 3 && pCodRubrica == 103) {
 
             return vIncidencia13Restituido;
 
@@ -288,14 +289,13 @@ public class Saldo {
 
         /**Retorno do valor total restituído de férias.*/
 
-        if (pOperacao = 3 && pCodRubrica = 100) {
-
-        if (vTotalRestituido == null) { vTotalRestituido := 0; }
+        if (pOperacao == 3 && pCodRubrica == 100) {
 
             return vTotalRestituido;
 
         }
 
+        return 0;
 
     }
 

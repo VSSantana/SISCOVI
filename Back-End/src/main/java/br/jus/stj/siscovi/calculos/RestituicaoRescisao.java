@@ -944,52 +944,25 @@ public class RestituicaoRescisao {
 
         }
 
-        /**Dias de férias usufruídos para o cálculo proporcional.*/
-
-        vDiasDeFerias = (int)(ChronoUnit.DAYS.between(pInicioFerias.toLocalDate(), pFimFerias.toLocalDate()) + 1 + vDiasVendidos);
-
-        /**Dias de férias adquiridos no período aquisitivo.*/
-
-        vDiasAdquiridos = ferias.DiasPeriodoAquisitivo(pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo);
-
-        /**Definição do montante proporcional a ser restituído*/
-
-        if (vDiasDeFerias > vDiasAdquiridos) {
-
-            throw new NullPointerException("Foram concedidos mais dias de férias do que o disponível para o período aquisitivo informado.");
-
-        }
-
-        vTotalFerias = (vTotalFerias/vDiasAdquiridos) * vDiasDeFerias;
-        vTotalIncidenciaFerias = (vTotalIncidenciaFerias/vDiasAdquiridos) * vDiasDeFerias;
-        vTotalIncidenciaTerco = (vTotalIncidenciaTerco/vDiasAdquiridos) * vDiasDeFerias;
-
-        /**Cancelamento do terço constitucional para parcela diferente da única ou primeira.*/
-
-        if (ferias.ParcelasConcedidas(pCodTerceirizadoContrato, pInicioPeriodoAquisitivo, pFimPeriodoAquisitivo) > 0) {
-
-            vTotalTercoConstitucional = 0;
-
-        }
-
         /**Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
         if (pTipoRestituicao == "MOVIMENTAÇÃO") {
 
-            vIncidenciaFerias = vTotalIncidenciaFerias;
-            vIncidenciaTerco = vTotalIncidenciaTerco;
+            vIncidDecTer = vTotalIncidenciaDecimoTerceiro;
+            vIncidFerias = vTotalIncidenciaFerias;
+            vIncidTerco = vTotalIncidenciaTerco;
+            vFGTSDecimoTerceiro = vTotalMultaFGTSDecimoTerceiro;
+            vFGTSFerias = vTotalMultaFGTSFerias;
+            vFGTSTerco = vTotalMultaFGTSTerco;
+            vFGTSRemuneracao = vTotalMultaFGTSRemuneracao;
 
-            vTerco = vTotalTercoConstitucional;
-            vFerias = vTotalFerias;
-
-            vTotalTercoConstitucional = pValorMovimentado/4;
-            vTotalFerias = pValorMovimentado - vTotalTercoConstitucional;
-
-            vTerco = vTerco - vTotalTercoConstitucional;
-            vFerias = vFerias - vTotalFerias;
-
+            vTotalIncidenciaDecimoTerceiro = 0;
             vTotalIncidenciaFerias = 0;
             vTotalIncidenciaTerco = 0;
+            vTotalMultaFGTSDecimoTerceiro = 0;
+            vTotalMultaFGTSFerias = 0;
+            vTotalMultaFGTSTerco = 0;
+            vTotalMultaFGTSRemuneracao = 0;
 
         }
 
@@ -997,41 +970,45 @@ public class RestituicaoRescisao {
 
         try {
 
-            String sql = "SET IDENTITY_INSERT tb_restituicao_ferias ON;" +
-                    " INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
-                    " COD_TERCEIRIZADO_CONTRATO," +
-                    " COD_TIPO_RESTITUICAO," +
-                    " DATA_INICIO_PERIODO_AQUISITIVO," +
-                    " DATA_FIM_PERIODO_AQUISITIVO," +
-                    " DATA_INICIO_USUFRUTO," +
-                    " DATA_FIM_USUFRUTO," +
-                    " VALOR_FERIAS," +
-                    " VALOR_TERCO_CONSTITUCIONAL," +
-                    " INCID_SUBMOD_4_1_FERIAS," +
-                    " INCID_SUBMOD_4_1_TERCO," +
-                    " SE_PROPORCIONAL," +
-                    " DIAS_VENDIDOS," +
-                    " DATA_REFERENCIA," +
-                    " LOGIN_ATUALIZACAO," +
-                    " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT tb_restituicao_ferias OFF;";
+            String sql = "SET IDENTITY_INSERT tb_restituicao_rescisao ON;" +
+                        " INSERT INTO tb_restituicao_rescisao (COD,"+
+                                                             " COD_TERCEIRIZADO_CONTRATO," +
+                                                             " COD_TIPO_RESTITUICAO," +
+                                                             " COD_TIPO_RESCISAO," +
+                                                             " DATA_DESLIGAMENTO," +
+                                                             " VALOR_DECIMO_TERCEIRO," +
+                                                             " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                                                             " INCID_MULTA_FGTS_DEC_TERCEIRO," +
+                                                             " VALOR_FERIAS," +
+                                                             " VALOR_TERCO," +
+                                                             " INCID_SUBMOD_4_1_FERIAS," +
+                                                             " INCID_SUBMOD_4_1_TERCO," +
+                                                             " INCID_MULTA_FGTS_FERIAS," +
+                                                             " INCID_MULTA_FGTS_TERCO," +
+                                                             " MULTA_FGTS_SALARIO," +
+                                                             " DATA_REFERENCIA," +
+                                                             " LOGIN_ATUALIZACAO," +
+                                                             " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 'SYSTEM', CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, vCodTbRestituicaoFerias);
+            preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
             preparedStatement.setInt(2, pCodTerceirizadoContrato);
             preparedStatement.setInt(3, vCodTipoRestituicao);
-            preparedStatement.setDate(4, pInicioPeriodoAquisitivo);
-            preparedStatement.setDate(5, pFimPeriodoAquisitivo);
-            preparedStatement.setDate(6, pInicioFerias);
-            preparedStatement.setDate(7, pFimFerias);
-            preparedStatement.setFloat(8, vTotalFerias);
-            preparedStatement.setFloat(9, vTotalTercoConstitucional);
-            preparedStatement.setFloat(10, vTotalIncidenciaFerias);
-            preparedStatement.setFloat(11, vTotalIncidenciaTerco);
-            preparedStatement.setString(12, String.valueOf(pProporcional));
-            preparedStatement.setInt(13, pDiasVendidos);
+            preparedStatement.setInt(4, vCodTipoRescisao);
+            preparedStatement.setDate(5, pDataDesligamento);
+            preparedStatement.setFloat(6, vTotalDecimoTerceiro);
+            preparedStatement.setFloat(7, vTotalIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(8, vTotalMultaFGTSDecimoTerceiro);
+            preparedStatement.setFloat(9, vTotalFerias);
+            preparedStatement.setFloat(10, vTotalTercoConstitucional);
+            preparedStatement.setFloat(11, vTotalIncidenciaFerias);
+            preparedStatement.setFloat(12, vTotalIncidenciaTerco);
+            preparedStatement.setFloat(13, vTotalMultaFGTSFerias);
+            preparedStatement.setFloat(14, vTotalMultaFGTSTerco);
+            preparedStatement.setFloat(15, vTotalMultaFGTSRemuneracao);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -1046,24 +1023,36 @@ public class RestituicaoRescisao {
 
             try {
 
-                String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
-                        " VALOR_FERIAS," +
-                        " VALOR_TERCO," +
-                        " INCID_SUBMOD_4_1_FERIAS," +
-                        " INCID_SUBMOD_4_1_TERCO," +
-                        " RESTITUIDO," +
-                        " LOGIN_ATUALIZACAO," +
-                        " DATA_ATUALIZACAO)" +
-                        " VALUES (?, ?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
+                String sql = "INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod_restituicao_rescisao," +
+                                                                    " valor_decimo_terceiro," +
+                                                                    " incid_submod_4_1_dec_terceiro," +
+                                                                    " incid_multa_fgts_dec_terceiro," +
+                                                                    " valor_ferias," +
+                                                                    " valor_terco," +
+                                                                    " incid_submod_4_1_ferias," +
+                                                                    " incid_submod_4_1_terco," +
+                                                                    " incid_multa_fgts_ferias," +
+                                                                    " incid_multa_fgts_terco," +
+                                                                    " multa_fgts_salario," +
+                                                                    " restituido," +
+                                                                    " login_atualizacao," +
+                                                                    " data_atualizacao)" +
+                               " VALUES (?, ?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
 
                 preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
-                preparedStatement.setFloat(2, vFerias);
-                preparedStatement.setFloat(3, vTerco);
-                preparedStatement.setFloat(4, vIncidenciaFerias);
-                preparedStatement.setFloat(5, vIncidenciaTerco);
-                preparedStatement.setString(6, String.valueOf("N"));
+                preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
+                preparedStatement.setFloat(2, 0);
+                preparedStatement.setFloat(3, vIncidDecTer);
+                preparedStatement.setFloat(4, vFGTSDecimoTerceiro);
+                preparedStatement.setFloat(5, 0);
+                preparedStatement.setFloat(6, 0);
+                preparedStatement.setFloat(7, vIncidFerias);
+                preparedStatement.setFloat(8, vIncidTerco);
+                preparedStatement.setFloat(9, vFGTSFerias);
+                preparedStatement.setFloat(10, vFGTSTerco);
+                preparedStatement.setFloat(11, vFGTSRemuneracao);
+                preparedStatement.setString(12, String.valueOf("N"));
 
                 preparedStatement.executeUpdate();
 
