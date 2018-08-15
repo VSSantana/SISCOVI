@@ -234,7 +234,7 @@ BEGIN
         vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 1, vMes, vAno, 1, 2);
         vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 2, vMes, vAno, 1, 2);
         vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 3, vMes, vAno, 1, 2);
-        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
         vPercentualFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 4, vMes, vAno, 1, 2);
         vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 6, vMes, vAno, 1, 2);
         vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 5, vMes, vAno, 1, 2);
@@ -445,7 +445,7 @@ BEGIN
         vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 1, vMes, vAno, 1, 2);
         vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 2, vMes, vAno, 1, 2);
         vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 3, vMes, vAno, 1, 2);
-        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
         vPercentualFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 4, vMes, vAno, 1, 2);
         vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 6, vMes, vAno, 1, 2);
         vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 5, vMes, vAno, 1, 2);
@@ -1219,7 +1219,7 @@ BEGIN
         vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 1, vMes, vAno, 1, 2);
         vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 2, vMes, vAno, 1, 2);
         vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 3, vMes, vAno, 1, 2);
-        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
         vPercentualFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 4, vMes, vAno, 1, 2);
         vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 6, vMes, vAno, 1, 2);
         vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 5, vMes, vAno, 1, 2);
@@ -1430,7 +1430,7 @@ BEGIN
         vPercentualFerias := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 1, vMes, vAno, 1, 2);
         vPercentualTercoConstitucional := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 2, vMes, vAno, 1, 2);
         vPercentualDecimoTerceiro := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 3, vMes, vAno, 1, 2);
-        vPercentualIncidencia := (F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2) * (vPercentualFerias + vPercentualDecimoTerceiro + vPercentualTercoConstitucional))/100;
+        vPercentualIncidencia := F_RETORNA_PERCENTUAL_CONTRATO(vCodContrato, 7, vMes, vAno, 1, 2);
         vPercentualFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 4, vMes, vAno, 1, 2);
         vPercentualPenalidadeFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 6, vMes, vAno, 1, 2);
         vPercentualMultaFGTS := F_RETORNA_PERCENTUAL_ESTATICO(vCodContrato, 5, vMes, vAno, 1, 2);
