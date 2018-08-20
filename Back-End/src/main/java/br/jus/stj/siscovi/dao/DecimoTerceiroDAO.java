@@ -1,6 +1,9 @@
 package br.jus.stj.siscovi.dao;
 
+import br.jus.stj.siscovi.calculos.DecimoTerceiro;
 import br.jus.stj.siscovi.calculos.Ferias;
+import br.jus.stj.siscovi.calculos.Saldo;
+import br.jus.stj.siscovi.model.TerceirizadoDecimoTerceiro;
 import br.jus.stj.siscovi.model.TerceirizadoFerias;
 
 import java.sql.*;
@@ -23,14 +26,12 @@ public class DecimoTerceiroDAO {
      * @return
      */
 
-    public ArrayList<TerceirizadoFerias> getListaTerceirizadoParaCalculoDeFerias (int codigoContrato) {
+    public ArrayList<TerceirizadoDecimoTerceiro> getListaTerceirizadoParaCalculoDeDecimoTerceiro (int codigoContrato) {
 
-        ArrayList<TerceirizadoFerias> terceirizados = new ArrayList<>();
+        ArrayList<TerceirizadoDecimoTerceiro> terceirizados = new ArrayList<>();
 
         String sql = "SELECT TC.COD, " +
-                           " T.NOME, " +
-                           " TC.DATA_DISPONIBILIZACAO, " +
-                           " TC.DATA_DESLIGAMENTO" +
+                           " T.NOME" +
                       " FROM tb_terceirizado_contrato TC " +
                         " JOIN tb_terceirizado T ON T.COD = TC.COD_TERCEIRIZADO " +
                      " WHERE COD_CONTRATO = ? AND T.ATIVO = 'S'";
@@ -38,16 +39,19 @@ public class DecimoTerceiroDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, codigoContrato);
-            Ferias ferias = new Ferias(connection);
+
+            DecimoTerceiro decimoTerceiro = new DecimoTerceiro(connection);
+            Saldo saldoDecimoTerceiro = new Saldo(connection);
+            float vSaldoDecimoTericeiro = 0; //Este saldo é correspondente ao ano da data de início da contagem.
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
 
-                    Date inicioPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(resultSet.getInt("COD"), 1);
-                    Date fimPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(resultSet.getInt("COD"), 2);
+                    Date inicioContagem = decimoTerceiro.RetornaDataInicioContagem(resultSet.getInt("COD"));
+                    vSaldoDecimoTericeiro = saldoDecimoTerceiro.SaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 1, 3);
 
-                    TerceirizadoFerias terceirizadoFerias = new TerceirizadoFerias(resultSet.getInt("COD"), resultSet.getString("NOME"), inicioPeriodoAquisitivo, fimPeriodoAquisitivo);
+                    TerceirizadoDecimoTerceiro terceirizadoDecimoTerceiro = new TerceirizadoDecimoTerceiro(resultSet.getInt("COD"), resultSet.getString("NOME"), inicioPeriodoAquisitivo, fimPeriodoAquisitivo);
                     terceirizados.add(terceirizadoFerias);
 
                 }
