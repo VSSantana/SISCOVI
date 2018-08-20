@@ -23,7 +23,8 @@ public class DecimoTerceiroDAO {
      * @return
      */
 
-    public ArrayList<TerceirizadoFerias> getListaTerceirizadoParaCalculoDeFerias(int codigoContrato) {
+    public ArrayList<TerceirizadoFerias> getListaTerceirizadoParaCalculoDeFerias (int codigoContrato) {
+
         ArrayList<TerceirizadoFerias> terceirizados = new ArrayList<>();
 
         String sql = "SELECT TC.COD, " +
