@@ -10,15 +10,14 @@ public class Saldo {
 
     private Connection connection;
 
-    Saldo (Connection connection) {
+    public Saldo (Connection connection) {
 
         this.connection = connection;
 
     }
 
     /**
-     * Função que retorna um valor relacionado ao saldo da conta vinculada.
-     * período aquisitivo.
+     * Função que retorna um valor relacionado ao saldo da conta vinculada em um ano específico.
      * @param pCodTerceirizadoContrato
      * @param pAno
      * @param pOperacao
@@ -298,6 +297,7 @@ public class Saldo {
         return 0;
 
     }
+
 
 
 }

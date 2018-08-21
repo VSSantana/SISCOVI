@@ -1,10 +1,8 @@
 package br.jus.stj.siscovi.dao;
 
 import br.jus.stj.siscovi.calculos.DecimoTerceiro;
-import br.jus.stj.siscovi.calculos.Ferias;
 import br.jus.stj.siscovi.calculos.Saldo;
 import br.jus.stj.siscovi.model.TerceirizadoDecimoTerceiro;
-import br.jus.stj.siscovi.model.TerceirizadoFerias;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -49,10 +47,10 @@ public class DecimoTerceiroDAO {
                 while (resultSet.next()) {
 
                     Date inicioContagem = decimoTerceiro.RetornaDataInicioContagem(resultSet.getInt("COD"));
-                    vSaldoDecimoTericeiro = saldoDecimoTerceiro.SaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 1, 3);
+                    vSaldoDecimoTericeiro = saldoDecimoTerceiro.SaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 1, 3) - saldoDecimoTerceiro.SaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 3, 3);
 
-                    TerceirizadoDecimoTerceiro terceirizadoDecimoTerceiro = new TerceirizadoDecimoTerceiro(resultSet.getInt("COD"), resultSet.getString("NOME"), inicioPeriodoAquisitivo, fimPeriodoAquisitivo);
-                    terceirizados.add(terceirizadoFerias);
+                    TerceirizadoDecimoTerceiro terceirizadoDecimoTerceiro = new TerceirizadoDecimoTerceiro(resultSet.getInt("COD"), resultSet.getString("NOME"), inicioContagem, vSaldoDecimoTericeiro);
+                    terceirizados.add(terceirizadoDecimoTerceiro);
 
                 }
 
