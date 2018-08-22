@@ -149,7 +149,7 @@ public class Ferias {
                                                                    " AND data_fim_periodo_aquisitivo = ?");
 
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
-            preparedStatement.setDate(2, pDataFim);
+            preparedStatement.setDate(2, pDataInicio);
             preparedStatement.setDate(3, pDataFim);
 
             resultSet = preparedStatement.executeQuery();
@@ -175,7 +175,7 @@ public class Ferias {
      * Função que retorna o início ou fim do período aquisitivo de férias.
      * @param pCodTerceirizadoContrato
      * @param pOperacao
-     * @return int
+     * @return Date
      */
 
     public Date DataPeriodoAquisitivo (int pCodTerceirizadoContrato, int pOperacao) {
@@ -291,6 +291,54 @@ public class Ferias {
         }
 
         return null;
+
+    }
+
+
+    /**
+     * Função que retorna se existe registro de férias para um terceirizado em um contrato.
+     * @param pCodTerceirizadoContrato
+     * @return boolean
+     */
+
+    public boolean ExisteFeriasTerceirizado (int pCodTerceirizadoContrato) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        int vNumeroRestituicoes = 0;
+
+        String query = "SELECT COUNT(cod)\n" +
+                       " FROM tb_restituicao_ferias\n" +
+                       " WHERE cod_terceirizado_contrato = ?";
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vNumeroRestituicoes = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar restituições de férias anteriores.");
+
+        }
+
+        if (vNumeroRestituicoes == 0) {
+
+            return false;
+
+        }
+
+        return true;
 
     }
 
