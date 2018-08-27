@@ -92,8 +92,11 @@ public class TotalMensalDAO {
         }
         return tuplas;
     }
-    public ArrayList<TotalMensal> getCalculoRealizado(int codUsuario ,int codContrato,int mes, int ano){
+
+    public ArrayList<TotalMensal> getCalculoRealizado (int codUsuario ,int codContrato,int mes, int ano) {
+
         ArrayList<TotalMensal> lista = new ArrayList<>();
+
         String sql = "SELECT  u.nome AS \"Gestor\"," +
                 "c.nome_empresa AS \"Empresa\"," +
                 " 'Contrato Nº: ' + c.numero_contrato AS \"Contrato\"," +
@@ -124,23 +127,34 @@ public class TotalMensalDAO {
                 " f.nome," +
                 " tmr.data_referencia" +
                 " ORDER BY 1,2,3,4;";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setInt(1, codContrato);
             preparedStatement.setInt(2, mes);
             preparedStatement.setInt(3, ano);
             preparedStatement.setInt(4, codUsuario);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
                     TotalMensal totalMensal = new TotalMensal(resultSet.getFloat(6), resultSet.getFloat(7), resultSet.getFloat(8), resultSet.getFloat(9),
                             resultSet.getFloat(10), resultSet.getFloat(11), resultSet.getString("Função"));
                     lista.add(totalMensal);
+
                 }
+
             }
 
         } catch (SQLException e) {
+
             throw new NullPointerException("Erro ao tentar buscar cálculo de Total a mensal a reter com a data de referência: 01/" + mes + "/" + ano + ". Contrato: " + codContrato);
+
         }
+
         return lista;
+
     }
 
 }
