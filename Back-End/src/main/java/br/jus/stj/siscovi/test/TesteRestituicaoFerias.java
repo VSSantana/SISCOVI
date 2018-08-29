@@ -23,14 +23,15 @@ public class TesteRestituicaoFerias {
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         String vTipoRestituicao = String.valueOf("RESGATE");
         int vDiasVendidos = 0;
-        float vValorMovimentado = 9846;
+        float vValorMovimentado = 0;
+        String sqlDelete = "DELETE FROM TB_SALDO_RESIDUAL_FERIAS; DELETE FROM TB_RESTITUICAO_FERIAS;";
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
         System.out.print("Tipo de restituição: " + vTipoRestituicao + "\nDias vendidos: " + vDiasVendidos + "\n");
 
-        Date vInicioFerias = Date.valueOf("2017-09-01");
-        Date vFimFerias = Date.valueOf("2017-09-30");;
+        Date vInicioFerias = Date.valueOf("2016-08-18");
+        Date vFimFerias = Date.valueOf("2016-08-18");;
         Date vInicioPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 1);
         Date vFimPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 2);
 
@@ -46,6 +47,17 @@ public class TesteRestituicaoFerias {
                 vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, Character.valueOf('N'),
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
                 restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional());
+
+        try {
+
+            preparedStatement = connectSQLServer.dbConnect().prepareStatement(sqlDelete);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível deletar os dados de teste inseridos no banco.");
+
+        }
 
     }
 
