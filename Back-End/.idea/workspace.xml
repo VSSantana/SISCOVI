@@ -95,8 +95,8 @@
       <file leaf-file-name="RestituicaoFerias.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="680" column="90" lean-forward="true" selection-start-line="680" selection-start-column="90" selection-end-line="680" selection-end-column="90" />
+            <state relative-caret-position="191">
+              <caret line="673" column="32" lean-forward="false" selection-start-line="673" selection-start-column="32" selection-end-line="673" selection-end-column="32" />
               <folding>
                 <marker date="1535545506124" expanded="true" signature="3975:4036" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
                 <marker date="1535545506124" expanded="true" signature="4594:4664" ph="SELECT tc.co... tb_terceirizado_contrato" />
@@ -137,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2465">
-              <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+              <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
               <folding>
                 <marker date="1534947260774" expanded="true" signature="4138:4577" ph="SELECT COUNT... tb_restituicao_ferias" />
                 <marker date="1534947260774" expanded="true" signature="5924:6046" ph="SELECT data_... tb_terceirizado_contrato" />
@@ -247,7 +247,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -675,12 +675,12 @@
       <workItem from="1535126453131" duration="14107000" />
       <workItem from="1535376364806" duration="2902000" />
       <workItem from="1535476460752" duration="6171000" />
-      <workItem from="1535541484736" duration="3384000" />
+      <workItem from="1535541484736" duration="4354000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159641000" />
+    <option name="totallyTimeSpent" value="160611000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -692,7 +692,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -707,7 +707,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39877924" sideWeight="0.49583334" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.325" sideWeight="0.42083332" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325" sideWeight="0.42083332" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1138,7 +1138,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2465">
-          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding>
             <marker date="1534947260774" expanded="true" signature="4138:4577" ph="SELECT COUNT... tb_restituicao_ferias" />
             <marker date="1534947260774" expanded="true" signature="5924:6046" ph="SELECT data_... tb_terceirizado_contrato" />
@@ -1149,10 +1149,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="126" column="28" lean-forward="false" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1535139674304" expanded="true" signature="927:3026" ph="SELECT u.nom... tb_funcao_contrato" />
+            <marker date="1535139674304" expanded="true" signature="4595:4857" ph="SELECT DISTI... TB_TOTAL_MENSAL_A_RETER" />
+            <marker date="1535139674304" expanded="true" signature="5790:7765" ph="SELECT u.nom... tb_funcao_contrato" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="680" column="90" lean-forward="true" selection-start-line="680" selection-start-column="90" selection-end-line="680" selection-end-column="90" />
+        <state relative-caret-position="191">
+          <caret line="673" column="32" lean-forward="false" selection-start-line="673" selection-start-column="32" selection-end-line="673" selection-end-column="32" />
           <folding>
             <marker date="1535545506124" expanded="true" signature="3975:4036" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
             <marker date="1535545506124" expanded="true" signature="4594:4664" ph="SELECT tc.co... tb_terceirizado_contrato" />
@@ -1184,19 +1197,6 @@
             <marker date="1535545506124" expanded="true" signature="40311:40356" ph="SET IDENTITY... " />
             <marker date="1535545506124" expanded="true" signature="41672:42444" ph="INSERT INTO TB_SALDO_RESIDUAL_FERIAS... " />
             <marker date="1535545506124" expanded="true" signature="43669:45046" ph="SELECT ft.co... tb_funcao_terceirizado" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="126" column="28" lean-forward="false" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1535139674304" expanded="true" signature="927:3026" ph="SELECT u.nom... tb_funcao_contrato" />
-            <marker date="1535139674304" expanded="true" signature="4595:4857" ph="SELECT DISTI... TB_TOTAL_MENSAL_A_RETER" />
-            <marker date="1535139674304" expanded="true" signature="5790:7765" ph="SELECT u.nom... tb_funcao_contrato" />
           </folding>
         </state>
       </provider>
