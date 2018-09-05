@@ -671,7 +671,7 @@ public class RestituicaoFerias {
 
             if ((vDiasDeFerias > vDiasAdquiridos) && vFeriasMenorDeAno == true) {
 
-                vDiasDeFerias = (int) vDiasAdquiridos;
+                vDiasDeFerias = vDiasAdquiridos;
 
             }
 

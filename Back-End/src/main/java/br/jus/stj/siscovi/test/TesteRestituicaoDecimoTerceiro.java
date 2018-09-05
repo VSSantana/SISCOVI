@@ -17,7 +17,7 @@ public class TesteRestituicaoDecimoTerceiro {
 
         RestituicaoDecimoTerceiro restituicaoDecimoTerceiro = new RestituicaoDecimoTerceiro(connectSQLServer.dbConnect());
 
-        restituicaoDecimoTerceiro.CalculaRestituicaoDecimoTerceiro(729, "RESGATE",0, Date.valueOf("2016-08-05"),Date.valueOf("2016-12-31"),0);
+        //restituicaoDecimoTerceiro.CalculaRestituicaoDecimoTerceiro(729, "RESGATE",0, Date.valueOf("2016-08-05"),Date.valueOf("2016-12-31"),0);
 
     }
 

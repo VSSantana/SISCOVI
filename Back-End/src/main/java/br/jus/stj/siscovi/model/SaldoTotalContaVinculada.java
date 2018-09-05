@@ -21,6 +21,8 @@ public class SaldoTotalContaVinculada {
     private float valorIncidenciaDecimoTerceiroRestituido;
     private float valorTotalDecimoTerceiroRestituido;
     private float valorSaldo;
+    private float valorMultaFGTSRetido;
+    private float valorMultaFGTSRestituido;
 
     public SaldoTotalContaVinculada (String funcao,
                                      String gestor,

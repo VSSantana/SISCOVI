@@ -10,6 +10,7 @@
           <element id="library" level="project" name="aopalliance-repackaged-2.5.0-b32" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Back-End/web/Web" />
     </root>
   </artifact>
 </component>

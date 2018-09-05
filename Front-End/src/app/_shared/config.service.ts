@@ -22,7 +22,9 @@ export class ConfigService {
     if (!user) {
       localStorage.clear();
     }
+
   }
+
   public setHeaders () {
     const authToken = localStorage.getItem('auth_token');
     if (authToken) {
@@ -30,5 +32,7 @@ export class ConfigService {
       this.headers.append('Auth', `${authToken}`);
       this.headers.append('Accept', 'application/json');
     }
+
   }
+
 }

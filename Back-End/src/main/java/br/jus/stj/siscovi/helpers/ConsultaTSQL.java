@@ -118,4 +118,39 @@ public class ConsultaTSQL {
 
     }
 
+    public Date RetornaDataInicioContrato (int pCodContrato) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        Date dataInicioContrato = null;
+
+        //Carregamento da data início do contrato.
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT MIN(data_inicio_vigencia)\n" +
+                                                                 " FROM tb_evento_contratual\n" +
+                                                                 " WHERE cod_contrato = ?");
+
+            preparedStatement.setInt(1, pCodContrato);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                dataInicioContrato = resultSet.getDate(1);
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível carregar o código do contrato.");
+
+        }
+
+        return dataInicioContrato;
+
+    }
+
 }

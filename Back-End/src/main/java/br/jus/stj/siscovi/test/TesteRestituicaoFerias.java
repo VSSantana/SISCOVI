@@ -21,17 +21,17 @@ public class TesteRestituicaoFerias {
 
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
-        String vTipoRestituicao = String.valueOf("RESGATE");
+        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         int vDiasVendidos = 0;
-        float vValorMovimentado = 0;
+        float vValorMovimentado = 12842;
         String sqlDelete = "DELETE FROM TB_SALDO_RESIDUAL_FERIAS; DELETE FROM TB_RESTITUICAO_FERIAS;";
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
         System.out.print("Tipo de restituição: " + vTipoRestituicao + "\nDias vendidos: " + vDiasVendidos + "\n");
 
-        Date vInicioFerias = Date.valueOf("2016-08-18");
-        Date vFimFerias = Date.valueOf("2016-08-18");;
+        Date vInicioFerias = Date.valueOf("2017-09-01");
+        Date vFimFerias = Date.valueOf("2017-09-30");;
         Date vInicioPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 1);
         Date vFimPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 2);
 
