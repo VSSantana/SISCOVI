@@ -81,21 +81,12 @@ public class RestituicaoDecimoTerceiro {
         int vDiasSubperiodo = 0;
 
         /*Checagem dos parâmetros passados.*/
-/*
-        if (pCodTerceirizadoContrato == null ||
-            pTipoRestituicao == null ||
-            pDiasVendidos == null ||
-            pInicioFerias == null ||
-            pFimFerias == null ||
-            pInicioPeriodoAquisitivo == null ||
-            pFimPeriodoAquisitivo == null) {
 
-            return;
+        if (pInicioContagem == null || pFimContagem == null) {
+
+            throw new NullPointerException("Erro na checagem dos parâmetros.");
 
         }
-
-
-*/
 
         /*Checagem da existência do terceirizado no contrato.*/
 
@@ -635,10 +626,6 @@ public class RestituicaoDecimoTerceiro {
         int vCodTbRestituicao13 = 0;
         int vCodTipoRestituicao = 0;
 
-        /*Variáveis totalizadoras de valores.*/
-
-        float vTotalDecimoTerceiro = 0;
-
         /*Variáveis auxiliares.*/
 
         float vValor = 0;
@@ -755,17 +742,15 @@ public class RestituicaoDecimoTerceiro {
                 String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
                                                                    " VALOR," +
                                                                    " INCIDENCIA_SUBMODULO_4_1," +
-                                                                   " RESTITUIDO," +
                                                                    " LOGIN_ATUALIZACAO," +
                                                                    " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
+                              " VALUES (?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
 
                 preparedStatement = connection.prepareStatement(sql);
 
                 preparedStatement.setInt(1, vCodTbRestituicao13);
                 preparedStatement.setFloat(2, vValor);
                 preparedStatement.setFloat(3, vIncidencia);
-                preparedStatement.setString(4, String.valueOf("N"));
 
                 preparedStatement.executeUpdate();
 

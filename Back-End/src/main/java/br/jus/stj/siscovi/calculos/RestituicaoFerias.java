@@ -869,10 +869,9 @@ public class RestituicaoFerias {
                                                                   " VALOR_TERCO," +
                                                                   " INCID_SUBMOD_4_1_FERIAS," +
                                                                   " INCID_SUBMOD_4_1_TERCO," +
-                                                                  " RESTITUIDO," +
                                                                   " LOGIN_ATUALIZACAO," +
                                                                   " DATA_ATUALIZACAO)" +
-                             " VALUES (?, ?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
+                             " VALUES (?, ?, ?, ?, ?, 'SYSTEM', CURRENT_TIMESTAMP)";
 
                 preparedStatement = connection.prepareStatement(sql);
 
@@ -881,7 +880,6 @@ public class RestituicaoFerias {
                 preparedStatement.setFloat(3, vTerco);
                 preparedStatement.setFloat(4, vIncidenciaFerias);
                 preparedStatement.setFloat(5, vIncidenciaTerco);
-                preparedStatement.setString(6, String.valueOf("N"));
 
                 preparedStatement.executeUpdate();
 
