@@ -43,8 +43,135 @@
     </expand>
     <select />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="RestituicaoDecimoTerceiro.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="595">
+                    <caret line="615" column="72" lean-forward="true" selection-start-line="615" selection-start-column="72" selection-end-line="615" selection-end-column="72" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                      <marker date="1536256723731" expanded="true" signature="2708:2767" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+                      <marker date="1536256723731" expanded="true" signature="3325:3395" ph="SELECT tc.co... tb_terceirizado_contrato" />
+                      <marker date="1536256723731" expanded="true" signature="8023:8183" ph="SELECT data_... tb_percentual_contrato" />
+                      <marker date="1536256723731" expanded="true" signature="8023:9017" ph="SELECT data_... " />
+                      <marker date="1536256723731" expanded="true" signature="8200:8346" ph="SELECT data_... tb_percentual_contrato" />
+                      <marker date="1536256723731" expanded="true" signature="8363:8491" ph="SELECT data_... tb_percentual_estatico" />
+                      <marker date="1536256723731" expanded="true" signature="8508:8626" ph="SELECT data_... tb_percentual_estatico" />
+                      <marker date="1536256723731" expanded="true" signature="8643:8811" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="8823:9000" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="14569:14835" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                      <marker date="1536256723731" expanded="true" signature="14569:15500" ph="SELECT rfc.d... " />
+                      <marker date="1536256723731" expanded="true" signature="14852:15109" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                      <marker date="1536256723731" expanded="true" signature="15126:15294" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="15306:15483" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="20567:20727" ph="SELECT data_... tb_percentual_contrato" />
+                      <marker date="1536256723731" expanded="true" signature="20567:22118" ph="SELECT data_... " />
+                      <marker date="1536256723731" expanded="true" signature="20744:20890" ph="SELECT data_... tb_percentual_contrato" />
+                      <marker date="1536256723731" expanded="true" signature="20907:21035" ph="SELECT data_... tb_percentual_estatico" />
+                      <marker date="1536256723731" expanded="true" signature="21052:21170" ph="SELECT data_... tb_percentual_estatico" />
+                      <marker date="1536256723731" expanded="true" signature="21187:21453" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                      <marker date="1536256723731" expanded="true" signature="21470:21727" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                      <marker date="1536256723731" expanded="true" signature="21744:21912" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="21924:22101" ph="SELECT CASE " />
+                      <marker date="1536256723731" expanded="true" signature="29939:30013" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
+                      <marker date="1536256723731" expanded="true" signature="30659:30714" ph="SELECT ident... " />
+                      <marker date="1536256723731" expanded="true" signature="31856:31909" ph="SET IDENTITY... " />
+                      <marker date="1536256723731" expanded="true" signature="31941:32906" ph="INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO... " />
+                      <marker date="1536256723731" expanded="true" signature="32933:32987" ph="SET IDENTITY... " />
+                      <marker date="1536256723731" expanded="true" signature="33805:34312" ph="INSERT INTO TB_SALDO_RESIDUAL_DEC_TER... " />
+                      <marker date="1536256723731" expanded="true" signature="35334:36685" ph="SELECT ft.co... tb_funcao_terceirizado" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="ValorRestituicaoFeriasModel.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="442">
+                    <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="TesteRestituicaoFerias.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="408">
+                    <caret line="30" column="114" lean-forward="true" selection-start-line="30" selection-start-column="114" selection-end-line="30" selection-end-column="114" />
+                    <folding>
+                      <marker date="1535984220617" expanded="true" signature="1018:1054" ph="DELETE FROM " />
+                      <marker date="1535984220617" expanded="true" signature="1056:1089" ph="DELETE FROM " />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ValorRestituicaoRescisaoModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="57" lean-forward="true" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestituicaoRescisao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12206">
+              <caret line="727" column="0" lean-forward="true" selection-start-line="727" selection-start-column="0" selection-end-line="727" selection-end-column="0" />
+              <folding>
+                <marker date="1536590057476" expanded="true" signature="3903:4004" ph="SELECT COD_C... TB_TERCEIRIZADO_CONTRATO" />
+                <marker date="1536590057476" expanded="true" signature="12479:12639" ph="SELECT data_... tb_percentual_contrato" />
+                <marker date="1536590057476" expanded="true" signature="12479:13473" ph="SELECT data_... " />
+                <marker date="1536590057476" expanded="true" signature="12656:12802" ph="SELECT data_... tb_percentual_contrato" />
+                <marker date="1536590057476" expanded="true" signature="12819:12947" ph="SELECT data_... tb_percentual_estatico" />
+                <marker date="1536590057476" expanded="true" signature="12964:13082" ph="SELECT data_... tb_percentual_estatico" />
+                <marker date="1536590057476" expanded="true" signature="13099:13267" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="13279:13456" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="23771:24037" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                <marker date="1536590057476" expanded="true" signature="23771:24702" ph="SELECT rfc.d... " />
+                <marker date="1536590057476" expanded="true" signature="24054:24311" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                <marker date="1536590057476" expanded="true" signature="24328:24496" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="24508:24685" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="33278:33438" ph="SELECT data_... tb_percentual_contrato" />
+                <marker date="1536590057476" expanded="true" signature="33278:34829" ph="SELECT data_... " />
+                <marker date="1536590057476" expanded="true" signature="33455:33601" ph="SELECT data_... tb_percentual_contrato" />
+                <marker date="1536590057476" expanded="true" signature="33618:33746" ph="SELECT data_... tb_percentual_estatico" />
+                <marker date="1536590057476" expanded="true" signature="33763:33881" ph="SELECT data_... tb_percentual_estatico" />
+                <marker date="1536590057476" expanded="true" signature="33898:34164" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                <marker date="1536590057476" expanded="true" signature="34181:34438" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+                <marker date="1536590057476" expanded="true" signature="34455:34623" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="34635:34812" ph="SELECT CASE " />
+                <marker date="1536590057476" expanded="true" signature="48499:48573" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
+                <marker date="1536590057476" expanded="true" signature="49171:49251" ph="SELECT COD F... tb_tipo_rescisao" />
+                <marker date="1536590057476" expanded="true" signature="49889:49937" ph="SELECT ident... " />
+                <marker date="1536590057476" expanded="true" signature="51247:51293" ph="SET IDENTITY... " />
+                <marker date="1536590057476" expanded="true" signature="51324:52968" ph="INSERT INTO tb_restituicao_rescisao... " />
+                <marker date="1536590057476" expanded="true" signature="52995:53042" ph="SET IDENTITY... " />
+                <marker date="1536590057476" expanded="true" signature="54489:55796" ph="INSERT INTO TB_SALDO_RESIDUAL_RESCISAO... " />
+                <marker date="1536590057476" expanded="true" signature="57366:57983" ph="SELECT ft.co... tb_funcao_terceirizado" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,6 +241,8 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44423af6-2be8-4d73-b0a2-8b14598979c6/console_5.sql" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" />
       </list>
     </option>
   </component>
@@ -131,10 +260,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1742" />
+    <option name="x" value="2457" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1017" />
+    <option name="height" value="1016" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -151,8 +280,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -203,42 +330,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="siscovi" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
-              <item name="helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -256,6 +347,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -607,12 +700,13 @@
       <workItem from="1535973403095" duration="8890000" />
       <workItem from="1536078839442" duration="12544000" />
       <workItem from="1536156247235" duration="1982000" />
-      <workItem from="1536251882300" duration="4710000" />
+      <workItem from="1536251882300" duration="5611000" />
+      <workItem from="1536577649191" duration="6309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202453000" />
+    <option name="totallyTimeSpent" value="209663000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -625,6 +719,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3420708" sideWeight="0.57916665" order="8" side_tool="true" content_ui="tabs" />
@@ -643,11 +738,10 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.325" sideWeight="0.48333332" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325" sideWeight="0.48333332" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32604167" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21588486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21801706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -658,6 +752,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32604167" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -712,13 +807,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/RescisaoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -745,9 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <marker date="1534763616349" expanded="true" signature="598:948" ph="SELECT TC.CO... tb_terceirizado_contrato" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -755,45 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="36" column="86" lean-forward="false" selection-start-line="36" selection-start-column="86" selection-end-line="36" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
-          <folding>
-            <marker date="1534276621822" expanded="true" signature="4561:4675" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
-            <marker date="1534276621822" expanded="true" signature="5259:5469" ph="SELECT COD F... tb_tipo_rescisao" />
-            <marker date="1534276621822" expanded="true" signature="6063:6365" ph="SELECT COD_C... TB_TERCEIRIZADO_CONTRATO" />
-            <marker date="1534276621822" expanded="true" signature="14776:15096" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534276621822" expanded="true" signature="14776:16890" ph="SELECT data_... " />
-            <marker date="1534276621822" expanded="true" signature="15177:15483" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534276621822" expanded="true" signature="15564:15820" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534276621822" expanded="true" signature="15901:16147" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534276621822" expanded="true" signature="16228:16524" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="16568:16873" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="27110:27600" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534276621822" expanded="true" signature="27110:28905" ph="SELECT rfc.d... " />
-            <marker date="1534276621822" expanded="true" signature="27681:28162" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534276621822" expanded="true" signature="28243:28539" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="28583:28888" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="37441:37761" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534276621822" expanded="true" signature="37441:40688" ph="SELECT data_... " />
-            <marker date="1534276621822" expanded="true" signature="37842:38148" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534276621822" expanded="true" signature="38229:38485" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534276621822" expanded="true" signature="38566:38812" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534276621822" expanded="true" signature="38893:39383" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534276621822" expanded="true" signature="39464:39945" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534276621822" expanded="true" signature="40026:40322" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="40366:40671" ph="SELECT CASE " />
-            <marker date="1534276621822" expanded="true" signature="52108:52156" ph="SELECT ident... " />
-            <marker date="1534276621822" expanded="true" signature="53516:53562" ph="SET IDENTITY... " />
-            <marker date="1534276621822" expanded="true" signature="53593:55244" ph="INSERT INTO tb_restituicao_rescisao... " />
-            <marker date="1534276621822" expanded="true" signature="55271:55318" ph="SET IDENTITY... " />
-            <marker date="1534276621822" expanded="true" signature="56739:58123" ph="INSERT INTO TB_SALDO_RESIDUAL_RESCISAO... " />
-            <marker date="1534276621822" expanded="true" signature="59697:60314" ph="SELECT ft.co... tb_funcao_terceirizado" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -844,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,9 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="752">
           <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <marker date="1535976383972" expanded="true" signature="1080:1194" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,24 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1535132449904" expanded="true" signature="725:830" ph="SELECT TOP 1... tb_contrato" />
-            <marker date="1535132449904" expanded="true" signature="1303:1514" ph="SELECT TOP 1... tb_terceirizado_contrato" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ConsultaTSQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="120" column="41" lean-forward="false" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="41" />
-          <folding>
-            <marker date="1535977616811" expanded="true" signature="619:679" ph="SELECT TOP 1... tb_contrato" />
-            <marker date="1535977616811" expanded="true" signature="1358:1475" ph="SELECT cod\n... tb_terceirizado_contrato" />
-            <marker date="1535977616811" expanded="true" signature="2266:2392" ph="SELECT DATA_... tb_terceirizado_contrato" />
-            <marker date="1535977616811" expanded="true" signature="3162:3386" ph="SELECT MIN(d... tb_evento_contratual" />
-            <marker date="1535977616811" expanded="true" signature="3162:3387" ph="SELECT MIN(d... tb_evento_contratual" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -954,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,11 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2116">
           <caret line="139" column="42" lean-forward="true" selection-start-line="139" selection-start-column="42" selection-end-line="139" selection-end-column="42" />
-          <folding>
-            <marker date="1535139674304" expanded="true" signature="927:3026" ph="SELECT u.nom... tb_funcao_contrato" />
-            <marker date="1535139674304" expanded="true" signature="4595:4857" ph="SELECT DISTI... TB_TOTAL_MENSAL_A_RETER" />
-            <marker date="1535139674304" expanded="true" signature="5790:7765" ph="SELECT u.nom... tb_funcao_contrato" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,9 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,7 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,40 +1058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3349">
           <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-          <folding>
-            <marker date="1534160250620" expanded="true" signature="2629:2677" ph="SELECT COUNT... TB_CONTRATO" />
-            <marker date="1534160250620" expanded="true" signature="3342:3459" ph="SELECT MIN(E... tb_evento_contratual" />
-            <marker date="1534160250620" expanded="true" signature="4677:4927" ph="SELECT COUNT... TB_TOTAL_MENSAL_A_RETER" />
-            <marker date="1534160250620" expanded="true" signature="5426:5780" ph="DELETE FROM " />
-            <marker date="1534160250620" expanded="true" signature="5504:5779" ph="SELECT TMR.C... TB_TOTAL_MENSAL_A_RETER" />
-            <marker date="1534160250620" expanded="true" signature="6137:6372" ph="DELETE FROM " />
-            <marker date="1534160250620" expanded="true" signature="6299:6371" ph="SELECT TC.CO... TB_TERCEIRIZADO_CONTRATO" />
-            <marker date="1534160250620" expanded="true" signature="8315:8372" ph="SELECT COD F... TB_FUNCAO_CONTRATO" />
-            <marker date="1534160250620" expanded="true" signature="11772:12107" ph="INSERT INTO TB_TOTAL_MENSAL_A_RETER... " />
-            <marker date="1534160250620" expanded="true" signature="14585:14905" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534160250620" expanded="true" signature="14585:16699" ph="SELECT data_... " />
-            <marker date="1534160250620" expanded="true" signature="14986:15292" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534160250620" expanded="true" signature="15373:15629" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534160250620" expanded="true" signature="15710:15956" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534160250620" expanded="true" signature="16037:16333" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="16377:16682" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="24770:25260" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534160250620" expanded="true" signature="24770:26565" ph="SELECT rfc.d... " />
-            <marker date="1534160250620" expanded="true" signature="25341:25822" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534160250620" expanded="true" signature="25903:26199" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="26243:26548" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="33113:33433" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534160250620" expanded="true" signature="33113:36360" ph="SELECT data_... " />
-            <marker date="1534160250620" expanded="true" signature="33514:33820" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1534160250620" expanded="true" signature="33901:34157" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534160250620" expanded="true" signature="34238:34484" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1534160250620" expanded="true" signature="34565:35055" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534160250620" expanded="true" signature="35136:35617" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1534160250620" expanded="true" signature="35698:35994" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="36038:36343" ph="SELECT CASE " />
-            <marker date="1534160250620" expanded="true" signature="45070:45420" ph="SELECT ft.co... tb_funcao_terceirizado" />
-            <marker date="1534160250620" expanded="true" signature="47087:47406" ph="INSERT INTO TB_TOTAL_MENSAL_A_RETER... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1087,12 +1065,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <marker date="1536081665152" expanded="true" signature="738:1034" ph="SELECT u.nom... " />
-            <marker date="1536081665152" expanded="true" signature="738:1345" ph="SELECT u.nom... " />
-            <marker date="1536081665152" expanded="true" signature="738:1386" ph="SELECT u.nom... tb_funcao_contrato" />
-            <marker date="1536081665152" expanded="true" signature="738:1439" ph="SELECT u.nom... tb_funcao_contrato" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,7 +1072,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,25 +1079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoDecimoTerceiroModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1134,80 +1086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="63" column="9" lean-forward="false" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-          <folding>
-            <marker date="1536257911673" expanded="true" signature="1167:1204" ph="DELETE FROM " />
-            <marker date="1536257911673" expanded="true" signature="1206:1248" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="963">
-          <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding>
-            <marker date="1534769206607" expanded="true" signature="812:1149" ph="SELECT MAX(D... tb_restituicao_decimo_terceiro" />
-            <marker date="1534769206607" expanded="true" signature="1893:2117" ph="SELECT DATA_... tb_terceirizado_contrato" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="746" column="48" lean-forward="false" selection-start-line="746" selection-start-column="48" selection-end-line="746" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1536256723731" expanded="true" signature="2708:2767" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
-            <marker date="1536256723731" expanded="true" signature="3325:3395" ph="SELECT tc.co... tb_terceirizado_contrato" />
-            <marker date="1536256723731" expanded="true" signature="8023:8183" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1536256723731" expanded="true" signature="8023:9017" ph="SELECT data_... " />
-            <marker date="1536256723731" expanded="true" signature="8200:8346" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1536256723731" expanded="true" signature="8363:8491" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1536256723731" expanded="true" signature="8508:8626" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1536256723731" expanded="true" signature="8643:8811" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="8823:9000" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="14569:14835" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1536256723731" expanded="true" signature="14569:15500" ph="SELECT rfc.d... " />
-            <marker date="1536256723731" expanded="true" signature="14852:15109" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1536256723731" expanded="true" signature="15126:15294" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="15306:15483" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="20567:20727" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1536256723731" expanded="true" signature="20567:22118" ph="SELECT data_... " />
-            <marker date="1536256723731" expanded="true" signature="20744:20890" ph="SELECT data_... tb_percentual_contrato" />
-            <marker date="1536256723731" expanded="true" signature="20907:21035" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1536256723731" expanded="true" signature="21052:21170" ph="SELECT data_... tb_percentual_estatico" />
-            <marker date="1536256723731" expanded="true" signature="21187:21453" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1536256723731" expanded="true" signature="21470:21727" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
-            <marker date="1536256723731" expanded="true" signature="21744:21912" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="21924:22101" ph="SELECT CASE " />
-            <marker date="1536256723731" expanded="true" signature="29939:30013" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
-            <marker date="1536256723731" expanded="true" signature="30659:30714" ph="SELECT ident... " />
-            <marker date="1536256723731" expanded="true" signature="31856:31909" ph="SET IDENTITY... " />
-            <marker date="1536256723731" expanded="true" signature="31941:32906" ph="INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO... " />
-            <marker date="1536256723731" expanded="true" signature="32933:32987" ph="SET IDENTITY... " />
-            <marker date="1536256723731" expanded="true" signature="33805:34312" ph="INSERT INTO TB_SALDO_RESIDUAL_DEC_TER... " />
-            <marker date="1536256723731" expanded="true" signature="35334:36685" ph="SELECT ft.co... tb_funcao_terceirizado" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="59" selection-end-column="9" />
-          <folding>
-            <marker date="1535984220617" expanded="true" signature="1018:1054" ph="DELETE FROM " />
-            <marker date="1535984220617" expanded="true" signature="1056:1089" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1254,7 +1132,156 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="82" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <marker date="1534769206607" expanded="true" signature="812:1149" ph="SELECT MAX(D... tb_restituicao_decimo_terceiro" />
+            <marker date="1534769206607" expanded="true" signature="1893:2117" ph="SELECT DATA_... tb_terceirizado_contrato" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="37" column="85" lean-forward="true" selection-start-line="37" selection-start-column="85" selection-end-line="37" selection-end-column="85" />
+          <folding>
+            <marker date="1536257911673" expanded="true" signature="1167:1204" ph="DELETE FROM " />
+            <marker date="1536257911673" expanded="true" signature="1206:1248" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ConsultaTSQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="129" column="13" lean-forward="false" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+          <folding>
+            <marker date="1535977616811" expanded="true" signature="619:679" ph="SELECT TOP 1... tb_contrato" />
+            <marker date="1535977616811" expanded="true" signature="1358:1475" ph="SELECT cod\n... tb_terceirizado_contrato" />
+            <marker date="1535977616811" expanded="true" signature="2266:2392" ph="SELECT DATA_... tb_terceirizado_contrato" />
+            <marker date="1535977616811" expanded="true" signature="3162:3386" ph="SELECT MIN(d... tb_evento_contratual" />
+            <marker date="1535977616811" expanded="true" signature="3162:3387" ph="SELECT MIN(d... tb_evento_contratual" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoDecimoTerceiroModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="615" column="72" lean-forward="true" selection-start-line="615" selection-start-column="72" selection-end-line="615" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1536256723731" expanded="true" signature="2708:2767" ph="SELECT COUNT... TB_TERCEIRIZADO_CONTRATO" />
+            <marker date="1536256723731" expanded="true" signature="3325:3395" ph="SELECT tc.co... tb_terceirizado_contrato" />
+            <marker date="1536256723731" expanded="true" signature="8023:8183" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536256723731" expanded="true" signature="8023:9017" ph="SELECT data_... " />
+            <marker date="1536256723731" expanded="true" signature="8200:8346" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536256723731" expanded="true" signature="8363:8491" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536256723731" expanded="true" signature="8508:8626" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536256723731" expanded="true" signature="8643:8811" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="8823:9000" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="14569:14835" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536256723731" expanded="true" signature="14569:15500" ph="SELECT rfc.d... " />
+            <marker date="1536256723731" expanded="true" signature="14852:15109" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536256723731" expanded="true" signature="15126:15294" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="15306:15483" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="20567:20727" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536256723731" expanded="true" signature="20567:22118" ph="SELECT data_... " />
+            <marker date="1536256723731" expanded="true" signature="20744:20890" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536256723731" expanded="true" signature="20907:21035" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536256723731" expanded="true" signature="21052:21170" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536256723731" expanded="true" signature="21187:21453" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536256723731" expanded="true" signature="21470:21727" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536256723731" expanded="true" signature="21744:21912" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="21924:22101" ph="SELECT CASE " />
+            <marker date="1536256723731" expanded="true" signature="29939:30013" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
+            <marker date="1536256723731" expanded="true" signature="30659:30714" ph="SELECT ident... " />
+            <marker date="1536256723731" expanded="true" signature="31856:31909" ph="SET IDENTITY... " />
+            <marker date="1536256723731" expanded="true" signature="31941:32906" ph="INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO... " />
+            <marker date="1536256723731" expanded="true" signature="32933:32987" ph="SET IDENTITY... " />
+            <marker date="1536256723731" expanded="true" signature="33805:34312" ph="INSERT INTO TB_SALDO_RESIDUAL_DEC_TER... " />
+            <marker date="1536256723731" expanded="true" signature="35334:36685" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="57" lean-forward="true" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="114" lean-forward="true" selection-start-line="30" selection-start-column="114" selection-end-line="30" selection-end-column="114" />
+          <folding>
+            <marker date="1535984220617" expanded="true" signature="1018:1054" ph="DELETE FROM " />
+            <marker date="1535984220617" expanded="true" signature="1056:1089" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12206">
+          <caret line="727" column="0" lean-forward="true" selection-start-line="727" selection-start-column="0" selection-end-line="727" selection-end-column="0" />
+          <folding>
+            <marker date="1536590057476" expanded="true" signature="3903:4004" ph="SELECT COD_C... TB_TERCEIRIZADO_CONTRATO" />
+            <marker date="1536590057476" expanded="true" signature="12479:12639" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536590057476" expanded="true" signature="12479:13473" ph="SELECT data_... " />
+            <marker date="1536590057476" expanded="true" signature="12656:12802" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536590057476" expanded="true" signature="12819:12947" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536590057476" expanded="true" signature="12964:13082" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536590057476" expanded="true" signature="13099:13267" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="13279:13456" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="23771:24037" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536590057476" expanded="true" signature="23771:24702" ph="SELECT rfc.d... " />
+            <marker date="1536590057476" expanded="true" signature="24054:24311" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536590057476" expanded="true" signature="24328:24496" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="24508:24685" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="33278:33438" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536590057476" expanded="true" signature="33278:34829" ph="SELECT data_... " />
+            <marker date="1536590057476" expanded="true" signature="33455:33601" ph="SELECT data_... tb_percentual_contrato" />
+            <marker date="1536590057476" expanded="true" signature="33618:33746" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536590057476" expanded="true" signature="33763:33881" ph="SELECT data_... tb_percentual_estatico" />
+            <marker date="1536590057476" expanded="true" signature="33898:34164" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536590057476" expanded="true" signature="34181:34438" ph="SELECT rfc.d... tb_remuneracao_fun_con" />
+            <marker date="1536590057476" expanded="true" signature="34455:34623" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="34635:34812" ph="SELECT CASE " />
+            <marker date="1536590057476" expanded="true" signature="48499:48573" ph="SELECT COD F... TB_TIPO_RESTITUICAO" />
+            <marker date="1536590057476" expanded="true" signature="49171:49251" ph="SELECT COD F... tb_tipo_rescisao" />
+            <marker date="1536590057476" expanded="true" signature="49889:49937" ph="SELECT ident... " />
+            <marker date="1536590057476" expanded="true" signature="51247:51293" ph="SET IDENTITY... " />
+            <marker date="1536590057476" expanded="true" signature="51324:52968" ph="INSERT INTO tb_restituicao_rescisao... " />
+            <marker date="1536590057476" expanded="true" signature="52995:53042" ph="SET IDENTITY... " />
+            <marker date="1536590057476" expanded="true" signature="54489:55796" ph="INSERT INTO TB_SALDO_RESIDUAL_RESCISAO... " />
+            <marker date="1536590057476" expanded="true" signature="57366:57983" ph="SELECT ft.co... tb_funcao_terceirizado" />
+          </folding>
         </state>
       </provider>
     </entry>
