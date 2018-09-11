@@ -2,6 +2,7 @@ package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
 import br.jus.stj.siscovi.model.CodTerceirizadoECodFuncaoTerceirizadoModel;
+import br.jus.stj.siscovi.model.ValorRestituicaoRescisaoModel;
 import com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement;
 
 import java.sql.*;
@@ -26,15 +27,11 @@ public class RestituicaoRescisao {
      * determinado período aquisitivo.
      *
      * @param pCodTerceirizadoContrato;
-     * @param pTipoRestituicao;
      * @param pDataDesligamento;
-     * @param pTipoRescisao;
      */
 
-    public void CalculaRestituicaoRescisao (int pCodTerceirizadoContrato,
-                                            String pTipoRestituicao,
-                                            Date pDataDesligamento,
-                                            String pTipoRescisao) {
+    public ValorRestituicaoRescisaoModel CalculaRestituicaoRescisao (int pCodTerceirizadoContrato,
+                                                                     Date pDataDesligamento) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -42,7 +39,6 @@ public class RestituicaoRescisao {
         Percentual percentual = new Percentual(connection);
         Periodos periodo = new Periodos(connection);
         Remuneracao remuneracao = new Remuneracao(connection);
-        Ferias ferias = new Ferias(connection);
         Saldo saldo = new Saldo(connection);
 
         /**Chaves primárias.*/
@@ -107,23 +103,12 @@ public class RestituicaoRescisao {
         int vDiasSubperiodo = 0;
 
         /**Checagem dos parâmetros passados.*/
-/*
-        if (pCodTerceirizadoContrato == null ||
-            pTipoRestituicao == null ||
-            pDiasVendidos == null ||
-            pInicioFerias == null ||
-            pFimFerias == null ||
-            pInicioPeriodoAquisitivo == null ||
-            pFimPeriodoAquisitivo == null) {
 
-            return;
+        if (pDataDesligamento == null) {
+
+            throw new NullPointerException("Erro na checagem dos parâmetros.");
 
         }
-
-
-*/
-
-
 
         /**Atribuiçao da data de disponibilização e do cod do contrato.*/
 
@@ -723,6 +708,18 @@ public class RestituicaoRescisao {
         //      System.out.println(vTotalIncidenciaFerias);
         //     System.out.println(vTotalIncidenciaTerco);
 
+        ValorRestituicaoRescisaoModel valorRestituicaoRescisaoModel = new ValorRestituicaoRescisaoModel(vTotalDecimoTerceiro,
+                vTotalIncidenciaDecimoTerceiro,
+                vTotalMultaFGTSDecimoTerceiro,
+                vTotalFerias,
+                vTotalTercoConstitucional,
+                vTotalIncidenciaFerias,
+                vTotalIncidenciaTerco,
+                vTotalMultaFGTSFerias,
+                vTotalMultaFGTSTerco,
+                vTotalMultaFGTSRemuneracao);
+
+        return valorRestituicaoRescisaoModel;
 
     }
 

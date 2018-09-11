@@ -17,7 +17,7 @@ public class TesteRestituicaoRescisao {
 
         RestituicaoRescisao restituicaoRescisao = new RestituicaoRescisao(connectSQLServer.dbConnect());
 
-        restituicaoRescisao.CalculaRestituicaoRescisao(742, "RESGATE",Date.valueOf("2016-12-31"), "A PEDIDO");
+        //restituicaoRescisao.CalculaRestituicaoRescisao(742, "RESGATE",Date.valueOf("2016-12-31"), "A PEDIDO");
 
     }
 
