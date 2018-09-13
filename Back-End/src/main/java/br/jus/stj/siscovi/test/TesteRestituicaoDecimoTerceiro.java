@@ -5,9 +5,6 @@ import br.jus.stj.siscovi.helpers.ConsultaTSQL;
 import br.jus.stj.siscovi.model.ValorRestituicaoDecimoTerceiroModel;
 
 import java.sql.*;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
-import java.time.LocalDate;
 
 public class TesteRestituicaoDecimoTerceiro {
 
