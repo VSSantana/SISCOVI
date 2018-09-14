@@ -608,6 +608,7 @@ public class RestituicaoDecimoTerceiro {
      * @param pNumeroParcela;
      * @param pValorDecimoTerceiro;
      * @param pValorIncidencia;
+     * @param pLoginAtualizacao;
     */
 
     public void RegistraRestituicaoDecimoTerceiro (int pCodTerceirizadoContrato,

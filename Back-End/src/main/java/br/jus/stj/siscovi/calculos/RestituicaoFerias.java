@@ -699,7 +699,7 @@ public class RestituicaoFerias {
     }
 
     /**
-     * Método que registra o calculo do total de férias a ser restituído para um
+     * Método que registra o cálculo do total de férias a ser restituído para um
      * determinado período aquisitivo.
      *
      * @param pCodTerceirizadoContrato;
@@ -710,7 +710,8 @@ public class RestituicaoFerias {
      * @param pInicioPeriodoAquisitivo;
      * @param pFimPeriodoAquisitivo;
      * @param pValorMovimentado;
-     * @param pProporcional;
+     * @param pParcela;
+     * @param pLoginAtualizacao;
      */
 
     public void RegistraRestituicaoFerias (int pCodTerceirizadoContrato,
@@ -897,6 +898,56 @@ public class RestituicaoFerias {
         }
 
     }
+
+    /**
+     * Método que atualiza o cálculo do total de férias a ser restituído para um
+     * determinado período aquisitivo.
+     *
+     * @param pCodTerceirizadoContrato;
+     * @param pTipoRestituicao;
+     * @param pDiasVendidos;
+     * @param pInicioFerias;
+     * @param pFimFerias;
+     * @param pInicioPeriodoAquisitivo;
+     * @param pFimPeriodoAquisitivo;
+     * @param pValorMovimentado;
+     * @param pParcela;
+     * @param pLoginAtualizacao;
+     */
+
+    public void AtualizaRestituicaoFerias (int pCodTerceirizadoContrato,
+                                           String pTipoRestituicao,
+                                           int pDiasVendidos,
+                                           Date pInicioFerias,
+                                           Date pFimFerias,
+                                           Date pInicioPeriodoAquisitivo,
+                                           Date pFimPeriodoAquisitivo,
+                                           int pParcela,
+                                           float pValorMovimentado,
+                                           float pTotalFerias,
+                                           float pTotalTercoConstitucional,
+                                           float pTotalIncidenciaFerias,
+                                           float pTotalIncidenciaTerco,
+                                           String pLoginAtualizacao) {
+
+        String vTipoRestituicao = null;
+        int vDiasVendidos = 0;
+        Date vInicioFerias = null;
+        Date vFimFerias = null;
+        Date vInicioPeriodoAquisitivo = null;
+        Date vFimPeriodoAquisitivo = null;
+        int vParcela = 0;
+        float vValorMovimentado = 0;
+        float vTotalFerias = 0;
+        float vTotalTercoConstitucional = 0;
+        float vTotalIncidenciaFerias = 0;
+        float vTotalIncidenciaTerco = 0;
+        String vLoginAtualizacao = null;
+
+
+
+    }
+
 
     /*Seleção do código da função terceirizado e da função contrato.*/
 

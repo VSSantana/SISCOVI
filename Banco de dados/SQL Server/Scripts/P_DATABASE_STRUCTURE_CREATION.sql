@@ -75,26 +75,6 @@ ON "default"
 
 go
 
-CREATE TABLE tb_hist_total_mensal_a_reter (
-    cod_total_mensal_a_reter   INTEGER NOT NULL,
-    cod_funcao_terceirizado    INTEGER,
-    ferias                     FLOAT(20),
-    terco_constitucional       FLOAT(20),
-    decimo_terceiro            FLOAT(20),
-    incidencia_submodulo_4_1   FLOAT(20),
-    multa_fgts                 FLOAT(20),
-    total                      FLOAT(20),
-    data_referencia            DATE,
-    autorizado                 CHAR,
-    retido                     CHAR,
-    observacao                 VARCHAR(500),
-    login_atualizacao          VARCHAR(150),
-    data_atualizacao           datetime
-)
-ON "default" 
-
-go
-
 CREATE TABLE tb_contrato
 
 ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
@@ -1166,14 +1146,6 @@ ON DELETE NO ACTION
 ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
     ADD CONSTRAINT tb_hist_restituicao_rescisao_fk3 FOREIGN KEY ( cod_tipo_rescisao )
         REFERENCES tb_tipo_rescisao ( cod )
-ON DELETE NO ACTION 
-    ON UPDATE no action 
-    
-    go
-
-ALTER TABLE TB_HIST_TOTAL_MENSAL_A_RETER
-    ADD CONSTRAINT tb_hist_total_mensal_fk1 FOREIGN KEY ( cod_total_mensal_a_reter )
-        REFERENCES tb_total_mensal_a_reter ( cod )
 ON DELETE NO ACTION 
     ON UPDATE no action 
     
