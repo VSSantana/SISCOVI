@@ -7,6 +7,94 @@ USE [SISCOVI]
 
 GO
 
+CREATE TABLE tb_hist_restituicao_dec_ter (
+    cod_restituicao_dec_terceiro   INTEGER NOT NULL,
+    cod_tipo_restituicao           INTEGER NOT NULL,
+    parcela                        INTEGER,
+    data_inicio_contagem           DATE,
+    valor                          FLOAT(20),
+    incidencia_submodulo_4_1       FLOAT(20),
+    data_referencia                DATE,
+    autorizado                     CHAR(1),
+    restituido                     CHAR(1),
+    observacao                     VARCHAR(500),
+    login_atualizacao              VARCHAR(150),
+    data_atualizacao               datetime
+)
+ON "default" 
+
+go
+
+CREATE TABLE tb_hist_restituicao_ferias (
+    cod_restituicao_ferias           INTEGER NOT NULL,
+    cod_tipo_restituicao             INTEGER NOT NULL,
+    data_inicio_periodo_aquisitivo   DATE,
+    data_fim_periodo_aquisitivo      DATE,
+    data_inicio_usufruto             DATE,
+    data_fim_usufruto                DATE,
+    dias_vendidos                    INTEGER,
+    valor_ferias                     FLOAT,
+    valor_terco_constitucional       FLOAT,
+    incid_submod_4_1_ferias          FLOAT,
+    incid_submod_4_1_terco           FLOAT,
+    parcela                          INTEGER,
+    data_referencia                  DATE,
+    autorizado                       CHAR,
+    restituido                       CHAR,
+    observacao                       VARCHAR(500),
+    login_atualizacao                VARCHAR(150),
+    data_atualizacao                 datetime
+)
+ON "default" 
+
+go
+
+CREATE TABLE tb_hist_restituicao_rescisao (
+    cod_restituicao_rescisao        INTEGER NOT NULL,
+    cod_tipo_restituicao            INTEGER NOT NULL,
+    cod_tipo_rescisao               INTEGER NOT NULL,
+    data_desligamento               DATE,
+    valor_decimo_terceiro           FLOAT(20),
+    incid_submod_4_1_dec_terceiro   FLOAT(20),
+    incid_multa_fgts_dec_terceiro   FLOAT(20),
+    valor_ferias                    FLOAT,
+    valor_terco                     FLOAT,
+    incid_submod_4_1_ferias         FLOAT,
+    incid_submod_4_1_terco          FLOAT,
+    incid_multa_fgts_ferias         FLOAT(20),
+    incid_multa_fgts_terco          FLOAT(20),
+    multa_fgts_salario              FLOAT(20),
+    data_referencia                 DATE,
+    autorizado                      CHAR,
+    restituido                      CHAR,
+    observacao                      VARCHAR(500),
+    login_atualizacao               VARCHAR(150),
+    data_atualizacao                datetime
+)
+ON "default" 
+
+go
+
+CREATE TABLE tb_hist_total_mensal_a_reter (
+    cod_total_mensal_a_reter   INTEGER NOT NULL,
+    cod_funcao_terceirizado    INTEGER,
+    ferias                     FLOAT(20),
+    terco_constitucional       FLOAT(20),
+    decimo_terceiro            FLOAT(20),
+    incidencia_submodulo_4_1   FLOAT(20),
+    multa_fgts                 FLOAT(20),
+    total                      FLOAT(20),
+    data_referencia            DATE,
+    autorizado                 CHAR,
+    retido                     CHAR,
+    observacao                 VARCHAR(500),
+    login_atualizacao          VARCHAR(150),
+    data_atualizacao           datetime
+)
+ON "default" 
+
+go
+
 CREATE TABLE tb_contrato
 
 ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
@@ -331,13 +419,13 @@ CREATE TABLE tb_restituicao_ferias
      VALOR_TERCO_CONSTITUCIONAL FLOAT (20) NOT NULL , 
      INCID_SUBMOD_4_1_FERIAS FLOAT (20) , 
      INCID_SUBMOD_4_1_TERCO FLOAT (20) NOT NULL , 
-     SE_PROPORCIONAL CHAR (1) NOT NULL , 
+     PARCELA INTEGER NOT NULL , 
      DATA_REFERENCIA DATE NOT NULL , 
      AUTORIZADO CHAR (1) , 
      RESTITUIDO CHAR (1) , 
+     OBSERVACAO CHAR (500) , 
      LOGIN_ATUALIZACAO VARCHAR (100) NOT NULL , 
-     DATA_ATUALIZACAO DATETIME NOT NULL 
-    )
+     DATA_ATUALIZACAO datetime NOT NULL )
     ON "default"
     
     go
@@ -1024,6 +1112,72 @@ ALTER TABLE TB_USUARIO
         REFERENCES tb_perfil_usuario ( cod )
 ON DELETE NO ACTION 
     ON UPDATE no action 
+
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_DEC_TER
+    ADD CONSTRAINT tb_hist_rest_dec_ter_fk1 FOREIGN KEY ( cod_restituicao_dec_terceiro )
+        REFERENCES tb_restituicao_decimo_terceiro ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_DEC_TER
+    ADD CONSTRAINT tb_hist_rest_dec_ter_fk2 FOREIGN KEY ( cod_tipo_restituicao )
+        REFERENCES tb_tipo_restituicao ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_FERIAS
+    ADD CONSTRAINT tb_hist_restituicao_ferias_fk1 FOREIGN KEY ( cod_restituicao_ferias )
+        REFERENCES tb_restituicao_ferias ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_FERIAS
+    ADD CONSTRAINT tb_hist_restituicao_ferias_fk2 FOREIGN KEY ( cod_tipo_restituicao )
+        REFERENCES tb_tipo_restituicao ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
+    ADD CONSTRAINT tb_hist_restituicao_rescisao_fk1 FOREIGN KEY ( cod_restituicao_rescisao )
+        REFERENCES tb_restituicao_rescisao ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
+    ADD CONSTRAINT tb_hist_restituicao_rescisao_fk2 FOREIGN KEY ( cod_tipo_restituicao )
+        REFERENCES tb_tipo_restituicao ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
+    ADD CONSTRAINT tb_hist_restituicao_rescisao_fk3 FOREIGN KEY ( cod_tipo_rescisao )
+        REFERENCES tb_tipo_rescisao ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
+
+ALTER TABLE TB_HIST_TOTAL_MENSAL_A_RETER
+    ADD CONSTRAINT tb_hist_total_mensal_fk1 FOREIGN KEY ( cod_total_mensal_a_reter )
+        REFERENCES tb_total_mensal_a_reter ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
 
 ------------------------------------------------------------------------------------------------
 
