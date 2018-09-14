@@ -22,6 +22,8 @@ public class TesteRestituicaoFerias {
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
+        String vLoginAtualizacao = String.valueOf("VSSOUSA");
+        int vParcela = 0;
         int vDiasVendidos = 0;
         float vValorMovimentado = 12842;
         String sqlDelete = "DELETE FROM TB_SALDO_RESIDUAL_FERIAS; DELETE FROM TB_RESTITUICAO_FERIAS;";
@@ -44,9 +46,9 @@ public class TesteRestituicaoFerias {
         System.out.println(restituicao.getValorIncidenciaTercoConstitucional());
 
         restituicaoFerias.RegistraRestituicaoFerias(vCodTerceirizadoContrato, vTipoRestituicao, vDiasVendidos,
-                vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, Character.valueOf('N'),
+                vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela,
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
-                restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional());
+                restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional(), vLoginAtualizacao);
 
         try {
 
