@@ -964,4 +964,16 @@ public class RestituicaoFerias {
 
     }
 
+    /**
+     * Método que exclui um registro da tabela de restituição de férias.
+     *
+     * @param pCodRestituicaoFerias;
+     */
+
+    public void ExcluiRestituicaoFerias (int pCodRestituicaoFerias) {
+
+
+
+    }
+
 }
