@@ -2,7 +2,7 @@ package br.jus.stj.siscovi.test;
 
 import br.jus.stj.siscovi.calculos.TotalMensalAReter;
 import br.jus.stj.siscovi.dao.ConnectSQLServer;
-import br.jus.stj.siscovi.helpers.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;

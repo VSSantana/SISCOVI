@@ -1,5 +1,5 @@
 package br.jus.stj.siscovi.calculos;
-import br.jus.stj.siscovi.helpers.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
 import br.jus.stj.siscovi.model.ValorRestituicaoFeriasModel;
 
 
@@ -20,6 +20,7 @@ public class TesteRestituicaoFerias {
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
 
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
+        int retorno;
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
@@ -45,10 +46,14 @@ public class TesteRestituicaoFerias {
         System.out.println(restituicao.getValorIncidenciaFerias());
         System.out.println(restituicao.getValorIncidenciaTercoConstitucional());
 
-        restituicaoFerias.RegistraRestituicaoFerias(vCodTerceirizadoContrato, vTipoRestituicao, vDiasVendidos,
+        retorno = restituicaoFerias.RegistraRestituicaoFerias(vCodTerceirizadoContrato, vTipoRestituicao, vDiasVendidos,
                 vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela,
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
                 restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional(), vLoginAtualizacao);
+
+        restituicaoFerias.AtualizaRestituicaoFerias(retorno, vTipoRestituicao, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+                vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
+               0, 0, vInicioFerias, 'N', 'N', String.valueOf(""), String.valueOf(""));
 
         try {
 
