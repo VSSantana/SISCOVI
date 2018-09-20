@@ -1,6 +1,9 @@
 package br.jus.stj.siscovi.dao.sql;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class InsertTSQL {
 
@@ -11,5 +14,7 @@ public class InsertTSQL {
         this.connection = connection;
 
     }
+
+
 
 }

@@ -279,4 +279,35 @@ public class ConsultaTSQL {
 
     }
 
+    //Retorna o cod contrato do registro contido em tb_terceirizado_contrato com cod correspondente a pCodTerceirizadoContrato.
+
+    public int RetornaContratoTerceirizado (int pCodTerceirizadoContrato) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int vCodContrato = 0;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT tc.cod_contrato FROM tb_terceirizado_contrato tc WHERE tc.cod = ?");
+
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodContrato = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        return vCodContrato;
+
+    }
+
 }

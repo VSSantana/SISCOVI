@@ -1,5 +1,5 @@
 package br.jus.stj.siscovi.calculos;
-import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.*;
 import br.jus.stj.siscovi.model.ValorRestituicaoFeriasModel;
 
 
@@ -17,6 +17,9 @@ public class TesteRestituicaoFerias {
 
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         ConsultaTSQL consulta = new ConsultaTSQL(connectSQLServer.dbConnect());
+        DeleteTSQL delete = new DeleteTSQL(connectSQLServer.dbConnect());
+        UpdateTSQL update = new UpdateTSQL(connectSQLServer.dbConnect());
+
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
 
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
@@ -51,20 +54,12 @@ public class TesteRestituicaoFerias {
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
                 restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional(), vLoginAtualizacao);
 
-        restituicaoFerias.AtualizaRestituicaoFerias(retorno, vTipoRestituicao, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+        update.UpdateRestituicaoFerias(retorno, vTipoRestituicao, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
                 vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
                0, 0, vInicioFerias, 'N', 'N', String.valueOf(""), String.valueOf(""));
 
-        try {
-
-            preparedStatement = connectSQLServer.dbConnect().prepareStatement(sqlDelete);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException sqle) {
-
-            throw new NullPointerException("Não foi possível deletar os dados de teste inseridos no banco.");
-
-        }
+        delete.DeleteSaldoResidualFerias(retorno);
+        delete.DeleteRestituicaoFerias(retorno);
 
     }
 
