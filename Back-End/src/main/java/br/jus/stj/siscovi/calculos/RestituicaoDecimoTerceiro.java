@@ -45,7 +45,7 @@ public class RestituicaoDecimoTerceiro {
 
         /*Chaves primárias.*/
 
-        int vCodContrato = 0;
+        int vCodContrato;
 
         /*Variáveis totalizadoras de valores.*/
 
@@ -628,24 +628,7 @@ public class RestituicaoDecimoTerceiro {
 
         /*Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_decimo_terceiro.*/
 
-        try {
 
-            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_DECIMO_TERCEIRO')");
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-
-                vCodTbRestituicao13 = resultSet.getInt(1);
-                vCodTbRestituicao13 = vCodTbRestituicao13 + 1;
-
-            }
-
-        } catch (SQLException sqle) {
-
-            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
-
-        }
 
         /*No caso de segunda parcela a movimentação gera resíduos referentes ao
          valor do décimo terceiro que é afetado pelos descontos (IRPF, INSS e etc.)*/
@@ -670,39 +653,7 @@ public class RestituicaoDecimoTerceiro {
 
         /*Gravação no banco*/
 
-        try {
 
-            String sql = "SET IDENTITY_INSERT tb_restituicao_decimo_terceiro ON; " +
-                         "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
-                                                                    " COD_TERCEIRIZADO_CONTRATO," +
-                                                                    " COD_TIPO_RESTITUICAO," +
-                                                                    " PARCELA," +
-                                                                    " DATA_INICIO_CONTAGEM," +
-                                                                    " VALOR," +
-                                                                    " INCIDENCIA_SUBMODULO_4_1," +
-                                                                    " DATA_REFERENCIA," +
-                                                                    " LOGIN_ATUALIZACAO," +
-                                                                    " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT tb_restituicao_decimo_terceiro OFF;";
-
-            preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setInt(1, vCodTbRestituicao13);
-            preparedStatement.setInt(2, pCodTerceirizadoContrato);
-            preparedStatement.setInt(3, vCodTipoRestituicao);
-            preparedStatement.setInt(4, pNumeroParcela);
-            preparedStatement.setDate(5, pInicioContagem);
-            preparedStatement.setFloat(6, pValorDecimoTerceiro);
-            preparedStatement.setFloat(7, pValorIncidencia);
-            preparedStatement.setString(8, pLoginAtualizacao);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-
-            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13° no banco de dados!");
-
-        }
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 

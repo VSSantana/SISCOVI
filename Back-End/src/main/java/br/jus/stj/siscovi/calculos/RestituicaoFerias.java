@@ -704,29 +704,31 @@ public class RestituicaoFerias {
      * @param pLoginAtualizacao;
      */
 
-    public int RegistraRestituicaoFerias (int pCodTerceirizadoContrato,
-                                           String pTipoRestituicao,
-                                           int pDiasVendidos,
-                                           Date pInicioFerias,
-                                           Date pFimFerias,
-                                           Date pInicioPeriodoAquisitivo,
-                                           Date pFimPeriodoAquisitivo,
-                                           int pParcela,
-                                           float pValorMovimentado,
-                                           float pTotalFerias,
-                                           float pTotalTercoConstitucional,
-                                           float pTotalIncidenciaFerias,
-                                           float pTotalIncidenciaTerco,
-                                           String pLoginAtualizacao) {
+    public Integer RegistraRestituicaoFerias (int pCodTerceirizadoContrato,
+                                              String pTipoRestituicao,
+                                              int pDiasVendidos,
+                                              Date pInicioFerias,
+                                              Date pFimFerias,
+                                              Date pInicioPeriodoAquisitivo,
+                                              Date pFimPeriodoAquisitivo,
+                                              int pParcela,
+                                              float pValorMovimentado,
+                                              float pTotalFerias,
+                                              float pTotalTercoConstitucional,
+                                              float pTotalIncidenciaFerias,
+                                              float pTotalIncidenciaTerco,
+                                              String pLoginAtualizacao) {
 
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
         ConsultaTSQL consulta = new ConsultaTSQL(connection);
+        InsertTSQL insert = new InsertTSQL(connection);
 
         /*Chaves primárias.*/
 
-        int vCodTbRestituicaoFerias = 0;
-        int vCodTipoRestituicao;
+        int vCodTbRestituicaoFerias;
+
+        /*Atribuição do cod do tipo de restituição.*/
+
+        int vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
 
         /*Variáveis auxiliares.*/
 
@@ -734,31 +736,6 @@ public class RestituicaoFerias {
         float vIncidenciaTerco = 0;
         float vTerco = 0;
         float vFerias = 0;
-
-        /*Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_ferias.*/
-
-        try {
-
-            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_FERIAS')");
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-
-                vCodTbRestituicaoFerias = resultSet.getInt(1);
-                vCodTbRestituicaoFerias = vCodTbRestituicaoFerias + 1;
-
-            }
-
-        } catch (SQLException sqle) {
-
-            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
-
-        }
-
-         /*Atribuição do cod do tipo de restituição.*/
-
-        vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
 
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -783,85 +760,28 @@ public class RestituicaoFerias {
 
         /*Gravação no banco*/
 
-        try {
-
-            String sql = "SET IDENTITY_INSERT tb_restituicao_ferias ON;" +
-                        " INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
-                                                           " COD_TERCEIRIZADO_CONTRATO," +
-                                                           " COD_TIPO_RESTITUICAO," +
-                                                           " DATA_INICIO_PERIODO_AQUISITIVO," +
-                                                           " DATA_FIM_PERIODO_AQUISITIVO," +
-                                                           " DATA_INICIO_USUFRUTO," +
-                                                           " DATA_FIM_USUFRUTO," +
-                                                           " VALOR_FERIAS," +
-                                                           " VALOR_TERCO_CONSTITUCIONAL," +
-                                                           " INCID_SUBMOD_4_1_FERIAS," +
-                                                           " INCID_SUBMOD_4_1_TERCO," +
-                                                           " PARCELA," +
-                                                           " DIAS_VENDIDOS," +
-                                                           " DATA_REFERENCIA," +
-                                                           " LOGIN_ATUALIZACAO," +
-                                                           " DATA_ATUALIZACAO)" +
-                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                         " SET IDENTITY_INSERT tb_restituicao_ferias OFF;";
-
-                preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
-                preparedStatement.setInt(2, pCodTerceirizadoContrato);
-                preparedStatement.setInt(3, vCodTipoRestituicao);
-                preparedStatement.setDate(4, pInicioPeriodoAquisitivo);
-                preparedStatement.setDate(5, pFimPeriodoAquisitivo);
-                preparedStatement.setDate(6, pInicioFerias);
-                preparedStatement.setDate(7, pFimFerias);
-                preparedStatement.setFloat(8, pTotalFerias);
-                preparedStatement.setFloat(9, pTotalTercoConstitucional);
-                preparedStatement.setFloat(10, pTotalIncidenciaFerias);
-                preparedStatement.setFloat(11, pTotalIncidenciaTerco);
-                preparedStatement.setInt(12, pParcela);
-                preparedStatement.setInt(13, pDiasVendidos);
-                preparedStatement.setString(14, pLoginAtualizacao);
-                preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
-
-        }
+        vCodTbRestituicaoFerias = insert.InsertRestituicaoFerias(pCodTerceirizadoContrato,
+                                                                 vCodTipoRestituicao,
+                                                                 pDiasVendidos,
+                                                                 pInicioFerias,
+                                                                 pFimFerias,
+                                                                 pInicioPeriodoAquisitivo,
+                                                                 pFimPeriodoAquisitivo,
+                                                                 pParcela,
+                                                                 pTotalFerias,
+                                                                 pTotalTercoConstitucional,
+                                                                 pTotalIncidenciaFerias,
+                                                                 pTotalIncidenciaTerco,
+                                                                 pLoginAtualizacao);
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
-            try {
-
-                String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
-                                                                  " VALOR_FERIAS," +
-                                                                  " VALOR_TERCO," +
-                                                                  " INCID_SUBMOD_4_1_FERIAS," +
-                                                                  " INCID_SUBMOD_4_1_TERCO," +
-                                                                  " LOGIN_ATUALIZACAO," +
-                                                                  " DATA_ATUALIZACAO)" +
-                             " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
-
-                preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setInt(1, vCodTbRestituicaoFerias);
-                preparedStatement.setFloat(2, vFerias);
-                preparedStatement.setFloat(3, vTerco);
-                preparedStatement.setFloat(4, vIncidenciaFerias);
-                preparedStatement.setFloat(5, vIncidenciaTerco);
-                preparedStatement.setString(6, pLoginAtualizacao);
-
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException e) {
-
-                e.printStackTrace();
-
-                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
-
-            }
+            insert.InsertSaldoResidualFerias(vCodTbRestituicaoFerias,
+                                             vFerias,
+                                             vTerco,
+                                             vIncidenciaFerias,
+                                             vIncidenciaTerco,
+                                             pLoginAtualizacao);
 
         }
 

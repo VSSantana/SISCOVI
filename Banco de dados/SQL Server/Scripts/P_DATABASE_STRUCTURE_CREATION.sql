@@ -371,9 +371,9 @@ CREATE TABLE tb_restituicao_decimo_terceiro
      DATA_REFERENCIA DATE NOT NULL , 
      AUTORIZADO CHAR (1) , 
      RESTITUIDO CHAR (1) , 
+     OBSERVACAO CHAR (500) , 
      LOGIN_ATUALIZACAO VARCHAR (100) NOT NULL , 
-     DATA_ATUALIZACAO DATETIME NOT NULL 
-    )
+     DATA_ATUALIZACAO datetime NOT NULL )
     ON "default" 
     
     go
@@ -437,9 +437,9 @@ CREATE TABLE tb_restituicao_rescisao
      DATA_REFERENCIA DATE NOT NULL , 
      AUTORIZADO CHAR (1) , 
      RESTITUIDO CHAR (1) , 
+     OBSERVACAO CHAR (500) , 
      LOGIN_ATUALIZACAO VARCHAR (100) NOT NULL , 
-     DATA_ATUALIZACAO DATETIME NOT NULL 
-    )
+     DATA_ATUALIZACAO datetime NOT NULL )
     ON "default"
     
     go

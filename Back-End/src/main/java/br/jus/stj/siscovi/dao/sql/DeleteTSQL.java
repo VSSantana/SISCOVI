@@ -70,4 +70,116 @@ public class DeleteTSQL {
 
     }
 
+    /**
+     * Método que exclui um registro da tabela de restituição de décimo terceiro.
+     *
+     * @param pCodRestituicaoDecimoTerceiro;
+     */
+
+    public void DeleteRestituicaoDecimoTerceiro (int pCodRestituicaoDecimoTerceiro) {
+
+        PreparedStatement preparedStatement;
+
+        String query = "DELETE FROM tb_restituicao_decimo_terceiro WHERE cod = ?";
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new RuntimeException("Não foi possível deletar o registro solicitado da restituição de décimo terceiro.");
+
+        }
+
+    }
+
+    /**
+     * Método que exclui um registro da tabela de saldo residual de décimo terceiro.
+     *
+     * @param pCodRestituicaoDecimoTerceiro;
+     */
+
+    public void DeleteSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro) {
+
+        PreparedStatement preparedStatement;
+
+        String query = "DELETE FROM tb_saldo_residual_dec_ter WHERE COD_RESTITUICAO_DEC_TERCEIRO = ?";
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new RuntimeException("Não foi possível deletar o registro solicitado do saldo residual de décimo terceiro.");
+
+        }
+
+    }
+
+    /**
+     * Método que exclui um registro da tabela de restituição de rescisão.
+     *
+     * @param pCodRestituicaoRescisao;
+     */
+
+    public void DeleteRestituicaoRescisao (int pCodRestituicaoRescisao) {
+
+        PreparedStatement preparedStatement;
+
+        String query = "DELETE FROM tb_restituicao_rescisao WHERE cod = ?";
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, pCodRestituicaoRescisao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new RuntimeException("Não foi possível deletar o registro solicitado da restituição de rescisão.");
+
+        }
+
+    }
+
+    /**
+     * Método que exclui um registro da tabela de restituição de rescisão.
+     *
+     * @param pCodRestituicaoRescisao;
+     */
+
+    public void DeleteSaldoResidualRescisao (int pCodRestituicaoRescisao) {
+
+        PreparedStatement preparedStatement;
+
+        String query = "DELETE FROM tb_saldo_residual_rescisao WHERE COD_RESTITUICAO_RESCISAO = ?";
+
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, pCodRestituicaoRescisao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new RuntimeException("Não foi possível deletar o registro solicitado do saldo residual de rescisão.");
+
+        }
+
+    }
+
 }
