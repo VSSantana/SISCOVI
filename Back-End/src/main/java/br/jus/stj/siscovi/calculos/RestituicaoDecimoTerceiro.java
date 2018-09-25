@@ -593,7 +593,7 @@ public class RestituicaoDecimoTerceiro {
      * @param pLoginAtualizacao;
     */
 
-    public void RegistraRestituicaoDecimoTerceiro (int pCodTerceirizadoContrato,
+    public Integer RegistraRestituicaoDecimoTerceiro (int pCodTerceirizadoContrato,
                                                    String pTipoRestituicao,
                                                    int pNumeroParcela,
                                                    Date pInicioContagem,
@@ -605,6 +605,7 @@ public class RestituicaoDecimoTerceiro {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         ConsultaTSQL consulta = new ConsultaTSQL(connection);
+        InsertTSQL insert = new InsertTSQL(connection);
 
         /*Chaves primárias.*/
 
@@ -653,37 +654,24 @@ public class RestituicaoDecimoTerceiro {
 
         /*Gravação no banco*/
 
-
+        vCodTbRestituicao13 = insert.InsertRestituicaoDecimoTerceiro(pCodTerceirizadoContrato,
+                                                                     vCodTipoRestituicao,
+                                                                     pNumeroParcela,
+                                                                     pInicioContagem,
+                                                                     pValorDecimoTerceiro,
+                                                                     pValorIncidencia,
+                                                                     pLoginAtualizacao);
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
-            try {
-
-                String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
-                                                                   " VALOR," +
-                                                                   " INCIDENCIA_SUBMODULO_4_1," +
-                                                                   " LOGIN_ATUALIZACAO," +
-                                                                   " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
-
-                preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setInt(1, vCodTbRestituicao13);
-                preparedStatement.setFloat(2, vValor);
-                preparedStatement.setFloat(3, vIncidencia);
-                preparedStatement.setString(4, pLoginAtualizacao);
-
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException e) {
-
-                e.printStackTrace();
-
-                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13º no banco de dados!");
-
-            }
+            insert.InsertSaldoResidualDecimoTerceiro(vCodTbRestituicao13,
+                                                     vValor,
+                                                     vIncidencia,
+                                                     pLoginAtualizacao);
 
         }
+
+        return vCodTbRestituicao13;
 
     }
 

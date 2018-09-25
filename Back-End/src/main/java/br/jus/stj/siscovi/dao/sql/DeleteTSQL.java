@@ -155,7 +155,7 @@ public class DeleteTSQL {
     }
 
     /**
-     * Método que exclui um registro da tabela de restituição de rescisão.
+     * Método que exclui um registro da tabela de saldo residual de rescisão.
      *
      * @param pCodRestituicaoRescisao;
      */

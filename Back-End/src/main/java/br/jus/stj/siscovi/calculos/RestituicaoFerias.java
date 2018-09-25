@@ -684,7 +684,9 @@ public class RestituicaoFerias {
         return new ValorRestituicaoFeriasModel(vTotalFerias,
                                                vTotalTercoConstitucional,
                                                vTotalIncidenciaFerias,
-                                               vTotalIncidenciaTerco);
+                                               vTotalIncidenciaTerco,
+                                               pInicioPeriodoAquisitivo,
+                                               pFimPeriodoAquisitivo);
 
     }
 

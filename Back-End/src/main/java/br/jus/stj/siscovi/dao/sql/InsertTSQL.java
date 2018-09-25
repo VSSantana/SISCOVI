@@ -128,8 +128,7 @@ public class InsertTSQL {
 
     }
 
-    public int InsertRestituicaoDecimoTerceiro (int pCodTbRestituicaoDecimoTerceiro,
-                                                int pCodTerceirizadoContrato,
+    public int InsertRestituicaoDecimoTerceiro (int pCodTerceirizadoContrato,
                                                 int pCodTipoRestituicao,
                                                 int pNumeroParcela,
                                                 Date pInicioContagem,
@@ -160,7 +159,7 @@ public class InsertTSQL {
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, pCodTbRestituicaoDecimoTerceiro);
+            preparedStatement.setInt(1, vCodTbRestituicaoDecimoTerceiro);
             preparedStatement.setInt(2, pCodTerceirizadoContrato);
             preparedStatement.setInt(3, pCodTipoRestituicao);
             preparedStatement.setInt(4, pNumeroParcela);
@@ -172,11 +171,46 @@ public class InsertTSQL {
 
         } catch (SQLException e) {
 
-            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de 13° no banco de dados!");
+            throw new RuntimeException("Erro ao tentar inserir dados na tabela de restituição de décimo terceiro!");
 
         }
 
         return vCodTbRestituicaoDecimoTerceiro;
+
+    }
+
+    public void InsertSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro,
+                                                   float pValorDecimoTerceiro,
+                                                   float pValorIncidencia,
+                                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+
+        try {
+
+            String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
+                    " VALOR," +
+                    " INCIDENCIA_SUBMODULO_4_1," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+            preparedStatement.setFloat(2, pValorDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorIncidencia);
+            preparedStatement.setString(4, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException("Erro ao tentar inserir dados na tabela de saldo residual de décimo terceiro!");
+
+        }
 
     }
 
