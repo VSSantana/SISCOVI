@@ -398,7 +398,7 @@ public class ConsultaTSQL {
     }
 
     /**
-     * Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_ferias.
+     * Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_decimo_terceiro.
      *
      * @return Próximo valor de sequência da chave primária da tabela.
      * */
@@ -430,6 +430,42 @@ public class ConsultaTSQL {
         }
 
         return vCodTbRestituicaoDecimoTerceiro;
+
+    }
+
+    /**
+     * Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_rescisao.
+     *
+     * @return Próximo valor de sequência da chave primária da tabela.
+     * */
+
+    public int RetornaCodSequenceTbRestituicaoRescisao () {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        int vCodTbRestituicaoRescisao = 0;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_RESCISAO')");
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTbRestituicaoRescisao = resultSet.getInt(1);
+                vCodTbRestituicaoRescisao = vCodTbRestituicaoRescisao + 1;
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
+
+        }
+
+        return vCodTbRestituicaoRescisao;
 
     }
 

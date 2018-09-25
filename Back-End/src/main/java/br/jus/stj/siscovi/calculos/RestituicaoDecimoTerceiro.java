@@ -94,7 +94,7 @@ public class RestituicaoDecimoTerceiro {
 
         try {
 
-            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD=?");
+            preparedStatement = connection.prepareStatement("SELECT COUNT(COD) FROM TB_TERCEIRIZADO_CONTRATO WHERE COD = ?");
 
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
             resultSet = preparedStatement.executeQuery();
@@ -602,14 +602,12 @@ public class RestituicaoDecimoTerceiro {
                                                    float pValorMovimentado,
                                                    String pLoginAtualizacao) {
 
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
         ConsultaTSQL consulta = new ConsultaTSQL(connection);
         InsertTSQL insert = new InsertTSQL(connection);
 
         /*Chaves primárias.*/
 
-        int vCodTbRestituicao13 = 0;
+        int vCodTbRestituicao13;
         int vCodTipoRestituicao;
 
         /*Variáveis auxiliares.*/

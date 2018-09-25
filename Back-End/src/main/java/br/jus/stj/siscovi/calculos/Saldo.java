@@ -146,7 +146,7 @@ public class Saldo {
 
         }
 
-        //Definição dos valores relacionados a restituição de férias por funcionário.
+        //Definição dos valores relacionados a restituição de 13° por funcionário.
 
         if (pOperacao == 3) {
 

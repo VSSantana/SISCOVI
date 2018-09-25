@@ -1,6 +1,7 @@
 package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.InsertTSQL;
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
 import br.jus.stj.siscovi.model.ValorRestituicaoRescisaoModel;
 
@@ -722,29 +723,28 @@ public class RestituicaoRescisao {
      * @param pLoginAtualizacao;
      */
 
-     public void RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
-                                               String pTipoRestituicao,
-                                               String pTipoRescisao,
-                                               Date pDataDesligamento,
-                                               float pValorDecimoTerceiro,
-                                               float pValorIncidenciaDecimoTerceiro,
-                                               float pValorFGTSDecimoTerceiro,
-                                               float pValorFerias,
-                                               float pValorTerco,
-                                               float pValorIncidenciaFerias,
-                                               float pValorIncidenciaTerco,
-                                               float pValorFGTSFerias,
-                                               float pValorFGTSTerco,
-                                               float pValorFGTSSalario,
-                                               String pLoginAtualizacao) {
+     public Integer RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
+                                                  String pTipoRestituicao,
+                                                  String pTipoRescisao,
+                                                  Date pDataDesligamento,
+                                                  float pValorDecimoTerceiro,
+                                                  float pValorIncidenciaDecimoTerceiro,
+                                                  float pValorFGTSDecimoTerceiro,
+                                                  float pValorFerias,
+                                                  float pValorTerco,
+                                                  float pValorIncidenciaFerias,
+                                                  float pValorIncidenciaTerco,
+                                                  float pValorFGTSFerias,
+                                                  float pValorFGTSTerco,
+                                                  float pValorFGTSSalario,
+                                                  String pLoginAtualizacao) {
 
-         PreparedStatement preparedStatement;
-         ResultSet resultSet;
          ConsultaTSQL consulta = new ConsultaTSQL(connection);
+         InsertTSQL insert = new InsertTSQL(connection);
 
          /*Chaves Primárias*/
 
-         int vCodTbRestituicaoRescisao = 0;
+         int vCodTbRestituicaoRescisao;
          int vCodTipoRestituicao;
          int vCodTipoRescisao;
 
@@ -765,27 +765,6 @@ public class RestituicaoRescisao {
          /*Atribuição do cod do tipo de rescisão.*/
 
          vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
-
-        /*Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_rescisao.*/
-
-        try {
-
-            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_RESCISAO')");
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-
-                vCodTbRestituicaoRescisao = resultSet.getInt(1);
-                vCodTbRestituicaoRescisao = vCodTbRestituicaoRescisao + 1;
-
-            }
-
-        } catch (SQLException sqle) {
-
-            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
-
-        }
 
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -811,103 +790,40 @@ public class RestituicaoRescisao {
 
         /*Gravação no banco*/
 
-        try {
-
-            String sql = "SET IDENTITY_INSERT tb_restituicao_rescisao ON;" +
-                        " INSERT INTO tb_restituicao_rescisao (COD,"+
-                                                             " COD_TERCEIRIZADO_CONTRATO," +
-                                                             " COD_TIPO_RESTITUICAO," +
-                                                             " COD_TIPO_RESCISAO," +
-                                                             " DATA_DESLIGAMENTO," +
-                                                             " VALOR_DECIMO_TERCEIRO," +
-                                                             " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
-                                                             " INCID_MULTA_FGTS_DEC_TERCEIRO," +
-                                                             " VALOR_FERIAS," +
-                                                             " VALOR_TERCO," +
-                                                             " INCID_SUBMOD_4_1_FERIAS," +
-                                                             " INCID_SUBMOD_4_1_TERCO," +
-                                                             " INCID_MULTA_FGTS_FERIAS," +
-                                                             " INCID_MULTA_FGTS_TERCO," +
-                                                             " MULTA_FGTS_SALARIO," +
-                                                             " DATA_REFERENCIA," +
-                                                             " LOGIN_ATUALIZACAO," +
-                                                             " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
-
-            preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
-            preparedStatement.setInt(2, pCodTerceirizadoContrato);
-            preparedStatement.setInt(3, vCodTipoRestituicao);
-            preparedStatement.setInt(4, vCodTipoRescisao);
-            preparedStatement.setDate(5, pDataDesligamento);
-            preparedStatement.setFloat(6, pValorDecimoTerceiro);
-            preparedStatement.setFloat(7, pValorIncidenciaDecimoTerceiro);
-            preparedStatement.setFloat(8, pValorFGTSDecimoTerceiro);
-            preparedStatement.setFloat(9, pValorFerias);
-            preparedStatement.setFloat(10, pValorTerco);
-            preparedStatement.setFloat(11, pValorIncidenciaFerias);
-            preparedStatement.setFloat(12, pValorIncidenciaTerco);
-            preparedStatement.setFloat(13, pValorFGTSFerias);
-            preparedStatement.setFloat(14, pValorFGTSTerco);
-            preparedStatement.setFloat(15, pValorFGTSSalario);
-            preparedStatement.setString(16, pLoginAtualizacao);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
-
-        }
+        vCodTbRestituicaoRescisao = insert.InsertRestituicaoRescisao(pCodTerceirizadoContrato,
+                                                                     vCodTipoRestituicao,
+                                                                     vCodTipoRescisao,
+                                                                     pDataDesligamento,
+                                                                     pValorDecimoTerceiro,
+                                                                     pValorIncidenciaDecimoTerceiro,
+                                                                     pValorFGTSDecimoTerceiro,
+                                                                     pValorFerias,
+                                                                     pValorTerco,
+                                                                     pValorIncidenciaFerias,
+                                                                     pValorIncidenciaTerco,
+                                                                     pValorFGTSFerias,
+                                                                     pValorFGTSTerco,
+                                                                     pValorFGTSSalario,
+                                                                     pLoginAtualizacao);
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
-            try {
-
-                String sql = "INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod_restituicao_rescisao," +
-                                                                    " valor_decimo_terceiro," +
-                                                                    " incid_submod_4_1_dec_terceiro," +
-                                                                    " incid_multa_fgts_dec_terceiro," +
-                                                                    " valor_ferias," +
-                                                                    " valor_terco," +
-                                                                    " incid_submod_4_1_ferias," +
-                                                                    " incid_submod_4_1_terco," +
-                                                                    " incid_multa_fgts_ferias," +
-                                                                    " incid_multa_fgts_terco," +
-                                                                    " multa_fgts_salario," +
-                                                                    " login_atualizacao," +
-                                                                    " data_atualizacao)" +
-                               " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
-
-                preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
-                preparedStatement.setFloat(2, 0);
-                preparedStatement.setFloat(3, vIncidDecTer);
-                preparedStatement.setFloat(4, vFGTSDecimoTerceiro);
-                preparedStatement.setFloat(5, 0);
-                preparedStatement.setFloat(6, 0);
-                preparedStatement.setFloat(7, vIncidFerias);
-                preparedStatement.setFloat(8, vIncidTerco);
-                preparedStatement.setFloat(9, vFGTSFerias);
-                preparedStatement.setFloat(10, vFGTSTerco);
-                preparedStatement.setFloat(11, vFGTSRemuneracao);
-                preparedStatement.setString(12, pLoginAtualizacao);
-
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException e) {
-
-                e.printStackTrace();
-
-                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
-
-            }
+            insert.InsertSaldoResidualRescisao(vCodTbRestituicaoRescisao,
+                                               0,
+                                               vIncidDecTer,
+                                               vFGTSDecimoTerceiro,
+                                               0,
+                                               0,
+                                               vIncidFerias,
+                                               vIncidTerco,
+                                               vFGTSFerias,
+                                               vFGTSTerco,
+                                               vFGTSRemuneracao,
+                                               pLoginAtualizacao);
 
         }
+
+        return vCodTbRestituicaoRescisao;
 
     }
 
