@@ -773,4 +773,36 @@ public class Periodos {
 
     }
 
+    /**
+     * Método que equaliza o total de dias em um subperíodo de fevereiro somando 1 ou dois dias a última parcela.
+     *
+     * @param pDataReferencia;
+     * @param pDataFim;
+     * @param pDiasSubperiodo;
+     *
+     * @return Número inteiro de dias de um subperíodo.
+     */
+
+    int AjusteDiasSubperiodoFevereiro (Date pDataReferencia,
+                                       Date pDataFim,
+                                       int pDiasSubperiodo) {
+
+        if (pDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(pDataReferencia.toLocalDate().withDayOfMonth(pDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+            if (pDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                pDiasSubperiodo = pDiasSubperiodo + 2;
+
+            } else {
+
+                pDiasSubperiodo = pDiasSubperiodo + 1;
+
+            }
+
+        }
+
+        return pDiasSubperiodo;
+
+    }
+
 }

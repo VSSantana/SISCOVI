@@ -12,8 +12,6 @@ public class TesteRestituicaoFerias {
     public static void main(String[] args){
 
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
 
         RestituicaoFerias restituicaoFerias = new RestituicaoFerias(connectSQLServer.dbConnect());
         ConsultaTSQL consulta = new ConsultaTSQL(connectSQLServer.dbConnect());
@@ -25,12 +23,11 @@ public class TesteRestituicaoFerias {
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int retorno;
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
-        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
+        String vTipoRestituicao = String.valueOf("RESGATE");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         int vParcela = 0;
         int vDiasVendidos = 0;
         float vValorMovimentado = 12842;
-        String sqlDelete = "DELETE FROM TB_SALDO_RESIDUAL_FERIAS; DELETE FROM TB_RESTITUICAO_FERIAS;";
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
