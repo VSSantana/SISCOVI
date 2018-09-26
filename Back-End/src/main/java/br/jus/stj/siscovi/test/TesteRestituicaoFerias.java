@@ -34,7 +34,7 @@ public class TesteRestituicaoFerias {
         System.out.print("Tipo de restituição: " + vTipoRestituicao + "\nDias vendidos: " + vDiasVendidos + "\n");
 
         Date vInicioFerias = Date.valueOf("2017-09-01");
-        Date vFimFerias = Date.valueOf("2017-09-30");;
+        Date vFimFerias = Date.valueOf("2017-09-30");
         Date vInicioPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 1);
         Date vFimPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 2);
 
