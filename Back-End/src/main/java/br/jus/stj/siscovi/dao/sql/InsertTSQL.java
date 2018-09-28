@@ -350,7 +350,7 @@ public class InsertTSQL {
 
     }
 
-    public void InsertHistoricoRestituicaoFerias (int pCodTbRestituicaoFerias,
+    public Integer InsertHistoricoRestituicaoFerias (int pCodTbRestituicaoFerias,
                                                      int pCodTipoRestituicao,
                                                      Date pInicioPeriodoAquisitivo,
                                                      Date pFimPeriodoAquisitivo,
@@ -368,10 +368,31 @@ public class InsertTSQL {
                                                      String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCodTbHistRestituicaoFerias = consulta.RetornaCodSequenceTbHistRestituicaoFerias();
 
         try {
 
-            String sql = "INSERT INTO TB_HIST_RESTITUICAO_FERIAS (COD_RESTITUICAO_FERIAS," + " COD_TIPO_RESTITUICAO," + " DATA_INICIO_PERIODO_AQUISITIVO," + " DATA_FIM_PERIODO_AQUISITIVO," + " DATA_INICIO_USUFRUTO," + " DATA_FIM_USUFRUTO," + " VALOR_FERIAS," + " VALOR_TERCO_CONSTITUCIONAL," + " INCID_SUBMOD_4_1_FERIAS," + " INCID_SUBMOD_4_1_TERCO," + " PARCELA," + " DIAS_VENDIDOS," + " DATA_REFERENCIA," + " AUTORIZADO," + " RESTITUIDO," + " OBSERVACAO," + " LOGIN_ATUALIZACAO," + " DATA_ATUALIZACAO)" + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, ?, ?, ?, CURRENT_TIMESTAMP);";
+            String sql = "INSERT INTO TB_HIST_RESTITUICAO_FERIAS (COD_RESTITUICAO_FERIAS," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " DATA_INICIO_PERIODO_AQUISITIVO," +
+                    " DATA_FIM_PERIODO_AQUISITIVO," +
+                    " DATA_INICIO_USUFRUTO," +
+                    " DATA_FIM_USUFRUTO," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO_CONSTITUCIONAL," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " PARCELA," +
+                    " DIAS_VENDIDOS," +
+                    " DATA_REFERENCIA," +
+                    " AUTORIZADO," +
+                    " RESTITUIDO," +
+                    " OBSERVACAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, ?, ?, ?, CURRENT_TIMESTAMP);";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -387,8 +408,8 @@ public class InsertTSQL {
             preparedStatement.setFloat(10, pTotalIncidenciaTerco);
             preparedStatement.setInt(11, pParcela);
             preparedStatement.setInt(12, pDiasVendidos);
-            preparedStatement.setString(13, String.valueOf(pAutorizado, 1));
-            preparedStatement.setString(14, String.valueOf(pRestituido, 1));
+            preparedStatement.setString(13, String.valueOf(pAutorizado));
+            preparedStatement.setString(14, String.valueOf(pRestituido));
             preparedStatement.setString(15, pObservacao);
             preparedStatement.setString(16, pLoginAtualizacao);
 
@@ -400,7 +421,10 @@ public class InsertTSQL {
 
         }
 
+        return vCodTbHistRestituicaoFerias;
+
     }
+
 
 
 }

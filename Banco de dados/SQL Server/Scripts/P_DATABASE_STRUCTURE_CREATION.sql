@@ -7,73 +7,71 @@ USE [SISCOVI]
 
 GO
 
-CREATE TABLE tb_hist_restituicao_dec_ter (
-    cod_restituicao_dec_terceiro   INTEGER NOT NULL,
-    cod_tipo_restituicao           INTEGER NOT NULL,
-    parcela                        INTEGER,
-    data_inicio_contagem           DATE,
-    valor                          FLOAT(20),
-    incidencia_submodulo_4_1       FLOAT(20),
-    data_referencia                DATE,
-    autorizado                     CHAR(1),
-    restituido                     CHAR(1),
-    observacao                     VARCHAR(500),
-    login_atualizacao              VARCHAR(150),
-    data_atualizacao               datetime
-)
+CREATE TABLE tb_hist_restituicao_dec_ter 
+    ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
+     COD_RESTITUICAO_DEC_TERCEIRO INTEGER NOT NULL , 
+     COD_TIPO_RESTITUICAO INTEGER NOT NULL,parcela INTEGER,data_inicio_contagem DATE,valor FLOAT(20),incidencia_submodulo_4_1
+FLOAT(20),data_referencia DATE,autorizado CHAR(1),restituido CHAR(1),observacao VARCHAR(500),login_atualizacao VARCHAR(150),data_atualizacao
+datetime 
+    )
+
 ON "default" 
 
 go
 
-CREATE TABLE tb_hist_restituicao_ferias (
-    cod_restituicao_ferias           INTEGER NOT NULL,
-    cod_tipo_restituicao             INTEGER NOT NULL,
-    data_inicio_periodo_aquisitivo   DATE,
-    data_fim_periodo_aquisitivo      DATE,
-    data_inicio_usufruto             DATE,
-    data_fim_usufruto                DATE,
-    dias_vendidos                    INTEGER,
-    valor_ferias                     FLOAT,
-    valor_terco_constitucional       FLOAT,
-    incid_submod_4_1_ferias          FLOAT,
-    incid_submod_4_1_terco           FLOAT,
-    parcela                          INTEGER,
-    data_referencia                  DATE,
-    autorizado                       CHAR,
-    restituido                       CHAR,
-    observacao                       VARCHAR(500),
-    login_atualizacao                VARCHAR(150),
-    data_atualizacao                 datetime
-)
+ALTER TABLE TB_HIST_RESTITUICAO_DEC_TER ADD constraint tb_hist_restituicao_dec_ter_pk PRIMARY KEY CLUSTERED (COD)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON ) 
+
+     ON "default" 
+     
+     go
+
+CREATE TABLE tb_hist_restituicao_ferias 
+    ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
+     COD_RESTITUICAO_FERIAS INTEGER NOT NULL , 
+     COD_TIPO_RESTITUICAO INTEGER NOT NULL,data_inicio_periodo_aquisitivo DATE,data_fim_periodo_aquisitivo
+DATE,data_inicio_usufruto DATE,data_fim_usufruto DATE,dias_vendidos INTEGER,valor_ferias FLOAT,valor_terco_constitucional FLOAT,incid_submod_4_1_ferias
+FLOAT,incid_submod_4_1_terco FLOAT,parcela INTEGER,data_referencia DATE,autorizado CHAR,restituido CHAR,observacao VARCHAR(500),login_atualizacao
+VARCHAR(150),data_atualizacao datetime 
+    )
+
 ON "default" 
 
 go
 
-CREATE TABLE tb_hist_restituicao_rescisao (
-    cod_restituicao_rescisao        INTEGER NOT NULL,
-    cod_tipo_restituicao            INTEGER NOT NULL,
-    cod_tipo_rescisao               INTEGER NOT NULL,
-    data_desligamento               DATE,
-    valor_decimo_terceiro           FLOAT(20),
-    incid_submod_4_1_dec_terceiro   FLOAT(20),
-    incid_multa_fgts_dec_terceiro   FLOAT(20),
-    valor_ferias                    FLOAT,
-    valor_terco                     FLOAT,
-    incid_submod_4_1_ferias         FLOAT,
-    incid_submod_4_1_terco          FLOAT,
-    incid_multa_fgts_ferias         FLOAT(20),
-    incid_multa_fgts_terco          FLOAT(20),
-    multa_fgts_salario              FLOAT(20),
-    data_referencia                 DATE,
-    autorizado                      CHAR,
-    restituido                      CHAR,
-    observacao                      VARCHAR(500),
-    login_atualizacao               VARCHAR(150),
-    data_atualizacao                datetime
-)
+ALTER TABLE TB_HIST_RESTITUICAO_FERIAS ADD constraint tb_hist_restituicao_ferias_pk PRIMARY KEY CLUSTERED (COD)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON ) 
+
+     ON "default" 
+     
+     go
+
+CREATE TABLE tb_hist_restituicao_rescisao 
+    ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
+     COD_RESTITUICAO_RESCISAO INTEGER NOT NULL , 
+     COD_TIPO_RESTITUICAO INTEGER NOT NULL , 
+     COD_TIPO_RESCISAO INTEGER NOT NULL,data_desligamento DATE,valor_decimo_terceiro FLOAT(20),incid_submod_4_1_dec_terceiro
+FLOAT(20),incid_multa_fgts_dec_terceiro FLOAT(20),valor_ferias FLOAT,valor_terco FLOAT,incid_submod_4_1_ferias FLOAT,incid_submod_4_1_terco
+FLOAT,incid_multa_fgts_ferias FLOAT(20),incid_multa_fgts_terco FLOAT(20),multa_fgts_salario FLOAT(20),data_referencia DATE,autorizado
+CHAR,restituido CHAR,observacao VARCHAR(500),login_atualizacao VARCHAR(150),data_atualizacao datetime 
+    )
+
 ON "default" 
 
 go
+
+ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO ADD constraint tb_hist_restituicao_rescisao_pk PRIMARY KEY CLUSTERED (COD)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON ) 
+
+     ON "default" 
+     
+     go
 
 CREATE TABLE tb_contrato
 
@@ -424,6 +422,7 @@ CREATE TABLE tb_restituicao_rescisao
      COD_TIPO_RESTITUICAO INTEGER NOT NULL , 
      COD_TIPO_RESCISAO INTEGER NOT NULL , 
      DATA_DESLIGAMENTO DATE NOT NULL , 
+     DATA_INICIO_FERIAS INTEGER NOT NULL , 
      VALOR_DECIMO_TERCEIRO FLOAT (20) NOT NULL , 
      INCID_SUBMOD_4_1_DEC_TERCEIRO FLOAT (20) NOT NULL , 
      INCID_MULTA_FGTS_DEC_TERCEIRO FLOAT (20) NOT NULL , 

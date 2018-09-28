@@ -623,4 +623,26 @@ public class RestituicaoFerias {
 
     }
 
+    public Integer RecalculoRestituicaoFerias (int pCodRestituicaoFerias,
+                                       int pCodTerceirizadoContrato,
+                                       String pTipoRestituicao,
+                                       int pDiasVendidos,
+                                       Date pInicioFerias,
+                                       Date pFimFerias,
+                                       Date pInicioPeriodoAquisitivo,
+                                       Date pFimPeriodoAquisitivo,
+                                       int pParcela,
+                                       float pValorMovimentado,
+                                       float pTotalFerias,
+                                       float pTotalTercoConstitucional,
+                                       float pTotalIncidenciaFerias,
+                                       float pTotalIncidenciaTerco,
+                                       String pLoginAtualizacao) {
+
+        int vRetornoChavePrimaria = 0;
+
+        return vRetornoChavePrimaria;
+
+    }
+
 }
