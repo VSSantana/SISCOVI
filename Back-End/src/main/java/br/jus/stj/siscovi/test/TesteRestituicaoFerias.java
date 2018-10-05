@@ -53,16 +53,15 @@ public class TesteRestituicaoFerias {
 
         //restituicaoFerias.RecalculoRestituicaoFerias(retorno, "MOVIMENTAÇÃO", vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela, 0,0,0,0,0, "Teste");
 
-        update.UpdateRestituicaoFerias(retorno, consulta.RetornaCodTipoRestituicao(vTipoRestituicao), vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
-                vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
-               0, 0, "N", "N", String.valueOf(""), String.valueOf(""));
+        restituicaoFerias.RecalculoRestituicaoFerias(retorno, vTipoRestituicao, vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+                 0, 0, 0,
+               0, 0, 0, "SYSTEM");
 
-        update.UpdateRestituicaoFerias(retorno, consulta.RetornaCodTipoRestituicao(vTipoRestituicao), vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
-                vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
-                0, 0, "", "", String.valueOf(""), String.valueOf(""));
+
 
 
         delete.DeleteSaldoResidualFerias(retorno);
+        delete.DeleteHistRestituicaoFerias(retorno);
         delete.DeleteRestituicaoFerias(retorno);
 
     }
