@@ -2,6 +2,8 @@ package br.jus.stj.siscovi.dao.sql;
 
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
 import br.jus.stj.siscovi.model.CalcularFeriasModel;
+import br.jus.stj.siscovi.model.RegistroDeDecimoTerceiroModel;
+import br.jus.stj.siscovi.model.RegistroDeFeriasModel;
 
 import javax.xml.transform.Result;
 import java.sql.Connection;
@@ -560,11 +562,47 @@ public class ConsultaTSQL {
 
         } catch (SQLException sqle) {
 
-            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de histórico restituição de férias.");
 
         }
 
         return vCodTbHistRestituicaoFerias;
+
+    }
+
+    /**
+     * Recuparação do próximo valor da sequência da chave primária da tabela tb_hist_restituicao_dec_ter.
+     *
+     * @return Próximo valor de sequência da chave primária da tabela.
+     */
+
+    int RetornaCodSequenceTbHistRestituicaoDecTer () {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        int vCodTbHistRestituicaoDecTer = 0;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_HIST_RESTITUICAO_DEC_TER')");
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTbHistRestituicaoDecTer = resultSet.getInt(1);
+                vCodTbHistRestituicaoDecTer = vCodTbHistRestituicaoDecTer + 1;
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de histórico de restituição de décimo terceiro.");
+
+        }
+
+        return vCodTbHistRestituicaoDecTer;
 
     }
 
@@ -882,16 +920,17 @@ public class ConsultaTSQL {
      * @return Um registro de restituição de férias no model.
      */
 
-    public CalcularFeriasModel RetornaRegistroRestituicaoFerias (int pCodRestituicaoFerias) {
+    public RegistroDeFeriasModel RetornaRegistroRestituicaoFerias (int pCodRestituicaoFerias) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 
-        CalcularFeriasModel registro = null;
+        RegistroDeFeriasModel registro = null;
 
         try {
 
-            String sql = "SELECT COD_TERCEIRIZADO_CONTRATO," +
+            String sql = "SELECT COD," +
+                               " COD_TERCEIRIZADO_CONTRATO," +
                                " COD_TIPO_RESTITUICAO," +
                                " DATA_INICIO_PERIODO_AQUISITIVO," +
                                " DATA_FIM_PERIODO_AQUISITIVO," +
@@ -919,24 +958,99 @@ public class ConsultaTSQL {
 
             if (resultSet.next()) {
 
-                registro = new CalcularFeriasModel(resultSet.getInt(1),
-                        RetornaTipoRestituicao(resultSet.getInt(2)),
-                        resultSet.getInt(7),
-                        resultSet.getDate(5),
-                        resultSet.getDate(6),
-                        resultSet.getDate(3),
-                        resultSet.getDate(4),
-                        0,
-                        resultSet.getInt(12),
-                        0,
-                        resultSet.getFloat(8),
-                        resultSet.getFloat(9),
-                        resultSet.getFloat(10),
-                        resultSet.getFloat(11));
+                registro = new RegistroDeFeriasModel(resultSet.getInt(1),
+                                                     resultSet.getInt(2),
+                                                     resultSet.getInt(3),
+                                                     resultSet.getDate(4),
+                                                     resultSet.getDate(5),
+                                                     resultSet.getDate(6),
+                                                     resultSet.getDate(7),
+                                                     resultSet.getInt(8),
+                                                     resultSet.getFloat(9),
+                                                     resultSet.getFloat(10),
+                                                     resultSet.getFloat(11),
+                                                     resultSet.getFloat(12),
+                                                     resultSet.getInt(13),
+                                                     resultSet.getDate(14),
+                                                     resultSet.getString(15),
+                                                     resultSet.getString(16),
+                                                     resultSet.getString(17),
+                                                     resultSet.getString(18),
+                                                     resultSet.getTimestamp(19));
 
             }
 
         } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível recuperar o registro de restituição de férias.");
+
+        }
+
+        return registro;
+
+    }
+
+    /**
+     * Retorna um registro da tabela tb_restituicao_decimo_terceiro.
+     *
+     * @param pCodRestituicaoDecimoTerceiro;
+     *
+     * @return Um registro de restituição de décimo terceiro no model.
+     */
+
+    public RegistroDeDecimoTerceiroModel RetornaRegistroRestituicaoDecimoTerceiro (int pCodRestituicaoDecimoTerceiro) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        RegistroDeDecimoTerceiroModel registro = null;
+
+        try {
+
+            String sql = "SELECT COD," +
+                        " COD_TERCEIRIZADO_CONTRATO," +
+                        " COD_TIPO_RESTITUICAO," +
+                        " PARCELA," +
+                        " DATA_INICIO_CONTAGEM," +
+                        " VALOR," +
+                        " INCIDENCIA_SUBMODULO_4_1," +
+                        " DATA_REFERENCIA," +
+                        " AUTORIZADO," +
+                        " RESTITUIDO," +
+                        " OBSERVACAO," +
+                        " LOGIN_ATUALIZACAO," +
+                        " DATA_ATUALIZACAO" +
+                        " FROM TB_RESTITUICAO_DECIMO_TERCEIRO" +
+                        " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                registro = new RegistroDeDecimoTerceiroModel(resultSet.getInt(1),
+                                                             resultSet.getInt(2),
+                                                             resultSet.getInt(3),
+                                                             resultSet.getInt(4),
+                                                             resultSet.getDate(5),
+                                                             resultSet.getFloat(6),
+                                                             resultSet.getFloat(7),
+                                                             resultSet.getDate(8),
+                                                             resultSet.getString(9),
+                                                             resultSet.getString(10),
+                                                             resultSet.getString(11),
+                                                             resultSet.getString(12),
+                                                             resultSet.getTimestamp(13));
+
+            }
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
 
             throw new NullPointerException("Não foi possível recuperar o registro de restituição de férias.");
 

@@ -51,9 +51,16 @@ public class TesteRestituicaoFerias {
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
                 restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional(), vLoginAtualizacao);
 
-        update.UpdateRestituicaoFerias(retorno, vTipoRestituicao, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+        //restituicaoFerias.RecalculoRestituicaoFerias(retorno, "MOVIMENTAÇÃO", vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela, 0,0,0,0,0, "Teste");
+
+        update.UpdateRestituicaoFerias(retorno, consulta.RetornaCodTipoRestituicao(vTipoRestituicao), vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
                 vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
-               0, 0, vInicioFerias, 'N', 'N', String.valueOf(""), String.valueOf(""));
+               0, 0, "N", "N", String.valueOf(""), String.valueOf(""));
+
+        update.UpdateRestituicaoFerias(retorno, consulta.RetornaCodTipoRestituicao(vTipoRestituicao), vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+                vInicioFerias, vFimFerias, vDiasVendidos, 0, 0, 0,
+                0, 0, "", "", String.valueOf(""), String.valueOf(""));
+
 
         delete.DeleteSaldoResidualFerias(retorno);
         delete.DeleteRestituicaoFerias(retorno);
