@@ -544,6 +544,17 @@ public class RestituicaoDecimoTerceiro {
         float vValor = 0;
         float vIncidencia = 0;
 
+        /*No caso de segunda parcela a movimentação gera resíduos referentes ao
+         valor do décimo terceiro que é afetado pelos descontos (IRPF, INSS e etc.)*/
+
+        if ((pNumeroParcela == 2 || pNumeroParcela == 0) && (pTipoRestituicao.equals("MOVIMENTAÇÃO"))) {
+
+            vValor = pValorDecimoTerceiro - pValorMovimentado;
+
+            pValorDecimoTerceiro = pValorMovimentado;
+
+        }
+
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
@@ -556,16 +567,10 @@ public class RestituicaoDecimoTerceiro {
 
         update.UpdateRestituicaoDecimoTerceiro(pCodRestituicaoDecimoTerceiro,
                                                vCodTipoRestituicao,
-                                               pInicioPeriodoAquisitivo,
-                                               pFimPeriodoAquisitivo,
-                                               pInicioFerias,
-                                               pFimFerias,
-                                               pDiasVendidos,
-                                               pTotalFerias,
-                                               pTotalTercoConstitucional,
-                                               pTotalIncidenciaFerias,
-                                               pTotalIncidenciaTerco,
-                                               pParcela,
+                                               pNumeroParcela,
+                                               pInicioContagem,
+                                               pValorDecimoTerceiro,
+                                               pValorIncidencia,
                                                "",
                                                "",
                                                "",
@@ -573,12 +578,10 @@ public class RestituicaoDecimoTerceiro {
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
-            insert.InsertSaldoResidualFerias(pCodRestituicaoFerias,
-                    vValorFerias,
-                    vValorTerco,
-                    vValorIncidenciaFerias,
-                    vValorIncidenciaTerco,
-                    pLoginAtualizacao);
+            insert.InsertSaldoResidualDecimoTerceiro(pCodRestituicaoDecimoTerceiro,
+                                                     vValor,
+                                                     vIncidencia,
+                                                     pLoginAtualizacao);
 
         }
 

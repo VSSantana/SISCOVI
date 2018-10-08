@@ -369,7 +369,7 @@ public class InsertTSQL {
 
         try {
 
-            String sql = "SET IDENTITY_INSERT TB_HIST_RESTITUICAO_FERIAS ON;" +
+            String sql = "SET IDENTITY_INSERT TB_HIST_RESTITUICAO_DEC_TER ON;" +
                          " INSERT INTO TB_HIST_RESTITUICAO_DEC_TER (COD," +
                                                                   " COD_RESTITUICAO_DEC_TERCEIRO," +
                                                                   " COD_TIPO_RESTITUICAO," +
@@ -384,7 +384,7 @@ public class InsertTSQL {
                                                                   " LOGIN_ATUALIZACAO," +
                                                                   " DATA_ATUALIZACAO)" +
                          " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                       " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_FERIAS OFF;";
+                       " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_DEC_TER OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -404,6 +404,8 @@ public class InsertTSQL {
             preparedStatement.executeUpdate();
 
         } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
 
             throw new NullPointerException("Não foi possível inserir dados na tabela de histórico de restituição de décimo terceiro.");
 
@@ -493,7 +495,5 @@ public class InsertTSQL {
         return vCodTbHistRestituicaoFerias;
 
     }
-
-
 
 }
