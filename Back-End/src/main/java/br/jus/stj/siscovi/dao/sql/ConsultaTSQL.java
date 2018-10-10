@@ -1,9 +1,6 @@
 package br.jus.stj.siscovi.dao.sql;
 
-import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
-import br.jus.stj.siscovi.model.CalcularFeriasModel;
-import br.jus.stj.siscovi.model.RegistroDeDecimoTerceiroModel;
-import br.jus.stj.siscovi.model.RegistroDeFeriasModel;
+import br.jus.stj.siscovi.model.*;
 
 import javax.xml.transform.Result;
 import java.sql.Connection;
@@ -1045,6 +1042,84 @@ public class ConsultaTSQL {
                                                              resultSet.getString(11),
                                                              resultSet.getString(12),
                                                              resultSet.getTimestamp(13));
+
+            }
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível recuperar o registro de restituição de férias.");
+
+        }
+
+        return registro;
+
+    }
+
+    /**
+     * Retorna um registro da tabela tb_restituicao_rescisao.
+     *
+     * @param pCodRestituicaoRescisao;
+     *
+     * @return Um registro de restituição de rescisão no model.
+     */
+
+    public RegistroDeDecimoTerceiroModel RetornaRegistroRestituicaoRescisao (int pCodRestituicaoRescisao) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        RegistroDeRescisaoModel registro = null;
+
+        try {
+
+            String sql = "SELECT COD," +
+                               " COD_TERCEIRIZADO_CONTRATO," +
+                               " COD_TIPO_RESTITUICAO," +
+                               " COD_TIPO_RESCISAO," +
+                               " DATA_DESLIGAMENTO," +
+                               " DATA_INICIO_FERIAS," +
+                               " VALOR_DECIMO_TERCEIRO," +
+                               " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                               " INCID_MULTA_FGTS_DEC_TERCEIRO," +
+                               " VALOR_FERIAS," +
+                    " VALOR_TERCO," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                    " INCID_MULTA_FGTS_FERIAS," +
+                    " INCID_MULTA_FGTS_TERCO," +
+                    " MULTA_FGTS_SALARIO," +
+                    " DATA_REFERENCIA," +
+
+                               " AUTORIZADO," +
+                               " RESTITUIDO," +
+                               " OBSERVACAO," +
+                               " LOGIN_ATUALIZACAO," +
+                               " DATA_ATUALIZACAO" +
+                          " FROM TB_RESTITUICAO_RESCISAO" +
+                          " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodRestituicaoRescisao);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                registro = new RegistroDeDecimoTerceiroModel(resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getDate(5),
+                        resultSet.getFloat(6),
+                        resultSet.getFloat(7),
+                        resultSet.getDate(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getString(11),
+                        resultSet.getString(12),
+                        resultSet.getTimestamp(13));
 
             }
 
