@@ -24,7 +24,7 @@ public class RegistroDeRescisaoModel {
     private Date pDataReferencia;
     private String pAutorizado;
     private String pRestituido;
-    private String pObeservacao;
+    private String pObservacao;
     private String pLoginAtualizacao;
     private Timestamp pDataAtualizacao;
 
@@ -47,7 +47,7 @@ public class RegistroDeRescisaoModel {
                                     Date pDataReferencia,
                                     String pAutorizado,
                                     String pRestituido,
-                                    String pObeservacao,
+                                    String pObservacao,
                                     String pLoginAtualizacao,
                                     Timestamp pDataAtualizacao) {
 
@@ -70,7 +70,7 @@ public class RegistroDeRescisaoModel {
         this.pDataReferencia = pDataReferencia;
         this.pAutorizado = pAutorizado;
         this.pRestituido = pRestituido;
-        this.pObeservacao = pObeservacao;
+        this.pObservacao = pObservacao;
         this.pLoginAtualizacao = pLoginAtualizacao;
         this.pDataAtualizacao = pDataAtualizacao;
 
@@ -140,17 +140,20 @@ public class RegistroDeRescisaoModel {
         return pMultaFGTSSalario;
     }
 
+    public Date getpDataReferencia() { return pDataReferencia; }
+
     public String getpAutorizado() {
         return pAutorizado;
     }
 
-    public String getpRestituido() {
-        return pRestituido;
+    public String getpRestituido() { return pRestituido;
     }
 
-    public String getpObeservacao() {
-        return pObeservacao;
+    public String getpObservacao() {
+        return pObservacao;
     }
+
+    public String getpLoginAtualizacao() { return pLoginAtualizacao; }
 
     public Timestamp getpDataAtualizacao() {
         return pDataAtualizacao;

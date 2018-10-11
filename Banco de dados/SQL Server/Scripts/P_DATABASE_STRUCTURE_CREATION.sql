@@ -54,11 +54,25 @@ CREATE TABLE tb_hist_restituicao_rescisao
     ( cod INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
      COD_RESTITUICAO_RESCISAO INTEGER NOT NULL , 
      COD_TIPO_RESTITUICAO INTEGER NOT NULL , 
-     COD_TIPO_RESCISAO INTEGER NOT NULL,data_desligamento DATE,valor_decimo_terceiro FLOAT(20),incid_submod_4_1_dec_terceiro
-FLOAT(20),incid_multa_fgts_dec_terceiro FLOAT(20),valor_ferias FLOAT,valor_terco FLOAT,incid_submod_4_1_ferias FLOAT,incid_submod_4_1_terco
-FLOAT,incid_multa_fgts_ferias FLOAT(20),incid_multa_fgts_terco FLOAT(20),multa_fgts_salario FLOAT(20),data_referencia DATE,autorizado
-CHAR,restituido CHAR,observacao VARCHAR(500),login_atualizacao VARCHAR(150),data_atualizacao datetime 
-    )
+     COD_TIPO_RESCISAO INTEGER NOT NULL , 
+     DATA_DESLIGAMENTO DATE NOT NULL , 
+     DATA_INICIO_FERIAS DATE NOT NULL , 
+     VALOR_DECIMO_TERCEIRO FLOAT (20) NOT NULL , 
+     INCID_SUBMOD_4_1_DEC_TERCEIRO FLOAT (20) NOT NULL , 
+     INCID_MULTA_FGTS_DEC_TERCEIRO FLOAT (20) NOT NULL , 
+     VALOR_FERIAS FLOAT NOT NULL , 
+     VALOR_TERCO FLOAT NOT NULL , 
+     INCID_SUBMOD_4_1_FERIAS FLOAT NOT NULL , 
+     INCID_SUBMOD_4_1_TERCO FLOAT NOT NULL , 
+     INCID_MULTA_FGTS_FERIAS FLOAT (20) NOT NULL , 
+     INCID_MULTA_FGTS_TERCO FLOAT (20) NOT NULL , 
+     MULTA_FGTS_SALARIO FLOAT (20) NOT NULL , 
+     DATA_REFERENCIA DATE NOT NULL , 
+     AUTORIZADO CHAR , 
+     RESTITUIDO CHAR , 
+     OBSERVACAO VARCHAR (500) , 
+     LOGIN_ATUALIZACAO VARCHAR (150) NOT NULL , 
+     DATA_ATUALIZACAO datetime NOT NULL )
 
 ON "default" 
 
@@ -67,7 +81,7 @@ go
 ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO ADD constraint tb_hist_restituicao_rescisao_pk PRIMARY KEY CLUSTERED (COD)
      WITH (
      ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON ) 
+     ALLOW_ROW_LOCKS = ON )
 
      ON "default" 
      
@@ -422,7 +436,7 @@ CREATE TABLE tb_restituicao_rescisao
      COD_TIPO_RESTITUICAO INTEGER NOT NULL , 
      COD_TIPO_RESCISAO INTEGER NOT NULL , 
      DATA_DESLIGAMENTO DATE NOT NULL , 
-     DATA_INICIO_FERIAS INTEGER NOT NULL , 
+     DATA_INICIO_FERIAS DATE NOT NULL , 
      VALOR_DECIMO_TERCEIRO FLOAT (20) NOT NULL , 
      INCID_SUBMOD_4_1_DEC_TERCEIRO FLOAT (20) NOT NULL , 
      INCID_MULTA_FGTS_DEC_TERCEIRO FLOAT (20) NOT NULL , 
@@ -1130,7 +1144,7 @@ ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
     ADD CONSTRAINT tb_hist_restituicao_rescisao_fk1 FOREIGN KEY ( cod_restituicao_rescisao )
         REFERENCES tb_restituicao_rescisao ( cod )
 ON DELETE NO ACTION 
-    ON UPDATE no action 
+    ON UPDATE no action
     
     go
 
@@ -1138,7 +1152,7 @@ ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
     ADD CONSTRAINT tb_hist_restituicao_rescisao_fk2 FOREIGN KEY ( cod_tipo_restituicao )
         REFERENCES tb_tipo_restituicao ( cod )
 ON DELETE NO ACTION 
-    ON UPDATE no action 
+    ON UPDATE no action
     
     go
 
@@ -1146,7 +1160,7 @@ ALTER TABLE TB_HIST_RESTITUICAO_RESCISAO
     ADD CONSTRAINT tb_hist_restituicao_rescisao_fk3 FOREIGN KEY ( cod_tipo_rescisao )
         REFERENCES tb_tipo_rescisao ( cod )
 ON DELETE NO ACTION 
-    ON UPDATE no action 
+    ON UPDATE no action
     
     go
 

@@ -2,7 +2,6 @@ package br.jus.stj.siscovi.dao.sql;
 
 import br.jus.stj.siscovi.model.*;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -604,6 +603,42 @@ public class ConsultaTSQL {
     }
 
     /**
+     * Recuparação do próximo valor da sequência da chave primária da tabela tb_hist_restituicao_rescisao.
+     *
+     * @return Próximo valor de sequência da chave primária da tabela.
+     */
+
+    int RetornaCodSequenceTbHistRestituicaoRescisao () {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        int vCodTbHistRestituicaoRescisao = 0;
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_HIST_RESTITUICAO_RESCISAO')");
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTbHistRestituicaoRescisao = resultSet.getInt(1);
+                vCodTbHistRestituicaoRescisao = vCodTbHistRestituicaoRescisao + 1;
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de histórico de restituição de rescisão.");
+
+        }
+
+        return vCodTbHistRestituicaoRescisao;
+
+    }
+
+    /**
      * Retorna as datas que compõem os subperíodos gerados pelas alterações de percentual no mês.
      *
      * @param pCodContrato;
@@ -1065,7 +1100,7 @@ public class ConsultaTSQL {
      * @return Um registro de restituição de rescisão no model.
      */
 
-    public RegistroDeDecimoTerceiroModel RetornaRegistroRestituicaoRescisao (int pCodRestituicaoRescisao) {
+    public RegistroDeRescisaoModel RetornaRegistroRestituicaoRescisao (int pCodRestituicaoRescisao) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -1084,14 +1119,13 @@ public class ConsultaTSQL {
                                " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
                                " INCID_MULTA_FGTS_DEC_TERCEIRO," +
                                " VALOR_FERIAS," +
-                    " VALOR_TERCO," +
-                    " INCID_SUBMOD_4_1_FERIAS," +
-                    " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
-                    " INCID_MULTA_FGTS_FERIAS," +
-                    " INCID_MULTA_FGTS_TERCO," +
-                    " MULTA_FGTS_SALARIO," +
-                    " DATA_REFERENCIA," +
-
+                               " VALOR_TERCO," +
+                               " INCID_SUBMOD_4_1_FERIAS," +
+                               " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                               " INCID_MULTA_FGTS_FERIAS," +
+                               " INCID_MULTA_FGTS_TERCO," +
+                               " MULTA_FGTS_SALARIO," +
+                               " DATA_REFERENCIA," +
                                " AUTORIZADO," +
                                " RESTITUIDO," +
                                " OBSERVACAO," +
@@ -1107,19 +1141,28 @@ public class ConsultaTSQL {
 
             if (resultSet.next()) {
 
-                registro = new RegistroDeDecimoTerceiroModel(resultSet.getInt(1),
-                        resultSet.getInt(2),
-                        resultSet.getInt(3),
-                        resultSet.getInt(4),
-                        resultSet.getDate(5),
-                        resultSet.getFloat(6),
-                        resultSet.getFloat(7),
-                        resultSet.getDate(8),
-                        resultSet.getString(9),
-                        resultSet.getString(10),
-                        resultSet.getString(11),
-                        resultSet.getString(12),
-                        resultSet.getTimestamp(13));
+                registro = new RegistroDeRescisaoModel(resultSet.getInt(1),
+                                                       resultSet.getInt(2),
+                                                       resultSet.getInt(3),
+                                                       resultSet.getInt(4),
+                                                       resultSet.getDate(5),
+                                                       resultSet.getDate(6),
+                                                       resultSet.getFloat(7),
+                                                       resultSet.getFloat(8),
+                                                       resultSet.getFloat(9),
+                                                       resultSet.getFloat(10),
+                                                       resultSet.getFloat(11),
+                                                       resultSet.getFloat(12),
+                                                       resultSet.getFloat(13),
+                                                       resultSet.getFloat(14),
+                                                       resultSet.getFloat(15),
+                                                       resultSet.getFloat(16),
+                                                       resultSet.getDate(17),
+                                                       resultSet.getString(18),
+                                                       resultSet.getString(19),
+                                                       resultSet.getString(20),
+                                                       resultSet.getString(21),
+                                                       resultSet.getTimestamp(22));
 
             }
 
@@ -1127,13 +1170,12 @@ public class ConsultaTSQL {
 
             sqle.printStackTrace();
 
-            throw new NullPointerException("Não foi possível recuperar o registro de restituição de férias.");
+            throw new NullPointerException("Não foi possível recuperar o registro de restituição de rescisão.");
 
         }
 
         return registro;
 
     }
-
 
 }

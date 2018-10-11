@@ -625,7 +625,7 @@ public class RestituicaoFerias {
 
     }
 
-    public Integer RecalculoRestituicaoFerias (int pCodRestituicaoFerias,
+    public void RecalculoRestituicaoFerias (int pCodRestituicaoFerias,
                                                String pTipoRestituicao,
                                                int pDiasVendidos,
                                                Date pInicioFerias,
@@ -733,8 +733,6 @@ public class RestituicaoFerias {
                     pLoginAtualizacao);
 
         }
-
-        return vRetornoChavePrimaria;
 
     }
 
