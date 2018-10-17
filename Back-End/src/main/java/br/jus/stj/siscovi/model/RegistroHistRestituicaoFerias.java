@@ -17,8 +17,6 @@ public class RegistroHistRestituicaoFerias {
     private float pValorTercoConstitucional;
     private float pIncidSubmod41Ferias;
     private float pIncidSubmod41Terco;
-
-
     private int pParcela;
     private Date pDataReferencia;
     private String pAutorizado;
@@ -133,9 +131,7 @@ public class RegistroHistRestituicaoFerias {
         return pRestituido;
     }
 
-    public String getpObservacao() {
-        return pObservacao;
-    }
+    public String getpObservacao() { return pObservacao; }
 
     public String getpLoginAtualizacao() {
         return pLoginAtualizacao;
