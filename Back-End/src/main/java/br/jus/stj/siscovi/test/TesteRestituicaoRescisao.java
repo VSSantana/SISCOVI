@@ -70,6 +70,10 @@ public class TesteRestituicaoRescisao {
 
         restituicaoRescisao.RecalculoRestituicaoRescisao(vRetorno, "RESGATE", vTipoRescisao, vDataDesligamento, vDataInicioFerias, 0, 0, 0, 0, 0,0 ,0,0,0, 0, "SYSTEM");
 
+        //delete.DeleteRegistro(vRetorno, "TB_HIST_RESTITUICAO_RESCISAO");
+        //delete.DeleteRegistro(vRetorno, "TB_SALDO_RESIDUAL_RESCISAO");
+        //delete.DeleteRegistro(vRetorno, "TB_RESTITUICAO_RESCISAO");
+
         delete.DeleteHistRestituicaoRescisao(vRetorno);
         delete.DeleteSaldoResidualRescisao(vRetorno);
         delete.DeleteRestituicaoRescisao(vRetorno);
