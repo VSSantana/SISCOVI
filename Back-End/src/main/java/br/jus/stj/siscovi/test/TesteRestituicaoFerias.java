@@ -23,7 +23,7 @@ public class TesteRestituicaoFerias {
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int retorno;
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
-        String vTipoRestituicao = String.valueOf("RESGATE");
+        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         int vParcela = 0;
         int vDiasVendidos = 0;
@@ -53,16 +53,16 @@ public class TesteRestituicaoFerias {
 
         //restituicaoFerias.RecalculoRestituicaoFerias(retorno, "MOVIMENTAÇÃO", vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela, 0,0,0,0,0, "Teste");
 
-        restituicaoFerias.RecalculoRestituicaoFerias(retorno, vTipoRestituicao, vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
-                 0, 0, 0,
-               0, 0, 0, "SYSTEM");
+        //restituicaoFerias.RecalculoRestituicaoFerias(retorno, vTipoRestituicao, vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
+        //         0, 0, 0,
+        //       0, 0, 0, "SYSTEM");
 
 
 
 
-        delete.DeleteSaldoResidualFerias(retorno);
-        delete.DeleteHistRestituicaoFerias(retorno);
-        delete.DeleteRestituicaoFerias(retorno);
+        //delete.DeleteSaldoResidualFerias(retorno);
+        //delete.DeleteHistRestituicaoFerias(retorno);
+        //delete.DeleteRestituicaoFerias(retorno);
 
     }
 

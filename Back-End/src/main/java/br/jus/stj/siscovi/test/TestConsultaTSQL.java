@@ -28,7 +28,7 @@ public class TestConsultaTSQL {
         System.out.println(registroRubrica.getpLoginAtualizacao());
         System.out.println(registroRubrica.getpDataAtualizacao());
 
-        RegistroContratoModel registroContrato = consulta.RetornaRegistroContrato(1);
+        RegistroContrato registroContrato = consulta.RetornaRegistroContrato(1);
 
         System.out.print("\nRetornaRegistroContrato: \n");
         System.out.println(registroContrato.getpCod());
@@ -41,7 +41,7 @@ public class TestConsultaTSQL {
         System.out.println(registroContrato.getpLoginAtualizacao());
         System.out.println(registroContrato.getpDataAtualizacao());
 
-        RegistroConvencaoColetivaModel registroConvencaoColetiva = consulta.RetornaRegistroConvencaoColetiva(1);
+        RegistroConvencaoColetiva registroConvencaoColetiva = consulta.RetornaRegistroConvencaoColetiva(1);
 
         System.out.print("\nRetornaRegistroConvencaoColetiva: \n");
         System.out.println(registroConvencaoColetiva.getpCod());
@@ -51,7 +51,7 @@ public class TestConsultaTSQL {
         System.out.println(registroConvencaoColetiva.getpLoginAtualizacao());
         System.out.println(registroConvencaoColetiva.getpDataAtualizacao());
 
-        RegistroEventoContratualModel registroEventoContratual = consulta.RetornaRegistroEventoContratual(1);
+        RegistroEventoContratual registroEventoContratual = consulta.RetornaRegistroEventoContratual(1);
 
         System.out.print("\nRetornaRegistroEventoContratual: \n");
         System.out.println(registroEventoContratual.getpCod());
@@ -65,7 +65,7 @@ public class TestConsultaTSQL {
         System.out.println(registroEventoContratual.getpLoginAtualizacao());
         System.out.println(registroEventoContratual.getpDataAtualizacao());
 
-        RegistroFuncaoModel registroFuncao = consulta.RetornaRegistroFuncao(1);
+        RegistroFuncao registroFuncao = consulta.RetornaRegistroFuncao(1);
 
         System.out.print("\nRetornaRegistroFuncao: \n");
         System.out.println(registroFuncao.getpCod());
@@ -74,7 +74,7 @@ public class TestConsultaTSQL {
         System.out.println(registroFuncao.getpLoginAtualizacao());
         System.out.println(registroFuncao.getpDataAtualizacao());
 
-        RegistroFuncaoContratoModel registroFuncaoContrato = consulta.RetornaRegistroFuncaoContrato(1);
+        RegistroFuncaoContrato registroFuncaoContrato = consulta.RetornaRegistroFuncaoContrato(1);
 
         System.out.print("\nRetornaRegistroFuncaoContrato: \n");
         System.out.println(registroFuncaoContrato.getpCod());
@@ -96,7 +96,7 @@ public class TestConsultaTSQL {
         System.out.println(registroHistoricoGestaoContrato.getpLoginAtualizacao());
         System.out.println(registroHistoricoGestaoContrato.getpDataAtualizacao());
 
-        RegistroFuncaoTerceirizadoModel registroFuncaoTerceirizado = consulta.RetornaRegistroFuncaoTerceirizado(1);
+        RegistroFuncaoTerceirizado registroFuncaoTerceirizado = consulta.RetornaRegistroFuncaoTerceirizado(1);
 
         System.out.print("\nRetornaRegistroFuncaoTerceirizado: \n");
         System.out.println(registroFuncaoTerceirizado.getpCod());
@@ -166,6 +166,81 @@ public class TestConsultaTSQL {
         System.out.println(registroRemuneracaoFunCon.getpAdicionais());
         System.out.println(registroRemuneracaoFunCon.getpLoginAtualizacao());
         System.out.println(registroRemuneracaoFunCon.getpDataAtualizacao());
+
+        RegistroTerceirizado registroTerceirizado = consulta.RetornaRegistroTerceirizado(1);
+
+        System.out.print("\nRetornaRegistroTerceirizado: \n");
+        System.out.println(registroTerceirizado.getpCod());
+        System.out.println(registroTerceirizado.getpCpf());
+        System.out.println(registroTerceirizado.getpAtivo());
+        System.out.println(registroTerceirizado.getpLoginAtualizacao());
+        System.out.println(registroTerceirizado.getpDataAtualizacao());
+
+        RegistroTerceirizadoContrato registroTerceirizadoContrato = consulta.RetornaRegistroTerceirizadoContrato(1);
+
+        System.out.print("\nRetornaRegistroTerceirizadoContrato: \n");
+        System.out.println(registroTerceirizadoContrato.getpCod());
+        System.out.println(registroTerceirizadoContrato.getpCodContrato());
+        System.out.println(registroTerceirizadoContrato.getpCodTerceirizado());
+        System.out.println(registroTerceirizadoContrato.getpDataDisponibilizacao());
+        System.out.println(registroTerceirizadoContrato.getpDataDesligamento());
+        System.out.println(registroTerceirizadoContrato.getpLoginAtualizacao());
+        System.out.println(registroTerceirizadoContrato.getpDataAtualizacao());
+
+        RegistroTipoEventoContratual registroTipoEventoContratual = consulta.RetornaRegistroTipoEventoContratual(1);
+
+        System.out.print("\nRetornaRegistroTipoEventoContratual: \n");
+        System.out.println(registroTipoEventoContratual.getpCod());
+        System.out.println(registroTipoEventoContratual.getpTipo());
+        System.out.println(registroTipoEventoContratual.getpLoginAtualizacao());
+        System.out.println(registroTipoEventoContratual.getpDataAtualizacao());
+
+        RegistroTipoRescisao registroTipoRescisao = consulta.RetornaRegistroTipoRescisao(1);
+
+        System.out.print("\nRetornaRegistroTipoRescisao: \n");
+        System.out.println(registroTipoRescisao.getpCod());
+        System.out.println(registroTipoRescisao.getpTipoRescisao());
+        System.out.println(registroTipoRescisao.getpLoginAtualizacao());
+        System.out.println(registroTipoRescisao.getpDataAtualizacao());
+
+        RegistroTipoRestituicao registroTipoRestituicao = consulta.RetornaRegistroTipoRestituicao(1);
+
+        System.out.print("\nRetornaRegistroTipoRestituicao: \n");
+        System.out.println(registroTipoRestituicao.getpCod());
+        System.out.println(registroTipoRestituicao.getpNome());
+        System.out.println(registroTipoRestituicao.getpLoginAtualizacao());
+        System.out.println(registroTipoRestituicao.getpDataAtualizacao());
+
+        RegistroTotalMensalAReter registroTotalMensalAReter = consulta.RetornaRegistroTotalMensalAReter(1);
+
+        System.out.print("\nRetornaRegistroTotalMensalAReter: \n");
+        System.out.println(registroTotalMensalAReter.getpCod());
+        System.out.println(registroTotalMensalAReter.getpCodTerceirizadoContrato());
+        System.out.println(registroTotalMensalAReter.getpCodFuncaoTerceirizado());
+        System.out.println(registroTotalMensalAReter.getpFerias());
+        System.out.println(registroTotalMensalAReter.getpTercoConstitucional());
+        System.out.println(registroTotalMensalAReter.getpDecimoTerceiro());
+        System.out.println(registroTotalMensalAReter.getpIncidenciaSubmodulo41());
+        System.out.println(registroTotalMensalAReter.getpMultaFgts());
+        System.out.println(registroTotalMensalAReter.getpTotal());
+        System.out.println(registroTotalMensalAReter.getpDataReferencia());
+        System.out.println(registroTotalMensalAReter.getpAutorizado());
+        System.out.println(registroTotalMensalAReter.getpRetido());
+        System.out.println(registroTotalMensalAReter.getpObservacao());
+        System.out.println(registroTotalMensalAReter.getpLoginAtualizacao());
+        System.out.println(registroTotalMensalAReter.getpDataAtualizacao());
+
+        RegistroUsuario registroUsuario = consulta.RetornaRegistroUsuario(1);
+
+        System.out.print("\nRetornaRegistroUsuario: \n");
+        System.out.println(registroUsuario.getpCod());
+        System.out.println(registroUsuario.getpNome());
+        System.out.println(registroUsuario.getpLogin());
+        System.out.println(registroUsuario.getpPassword());
+        System.out.println(registroTotalMensalAReter.getpLoginAtualizacao());
+        System.out.println(registroTotalMensalAReter.getpDataAtualizacao());
+
+
 /*
         RegistroRetroPercentualEstatico registroRetroPercentualEstatico = consulta.RetornaRegistroRetroPercentualEstatico(null);
 
@@ -178,11 +253,119 @@ public class TestConsultaTSQL {
         System.out.println(registroRetroPercentualEstatico.getpDataCobranca());
         System.out.println(registroRetroPercentualEstatico.getpLoginAtualizacao());
         System.out.println(registroRetroPercentualEstatico.getpDataAtualizacao());
+
+
+        RegistroRestituicaoDecimoTerceiro registroRestituicaoDecimoTerceiro = consulta.RetornaRegistroRestituicaoDecimoTerceiro(2);
+
+        System.out.print("\nRetornaRegistroRestituicaoDecimoTerceiro: \n");
+        System.out.println(registroRestituicaoDecimoTerceiro.getpCod());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpCodTerceirizadoContrato());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpCodTipoRestituicao());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpParcela());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpDataInicioContagem());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpValor());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpIncidenciaSubmodulo41());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpDataReferencia());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpAutorizado());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpRestituido());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpObservacao());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpLoginAtualizacao());
+        System.out.println(registroRestituicaoDecimoTerceiro.getpDataAtualizacao());
+
+        RegistroRestituicaoFerias registroRestituicaoFerias = consulta.RetornaRegistroRestituicaoFerias(2);
+
+        System.out.print("\nRetornaRegistroRestituicaoFerias: \n");
+        System.out.println(registroRestituicaoFerias.getpCod());
+        System.out.println(registroRestituicaoFerias.getpCodTerceirizadoContrato());
+        System.out.println(registroRestituicaoFerias.getpCodTipoRestituicao());
+        System.out.println(registroRestituicaoFerias.getpDataInicioPeriodoAquisitivo());
+        System.out.println(registroRestituicaoFerias.getpDataFimPeriodoAquisitivo());
+        System.out.println(registroRestituicaoFerias.getpDataInicioUsufruto());
+        System.out.println(registroRestituicaoFerias.getpDataFimUsufruto());
+        System.out.println(registroRestituicaoFerias.getpDiasVendidos());
+        System.out.println(registroRestituicaoFerias.getpValorFerias());
+        System.out.println(registroRestituicaoFerias.getpValorTercoConstitucional());
+        System.out.println(registroRestituicaoFerias.getpIncidenciaSubmod41Ferias());
+        System.out.println(registroRestituicaoFerias.getpIncidenciaSubmod41Terco());
+        System.out.println(registroRestituicaoFerias.getpParcela());
+        System.out.println(registroRestituicaoFerias.getpDataReferencia());
+        System.out.println(registroRestituicaoFerias.getpAutorizado());
+        System.out.println(registroRestituicaoFerias.getpRestituido());
+        System.out.println(registroRestituicaoFerias.getpObservacao());
+        System.out.println(registroRestituicaoFerias.getpLoginAtualizacao());
+        System.out.println(registroRestituicaoFerias.getpDataAtualizacao());
+
+        RegistroRestituicaoRescisao registroRestituicaoRescisao = consulta.RetornaRegistroRestituicaoRescisao(3);
+
+        System.out.print("\nRetornaRegistroRestituicaoRescisao: \n");
+        System.out.println(registroRestituicaoRescisao.getpCod());
+        System.out.println(registroRestituicaoRescisao.getpCodTerceirizadoContrato());
+        System.out.println(registroRestituicaoRescisao.getpCodTipoRestituicao());
+        System.out.println(registroRestituicaoRescisao.getpCodTipoRescisao());
+        System.out.println(registroRestituicaoRescisao.getpDataDesligamento());
+        System.out.println(registroRestituicaoRescisao.getpDataInicioFerias());
+        System.out.println(registroRestituicaoRescisao.getpValorDecimoTerceiro());
+        System.out.println(registroRestituicaoRescisao.getpIncidSubmod41DecTerceiro());
+        System.out.println(registroRestituicaoRescisao.getpIncidMultaFGTSDecTeceriro());
+        System.out.println(registroRestituicaoRescisao.getpValorFerias());
+        System.out.println(registroRestituicaoRescisao.getpValorTerco());
+        System.out.println(registroRestituicaoRescisao.getpIncidSubmod41Ferias());
+        System.out.println(registroRestituicaoRescisao.getpIncidSubmod41Terco());
+        System.out.println(registroRestituicaoRescisao.getpIncidMultaFGTSFerias());
+        System.out.println(registroRestituicaoRescisao.getpIncidMultaFGTSTerco());
+        System.out.println(registroRestituicaoRescisao.getpMultaFGTSSalario());
+        System.out.println(registroRestituicaoRescisao.getpDataReferencia());
+        System.out.println(registroRestituicaoRescisao.getpAutorizado());
+        System.out.println(registroRestituicaoRescisao.getpRestituido());
+        System.out.println(registroRestituicaoRescisao.getpObservacao());
+        System.out.println(registroRestituicaoRescisao.getpLoginAtualizacao());
+        System.out.println(registroRestituicaoRescisao.getpDataAtualizacao());
+
+        RegistroSaldoResidualDecTer registroSaldoResidualDecTer = consulta.RetornaRegistroSaldoResidualDecTer(2);
+
+        System.out.print("\nRetornaRegistroSaldoResidualDecTer: \n");
+        System.out.println(registroSaldoResidualDecTer.getpCod());
+        System.out.println(registroSaldoResidualDecTer.getpCodRestituicaoDecTerceiro());
+        System.out.println(registroSaldoResidualDecTer.getpValor());
+        System.out.println(registroSaldoResidualDecTer.getpIncidenciaSubmodulo41());
+        System.out.println(registroSaldoResidualDecTer.getpAutorizado());
+        System.out.println(registroSaldoResidualDecTer.getpRestituido());
+        System.out.println(registroSaldoResidualDecTer.getpLoginAtualizacao());
+        System.out.println(registroSaldoResidualDecTer.getpDataAtualizacao());
+
+        RegistroSaldoResidualFerias registroSaldoResidualFerias = consulta.RetornaRegistroSaldoResidualFerias(2);
+
+        System.out.print("\nRetornaRegistroSaldoResidualFerias: \n");
+        System.out.println(registroSaldoResidualFerias.getpCod());
+        System.out.println(registroSaldoResidualFerias.getpCodRestituicaoFerias());
+        System.out.println(registroSaldoResidualFerias.getpValorFerias());
+        System.out.println(registroSaldoResidualFerias.getpValorTerco());
+        System.out.println(registroSaldoResidualFerias.getpIncidSubmod41Ferias());
+        System.out.println(registroSaldoResidualFerias.getpIncidSubmod41Terco());
+        System.out.println(registroSaldoResidualFerias.getpAutorizado());
+        System.out.println(registroSaldoResidualFerias.getpRestituido());
+        System.out.println(registroSaldoResidualFerias.getpLoginAtualizacao());
+        System.out.println(registroSaldoResidualFerias.getpDataAtualizacao());
+
+        RegistroSaldoResidualRescisao registroSaldoResidualRescisao = consulta.RetornaRegistroSaldoResidualRescisao(3);
+
+        System.out.print("\nRetornaRegistroSaldoResidualRescisao: \n");
+        System.out.println(registroSaldoResidualRescisao.getpCod());
+        System.out.println(registroSaldoResidualRescisao.getpCodRestituicaoRescisao());
+        System.out.println(registroSaldoResidualRescisao.getpValorDecimoTerceiro());
+        System.out.println(registroSaldoResidualRescisao.getpIncidSubmod41DecTerceiro());
+        System.out.println(registroSaldoResidualRescisao.getpIncidMultaFgtsDecTerceiro());
+        System.out.println(registroSaldoResidualRescisao.getpValorFerias());
+        System.out.println(registroSaldoResidualRescisao.getpValorTerco());
+        System.out.println(registroSaldoResidualRescisao.getpIncidSubmod41Ferias());
+        System.out.println(registroSaldoResidualRescisao.getpIncidSubmod41Terco());
+        System.out.println(registroSaldoResidualRescisao.getpIncidMultaFgtsFerias());
+        System.out.println(registroSaldoResidualRescisao.getpIncidMultaFgtsTerco());
+        System.out.println(registroSaldoResidualRescisao.getpMultaFgtsSalario());
+        System.out.println(registroRestituicaoRescisao.getpAutorizado());
+        System.out.println(registroRestituicaoRescisao.getpRestituido());
+        System.out.println(registroRestituicaoRescisao.getpLoginAtualizacao());
 */
-
-
-
-
     }
 
 }

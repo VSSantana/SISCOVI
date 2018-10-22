@@ -41,7 +41,7 @@
     </database>
     <schema id="10" parent="5" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2018-10-19.07:21:55.700</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-10-22.07:16:53.670</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -83,187 +83,187 @@
     </schema>
     <table id="23" parent="10" name="tb_contrato">
       <ObjectId>1013578649</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.220</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.603</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.190</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.527</ModifiedTimestamp>
     </table>
     <table id="24" parent="10" name="tb_convencao_coletiva">
       <ObjectId>1045578763</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.227</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.537</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.197</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.477</ModifiedTimestamp>
     </table>
     <table id="25" parent="10" name="tb_evento_contratual">
       <ObjectId>1077578877</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.233</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.497</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.200</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.440</ModifiedTimestamp>
     </table>
     <table id="26" parent="10" name="tb_funcao">
       <ObjectId>1109578991</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.243</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.500</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.210</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.443</ModifiedTimestamp>
     </table>
     <table id="27" parent="10" name="tb_funcao_contrato">
       <ObjectId>1157579162</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.253</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.533</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.220</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.473</ModifiedTimestamp>
     </table>
     <table id="28" parent="10" name="tb_funcao_terceirizado">
       <ObjectId>1205579333</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.267</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.610</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.230</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.530</ModifiedTimestamp>
     </table>
     <table id="29" parent="10" name="tb_hist_restituicao_dec_ter">
       <ObjectId>917578307</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.193</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.623</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.160</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.540</ModifiedTimestamp>
     </table>
     <table id="30" parent="10" name="tb_hist_restituicao_ferias">
       <ObjectId>949578421</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.203</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.633</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.170</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.547</ModifiedTimestamp>
     </table>
     <table id="31" parent="10" name="tb_hist_restituicao_rescisao">
       <ObjectId>981578535</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.213</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.647</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.180</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.557</ModifiedTimestamp>
     </table>
     <table id="32" parent="10" name="tb_historico_gestao_contrato">
       <ObjectId>1237579447</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.277</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.523</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.240</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.463</ModifiedTimestamp>
     </table>
     <table id="33" parent="10" name="tb_percentual_contrato">
       <ObjectId>1269579561</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.283</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.583</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.247</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.510</ModifiedTimestamp>
     </table>
     <table id="34" parent="10" name="tb_percentual_estatico">
       <ObjectId>1301579675</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.290</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.580</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.253</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.507</ModifiedTimestamp>
     </table>
     <table id="35" parent="10" name="tb_perfil_gestao">
       <ObjectId>1333579789</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.300</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.523</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.260</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.463</ModifiedTimestamp>
     </table>
     <table id="36" parent="10" name="tb_perfil_usuario">
       <ObjectId>1365579903</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.307</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.617</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.267</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.533</ModifiedTimestamp>
     </table>
     <table id="37" parent="10" name="tb_remuneracao_fun_con">
       <ObjectId>1413580074</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.320</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.590</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.283</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.513</ModifiedTimestamp>
     </table>
     <table id="38" parent="10" name="tb_restituicao_decimo_terceiro">
       <ObjectId>1445580188</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.327</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.620</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.290</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.537</ModifiedTimestamp>
     </table>
     <table id="39" parent="10" name="tb_restituicao_ferias">
       <ObjectId>1477580302</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.340</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.630</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.297</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.543</ModifiedTimestamp>
     </table>
     <table id="40" parent="10" name="tb_restituicao_rescisao">
       <ObjectId>1509580416</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.347</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.640</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.303</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.550</ModifiedTimestamp>
     </table>
     <table id="41" parent="10" name="tb_retro_percentual_estatico">
       <ObjectId>1541580530</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.357</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.577</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.313</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.507</ModifiedTimestamp>
     </table>
     <table id="42" parent="10" name="tb_retroatividade_percentual">
       <ObjectId>1573580644</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.363</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.583</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.323</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.510</ModifiedTimestamp>
     </table>
     <table id="43" parent="10" name="tb_retroatividade_remuneracao">
       <ObjectId>1605580758</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.370</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.587</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.330</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.513</ModifiedTimestamp>
     </table>
     <table id="44" parent="10" name="tb_retroatividade_total_mensal">
       <ObjectId>1637580872</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.380</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.590</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.337</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.517</ModifiedTimestamp>
     </table>
     <table id="45" parent="10" name="tb_rubrica">
       <ObjectId>1669580986</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.387</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.533</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.343</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.473</ModifiedTimestamp>
     </table>
     <table id="46" parent="10" name="tb_saldo_residual_dec_ter">
       <ObjectId>1717581157</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.397</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.547</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.353</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.487</ModifiedTimestamp>
     </table>
     <table id="47" parent="10" name="tb_saldo_residual_ferias">
       <ObjectId>1749581271</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.403</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.553</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.360</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.490</ModifiedTimestamp>
     </table>
     <table id="48" parent="10" name="tb_saldo_residual_rescisao">
       <ObjectId>1781581385</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.410</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.597</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.367</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.520</ModifiedTimestamp>
     </table>
     <table id="49" parent="10" name="tb_terceirizado">
       <ObjectId>1813581499</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.420</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.600</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.373</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.523</ModifiedTimestamp>
     </table>
     <table id="50" parent="10" name="tb_terceirizado_contrato">
       <ObjectId>1861581670</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.430</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.607</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.383</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.530</ModifiedTimestamp>
     </table>
     <table id="51" parent="10" name="tb_tipo_evento_contratual">
       <ObjectId>1893581784</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.440</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.497</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.390</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.440</ModifiedTimestamp>
     </table>
     <table id="52" parent="10" name="tb_tipo_rescisao">
       <ObjectId>1925581898</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.447</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.647</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.397</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.553</ModifiedTimestamp>
     </table>
     <table id="53" parent="10" name="tb_tipo_restituicao">
       <ObjectId>1957582012</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.457</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.643</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.403</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.550</ModifiedTimestamp>
     </table>
     <table id="54" parent="10" name="tb_total_mensal_a_reter">
       <ObjectId>1989582126</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.463</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.610</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.410</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.530</ModifiedTimestamp>
     </table>
     <table id="55" parent="10" name="tb_trienio_terc_contrato">
       <ObjectId>2069582411</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.483</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.493</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.427</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.437</ModifiedTimestamp>
     </table>
     <table id="56" parent="10" name="tb_usuario">
       <ObjectId>2021582240</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.470</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.617</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.420</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.533</ModifiedTimestamp>
     </table>
     <routine id="57" parent="10" name="F_RETURN_RANDOM_CPF">
       <ObjectId>901578250</ObjectId>
       <SourceTextLength>1606</SourceTextLength>
-      <CreatedTimestamp>2018-10-11.12:13:29.013</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:29.013</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:15:53.257</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:15:53.257</ModifiedTimestamp>
       <RoutineKind>function</RoutineKind>
       <RoutineType>scalar-fun</RoutineType>
     </routine>
     <routine id="58" parent="10" name="P_SISCOVI_DATA_LOAD">
       <ObjectId>610101214</ObjectId>
       <SourceTextLength>95883</SourceTextLength>
-      <CreatedTimestamp>2018-10-11.12:13:48.960</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:48.960</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:16.363</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:16.363</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
       <RoutineType>proc</RoutineType>
     </routine>
@@ -320,8 +320,8 @@
     </index>
     <key id="69" parent="23" name="tb_contrato_pk">
       <ObjectId>1029578706</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.223</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.223</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.193</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.193</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -369,8 +369,8 @@
     </index>
     <key id="78" parent="24" name="tb_convencao_coletiva_pk">
       <ObjectId>1061578820</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.233</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.233</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.200</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.200</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_convencao_coletiva_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -433,16 +433,16 @@
     </index>
     <key id="90" parent="25" name="tb_evento_contratual_pk">
       <ObjectId>1093578934</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.240</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.240</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.207</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.207</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_evento_contratual_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="91" parent="25" name="tb_evento_contratual_fk1">
       <ObjectId>2117582582</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.493</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.493</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.437</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.437</ModifiedTimestamp>
       <ColNames>COD_CONTRATO</ColNames>
       <RefTableId>1013578649</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -452,8 +452,8 @@
     </foreign-key>
     <foreign-key id="92" parent="25" name="tb_evento_contratual_fk2">
       <ObjectId>2133582639</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.497</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.497</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.440</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.440</ModifiedTimestamp>
       <ColNames>COD_TIPO_EVENTO</ColNames>
       <RefTableId>1893581784</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -499,16 +499,16 @@
     </index>
     <key id="100" parent="26" name="tb_funcao_pk">
       <ObjectId>1125579048</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.247</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.247</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.213</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.213</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_funcao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="101" parent="26" name="tb_cargo_un">
       <ObjectId>1141579105</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.250</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.250</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.217</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.217</ModifiedTimestamp>
       <ColNames>NOME</ColNames>
       <UnderlyingIndexName>tb_cargo_un</UnderlyingIndexName>
     </key>
@@ -556,24 +556,24 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="110" parent="27" name="tb_funcao_contrato_pk">
       <ObjectId>1173579219</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.260</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.260</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.223</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.223</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_funcao_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="111" parent="27" name="tb_funcao_contrato_un">
       <ObjectId>1189579276</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.263</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.263</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.227</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.227</ModifiedTimestamp>
       <ColNames>COD_CONTRATO
 COD_FUNCAO</ColNames>
       <UnderlyingIndexName>tb_funcao_contrato_un</UnderlyingIndexName>
     </key>
     <foreign-key id="112" parent="27" name="tb_funcao_contrato_fk2">
       <ObjectId>18099105</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.503</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.503</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.447</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.447</ModifiedTimestamp>
       <ColNames>COD_CONTRATO</ColNames>
       <RefTableId>1013578649</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -583,8 +583,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="113" parent="27" name="tb_funcao_contrato_fk1">
       <ObjectId>2099048</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.500</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.500</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.443</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.443</ModifiedTimestamp>
       <ColNames>COD_FUNCAO</ColNames>
       <RefTableId>1109578991</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -635,16 +635,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="122" parent="28" name="tb_funcao_terceirizado_pk">
       <ObjectId>1221579390</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.273</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.273</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.237</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.237</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_funcao_terceirizado_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="123" parent="28" name="tb_funcao_terceirizado_fk1">
       <ObjectId>34099162</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.510</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.510</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.450</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.450</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -654,8 +654,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="124" parent="28" name="tb_funcao_terceirizado_fk2">
       <ObjectId>50099219</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.513</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.513</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.453</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.453</ModifiedTimestamp>
       <ColNames>COD_FUNCAO_CONTRATO</ColNames>
       <RefTableId>1157579162</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -727,16 +727,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="139" parent="29" name="tb_hist_restituicao_dec_ter_pk">
       <ObjectId>933578364</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.200</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.200</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.167</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.167</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_hist_restituicao_dec_ter_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="140" parent="29" name="tb_hist_rest_dec_ter_fk1">
       <ObjectId>498100815</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.620</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.620</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.537</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.537</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_DEC_TERCEIRO</ColNames>
       <RefTableId>1445580188</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -746,8 +746,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="141" parent="29" name="tb_hist_rest_dec_ter_fk2">
       <ObjectId>514100872</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.623</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.623</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.540</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.540</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -843,16 +843,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="162" parent="30" name="tb_hist_restituicao_ferias_pk">
       <ObjectId>965578478</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.210</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.210</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.177</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.177</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_hist_restituicao_ferias_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="163" parent="30" name="tb_hist_restituicao_ferias_fk1">
       <ObjectId>530100929</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.630</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.630</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.543</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.543</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_FERIAS</ColNames>
       <RefTableId>1477580302</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -862,8 +862,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="164" parent="30" name="tb_hist_restituicao_ferias_fk2">
       <ObjectId>546100986</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.633</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.633</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.547</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.547</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -987,16 +987,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="188" parent="31" name="tb_hist_restituicao_rescisao_pk">
       <ObjectId>997578592</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.217</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.217</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.187</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.187</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_hist_restituicao_rescisao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="189" parent="31" name="tb_hist_restituicao_rescisao_fk1">
       <ObjectId>562101043</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.637</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.637</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.550</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.550</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_RESCISAO</ColNames>
       <RefTableId>1509580416</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1006,8 +1006,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="190" parent="31" name="tb_hist_restituicao_rescisao_fk2">
       <ObjectId>578101100</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.643</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.643</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.550</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.550</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1017,8 +1017,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="191" parent="31" name="tb_hist_restituicao_rescisao_fk3">
       <ObjectId>594101157</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.647</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.647</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.553</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.553</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESCISAO</ColNames>
       <RefTableId>1925581898</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1074,16 +1074,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="201" parent="32" name="tb_hist_gestao_contrato_pk">
       <ObjectId>1253579504</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.280</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.280</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.243</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.243</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_hist_gestao_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="202" parent="32" name="tb_hist_gestao_contrato_fk1">
       <ObjectId>66099276</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.517</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.517</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.457</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.457</ModifiedTimestamp>
       <ColNames>COD_CONTRATO</ColNames>
       <RefTableId>1013578649</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1093,8 +1093,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="203" parent="32" name="tb_hist_gestao_contrato_fk2">
       <ObjectId>82099333</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.520</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.520</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.460</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.460</ModifiedTimestamp>
       <ColNames>COD_USUARIO</ColNames>
       <RefTableId>2021582240</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1104,8 +1104,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="204" parent="32" name="tb_hist_gestao_contrato_fk3">
       <ObjectId>98099390</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.520</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.520</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.463</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.463</ModifiedTimestamp>
       <ColNames>COD_PERFIL_GESTAO</ColNames>
       <RefTableId>1333579789</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1166,16 +1166,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="215" parent="33" name="tb_percentual_contrato_pk">
       <ObjectId>1285579618</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.290</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.290</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.250</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.250</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_percentual_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="216" parent="33" name="tb_percentual_contrato_fk1">
       <ObjectId>114099447</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.527</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.527</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.467</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.467</ModifiedTimestamp>
       <ColNames>COD_CONTRATO</ColNames>
       <RefTableId>1013578649</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1185,8 +1185,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="217" parent="33" name="tb_percentual_contrato_fk2">
       <ObjectId>130099504</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.530</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.530</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.470</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.470</ModifiedTimestamp>
       <ColNames>COD_RUBRICA</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1242,16 +1242,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="227" parent="34" name="tb_percentual_estatico_pk">
       <ObjectId>1317579732</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.297</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.297</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.257</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.257</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_percentual_estatico_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="228" parent="34" name="tb_percentual_estatico_fk1">
       <ObjectId>146099561</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.530</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.530</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.470</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.470</ModifiedTimestamp>
       <ColNames>COD_RUBRICA</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1297,8 +1297,8 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="236" parent="35" name="tb_perfil_gestao_pk">
       <ObjectId>1349579846</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.303</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.303</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.263</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.263</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_perfil_gestao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -1346,16 +1346,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="245" parent="36" name="tb_perfil_usuario_pk">
       <ObjectId>1381579960</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.310</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.310</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.270</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.270</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_perfil_usuario_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="246" parent="36" name="tb_perfil_sigla_un">
       <ObjectId>1397580017</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.317</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.317</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.280</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.280</ModifiedTimestamp>
       <ColNames>SIGLA</ColNames>
       <UnderlyingIndexName>tb_perfil_sigla_un</UnderlyingIndexName>
     </key>
@@ -1419,16 +1419,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="259" parent="37" name="tb_remuneracao_fun_con_pk">
       <ObjectId>1429580131</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.323</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.323</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.287</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.287</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_remuneracao_fun_con_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="260" parent="37" name="tb_remuneracao_fun_con_fk1">
       <ObjectId>162099618</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.533</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.533</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.473</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.473</ModifiedTimestamp>
       <ColNames>COD_FUNCAO_CONTRATO</ColNames>
       <RefTableId>1157579162</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1438,8 +1438,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="261" parent="37" name="tb_remuneracao_fun_con_fk2">
       <ObjectId>178099675</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.537</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.537</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.477</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.477</ModifiedTimestamp>
       <ColNames>COD_CONVENCAO_COLETIVA</ColNames>
       <RefTableId>1045578763</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1518,16 +1518,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="276" parent="38" name="tb_restituicao_dec_ter_pk">
       <ObjectId>1461580245</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.330</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.330</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.293</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.293</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_restituicao_dec_ter_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="277" parent="38" name="tb_restituicao_dec_ter_fk1">
       <ObjectId>194099732</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.540</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.540</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.480</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.480</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1537,8 +1537,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="278" parent="38" name="tb_restituicao_dec_ter_fk2">
       <ObjectId>210099789</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.543</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.543</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.483</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.483</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1646,16 +1646,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="299" parent="39" name="tb_restituicao_ferias_pk">
       <ObjectId>1493580359</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.343</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.343</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.300</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.300</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_restituicao_ferias_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="300" parent="39" name="tb_restituicao_ferias_fk1">
       <ObjectId>242099903</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.550</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.550</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.490</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.490</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1665,8 +1665,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="301" parent="39" name="tb_restituicao_ferias_fk2">
       <ObjectId>274100017</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.557</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.557</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.493</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.493</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1790,16 +1790,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="325" parent="40" name="tb_restituicao_rescisao_pk">
       <ObjectId>1525580473</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.350</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.350</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.310</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.310</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_restituicao_rescisao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="326" parent="40" name="tb_restituicao_rescisao_fk1">
       <ObjectId>290100074</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.560</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.560</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.497</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.497</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1809,8 +1809,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="327" parent="40" name="tb_restituicao_rescisao_fk3">
       <ObjectId>322100188</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.573</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.573</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.503</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.503</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESTITUICAO</ColNames>
       <RefTableId>1957582012</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1820,8 +1820,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="328" parent="40" name="tb_restituicao_rescisao_fk2">
       <ObjectId>306100131</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.567</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.567</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.500</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.500</ModifiedTimestamp>
       <ColNames>COD_TIPO_RESCISAO</ColNames>
       <RefTableId>1925581898</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1878,16 +1878,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="338" parent="41" name="tb_retro_percent_estatico_pk">
       <ObjectId>1557580587</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.360</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.360</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.317</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.317</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_retro_percent_estatico_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="339" parent="41" name="tb_retro_percent_estatico_fk1">
       <ObjectId>338100245</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.577</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.577</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.507</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.507</ModifiedTimestamp>
       <ColNames>COD_PERCENTUAL_ESTATICO</ColNames>
       <RefTableId>1301579675</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1939,16 +1939,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="348" parent="42" name="tb_retro_percentual_pk">
       <ObjectId>1589580701</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.370</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.370</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.327</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.327</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_retro_percentual_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="349" parent="42" name="tb_retro_percentual_fk1">
       <ObjectId>354100302</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.583</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.583</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.510</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.510</ModifiedTimestamp>
       <ColNames>COD_PERCENTUAL_CONTRATO</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2000,16 +2000,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="358" parent="43" name="tb_retro_remuneracao_pk">
       <ObjectId>1621580815</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.377</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.377</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.333</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.333</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_retro_remuneracao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="359" parent="43" name="tb_retro_remuneracao_fk1">
       <ObjectId>370100359</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.587</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.587</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.513</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.513</ModifiedTimestamp>
       <ColNames>COD_REM_FUNCAO_CONTRATO</ColNames>
       <RefTableId>1413580074</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2076,16 +2076,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="371" parent="44" name="tb_retroativ_total_mensal_pk">
       <ObjectId>1653580929</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.383</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.383</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.340</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.340</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_retroativ_total_mensal_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="372" parent="44" name="tb_retro_total_mensal_fk1">
       <ObjectId>386100416</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.590</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.590</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.517</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.517</ModifiedTimestamp>
       <ColNames>COD_TOTAL_MENSAL_A_RETER</ColNames>
       <RefTableId>1989582126</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2136,16 +2136,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="381" parent="45" name="tb_rubrica_pk">
       <ObjectId>1685581043</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.390</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.390</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.347</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.347</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_rubrica_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="382" parent="45" name="tb_rubricas_sigla_un">
       <ObjectId>1701581100</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.393</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.393</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.350</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.350</ModifiedTimestamp>
       <ColNames>SIGLA</ColNames>
       <UnderlyingIndexName>tb_rubricas_sigla_un</UnderlyingIndexName>
     </key>
@@ -2196,16 +2196,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="392" parent="46" name="tb_saldo_residual_dec_ter_pk">
       <ObjectId>1733581214</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.400</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.400</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.357</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.357</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_saldo_residual_dec_ter_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="393" parent="46" name="tb_restituicao_dec_terceiro_fk">
       <ObjectId>226099846</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.547</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.547</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.487</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.487</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_DEC_TERCEIRO</ColNames>
       <RefTableId>1445580188</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2270,16 +2270,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="405" parent="47" name="tb_saldo_residual_ferias_pk">
       <ObjectId>1765581328</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.407</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.407</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.363</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.363</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_saldo_residual_ferias_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="406" parent="47" name="tb_restituicao_ferias_fk1v2">
       <ObjectId>258099960</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.553</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.553</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.490</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.490</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_FERIAS</ColNames>
       <RefTableId>1477580302</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2374,16 +2374,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="424" parent="48" name="tb_saldo_residual_rescisao_pk">
       <ObjectId>1797581442</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.413</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.413</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.370</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.370</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_saldo_residual_rescisao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="425" parent="48" name="tb_saldo_residual_rescisao_fk1">
       <ObjectId>402100473</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.597</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.597</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.520</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.520</ModifiedTimestamp>
       <ColNames>COD_RESTITUICAO_RESCISAO</ColNames>
       <RefTableId>1509580416</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2435,16 +2435,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="434" parent="49" name="tb_terceirizado_pk">
       <ObjectId>1829581556</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.423</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.423</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.377</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.377</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_terceirizado_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="435" parent="49" name="tb_terceirizado_cpf_un">
       <ObjectId>1845581613</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.427</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.427</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.380</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.380</ModifiedTimestamp>
       <ColNames>CPF</ColNames>
       <UnderlyingIndexName>tb_terceirizado_cpf_un</UnderlyingIndexName>
     </key>
@@ -2491,16 +2491,16 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="444" parent="50" name="tb_terceirizado_contrato_pk">
       <ObjectId>1877581727</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.437</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.437</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.390</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.390</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_terceirizado_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="445" parent="50" name="tb_terceirizado_contrato_fk2">
       <ObjectId>434100587</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.603</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.603</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.523</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.523</ModifiedTimestamp>
       <ColNames>COD_CONTRATO</ColNames>
       <RefTableId>1013578649</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2510,8 +2510,8 @@ COD_FUNCAO</ColNames>
     </foreign-key>
     <foreign-key id="446" parent="50" name="tb_terceirizado_contrato_fk1">
       <ObjectId>418100530</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.600</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.600</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.523</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.523</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO</ColNames>
       <RefTableId>1813581499</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2548,8 +2548,8 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="452" parent="51" name="tb_tipo_evento_contratual_pk">
       <ObjectId>1909581841</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.443</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.443</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.393</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.393</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_tipo_evento_contratual_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -2583,8 +2583,8 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="458" parent="52" name="tb_tipo_rescisao_pk">
       <ObjectId>1941581955</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.453</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.453</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.400</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.400</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_tipo_rescisao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -2618,8 +2618,8 @@ COD_FUNCAO</ColNames>
     </index>
     <key id="464" parent="53" name="tb_tipo_restituicao_pk">
       <ObjectId>1973582069</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.460</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.460</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.410</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.410</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_tipo_restituicao_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -2683,34 +2683,38 @@ COD_FUNCAO</ColNames>
       <Position>12</Position>
       <DataType>char(1 char)|0s</DataType>
     </column>
-    <column id="477" parent="54" name="LOGIN_ATUALIZACAO">
+    <column id="477" parent="54" name="OBSERVACAO">
       <Position>13</Position>
+      <DataType>varchar(500 char)|0s</DataType>
+    </column>
+    <column id="478" parent="54" name="LOGIN_ATUALIZACAO">
+      <Position>14</Position>
       <DataType>varchar(100 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="478" parent="54" name="DATA_ATUALIZACAO">
-      <Position>14</Position>
+    <column id="479" parent="54" name="DATA_ATUALIZACAO">
+      <Position>15</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="479" parent="54" name="tb_total_mensal_a_reter_pk">
+    <index id="480" parent="54" name="tb_total_mensal_a_reter_pk">
       <Position>1</Position>
       <ColNames>cod</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="480" parent="54" name="tb_total_mensal_a_reter_pk">
+    <key id="481" parent="54" name="tb_total_mensal_a_reter_pk">
       <ObjectId>2005582183</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.467</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.467</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.417</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.417</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_total_mensal_a_reter_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="481" parent="54" name="tb_total_mensal_a_reter_fk1">
+    <foreign-key id="482" parent="54" name="tb_total_mensal_a_reter_fk1">
       <ObjectId>450100644</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.607</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.607</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.527</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.527</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2718,10 +2722,10 @@ COD_FUNCAO</ColNames>
       <RefKeyName>tb_terceirizado_contrato_pk</RefKeyName>
       <RefColNames>cod</RefColNames>
     </foreign-key>
-    <foreign-key id="482" parent="54" name="tb_total_mensal_a_reter_fk2">
+    <foreign-key id="483" parent="54" name="tb_total_mensal_a_reter_fk2">
       <ObjectId>466100701</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.610</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.610</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.530</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.530</ModifiedTimestamp>
       <ColNames>COD_FUNCAO_TERCEIRIZADO</ColNames>
       <RefTableId>1205579333</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2729,59 +2733,59 @@ COD_FUNCAO</ColNames>
       <RefKeyName>tb_funcao_terceirizado_pk</RefKeyName>
       <RefColNames>cod</RefColNames>
     </foreign-key>
-    <column id="483" parent="55" name="cod">
+    <column id="484" parent="55" name="cod">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="484" parent="55" name="COD_TERCEIRIZADO_CONTRATO">
+    <column id="485" parent="55" name="COD_TERCEIRIZADO_CONTRATO">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="485" parent="55" name="NUMERO_DE_TRIENIOS">
+    <column id="486" parent="55" name="NUMERO_DE_TRIENIOS">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="486" parent="55" name="DATA_INICIO">
+    <column id="487" parent="55" name="DATA_INICIO">
       <Position>4</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="487" parent="55" name="DATA_FIM">
+    <column id="488" parent="55" name="DATA_FIM">
       <Position>5</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="488" parent="55" name="LOGIN_ATUALIZACAO">
+    <column id="489" parent="55" name="LOGIN_ATUALIZACAO">
       <Position>6</Position>
       <DataType>varchar(150 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="489" parent="55" name="DATA_ATUALIZACAO">
+    <column id="490" parent="55" name="DATA_ATUALIZACAO">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="490" parent="55" name="tb_trienio_terc_contrato_pk">
+    <index id="491" parent="55" name="tb_trienio_terc_contrato_pk">
       <Position>1</Position>
       <ColNames>cod</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="491" parent="55" name="tb_trienio_terc_contrato_pk">
+    <key id="492" parent="55" name="tb_trienio_terc_contrato_pk">
       <ObjectId>2085582468</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.487</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.487</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.430</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.430</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_trienio_terc_contrato_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="492" parent="55" name="tb_trienio_terc_contrato_fk1">
+    <foreign-key id="493" parent="55" name="tb_trienio_terc_contrato_fk1">
       <ObjectId>2101582525</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.490</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.490</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.433</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.433</ModifiedTimestamp>
       <ColNames>COD_TERCEIRIZADO_CONTRATO</ColNames>
       <RefTableId>1861581670</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2789,72 +2793,72 @@ COD_FUNCAO</ColNames>
       <RefKeyName>tb_terceirizado_contrato_pk</RefKeyName>
       <RefColNames>cod</RefColNames>
     </foreign-key>
-    <column id="493" parent="56" name="cod">
+    <column id="494" parent="56" name="cod">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="494" parent="56" name="COD_PERFIL">
+    <column id="495" parent="56" name="COD_PERFIL">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="495" parent="56" name="NOME">
+    <column id="496" parent="56" name="NOME">
       <Position>3</Position>
       <DataType>varchar(150 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="496" parent="56" name="LOGIN">
+    <column id="497" parent="56" name="LOGIN">
       <Position>4</Position>
       <DataType>varchar(100 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="497" parent="56" name="PASSWORD">
+    <column id="498" parent="56" name="PASSWORD">
       <Position>5</Position>
       <DataType>varchar(150 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="498" parent="56" name="LOGIN_ATUALIZACAO">
+    <column id="499" parent="56" name="LOGIN_ATUALIZACAO">
       <Position>6</Position>
       <DataType>varchar(100 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="499" parent="56" name="DATA_ATUALIZACAO">
+    <column id="500" parent="56" name="DATA_ATUALIZACAO">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="500" parent="56" name="tb_usuario_pk">
+    <index id="501" parent="56" name="tb_usuario_pk">
       <Position>1</Position>
       <ColNames>cod</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <index id="501" parent="56" name="tb_usuario_un">
+    <index id="502" parent="56" name="tb_usuario_un">
       <Position>2</Position>
       <ColNames>LOGIN</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="502" parent="56" name="tb_usuario_pk">
+    <key id="503" parent="56" name="tb_usuario_pk">
       <ObjectId>2037582297</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.477</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.477</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.420</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.420</ModifiedTimestamp>
       <ColNames>cod</ColNames>
       <UnderlyingIndexName>tb_usuario_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="503" parent="56" name="tb_usuario_un">
+    <key id="504" parent="56" name="tb_usuario_un">
       <ObjectId>2053582354</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.480</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.480</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.427</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.427</ModifiedTimestamp>
       <ColNames>LOGIN</ColNames>
       <UnderlyingIndexName>tb_usuario_un</UnderlyingIndexName>
     </key>
-    <foreign-key id="504" parent="56" name="tb_usuario_perfil_fk">
+    <foreign-key id="505" parent="56" name="tb_usuario_perfil_fk">
       <ObjectId>482100758</ObjectId>
-      <CreatedTimestamp>2018-10-11.12:13:41.617</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-11.12:13:41.617</ModifiedTimestamp>
+      <CreatedTimestamp>2018-10-22.07:16:05.533</CreatedTimestamp>
+      <ModifiedTimestamp>2018-10-22.07:16:05.533</ModifiedTimestamp>
       <ColNames>COD_PERFIL</ColNames>
       <RefTableId>1365579903</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -2862,11 +2866,11 @@ COD_FUNCAO</ColNames>
       <RefKeyName>tb_perfil_usuario_pk</RefKeyName>
       <RefColNames>cod</RefColNames>
     </foreign-key>
-    <argument id="505" parent="57">
+    <argument id="506" parent="57">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>varchar(14 char)|0s</DataType>
     </argument>
-    <argument id="506" parent="57" name="@pRandomNumber">
+    <argument id="507" parent="57" name="@pRandomNumber">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
     </argument>

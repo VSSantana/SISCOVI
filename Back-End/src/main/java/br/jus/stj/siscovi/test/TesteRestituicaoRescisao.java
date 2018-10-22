@@ -26,7 +26,7 @@ public class TesteRestituicaoRescisao {
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         int vRetorno;
-        String vTipoRestituicao = String.valueOf("RESGATE");
+        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         String vTipoRescisao = String.valueOf("SEM JUSTA CAUSA");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         Date vDataDesligamento = Date.valueOf("2016-12-31");
@@ -47,7 +47,7 @@ public class TesteRestituicaoRescisao {
         System.out.println(restituicao.getValorTerco());
         System.out.println(restituicao.getValorIncidenciaFerias());
         System.out.println(restituicao.getValorIncidenciaTerco());
-        System.out.println(restituicao.getValorFerias());
+        System.out.println(restituicao.getValorFGTSFerias());
         System.out.println(restituicao.getValorFGTSTerco());
         System.out.println(restituicao.getValorFGTSSalario());
 
@@ -68,15 +68,11 @@ public class TesteRestituicaoRescisao {
                                                                     restituicao.getValorFGTSSalario(),
                                                                     vLoginAtualizacao);
 
-        restituicaoRescisao.RecalculoRestituicaoRescisao(vRetorno, "RESGATE", vTipoRescisao, vDataDesligamento, vDataInicioFerias, 0, 0, 0, 0, 0,0 ,0,0,0, 0, "SYSTEM");
+        //restituicaoRescisao.RecalculoRestituicaoRescisao(vRetorno, "RESGATE", vTipoRescisao, vDataDesligamento, vDataInicioFerias, 0, 0, 0, 0, 0,0 ,0,0,0, 0, "SYSTEM");
 
-        //delete.DeleteRegistro(vRetorno, "TB_HIST_RESTITUICAO_RESCISAO");
-        //delete.DeleteRegistro(vRetorno, "TB_SALDO_RESIDUAL_RESCISAO");
-        //delete.DeleteRegistro(vRetorno, "TB_RESTITUICAO_RESCISAO");
-
-        delete.DeleteHistRestituicaoRescisao(vRetorno);
-        delete.DeleteSaldoResidualRescisao(vRetorno);
-        delete.DeleteRestituicaoRescisao(vRetorno);
+        //delete.DeleteHistRestituicaoRescisao(vRetorno);
+        //delete.DeleteSaldoResidualRescisao(vRetorno);
+        //delete.DeleteRestituicaoRescisao(vRetorno);
 
     }
 
