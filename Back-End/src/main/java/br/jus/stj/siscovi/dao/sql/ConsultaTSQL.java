@@ -2185,12 +2185,12 @@ public class ConsultaTSQL {
     /**
      * Retorna um registro da tabela tb_retro_percentual_estatico.
      *
-     * @param pCodPercentualEstatico;
+     * @param pCodRetroPercentualEstatico;
      *
      * @return Um registro de retroatividade de percentual estático no model.
      */
 
-    public RegistroRetroPercentualEstatico RetornaRegistroRetroPercentualEstatico  (int pCodPercentualEstatico) {
+    public RegistroRetroPercentualEstatico RetornaRegistroRetroPercentualEstatico  (int pCodRetroPercentualEstatico) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -2199,26 +2199,26 @@ public class ConsultaTSQL {
 
         try {
 
-            String sql = "SELECT cod, " +
-                                "cod_contrato, " +
+            String sql = "SELECT cod_contrato, " +
+                                "cod_percentual_estatico, " +
                                 "inicio, " +
                                 "fim, " +
                                 "data_cobranca, " +
                                 "login_atualizacao, " +
                                 "data_atualizacao " +
                            "FROM tb_retro_percentual_estatico " +
-                           "WHERE COD_PERCENTUAL_ESTATICO = ?";
+                           "WHERE cod = ?";
 
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, pCodPercentualEstatico);
+            preparedStatement.setInt(1, pCodRetroPercentualEstatico);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
-                registro = new RegistroRetroPercentualEstatico(resultSet.getInt(1),
+                registro = new RegistroRetroPercentualEstatico(pCodRetroPercentualEstatico,
+                                                               resultSet.getInt(1),
                                                                resultSet.getInt(2),
-                                                               pCodPercentualEstatico,
                                                                resultSet.getDate(3),
                                                                resultSet.getDate(4),
                                                                resultSet.getDate(5),
@@ -2242,12 +2242,12 @@ public class ConsultaTSQL {
     /**
      * Retorna um registro da tabela tb_retroatividade_percentual.
      *
-     * @param pCodPercentualContrato;
+     * @param pCodRetroatividadePercentualContrato;
      *
      * @return Um registro de retroatividade de percentual do contrato no model.
      */
 
-    public RegistroRetroatividadePercentual RetornaRegistroRetroatividadePercentual  (int pCodPercentualContrato) {
+    public RegistroRetroatividadePercentual RetornaRegistroRetroatividadePercentual  (int pCodRetroatividadePercentualContrato) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -2256,24 +2256,24 @@ public class ConsultaTSQL {
 
         try {
 
-            String sql = "SELECT cod, " +
+            String sql = "SELECT cod_percentual_contrato, " +
                                 "inicio, " +
                                 "fim, " +
                                 "data_cobranca, " +
                                 "login_atualizacao, " +
                                 "data_atualizacao " +
                            "FROM tb_retroatividade_percentual " +
-                           "WHERE COD_PERCENTUAL_CONTRATO = ?";
+                           "WHERE cod = ?";
 
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, pCodPercentualContrato);
+            preparedStatement.setInt(1, pCodRetroatividadePercentualContrato);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
-                registro = new RegistroRetroatividadePercentual(resultSet.getInt(1),
-                                                                pCodPercentualContrato,
+                registro = new RegistroRetroatividadePercentual(pCodRetroatividadePercentualContrato,
+                                                                resultSet.getInt(1),
                                                                 resultSet.getDate(2),
                                                                 resultSet.getDate(3),
                                                                 resultSet.getDate(4),
@@ -2297,12 +2297,12 @@ public class ConsultaTSQL {
     /**
      * Retorna um registro da tabela tb_retroatividade_remuneracao.
      *
-     * @param pCodRemFuncaoContrato;
+     * @param pCodRetroatividadeRemuneracao;
      *
      * @return Um registro de retroatividade de remuneração no model.
      */
 
-    public RegistroRetroatividadeRemuneracao RetornaRegistroRetroatividadeRemuneracao  (int pCodRemFuncaoContrato) {
+    public RegistroRetroatividadeRemuneracao RetornaRegistroRetroatividadeRemuneracao  (int pCodRetroatividadeRemuneracao) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -2311,24 +2311,24 @@ public class ConsultaTSQL {
 
         try {
 
-            String sql = "SELECT cod, " +
+            String sql = "SELECT COD_REM_FUNCAO_CONTRATO, " +
                                 "inicio, " +
                                 "fim, " +
                                 "data_cobranca, " +
                                 "login_atualizacao, " +
                                 "data_atualizacao " +
                            "FROM tb_retroatividade_remuneracao " +
-                           "WHERE COD_REM_FUNCAO_CONTRATO = ?";
+                           "WHERE cod = ?";
 
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, pCodRemFuncaoContrato);
+            preparedStatement.setInt(1, pCodRetroatividadeRemuneracao);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
-                registro = new RegistroRetroatividadeRemuneracao(resultSet.getInt(1),
-                                                                 pCodRemFuncaoContrato,
+                registro = new RegistroRetroatividadeRemuneracao(pCodRetroatividadeRemuneracao,
+                                                                 resultSet.getInt(1),
                                                                  resultSet.getDate(2),
                                                                  resultSet.getDate(3),
                                                                  resultSet.getDate(4),
@@ -2352,12 +2352,12 @@ public class ConsultaTSQL {
     /**
      * Retorna um registro da tabela tb_retroatividade_total_mensal.
      *
-     * @param pCodTotalMensalAReter;
+     * @param pCodRetroatividadeTotalMensal;
      *
      * @return Um registro de retroatividade de total mensal a reter no model.
      */
 
-    public RegistroRetroatividadeTotalMensal RetornaRegistroRetroatividadeTotalMensal  (int pCodTotalMensalAReter) {
+    public RegistroRetroatividadeTotalMensal RetornaRegistroRetroatividadeTotalMensal  (int pCodRetroatividadeTotalMensal) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
@@ -2366,7 +2366,7 @@ public class ConsultaTSQL {
 
         try {
 
-            String sql = "SELECT cod, " +
+            String sql = "SELECT cod_total_mensal_a_reter, " +
                                 "ferias, " +
                                 "TERCO_CONSTITUCIONAL, " +
                                 "DECIMO_TERCEIRO, " +
@@ -2376,17 +2376,17 @@ public class ConsultaTSQL {
                                 "login_atualizacao, " +
                                 "data_atualizacao " +
                     "FROM tb_retroatividade_total_mensal " +
-                    "WHERE COD_TOTAL_MENSAL_A_RETER = ?";
+                    "WHERE COD = ?";
 
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, pCodTotalMensalAReter);
+            preparedStatement.setInt(1, pCodRetroatividadeTotalMensal);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
-                registro = new RegistroRetroatividadeTotalMensal(resultSet.getInt(1),
-                                                                 pCodTotalMensalAReter,
+                registro = new RegistroRetroatividadeTotalMensal(pCodRetroatividadeTotalMensal,
+                                                                 resultSet.getInt(1),
                                                                  resultSet.getFloat(2),
                                                                  resultSet.getFloat(3),
                                                                  resultSet.getFloat(4),
