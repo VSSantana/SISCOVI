@@ -393,66 +393,41 @@ public class TestInsertTSQL {
 
         System.out.print("RetornaRegistroTipoRestituicao - Cod deleção: " + vCodRetorno + "\n");
 
+        vCodRetorno = insert.InsertTrienioTercContrato( 1, 2, Date.valueOf("2018-01-01"),null, "SYSTEM");
+
+        RegistroTrienioTercContrato registroTrienioTercContrato = consulta.RetornaRegistroTrienioTercContrato(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTrienioTercContrato: \n");
+        System.out.println(registroTrienioTercContrato.getpCod());
+        System.out.println(registroTrienioTercContrato.getpCodTerceirizadoContrato());
+        System.out.println(registroTrienioTercContrato.getpNumeroDeTrienios());
+        System.out.println(registroTrienioTercContrato.getpDataInicio());
+        System.out.println(registroTrienioTercContrato.getpDataFim());
+        System.out.println(registroTrienioTercContrato.getpLoginAtualizacao());
+        System.out.println(registroTrienioTercContrato.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TRIENIO_TERC_CONTRATO");
+
+        System.out.print("RetornaRegistroTrienioTercContrato - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = insert.InsertUsuario( 1, "Fernando Henrique Cardoso", "FHC","BATATA", "SYSTEM");
+
+        RegistroUsuario registroUsuario = consulta.RetornaRegistroUsuario(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroUsuario: \n");
+        System.out.println(registroUsuario.getpCod());
+        System.out.println(registroUsuario.getpNome());
+        System.out.println(registroUsuario.getpLogin());
+        System.out.println(registroUsuario.getpPassword());
+        System.out.println(registroUsuario.getpLoginAtualizacao());
+        System.out.println(registroUsuario.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_USUARIO");
+
+        System.out.print("RetornaRegistroUsuario - Cod deleção: " + vCodRetorno + "\n");
+
            /*
 
-        RegistroRemuneracaoFunCon registroRemuneracaoFunCon = consulta.RetornaRegistroRemuneracaoFunCon(1);
-
-        System.out.print("\nRetornaRegistroRemuneracaoFunCon: \n");
-        System.out.println(registroRemuneracaoFunCon.getpCod());
-        System.out.println(registroRemuneracaoFunCon.getpCodFuncaoContrato());
-        System.out.println(registroRemuneracaoFunCon.getpCodConvencaoColetiva());
-        System.out.println(registroRemuneracaoFunCon.getpDataInicio());
-        System.out.println(registroRemuneracaoFunCon.getpDataFim());
-        System.out.println(registroRemuneracaoFunCon.getpDataAditamento());
-        System.out.println(registroRemuneracaoFunCon.getpRemuneracao());
-        System.out.println(registroRemuneracaoFunCon.getpTrienios());
-        System.out.println(registroRemuneracaoFunCon.getpAdicionais());
-        System.out.println(registroRemuneracaoFunCon.getpLoginAtualizacao());
-        System.out.println(registroRemuneracaoFunCon.getpDataAtualizacao());
-
-        RegistroTerceirizado registroTerceirizado = consulta.RetornaRegistroTerceirizado(1);
-
-        System.out.print("\nRetornaRegistroTerceirizado: \n");
-        System.out.println(registroTerceirizado.getpCod());
-        System.out.println(registroTerceirizado.getpCpf());
-        System.out.println(registroTerceirizado.getpAtivo());
-        System.out.println(registroTerceirizado.getpLoginAtualizacao());
-        System.out.println(registroTerceirizado.getpDataAtualizacao());
-
-        RegistroTerceirizadoContrato registroTerceirizadoContrato = consulta.RetornaRegistroTerceirizadoContrato(1);
-
-        System.out.print("\nRetornaRegistroTerceirizadoContrato: \n");
-        System.out.println(registroTerceirizadoContrato.getpCod());
-        System.out.println(registroTerceirizadoContrato.getpCodContrato());
-        System.out.println(registroTerceirizadoContrato.getpCodTerceirizado());
-        System.out.println(registroTerceirizadoContrato.getpDataDisponibilizacao());
-        System.out.println(registroTerceirizadoContrato.getpDataDesligamento());
-        System.out.println(registroTerceirizadoContrato.getpLoginAtualizacao());
-        System.out.println(registroTerceirizadoContrato.getpDataAtualizacao());
-
-        RegistroTipoEventoContratual registroTipoEventoContratual = consulta.RetornaRegistroTipoEventoContratual(1);
-
-        System.out.print("\nRetornaRegistroTipoEventoContratual: \n");
-        System.out.println(registroTipoEventoContratual.getpCod());
-        System.out.println(registroTipoEventoContratual.getpTipo());
-        System.out.println(registroTipoEventoContratual.getpLoginAtualizacao());
-        System.out.println(registroTipoEventoContratual.getpDataAtualizacao());
-
-        RegistroTipoRescisao registroTipoRescisao = consulta.RetornaRegistroTipoRescisao(1);
-
-        System.out.print("\nRetornaRegistroTipoRescisao: \n");
-        System.out.println(registroTipoRescisao.getpCod());
-        System.out.println(registroTipoRescisao.getpTipoRescisao());
-        System.out.println(registroTipoRescisao.getpLoginAtualizacao());
-        System.out.println(registroTipoRescisao.getpDataAtualizacao());
-
-        RegistroTipoRestituicao registroTipoRestituicao = consulta.RetornaRegistroTipoRestituicao(1);
-
-        System.out.print("\nRetornaRegistroTipoRestituicao: \n");
-        System.out.println(registroTipoRestituicao.getpCod());
-        System.out.println(registroTipoRestituicao.getpNome());
-        System.out.println(registroTipoRestituicao.getpLoginAtualizacao());
-        System.out.println(registroTipoRestituicao.getpDataAtualizacao());
 
         RegistroTotalMensalAReter registroTotalMensalAReter = consulta.RetornaRegistroTotalMensalAReter(1);
 
@@ -473,15 +448,6 @@ public class TestInsertTSQL {
         System.out.println(registroTotalMensalAReter.getpLoginAtualizacao());
         System.out.println(registroTotalMensalAReter.getpDataAtualizacao());
 
-        RegistroUsuario registroUsuario = consulta.RetornaRegistroUsuario(1);
-
-        System.out.print("\nRetornaRegistroUsuario: \n");
-        System.out.println(registroUsuario.getpCod());
-        System.out.println(registroUsuario.getpNome());
-        System.out.println(registroUsuario.getpLogin());
-        System.out.println(registroUsuario.getpPassword());
-        System.out.println(registroTotalMensalAReter.getpLoginAtualizacao());
-        System.out.println(registroTotalMensalAReter.getpDataAtualizacao());
 */
     }
 

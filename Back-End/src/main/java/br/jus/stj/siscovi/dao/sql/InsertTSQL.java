@@ -1617,6 +1617,99 @@ public class InsertTSQL {
 
     }
 
+    public int InsertTrienioTercContrato (int pCodTerceirizadoContrato,
+                                          int pNumeroDeTrienios,
+                                          Date pDataInicio,
+                                          Date pDataFim,
+                                          String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TRIENIO_TERC_CONTRATO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TRIENIO_TERC_CONTRATO ON;" +
+                            " INSERT INTO TB_TRIENIO_TERC_CONTRATO (COD," +
+                                                                  " COD_TERCEIRIZADO_CONTRATO," +
+                                                                  " NUMERO_DE_TRIENIOS," +
+                                                                  " DATA_INICIO," +
+                                                                  " DATA_FIM," +
+                                                                  " LOGIN_ATUALIZACAO," +
+                                                                  " DATA_ATUALIZACAO)" +
+                            " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                        " SET IDENTITY_INSERT TB_TRIENIO_TERC_CONTRATO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodTerceirizadoContrato);
+            preparedStatement.setInt(3, pNumeroDeTrienios);
+            preparedStatement.setDate(4, pDataInicio);
+            preparedStatement.setDate(5, pDataFim);
+            preparedStatement.setString(6, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o triênio para o terceirizado.");
+
+        }
+
+        return vCod;
+
+    }
+
+    public int InsertUsuario (int pCodPerfil,
+                              String pNome,
+                              String pLogin,
+                              String pPassword,
+                              String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_USUARIO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_USUARIO ON;" +
+                            " INSERT INTO TB_USUARIO (COD," +
+                                                    " COD_PERFIL," +
+                                                    " NOME," +
+                                                    " LOGIN," +
+                                                    " PASSWORD," +
+                                                    " LOGIN_ATUALIZACAO," +
+                                                    " DATA_ATUALIZACAO)" +
+                                " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                        " SET IDENTITY_INSERT TB_USUARIO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodPerfil);
+            preparedStatement.setString(3, pNome);
+            preparedStatement.setString(4, pLogin);
+            preparedStatement.setString(5, pPassword);
+            preparedStatement.setString(6, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o novo usuário.");
+
+        }
+
+        return vCod;
+
+    }
+
+
 
 
 }
