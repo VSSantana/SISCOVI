@@ -20,7 +20,7 @@ public class TesteCalculoTotalMesal {
     ResultSet resultSet;
     int vCodTipoRestituicao = 0;
 
-    totalMensalAReter.CalculaTotalMensal(1, 12, 2016);
+    totalMensalAReter.CalculaTotalMensal(1, 8, 2016);
     //TotalMensalDAO totalMensalDAO  = new TotalMensalDAO(connectSQLServer.dbConnect());
     //totalMensalDAO.recuperaAnosDeCalculosAnteriores(41);
     //new TotalMensalController().getValoresCalculados(41,8);
