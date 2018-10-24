@@ -318,25 +318,33 @@ public class TestInsertTSQL {
 
         System.out.print("RetornaRegistroRetroatividadeTotalMensal - Cod deleção: " + vCodRetorno + "\n");
 
-        vCodRetorno = insert.InsertTerceirizado( "Fernando Haddaad", "09876522134", "S", "VSSOUSA");
+           /*
 
-        RegistroTerceirizado registroTerceirizado = consulta.RetornaRegistroTerceirizado(vCodRetorno);
+        RegistroRemuneracaoFunCon registroRemuneracaoFunCon = consulta.RetornaRegistroRemuneracaoFunCon(1);
+
+        System.out.print("\nRetornaRegistroRemuneracaoFunCon: \n");
+        System.out.println(registroRemuneracaoFunCon.getpCod());
+        System.out.println(registroRemuneracaoFunCon.getpCodFuncaoContrato());
+        System.out.println(registroRemuneracaoFunCon.getpCodConvencaoColetiva());
+        System.out.println(registroRemuneracaoFunCon.getpDataInicio());
+        System.out.println(registroRemuneracaoFunCon.getpDataFim());
+        System.out.println(registroRemuneracaoFunCon.getpDataAditamento());
+        System.out.println(registroRemuneracaoFunCon.getpRemuneracao());
+        System.out.println(registroRemuneracaoFunCon.getpTrienios());
+        System.out.println(registroRemuneracaoFunCon.getpAdicionais());
+        System.out.println(registroRemuneracaoFunCon.getpLoginAtualizacao());
+        System.out.println(registroRemuneracaoFunCon.getpDataAtualizacao());
+
+        RegistroTerceirizado registroTerceirizado = consulta.RetornaRegistroTerceirizado(1);
 
         System.out.print("\nRetornaRegistroTerceirizado: \n");
         System.out.println(registroTerceirizado.getpCod());
-        System.out.println(registroTerceirizado.getpNome());
         System.out.println(registroTerceirizado.getpCpf());
         System.out.println(registroTerceirizado.getpAtivo());
         System.out.println(registroTerceirizado.getpLoginAtualizacao());
         System.out.println(registroTerceirizado.getpDataAtualizacao());
 
-        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TERCEIRIZADO");
-
-        System.out.print("RetornaRegistroTerceirizado - Cod deleção: " + vCodRetorno + "\n");
-
-        vCodRetorno = insert.InsertTerceirizadoContrato( 1, 1, Date.valueOf("2018-01-01"), null,"VSSOUSA");
-
-        RegistroTerceirizadoContrato registroTerceirizadoContrato = consulta.RetornaRegistroTerceirizadoContrato(vCodRetorno);
+        RegistroTerceirizadoContrato registroTerceirizadoContrato = consulta.RetornaRegistroTerceirizadoContrato(1);
 
         System.out.print("\nRetornaRegistroTerceirizadoContrato: \n");
         System.out.println(registroTerceirizadoContrato.getpCod());
@@ -347,13 +355,7 @@ public class TestInsertTSQL {
         System.out.println(registroTerceirizadoContrato.getpLoginAtualizacao());
         System.out.println(registroTerceirizadoContrato.getpDataAtualizacao());
 
-        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TERCEIRIZADO_CONTRATO");
-
-        System.out.print("RetornaRegistroTerceirizadoContrato - Cod deleção: " + vCodRetorno + "\n");
-
-        vCodRetorno = insert.InsertTipoEventoContratual( "TIPO", "VSSOUSA");
-
-        RegistroTipoEventoContratual registroTipoEventoContratual = consulta.RetornaRegistroTipoEventoContratual(vCodRetorno);
+        RegistroTipoEventoContratual registroTipoEventoContratual = consulta.RetornaRegistroTipoEventoContratual(1);
 
         System.out.print("\nRetornaRegistroTipoEventoContratual: \n");
         System.out.println(registroTipoEventoContratual.getpCod());
@@ -361,13 +363,7 @@ public class TestInsertTSQL {
         System.out.println(registroTipoEventoContratual.getpLoginAtualizacao());
         System.out.println(registroTipoEventoContratual.getpDataAtualizacao());
 
-        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_EVENTO_CONTRATUAL");
-
-        System.out.print("RetornaRegistroTipoEventoContratual - Cod deleção: " + vCodRetorno + "\n");
-
-        vCodRetorno = insert.InsertTipoRescisao( "DEMETIDO", "VSSOUSA");
-
-        RegistroTipoRescisao registroTipoRescisao = consulta.RetornaRegistroTipoRescisao(vCodRetorno);
+        RegistroTipoRescisao registroTipoRescisao = consulta.RetornaRegistroTipoRescisao(1);
 
         System.out.print("\nRetornaRegistroTipoRescisao: \n");
         System.out.println(registroTipoRescisao.getpCod());
@@ -375,32 +371,13 @@ public class TestInsertTSQL {
         System.out.println(registroTipoRescisao.getpLoginAtualizacao());
         System.out.println(registroTipoRescisao.getpDataAtualizacao());
 
-        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_RESCISAO");
-
-        System.out.print("RetornaRegistroTipoRescisao - Cod deleção: " + vCodRetorno + "\n");
-
-        vCodRetorno = insert.InsertTipoRestituicao( "MEGASENA", "VSSOUSA");
-
-        RegistroTipoRestituicao registroTipoRestituicao = consulta.RetornaRegistroTipoRestituicao(vCodRetorno);
+        RegistroTipoRestituicao registroTipoRestituicao = consulta.RetornaRegistroTipoRestituicao(1);
 
         System.out.print("\nRetornaRegistroTipoRestituicao: \n");
         System.out.println(registroTipoRestituicao.getpCod());
         System.out.println(registroTipoRestituicao.getpNome());
         System.out.println(registroTipoRestituicao.getpLoginAtualizacao());
         System.out.println(registroTipoRestituicao.getpDataAtualizacao());
-
-        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_RESTITUICAO");
-
-        System.out.print("RetornaRegistroTipoRestituicao - Cod deleção: " + vCodRetorno + "\n");
-
-           /*
-
-
-
-
-
-
-
 
         RegistroTotalMensalAReter registroTotalMensalAReter = consulta.RetornaRegistroTotalMensalAReter(1);
 
