@@ -318,6 +318,81 @@ public class TestInsertTSQL {
 
         System.out.print("RetornaRegistroRetroatividadeTotalMensal - Cod deleção: " + vCodRetorno + "\n");
 
+        vCodRetorno = insert.InsertTerceirizado( "Fernando Haddaad", "09876522134", "S", "VSSOUSA");
+
+        RegistroTerceirizado registroTerceirizado = consulta.RetornaRegistroTerceirizado(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTerceirizado: \n");
+        System.out.println(registroTerceirizado.getpCod());
+        System.out.println(registroTerceirizado.getpNome());
+        System.out.println(registroTerceirizado.getpCpf());
+        System.out.println(registroTerceirizado.getpAtivo());
+        System.out.println(registroTerceirizado.getpLoginAtualizacao());
+        System.out.println(registroTerceirizado.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TERCEIRIZADO");
+
+        System.out.print("RetornaRegistroTerceirizado - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = insert.InsertTerceirizadoContrato( 1, 1, Date.valueOf("2018-01-01"), null,"VSSOUSA");
+
+        RegistroTerceirizadoContrato registroTerceirizadoContrato = consulta.RetornaRegistroTerceirizadoContrato(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTerceirizadoContrato: \n");
+        System.out.println(registroTerceirizadoContrato.getpCod());
+        System.out.println(registroTerceirizadoContrato.getpCodContrato());
+        System.out.println(registroTerceirizadoContrato.getpCodTerceirizado());
+        System.out.println(registroTerceirizadoContrato.getpDataDisponibilizacao());
+        System.out.println(registroTerceirizadoContrato.getpDataDesligamento());
+        System.out.println(registroTerceirizadoContrato.getpLoginAtualizacao());
+        System.out.println(registroTerceirizadoContrato.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TERCEIRIZADO_CONTRATO");
+
+        System.out.print("RetornaRegistroTerceirizadoContrato - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = insert.InsertTipoEventoContratual( "TIPO", "VSSOUSA");
+
+        RegistroTipoEventoContratual registroTipoEventoContratual = consulta.RetornaRegistroTipoEventoContratual(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTipoEventoContratual: \n");
+        System.out.println(registroTipoEventoContratual.getpCod());
+        System.out.println(registroTipoEventoContratual.getpTipo());
+        System.out.println(registroTipoEventoContratual.getpLoginAtualizacao());
+        System.out.println(registroTipoEventoContratual.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_EVENTO_CONTRATUAL");
+
+        System.out.print("RetornaRegistroTipoEventoContratual - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = insert.InsertTipoRescisao( "DEMETIDO", "VSSOUSA");
+
+        RegistroTipoRescisao registroTipoRescisao = consulta.RetornaRegistroTipoRescisao(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTipoRescisao: \n");
+        System.out.println(registroTipoRescisao.getpCod());
+        System.out.println(registroTipoRescisao.getpTipoRescisao());
+        System.out.println(registroTipoRescisao.getpLoginAtualizacao());
+        System.out.println(registroTipoRescisao.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_RESCISAO");
+
+        System.out.print("RetornaRegistroTipoRescisao - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = insert.InsertTipoRestituicao( "MEGASENA", "VSSOUSA");
+
+        RegistroTipoRestituicao registroTipoRestituicao = consulta.RetornaRegistroTipoRestituicao(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroTipoRestituicao: \n");
+        System.out.println(registroTipoRestituicao.getpCod());
+        System.out.println(registroTipoRestituicao.getpNome());
+        System.out.println(registroTipoRestituicao.getpLoginAtualizacao());
+        System.out.println(registroTipoRestituicao.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_TIPO_RESTITUICAO");
+
+        System.out.print("RetornaRegistroTipoRestituicao - Cod deleção: " + vCodRetorno + "\n");
+
            /*
 
         RegistroRemuneracaoFunCon registroRemuneracaoFunCon = consulta.RetornaRegistroRemuneracaoFunCon(1);

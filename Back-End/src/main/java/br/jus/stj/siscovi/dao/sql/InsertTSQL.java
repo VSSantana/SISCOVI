@@ -1417,6 +1417,206 @@ public class InsertTSQL {
 
     }
 
+    public int InsertTerceirizado (String pNome,
+                                   String pCpf,
+                                   String pAtivo,
+                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TERCEIRIZADO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TERCEIRIZADO ON;" +
+                    " INSERT INTO TB_TERCEIRIZADO (COD," +
+                    " NOME," +
+                    " CPF," +
+                    " ATIVO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TERCEIRIZADO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setString(2, pNome);
+            preparedStatement.setString(3, pCpf);
+            preparedStatement.setString(4, pAtivo);
+            preparedStatement.setString(5, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o novo terceirizado.");
+
+        }
+
+        return vCod;
+
+    }
+
+    public int InsertTerceirizadoContrato (int pCodContrato,
+                                           int pCodTerceirizado,
+                                           Date pDataDisponibilizacao,
+                                           Date pDataDesligamento,
+                                           String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TERCEIRIZADO_CONTRATO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TERCEIRIZADO_CONTRATO ON;" +
+                    " INSERT INTO TB_TERCEIRIZADO_CONTRATO (COD," +
+                    " COD_CONTRATO," +
+                    " COD_TERCEIRIZADO," +
+                    " DATA_DISPONIBILIZACAO," +
+                    " DATA_DESLIGAMENTO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TERCEIRIZADO_CONTRATO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodContrato);
+            preparedStatement.setInt(3, pCodTerceirizado);
+            preparedStatement.setDate(4, pDataDisponibilizacao);
+            preparedStatement.setDate(5, pDataDesligamento);
+            preparedStatement.setString(6, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o terceirizado no contrato.");
+
+        }
+
+        return vCod;
+
+    }
+
+    public int InsertTipoEventoContratual (String pTipo,
+                                           String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TIPO_EVENTO_CONTRATUAL");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TIPO_EVENTO_CONTRATUAL ON;" +
+                    " INSERT INTO TB_TIPO_EVENTO_CONTRATUAL (COD," +
+                    " TIPO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TIPO_EVENTO_CONTRATUAL OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setString(2, pTipo);
+            preparedStatement.setString(3, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o tipo de evento contratual.");
+
+        }
+
+        return vCod;
+
+    }
+
+    public int InsertTipoRescisao (String pTipoRescisao,
+                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TIPO_RESCISAO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TIPO_RESCISAO ON;" +
+                    " INSERT INTO TB_TIPO_RESCISAO (COD," +
+                    " TIPO_RESCISAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TIPO_RESCISAO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setString(2, pTipoRescisao);
+            preparedStatement.setString(3, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o tipo de rescisão.");
+
+        }
+
+        return vCod;
+
+    }
+
+    public int InsertTipoRestituicao (String pNome,
+                                      String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TIPO_RESTITUICAO");
+
+        try {
+
+            String sql = "SET IDENTITY_INSERT TB_TIPO_RESTITUICAO ON;" +
+                    " INSERT INTO TB_TIPO_RESTITUICAO (COD," +
+                    " NOME," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TIPO_RESTITUICAO OFF;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setString(2, pNome);
+            preparedStatement.setString(3, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível inserir o tipo de restituição.");
+
+        }
+
+        return vCod;
+
+    }
+
 
 
 }
