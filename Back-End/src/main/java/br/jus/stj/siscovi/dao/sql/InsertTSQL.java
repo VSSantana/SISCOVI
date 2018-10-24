@@ -12,6 +12,66 @@ public class InsertTSQL {
 
     }
 
+    public int InsertTotalMensalAReter(int pCodTerceirizadoContrato,
+                                       int pCodFuncaoTerceirizadoContrato,
+                                       float pFerias,
+                                       float pTercoConstitucional,
+                                       float pDecimoTerceiro,
+                                       float pIncidenciaSubmodulo41,
+                                       float pMultaFgts,
+                                       float pTotal,
+                                       Date pDataReferencia,
+                                       String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_TOTAL_MENSAL_A_RETER");
+
+        try {
+
+            String sql = "INSERT INTO TB_TOTAL_MENSAL_A_RETER (COD, " +
+                                                              "COD_TERCEIRIZADO_CONTRATO, " +
+                                                              "COD_FUNCAO_TERCEIRIZADO, " +
+                                                              "FERIAS, " +
+                                                              "TERCO_CONSTITUCIONAL, " +
+                                                              "DECIMO_TERCEIRO, " +
+                                                              "INCIDENCIA_SUBMODULO_4_1," +
+                                                              "MULTA_FGTS, " +
+                                                              "TOTAL, " +
+                                                              "DATA_REFERENCIA, " +
+                                                              "LOGIN_ATUALIZACAO, " +
+                                                              "DATA_ATUALIZACAO) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            preparedStatement.setInt(3, pCodFuncaoTerceirizadoContrato);
+            preparedStatement.setFloat(4, pFerias);
+            preparedStatement.setFloat(5, pTercoConstitucional);
+            preparedStatement.setFloat(6, pDecimoTerceiro);
+            preparedStatement.setFloat(7, pIncidenciaSubmodulo41);
+            preparedStatement.setFloat(8, pMultaFgts);
+            preparedStatement.setFloat(9, pTotal);
+            preparedStatement.setDate(10, pDataReferencia);
+            preparedStatement.setString(11, pLoginAtualizacao);
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de Total Mensal a Reter no banco de dados !");
+
+        }
+
+        return vCod;
+
+    }
+
     public int InsertRestituicaoFerias (int pCodTerceirizadoContrato,
                                         int pCodTipoRestituicao,
                                         int pDiasVendidos,

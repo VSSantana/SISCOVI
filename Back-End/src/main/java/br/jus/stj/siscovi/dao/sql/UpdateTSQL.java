@@ -1361,12 +1361,478 @@ public class UpdateTSQL {
             preparedStatement.setInt(6, pCodUsuario);
 
             preparedStatement.executeUpdate();
-0
+
         } catch (SQLException sqle) {
 
             sqle.printStackTrace();
 
             throw new NullPointerException("Não foi possível atualizar o usuário. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public Integer UpdateHistoricoRestituicaoDecimoTerceiro (int pCodHistoricoRestituicaoDecimoTerceiro,
+                                                             int pCodTbRestituicaoDecTer,
+                                                             int pCodTipoRestituicao,
+                                                             int pParcela,
+                                                             Date pDataInicioContagem,
+                                                             float pValor,
+                                                             float pIncidenciaSubmodulo41,
+                                                             Date pDataReferencia,
+                                                             String pAutorizado,
+                                                             String pRestituido,
+                                                             String pObservacao,
+                                                             String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+
+        try {
+
+            String sql = "UPDATE TB_HIST_RESTITUICAO_DEC_TER" +
+                            " SET COD_RESTITUICAO_DEC_TERCEIRO = ?," +
+                                " COD_TIPO_RESTITUICAO = ?," +
+                                " PARCELA = ?," +
+                                " DATA_INICIO_CONTAGEM = ?," +
+                                " VALOR = ?," +
+                                " INCIDENCIA_SUBMODULO_4_1 = ?," +
+                                " DATA_REFERENCIA = ?," +
+                                " AUTORIZADO = ?," +
+                                " RESTITUIDO = ?," +
+                                " OBSERVACAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodTbRestituicaoDecTer);
+            preparedStatement.setInt(2, pCodTipoRestituicao);
+            preparedStatement.setInt(3, pParcela);
+            preparedStatement.setDate(4, pDataInicioContagem);
+            preparedStatement.setFloat(5, pValor);
+            preparedStatement.setFloat(6, pIncidenciaSubmodulo41);
+            preparedStatement.setDate(7, pDataReferencia);
+            preparedStatement.setString(8, pAutorizado);
+            preparedStatement.setString(9, pRestituido);
+            preparedStatement.setString(10, pObservacao);
+            preparedStatement.setString(11, pLoginAtualizacao);
+            preparedStatement.setInt(12, pCodHistoricoRestituicaoDecimoTerceiro);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar os dados na tabela de histórico de restituição de décimo terceiro. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public Integer UpdateHistoricoRestituicaoRescisao (int pCodHistoricoRestituicaoRescisao,
+                                                       int pCodTbRestituicaoRescisao,
+                                                       int pCodTipoRestituicao,
+                                                       int pCodTipoRescisao,
+                                                       Date pDataDesligamento,
+                                                       Date pDataInicioFerias,
+                                                       float pValorDecimoTerceiro,
+                                                       float pIncidSubmod41DecTerceiro,
+                                                       float pIncidMultaFGTSDecTeceriro,
+                                                       float pValorFerias,
+                                                       float pValorTerco,
+                                                       float pIncidSubmod41Ferias,
+                                                       float pIncidSubmod41Terco,
+                                                       float pIncidMultaFGTSFerias,
+                                                       float pIncidMultaFGTSTerco,
+                                                       float pMultaFGTSSalario,
+                                                       Date pDataReferencia,
+                                                       String pAutorizado,
+                                                       String pRestituido,
+                                                       String pObservacao,
+                                                       String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+
+        try {
+
+            String sql = "UPDATE TB_HIST_RESTITUICAO_RESCISAO" +
+                            " SET COD_RESTITUICAO_RESCISAO = ?," +
+                                " COD_TIPO_RESTITUICAO = ?," +
+                                " COD_TIPO_RESCISAO = ?," +
+                                " DATA_DESLIGAMENTO = ?," +
+                                " DATA_INICIO_FERIAS = ?," +
+                                " VALOR_DECIMO_TERCEIRO = ?," +
+                                " INCID_SUBMOD_4_1_DEC_TERCEIRO = ?," +
+                                " INCID_MULTA_FGTS_DEC_TERCEIRO = ?," +
+                                " VALOR_FERIAS = ?," +
+                                " VALOR_TERCO = ?," +
+                                " INCID_SUBMOD_4_1_FERIAS = ?," +
+                                " INCID_SUBMOD_4_1_TERCO = ?," +
+                                " INCID_MULTA_FGTS_FERIAS = ?," +
+                                " INCID_MULTA_FGTS_TERCO = ?," +
+                                " MULTA_FGTS_SALARIO = ?," +
+                                " DATA_REFERENCIA = ?," +
+                                " AUTORIZADO = ?," +
+                                " RESTITUIDO = ?," +
+                                " OBSERVACAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodTbRestituicaoRescisao);
+            preparedStatement.setInt(2, pCodTipoRestituicao);
+            preparedStatement.setInt(3, pCodTipoRescisao);
+            preparedStatement.setDate(4, pDataDesligamento);
+            preparedStatement.setDate(5, pDataInicioFerias);
+            preparedStatement.setFloat(6, pValorDecimoTerceiro);
+            preparedStatement.setFloat(7, pIncidSubmod41DecTerceiro);
+            preparedStatement.setFloat(8, pIncidMultaFGTSDecTeceriro);
+            preparedStatement.setFloat(9, pValorFerias);
+            preparedStatement.setFloat(10, pValorTerco);
+            preparedStatement.setFloat(11, pIncidSubmod41Ferias);
+            preparedStatement.setFloat(12, pIncidSubmod41Terco);
+            preparedStatement.setFloat(13, pIncidMultaFGTSFerias);
+            preparedStatement.setFloat(14, pIncidMultaFGTSTerco);
+            preparedStatement.setFloat(15, pMultaFGTSSalario);
+            preparedStatement.setDate(16, pDataReferencia);
+            preparedStatement.setString(17, pAutorizado);
+            preparedStatement.setString(18,pRestituido);
+            preparedStatement.setString(19, pObservacao);
+            preparedStatement.setString(20, pLoginAtualizacao);
+            preparedStatement.setInt(21, pCodHistoricoRestituicaoRescisao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar os dados na tabela de histórico de restituição de rescisão. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+
+    public Integer UpdateHistoricoRestituicaoFerias (int pCodHistoricoRestituicaoFerias,
+                                                     int pCodTbRestituicaoFerias,
+                                                     int pCodTipoRestituicao,
+                                                     Date pInicioPeriodoAquisitivo,
+                                                     Date pFimPeriodoAquisitivo,
+                                                     Date pInicioFerias,
+                                                     Date pFimFerias,
+                                                     float pTotalFerias,
+                                                     float pTotalTercoConstitucional,
+                                                     float pTotalIncidenciaFerias,
+                                                     float pTotalIncidenciaTerco,
+                                                     int pParcela,
+                                                     Date pDataReferencia,
+                                                     int pDiasVendidos,
+                                                     String pAutorizado,
+                                                     String pRestituido,
+                                                     String pObservacao,
+                                                     String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_HIST_RESTITUICAO_FERIAS" +
+                            " SET COD_RESTITUICAO_FERIAS = ?," +
+                                " COD_TIPO_RESTITUICAO = ?," +
+                                " DATA_INICIO_PERIODO_AQUISITIVO = ?," +
+                                " DATA_FIM_PERIODO_AQUISITIVO = ?," +
+                                " DATA_INICIO_USUFRUTO = ?," +
+                                " DATA_FIM_USUFRUTO = ?," +
+                                " VALOR_FERIAS = ?," +
+                                " VALOR_TERCO_CONSTITUCIONAL = ?," +
+                                " INCID_SUBMOD_4_1_FERIAS = ?," +
+                                " INCID_SUBMOD_4_1_TERCO = ?," +
+                                " PARCELA = ?," +
+                                " DIAS_VENDIDOS = ?," +
+                                " DATA_REFERENCIA = ?," +
+                                " AUTORIZADO = ?," +
+                                " RESTITUIDO = ?," +
+                                " OBSERVACAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodTbRestituicaoFerias);
+            preparedStatement.setInt(2, pCodTipoRestituicao);
+            preparedStatement.setDate(3, pInicioPeriodoAquisitivo);
+            preparedStatement.setDate(4, pFimPeriodoAquisitivo);
+            preparedStatement.setDate(5, pInicioFerias);
+            preparedStatement.setDate(6, pFimFerias);
+            preparedStatement.setFloat(7, pTotalFerias);
+            preparedStatement.setFloat(8, pTotalTercoConstitucional);
+            preparedStatement.setFloat(9, pTotalIncidenciaFerias);
+            preparedStatement.setFloat(10, pTotalIncidenciaTerco);
+            preparedStatement.setInt(11, pParcela);
+            preparedStatement.setInt(12, pDiasVendidos);
+            preparedStatement.setDate(13, pDataReferencia);
+            preparedStatement.setString(14, pAutorizado);
+            preparedStatement.setString(15, pRestituido);
+            preparedStatement.setString(16, pObservacao);
+            preparedStatement.setString(17, pLoginAtualizacao);
+            preparedStatement.setInt(18, pCodHistoricoRestituicaoFerias);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível atualizar os dados na tabela de histórico de restituição de férias. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateSaldoResidualFerias (int pCodSaldoResidualFerias,
+                                          int pCodTbRestituicaoFerias,
+                                          float pValorFerias,
+                                          float pValorTerco,
+                                          float pIncidenciaFerias,
+                                          float pIncidenciaTerco,
+                                          String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_SALDO_RESIDUAL_FERIAS" +
+                            " SET COD_RESTITUICAO_FERIAS = ?," +
+                                " VALOR_FERIAS = ?," +
+                                " VALOR_TERCO = ?," +
+                                " INCID_SUBMOD_4_1_FERIAS = ?," +
+                                " INCID_SUBMOD_4_1_TERCO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = ?" +
+                            " WHERE COD = CURRENT_TIMESTAMP";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodTbRestituicaoFerias);
+            preparedStatement.setFloat(2, pValorFerias);
+            preparedStatement.setFloat(3, pValorTerco);
+            preparedStatement.setFloat(4, pIncidenciaFerias);
+            preparedStatement.setFloat(5, pIncidenciaTerco);
+            preparedStatement.setString(6, pLoginAtualizacao);
+            preparedStatement.setInt(7, pCodSaldoResidualFerias);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException("Erro ao tentar atualizar os dados do cálculo de férias no banco de dados! Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateSaldoResidualDecimoTerceiro (int pCodSaldoResidualDecimoTerceiro,
+                                                  int pCodRestituicaoDecimoTerceiro,
+                                                  float pValorDecimoTerceiro,
+                                                  float pValorIncidencia,
+                                                  String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_SALDO_RESIDUAL_DEC_TER" +
+                            " SET COD_RESTITUICAO_DEC_TERCEIRO = ?," +
+                                " VALOR = ?," +
+                                " INCIDENCIA_SUBMODULO_4_1 = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = ?" +
+                            " WHERE COD = CURRENT_TIMESTAMP";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+            preparedStatement.setFloat(2, pValorDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorIncidencia);
+            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(5, pCodSaldoResidualDecimoTerceiro);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException("Erro ao tentar atualizar os dados na tabela de saldo residual de décimo terceiro! Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateSaldoResidualRescisao (int pCodSaldoResidualRescisao,
+                                            int pCodRestituicaoRescisao,
+                                            float pValorDecimoTerceiro,
+                                            float pValorIncidenciaDecimoTerceiro,
+                                            float pValorFGTSDecimoTerceiro,
+                                            float pValorFerias,
+                                            float pValorTerco,
+                                            float pValorIncidenciaFerias,
+                                            float pValorIncidenciaTerco,
+                                            float pValorFGTSFerias,
+                                            float pValorFGTSTerco,
+                                            float pValorFGTSSalario,
+                                            String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_SALDO_RESIDUAL_RESCISAO" +
+                            " SET cod_restituicao_rescisao = ?," +
+                                " valor_decimo_terceiro = ?," +
+                                " incid_submod_4_1_dec_terceiro = ?," +
+                                " incid_multa_fgts_dec_terceiro = ?," +
+                                " valor_ferias = ?," +
+                                " valor_terco = ?," +
+                                " incid_submod_4_1_ferias = ?," +
+                                " incid_submod_4_1_terco = ?," +
+                                " incid_multa_fgts_ferias = ?," +
+                                " incid_multa_fgts_terco = ?," +
+                                " multa_fgts_salario = ?," +
+                                " login_atualizacao = ?," +
+                                " data_atualizacao = ?" +
+                            " WHERE COD = CURRENT_TIMESTAMP";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, pCodRestituicaoRescisao);
+            preparedStatement.setFloat(2, pValorDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(4, pValorFGTSDecimoTerceiro);
+            preparedStatement.setFloat(5, pValorFerias);
+            preparedStatement.setFloat(6, pValorTerco);
+            preparedStatement.setFloat(7, pValorIncidenciaFerias);
+            preparedStatement.setFloat(8, pValorIncidenciaTerco);
+            preparedStatement.setFloat(9, pValorFGTSFerias);
+            preparedStatement.setFloat(10, pValorFGTSTerco);
+            preparedStatement.setFloat(11, pValorFGTSSalario);
+            preparedStatement.setString(12, pLoginAtualizacao);
+            preparedStatement.setInt(13, pCodSaldoResidualRescisao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException("Erro ao tentar atualizar os dados na tabela de saldo residual de rescisão. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTotalMensalAReter (int pCodTotalMensalAReter,
+                                        int pCodTerceirizadoContrato,
+                                        int pCodFuncaoTerceirizadoContrato,
+                                        float pFerias,
+                                        float pTercoConstitucional,
+                                        float pDecimoTerceiro,
+                                        float pIncidenciaSubmodulo41,
+                                        float pMultaFgts,
+                                        float pTotal,
+                                        Date pDataReferencia,
+                                        String pAutorizado,
+                                        String pRetido,
+                                        String pObeservacao,
+                                        String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+                String sql = "UPDATE TB_TOTAL_MENSAL_A_RETER" +
+                                " SET COD_TERCEIRIZADO_CONTRATO = ?, " +
+                                    " COD_FUNCAO_TERCEIRIZADO = ?, " +
+                                    " FERIAS = ?, " +
+                                    " TERCO_CONSTITUCIONAL = ?," +
+                                    " DECIMO_TERCEIRO = ?, " +
+                                    " INCIDENCIA_SUBMODULO_4_1 = ?, " +
+                                    " MULTA_FGTS = ?," +
+                                    " TOTAL = ?, " +
+                                    " DATA_REFERENCIA = ?, " +
+                                    " AUTORIZADO = ?, " +
+                                    " RETIDO = ?, " +
+                                    " OBSERVACAO = ?, " +
+                                    " LOGIN_ATUALIZACAO = ?, " +
+                                    " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                                " WHERE COD = ?";
+
+
+                preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setInt(1, pCodTerceirizadoContrato);
+                preparedStatement.setInt(2, pCodFuncaoTerceirizadoContrato);
+                preparedStatement.setFloat(3, pFerias);
+                preparedStatement.setFloat(4, pTercoConstitucional);
+                preparedStatement.setFloat(5, pDecimoTerceiro);
+                preparedStatement.setFloat(6, pIncidenciaSubmodulo41);
+                preparedStatement.setFloat(7, pMultaFgts);
+                preparedStatement.setFloat(8, pTotal);
+                preparedStatement.setDate(9, pDataReferencia);
+                preparedStatement.setString(10, pAutorizado);
+                preparedStatement.setString(11, pRetido);
+                preparedStatement.setString(12, pObeservacao);
+                preparedStatement.setString(13, pLoginAtualizacao);
+                preparedStatement.setInt(14, pCodTotalMensalAReter);
+
+                preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException("Erro ao tentar atualizar os resultados do cálculo de Total Mensal a Reter no banco de dados! Retornou código: " + vRetorno);
 
         }
 
