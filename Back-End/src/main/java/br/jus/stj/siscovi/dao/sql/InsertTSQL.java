@@ -907,7 +907,7 @@ public class InsertTSQL {
 
             sqle.printStackTrace();
 
-            throw new NullPointerException("Não foi possível a função ao terceirizado.");
+            throw new NullPointerException("Não foi possível atribuir a função ao terceirizado.");
 
         }
 

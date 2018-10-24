@@ -302,7 +302,7 @@ public class UpdateTSQL {
                                " SIGLA = ?," +
                                " DESCRICAO = ?," +
                                " LOGIN_ATUALIZACAO = ?" +
-                           " WHERE COD = ?;";
+                           " WHERE COD = ?";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, pNome);
@@ -320,6 +320,1059 @@ public class UpdateTSQL {
             throw new NullPointerException("Não foi possível atualizar a rubrica.");
 
         }
+
+    }
+
+    public int UpdateContrato (int pCodContrato,
+                               String pNomeEmpresa,
+                               String pCnpj,
+                               String pNumeroContrato,
+                               String pNumeroProcessoSTJ,
+                               String pSeAtivo,
+                               String pObjeto,
+                               String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_CONTRATO" +
+                            " SET NOME_EMPRESA = ?," +
+                                " CNPJ = ?," +
+                                " NUMERO_CONTRATO = ?," +
+                                " NUMERO_PROCESSO_STJ = ?," +
+                                " SE_ATIVO = ?," +
+                                " OBJETO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNomeEmpresa);
+            preparedStatement.setString(2, pCnpj);
+            preparedStatement.setString(3, pNumeroContrato);
+            preparedStatement.setString(4, pNumeroProcessoSTJ);
+            preparedStatement.setString(5, pSeAtivo);
+            preparedStatement.setString(6, pObjeto);
+            preparedStatement.setString(7, pLoginAtualizacao);
+            preparedStatement.setInt(8, pCodContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o contrato. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateConvencaoColetiva (int pCodConvencaoColetiva,
+                                        String pNome,
+                                        String pSigla,
+                                        Date pDataBase,
+                                        String pDescricao,
+                                        String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_CONVENCAO_COLETIVA" +
+                            " SET NOME = ?," +
+                                " SIGLA = ?," +
+                                " DATA_BASE = ?," +
+                                " DESCRICAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pSigla);
+            preparedStatement.setDate(3, pDataBase);
+            preparedStatement.setString(4, pDescricao);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodConvencaoColetiva);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a convenção. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateEventoContratual (int pCodEventoContratual,
+                                       int pCodContrato,
+                                       int pCodTipoEvento,
+                                       String pProrrogacao,
+                                       String pAssunto,
+                                       Date pDataInicioVigencia,
+                                       Date pDataFimVigencia,
+                                       Date pDataAssinatura,
+                                       String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_EVENTO_CONTRATUAL" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_TIPO_EVENTO = ?," +
+                                " PRORROGACAO = ?," +
+                                " ASSUNTO = ?," +
+                                " DATA_INICIO_VIGENCIA = ?," +
+                                " DATA_FIM_VIGENCIA = ?," +
+                                " DATA_ASSINATURA = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodTipoEvento);
+            preparedStatement.setString(3, pProrrogacao);
+            preparedStatement.setString(4, pAssunto);
+            preparedStatement.setDate(5, pDataInicioVigencia);
+            preparedStatement.setDate(6, pDataFimVigencia);
+            preparedStatement.setDate(7, pDataAssinatura);
+            preparedStatement.setString(8, pLoginAtualizacao);
+            preparedStatement.setInt(9, pCodEventoContratual);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o evento contratual. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateFuncao (int pCodFuncao,
+                             String pNome,
+                             String pDescricao,
+                             String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_FUNCAO" +
+                            " SET NOME = ?," +
+                                " DESCRICAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pDescricao);
+            preparedStatement.setString(3, pLoginAtualizacao);
+            preparedStatement.setInt(4, pCodFuncao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a função. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateFuncaoContrato (int pCodFuncaoContrato,
+                                     int pCodContrato,
+                                     int pCodFuncao,
+                                     String pDescricao,
+                                     String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_FUNCAO_CONTRATO" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_FUNCAO = ?," +
+                                " DESCRICAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodFuncao);
+            preparedStatement.setString(3, pDescricao);
+            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(5, pCodFuncaoContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a função do contrato. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateFuncaoTerceirizado (int pCodFuncaoTerceirizado,
+                                         int pCodTerceirizadoContrato,
+                                         int pCodFuncaoContrato,
+                                         Date pDataInicio,
+                                         Date pDataFim,
+                                         String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_FUNCAO_TERCEIRIZADO" +
+                            " SET COD_TERCEIRIZADO_CONTRATO = ?," +
+                                " COD_FUNCAO_CONTRATO = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            preparedStatement.setInt(2, pCodFuncaoContrato);
+            preparedStatement.setDate(3, pDataInicio);
+            preparedStatement.setDate(4, pDataFim);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodFuncaoTerceirizado);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a função ao terceirizado. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateHistoricoGestaoContrato (int pCodHistoricoGestaoContrato,
+                                              int pCodContrato,
+                                              int pCodUsuario,
+                                              int pCodPerfilGestao,
+                                              Date pDataInicio,
+                                              Date pDataFim,
+                                              String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_HISTORICO_GESTAO_CONTRATO" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_USUARIO = ?," +
+                                " COD_PERFIL_GESTAO = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodUsuario);
+            preparedStatement.setInt(3, pCodPerfilGestao);
+            preparedStatement.setDate(4, pDataInicio);
+            preparedStatement.setDate(5, pDataFim);
+            preparedStatement.setString(6, pLoginAtualizacao);
+            preparedStatement.setInt(7, pCodHistoricoGestaoContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o histórico de gestão do contrato. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdatePercentualContrato (int pCodPercentualContrato,
+                                         int pCodContrato,
+                                         int pCodRubrica,
+                                         float pPercentual,
+                                         Date pDataInicio,
+                                         Date pDataFim,
+                                         Date pDataAditamento,
+                                         String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_PERCENTUAL_CONTRATO" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_RUBRICA = ?," +
+                                " PERCENTUAL = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " DATA_ADITAMENTO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodRubrica);
+            preparedStatement.setFloat(3, pPercentual);
+            preparedStatement.setDate(4, pDataInicio);
+            preparedStatement.setDate(5, pDataFim);
+            preparedStatement.setDate(6, pDataAditamento);
+            preparedStatement.setString(7, pLoginAtualizacao);
+            preparedStatement.setInt(8, pCodPercentualContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o percentual. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdatePercentualEstatico (int pCodPercentualEstatico,
+                                         int pCodRubrica,
+                                         float pPercentual,
+                                         Date pDataInicio,
+                                         Date pDataFim,
+                                         Date pDataAditamento,
+                                         String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_PERCENTUAL_ESTATICO" +
+                            " SET COD_RUBRICA = ?," +
+                                " PERCENTUAL = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " DATA_ADITAMENTO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodRubrica);
+            preparedStatement.setFloat(2, pPercentual);
+            preparedStatement.setDate(3, pDataInicio);
+            preparedStatement.setDate(4, pDataFim);
+            preparedStatement.setDate(5, pDataAditamento);
+            preparedStatement.setString(6, pLoginAtualizacao);
+            preparedStatement.setInt(7, pCodPercentualEstatico);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o percentual. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdatePerfilGestao (int pCodPerfilGestao,
+                                   String pNome,
+                                   String pSigla,
+                                   String pDescricao,
+                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_PERFIL_GESTAO" +
+                            " SET NOME = ?," +
+                                " SIGLA = ?," +
+                                " DESCRICAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pSigla);
+            preparedStatement.setString(3, pDescricao);
+            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(5, pCodPerfilGestao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o perfil de gestão. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdatePerfilUsuario (int pCodPerfilUsuario,
+                                    String pNome,
+                                    String pSigla,
+                                    String pDescricao,
+                                    String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_PERFIL_USUARIO" +
+                            " SET NOME = ?," +
+                                " SIGLA = ?," +
+                                " DESCRICAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pSigla);
+            preparedStatement.setString(3, pDescricao);
+            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(5, pCodPerfilUsuario);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o perfil de usuário. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateRemuneracaoFunCon (int pCodRemuneracaoFunCon,
+                                        int pCodFuncaoContrato,
+                                        Integer pCodConvencaoColetiva,
+                                        Date pDataInicio,
+                                        Date pDataFim,
+                                        Date pDataAditamento,
+                                        float pRemuneracao,
+                                        float pAdicionais,
+                                        float pTrienios,
+                                        String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_REMUNERACAO_FUN_CON" +
+                            " SET COD_FUNCAO_CONTRATO = ?," +
+                                " COD_CONVENCAO_COLETIVA = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " DATA_ADITAMENTO = ?," +
+                                " REMUNERACAO = ?," +
+                                " ADICIONAIS = ?," +
+                                " TRIENIOS = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodFuncaoContrato);
+
+            if (pCodConvencaoColetiva == null) {
+
+                preparedStatement.setNull(2, java.sql.Types.INTEGER);
+
+            }
+
+            else {
+
+                preparedStatement.setInt(2, pCodConvencaoColetiva);
+
+            }
+
+            preparedStatement.setDate(3, pDataInicio);
+            preparedStatement.setDate(4, pDataFim);
+            preparedStatement.setDate(5, pDataAditamento);
+            preparedStatement.setFloat(6, pRemuneracao);
+            preparedStatement.setFloat(7, pAdicionais);
+            preparedStatement.setFloat(8, pTrienios);
+            preparedStatement.setString(9, pLoginAtualizacao);
+            preparedStatement.setInt(10, pCodRemuneracaoFunCon);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a remuneração de função. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateRetroPercentualEstatico (int pCodRetroPercentualEstatico,
+                                              int pCodContrato,
+                                              int pCodPercentualEstatico,
+                                              Date pInicio,
+                                              Date pFim,
+                                              Date pDataCobranca,
+                                              String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_RETRO_PERCENTUAL_ESTATICO" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_PERCENTUAL_ESTATICO = ?," +
+                                " INICIO = ?," +
+                                " FIM = ?," +
+                                " DATA_COBRANCA = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodPercentualEstatico);
+            preparedStatement.setDate(3, pInicio);
+            preparedStatement.setDate(4, pFim);
+            preparedStatement.setDate(5, pDataCobranca);
+            preparedStatement.setString(6, pLoginAtualizacao);
+            preparedStatement.setInt(7, pCodRetroPercentualEstatico);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a retroatividade do percentual estático. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateRetroatividadePercentual (int pCodRetroatividadePercentual,
+                                               int pCodPercentualContrato,
+                                               Date pInicio,
+                                               Date pFim,
+                                               Date pDataCobranca,
+                                               String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_RETROATIVIDADE_PERCENTUAL" +
+                            " SET COD_PERCENTUAL_CONTRATO = ?," +
+                                " INICIO = ?," +
+                                " FIM = ?," +
+                                " DATA_COBRANCA = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodPercentualContrato);
+            preparedStatement.setDate(2, pInicio);
+            preparedStatement.setDate(3, pFim);
+            preparedStatement.setDate(4, pDataCobranca);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodRetroatividadePercentual);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a retroatividade do percentual do contrato. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateRetroatividadeRemuneracao (int pCodRetroatividadeRemuneracao,
+                                                int pCodRemFuncaoContrato,
+                                                Date pInicio,
+                                                Date pFim,
+                                                Date pDataCobranca,
+                                                String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_RETROATIVIDADE_REMUNERACAO" +
+                            " SET COD_REM_FUNCAO_CONTRATO = ?," +
+                                " INICIO = ?," +
+                                " FIM = ?," +
+                                " DATA_COBRANCA = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodRemFuncaoContrato);
+            preparedStatement.setDate(2, pInicio);
+            preparedStatement.setDate(3, pFim);
+            preparedStatement.setDate(4, pDataCobranca);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodRetroatividadeRemuneracao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a retroatividade da remuneração. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateRetroatividadeTotalMensal (int pCodRetroatividadeTotalMensal,
+                                                int pCodTotalMensalAReter,
+                                                float pFerias,
+                                                float pTercoConstitucional,
+                                                float pDecimoTerceiro,
+                                                float pIncidenciaSubmodulo41,
+                                                float pMultaFgts,
+                                                float pTotal,
+                                                String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_RETROATIVIDADE_TOTAL_MENSAL" +
+                            " SET COD_TOTAL_MENSAL_A_RETER = ?," +
+                                " FERIAS = ?," +
+                                " TERCO_CONSTITUCIONAL = ?," +
+                                " DECIMO_TERCEIRO = ?," +
+                                " INCIDENCIA_SUBMODULO_4_1 = ?," +
+                                " MULTA_FGTS = ?," +
+                                " TOTAL = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodTotalMensalAReter);
+            preparedStatement.setFloat(2, pFerias);
+            preparedStatement.setFloat(3, pTercoConstitucional);
+            preparedStatement.setFloat(4, pDecimoTerceiro);
+            preparedStatement.setFloat(5, pIncidenciaSubmodulo41);
+            preparedStatement.setFloat(6, pMultaFgts);
+            preparedStatement.setFloat(7, pTotal);
+            preparedStatement.setString(8, pLoginAtualizacao);
+            preparedStatement.setInt(9, pCodRetroatividadeTotalMensal);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar a retroatividade de total mensal respectiva à retenção. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTerceirizado (int pCodTerceirizado,
+                                   String pNome,
+                                   String pCpf,
+                                   String pAtivo,
+                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TERCEIRIZADO" +
+                            " SET NOME = ?," +
+                                " CPF = ?," +
+                                " ATIVO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pCpf);
+            preparedStatement.setString(3, pAtivo);
+            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(5, pCodTerceirizado);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o terceirizado. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTerceirizadoContrato (int pCodTerceirizadoContrato,
+                                           int pCodContrato,
+                                           int pCodTerceirizado,
+                                           Date pDataDisponibilizacao,
+                                           Date pDataDesligamento,
+                                           String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TERCEIRIZADO_CONTRATO" +
+                            " SET COD_CONTRATO = ?," +
+                                " COD_TERCEIRIZADO = ?," +
+                                " DATA_DISPONIBILIZACAO = ?," +
+                                " DATA_DESLIGAMENTO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodContrato);
+            preparedStatement.setInt(2, pCodTerceirizado);
+            preparedStatement.setDate(3, pDataDisponibilizacao);
+            preparedStatement.setDate(4, pDataDesligamento);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodTerceirizadoContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o registro do terceirizado no contrato. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTipoEventoContratual (int pCodTipoEventoContratual,
+                                           String pTipo,
+                                           String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TIPO_EVENTO_CONTRATUAL" +
+                            " SET TIPO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pTipo);
+            preparedStatement.setString(2, pLoginAtualizacao);
+            preparedStatement.setInt(3, pCodTipoEventoContratual);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o tipo de evento contratual. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTipoRescisao (int pCodTipoRescisao,
+                                   String pTipoRescisao,
+                                   String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TIPO_RESCISAO" +
+                            " SET TIPO_RESCISAO = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pTipoRescisao);
+            preparedStatement.setString(2, pLoginAtualizacao);
+            preparedStatement.setInt(3, pCodTipoRescisao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o tipo de rescisão. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTipoRestituicao (int pCodTipoRestituicao,
+                                      String pNome,
+                                      String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TIPO_RESTITUICAO" +
+                            " SET NOME = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, pNome);
+            preparedStatement.setString(2, pLoginAtualizacao);
+            preparedStatement.setInt(3, pCodTipoRestituicao);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o tipo de restituição. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateTrienioTercContrato (int pCodTrienioTercContrato,
+                                          int pCodTerceirizadoContrato,
+                                          int pNumeroDeTrienios,
+                                          Date pDataInicio,
+                                          Date pDataFim,
+                                          String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_TRIENIO_TERC_CONTRATO" +
+                            " SET COD_TERCEIRIZADO_CONTRATO = ?," +
+                                " NUMERO_DE_TRIENIOS = ?," +
+                                " DATA_INICIO = ?," +
+                                " DATA_FIM = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodTerceirizadoContrato);
+            preparedStatement.setInt(1, pNumeroDeTrienios);
+            preparedStatement.setDate(3, pDataInicio);
+            preparedStatement.setDate(4, pDataFim);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodTrienioTercContrato);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o triênio do terceirizado. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
+
+    }
+
+    public int UpdateUsuario (int pCodUsuario,
+                              int pCodPerfil,
+                              String pNome,
+                              String pLogin,
+                              String pPassword,
+                              String pLoginAtualizacao) {
+
+        PreparedStatement preparedStatement;
+        int vRetorno = -1;
+
+        try {
+
+            String sql = "UPDATE TB_USUARIO" +
+                            " SET COD_PERFIL = ?," +
+                                " NOME = ?," +
+                                " LOGIN = ?," +
+                                " PASSWORD = ?," +
+                                " LOGIN_ATUALIZACAO = ?," +
+                                " DATA_ATUALIZACAO = CURRENT_TIMESTAMP" +
+                            " WHERE COD = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, pCodPerfil);
+            preparedStatement.setString(2, pNome);
+            preparedStatement.setString(3, pLogin);
+            preparedStatement.setString(4, pPassword);
+            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(6, pCodUsuario);
+
+            preparedStatement.executeUpdate();
+0
+        } catch (SQLException sqle) {
+
+            sqle.printStackTrace();
+
+            throw new NullPointerException("Não foi possível atualizar o usuário. Retornou código: " + vRetorno);
+
+        }
+
+        vRetorno = 0;
+
+        return vRetorno;
 
     }
 
