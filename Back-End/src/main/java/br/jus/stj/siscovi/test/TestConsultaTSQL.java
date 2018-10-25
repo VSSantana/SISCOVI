@@ -1,9 +1,9 @@
 package br.jus.stj.siscovi.test;
 
-        import br.jus.stj.siscovi.dao.ConnectSQLServer;
-        import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
-        import br.jus.stj.siscovi.model.*;
-
+import br.jus.stj.siscovi.dao.ConnectSQLServer;
+import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.DeleteTSQL;
+import br.jus.stj.siscovi.model.*;
 
 public class TestConsultaTSQL {
 
@@ -11,6 +11,7 @@ public class TestConsultaTSQL {
 
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         ConsultaTSQL consulta = new ConsultaTSQL(connectSQLServer.dbConnect());
+        DeleteTSQL delete = new DeleteTSQL(connectSQLServer.dbConnect());
 
         int retorno;
 
@@ -241,7 +242,88 @@ public class TestConsultaTSQL {
         System.out.println(registroTotalMensalAReter.getpDataAtualizacao());
 
 
+
 /*
+        RegistroHistRestituicaoDecTer registroHistRestituicaoDecTer = consulta.RetornaRegistroHistRestituicaoDecTer(2);
+
+        System.out.print("\nRetornaRegistroHistRestituicaoDecTer: \n");
+        System.out.println(registroHistRestituicaoDecTer.getpCod());
+        System.out.println(registroHistRestituicaoDecTer.getpCodRestituicaoDecTerceiro());
+        System.out.println(registroHistRestituicaoDecTer.getpCodTipoRestituicao());
+        System.out.println(registroHistRestituicaoDecTer.getpParcela());
+        System.out.println(registroHistRestituicaoDecTer.getpDataInicioContagem());
+        System.out.println(registroHistRestituicaoDecTer.getpValor());
+        System.out.println(registroHistRestituicaoDecTer.getpIncidenciaSubmodulo41());
+        System.out.println(registroHistRestituicaoDecTer.getpDataReferencia());
+        System.out.println(registroHistRestituicaoDecTer.getpAutorizado());
+        System.out.println(registroHistRestituicaoDecTer.getpRestituido());
+        System.out.println(registroHistRestituicaoDecTer.getpObservacao());
+        System.out.println(registroHistRestituicaoDecTer.getpLoginAtualizacao());
+        System.out.println(registroHistRestituicaoDecTer.getpDataAtualizacao());
+
+        retorno = delete.DeleteRegistro(2, "tb_hist_restituicao_dec_ter");
+
+        System.out.print("RetornaRegistroHistRestituicaoDecTer - Cod deleção: " + retorno + "\n");
+
+        RegistroHistRestituicaoFerias registroHistRestituicaoFerias = consulta.RetornaRegistroHistRestituicaoFerias(2);
+
+        System.out.print("\nRetornaRegistroHistRestituicaoFerias: \n");
+        System.out.println(registroHistRestituicaoFerias.getpCod());
+        System.out.println(registroHistRestituicaoFerias.getpCodRestituicaoFerias());
+        System.out.println(registroHistRestituicaoFerias.getpCodTipoRestituicao());
+        System.out.println(registroHistRestituicaoFerias.getpDataInicioPeriodoAquisitivo());
+        System.out.println(registroHistRestituicaoFerias.getpDataFimPeriodoAquisitivo());
+        System.out.println(registroHistRestituicaoFerias.getpDataInicioUsufruto());
+        System.out.println(registroHistRestituicaoFerias.getpDataFimUsufruto());
+        System.out.println(registroHistRestituicaoFerias.getpDiasVendidos());
+        System.out.println(registroHistRestituicaoFerias.getpValorFerias());
+        System.out.println(registroHistRestituicaoFerias.getpValorTercoConstitucional());
+        System.out.println(registroHistRestituicaoFerias.getpIncidSubmod41Ferias());
+        System.out.println(registroHistRestituicaoFerias.getpIncidSubmod41Terco());
+        System.out.println(registroHistRestituicaoFerias.getpParcela());
+        System.out.println(registroHistRestituicaoFerias.getpDataReferencia());
+        System.out.println(registroHistRestituicaoFerias.getpAutorizado());
+        System.out.println(registroHistRestituicaoFerias.getpRestituido());
+        System.out.println(registroHistRestituicaoFerias.getpObservacao());
+        System.out.println(registroHistRestituicaoFerias.getpLoginAtualizacao());
+        System.out.println(registroHistRestituicaoFerias.getpDataAtualizacao());
+
+        retorno = delete.DeleteRegistro(2, "tb_hist_restituicao_ferias");
+
+        System.out.print("RetornaRegistroHistRestituicaoFerias - Cod deleção: " + retorno + "\n");
+
+        RegistroHistRestituicaoRescisao registroHistRestituicaoRescisao = consulta.RetornaRegistroHistRestituicaoRescisao(2);
+
+        System.out.print("\nRetornaRegistroHistRestituicaoRescisao: \n");
+        System.out.println(registroHistRestituicaoRescisao.getpCod());
+        System.out.println(registroHistRestituicaoRescisao.getpCodRestituicaoRescisao());
+        System.out.println(registroHistRestituicaoRescisao.getpCodTipoRestituicao());
+        System.out.println(registroHistRestituicaoRescisao.getpCodTipoRescisao());
+        System.out.println(registroHistRestituicaoRescisao.getpDataDesligamento());
+        System.out.println(registroHistRestituicaoRescisao.getpDataInicioFerias());
+        System.out.println(registroHistRestituicaoRescisao.getpValorDecimoTerceiro());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidSubmod41DecTerceiro());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidMultaFgtsDecTerceiro());
+        System.out.println(registroHistRestituicaoRescisao.getpValorFerias());
+        System.out.println(registroHistRestituicaoRescisao.getpValorTerco());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidSubmod41Ferias());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidSubmod41Terco());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidMultaFgtsFerias());
+        System.out.println(registroHistRestituicaoRescisao.getpIncidMultaFgtsTerco());
+        System.out.println(registroHistRestituicaoRescisao.getpMultaFgtsSalario());
+        System.out.println(registroHistRestituicaoRescisao.getpDataReferencia());
+        System.out.println(registroHistRestituicaoRescisao.getpAutorizado());
+        System.out.println(registroHistRestituicaoRescisao.getpRestituido());
+        System.out.println(registroHistRestituicaoRescisao.getpObservacao());
+        System.out.println(registroHistRestituicaoRescisao.getpLoginAtualizacao());
+        System.out.println(registroHistRestituicaoRescisao.getpDataAtualizacao());
+
+        retorno = delete.DeleteRegistro(2, "tb_hist_restituicao_rescisao");
+
+        System.out.print("RetornaRegistroHistRestituicaoRescisao - Cod deleção: " + retorno + "\n");
+
+
+
         RegistroRetroPercentualEstatico registroRetroPercentualEstatico = consulta.RetornaRegistroRetroPercentualEstatico(null);
 
         System.out.print("\nRetornaRegistroRetroPercentualEstatico: \n");

@@ -144,7 +144,7 @@ public class InsertTSQL {
     }
 
 
-    public void InsertSaldoResidualFerias (int pCodTbRestituicaoFerias,
+    public int InsertSaldoResidualFerias (int pCodTbRestituicaoFerias,
                                            float pValorFerias,
                                            float pValorTerco,
                                            float pIncidenciaFerias,
@@ -152,26 +152,33 @@ public class InsertTSQL {
                                            String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_FERIAS");
 
         try {
 
-            String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
+            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_FERIAS ON;" +
+                    " INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD," +
+                                                            " COD_RESTITUICAO_FERIAS," +
                                                                " VALOR_FERIAS," +
                                                                " VALOR_TERCO," +
                                                                " INCID_SUBMOD_4_1_FERIAS," +
                                                                " INCID_SUBMOD_4_1_TERCO," +
                                                                " LOGIN_ATUALIZACAO," +
                                                                " DATA_ATUALIZACAO)" +
-                         " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                         " VALUES (?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
+                        " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_FERIAS OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, pCodTbRestituicaoFerias);
-            preparedStatement.setFloat(2, pValorFerias);
-            preparedStatement.setFloat(3, pValorTerco);
-            preparedStatement.setFloat(4, pIncidenciaFerias);
-            preparedStatement.setFloat(5, pIncidenciaTerco);
-            preparedStatement.setString(6, pLoginAtualizacao);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodTbRestituicaoFerias);
+            preparedStatement.setFloat(3, pValorFerias);
+            preparedStatement.setFloat(4, pValorTerco);
+            preparedStatement.setFloat(5, pIncidenciaFerias);
+            preparedStatement.setFloat(6, pIncidenciaTerco);
+            preparedStatement.setString(7, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -182,6 +189,8 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
 
         }
+
+        return vCod;
 
     }
 
@@ -200,7 +209,7 @@ public class InsertTSQL {
 
         try {
 
-            String sql = "SET IDENTITY_INSERT tb_restituicao_decimo_terceiro ON; " +
+            String sql = "SET IDENTITY_INSERT TB_RESTITUICAO_DECIMO_TERCEIRO ON; " +
                     "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
                     " COD_TERCEIRIZADO_CONTRATO," +
                     " COD_TIPO_RESTITUICAO," +
@@ -212,7 +221,7 @@ public class InsertTSQL {
                     " LOGIN_ATUALIZACAO," +
                     " DATA_ATUALIZACAO)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT tb_restituicao_decimo_terceiro OFF;";
+                    " SET IDENTITY_INSERT TB_RESTITUICAO_DECIMO_TERCEIRO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -236,28 +245,35 @@ public class InsertTSQL {
 
     }
 
-    public void InsertSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro,
-                                                   float pValorDecimoTerceiro,
-                                                   float pValorIncidencia,
-                                                   String pLoginAtualizacao) {
+    public int InsertSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro,
+                                                  float pValorDecimoTerceiro,
+                                                  float pValorIncidencia,
+                                                  String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_DEC_TER");
 
         try {
 
-            String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
+            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_DEC_TER ON;" +
+                    " INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD," +
+                    " COD_RESTITUICAO_DEC_TERCEIRO," +
                     " VALOR," +
                     " INCIDENCIA_SUBMODULO_4_1," +
                     " LOGIN_ATUALIZACAO," +
                     " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_DEC_TER OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
-            preparedStatement.setFloat(2, pValorDecimoTerceiro);
-            preparedStatement.setFloat(3, pValorIncidencia);
-            preparedStatement.setString(4, pLoginAtualizacao);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodRestituicaoDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorDecimoTerceiro);
+            preparedStatement.setFloat(4, pValorIncidencia);
+            preparedStatement.setString(5, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -268,6 +284,8 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir dados na tabela de saldo residual de décimo terceiro!");
 
         }
+
+        return vCod;
 
     }
 
@@ -351,24 +369,29 @@ public class InsertTSQL {
 
     }
 
-    public void InsertSaldoResidualRescisao (int pCodRestituicaoRescisao,
-                                             float pValorDecimoTerceiro,
-                                             float pValorIncidenciaDecimoTerceiro,
-                                             float pValorFGTSDecimoTerceiro,
-                                             float pValorFerias,
-                                             float pValorTerco,
-                                             float pValorIncidenciaFerias,
-                                             float pValorIncidenciaTerco,
-                                             float pValorFGTSFerias,
-                                             float pValorFGTSTerco,
-                                             float pValorFGTSSalario,
-                                             String pLoginAtualizacao) {
+    public int InsertSaldoResidualRescisao (int pCodRestituicaoRescisao,
+                                            float pValorDecimoTerceiro,
+                                            float pValorIncidenciaDecimoTerceiro,
+                                            float pValorFGTSDecimoTerceiro,
+                                            float pValorFerias,
+                                            float pValorTerco,
+                                            float pValorIncidenciaFerias,
+                                            float pValorIncidenciaTerco,
+                                            float pValorFGTSFerias,
+                                            float pValorFGTSTerco,
+                                            float pValorFGTSSalario,
+                                            String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_RESCISAO");
 
         try {
 
-            String sql = "INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod_restituicao_rescisao," +
+            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_RESCISAO ON;" +
+                    " INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod," +
+                    " cod_restituicao_rescisao," +
                     " valor_decimo_terceiro," +
                     " incid_submod_4_1_dec_terceiro," +
                     " incid_multa_fgts_dec_terceiro," +
@@ -381,22 +404,24 @@ public class InsertTSQL {
                     " multa_fgts_salario," +
                     " login_atualizacao," +
                     " data_atualizacao)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_RESCISAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, pCodRestituicaoRescisao);
-            preparedStatement.setFloat(2, pValorDecimoTerceiro);
-            preparedStatement.setFloat(3, pValorIncidenciaDecimoTerceiro);
-            preparedStatement.setFloat(4, pValorFGTSDecimoTerceiro);
-            preparedStatement.setFloat(5, pValorFerias);
-            preparedStatement.setFloat(6, pValorTerco);
-            preparedStatement.setFloat(7, pValorIncidenciaFerias);
-            preparedStatement.setFloat(8, pValorIncidenciaTerco);
-            preparedStatement.setFloat(9, pValorFGTSFerias);
-            preparedStatement.setFloat(10, pValorFGTSTerco);
-            preparedStatement.setFloat(11, pValorFGTSSalario);
-            preparedStatement.setString(12, pLoginAtualizacao);
+            preparedStatement.setInt(1, vCod);
+            preparedStatement.setInt(2, pCodRestituicaoRescisao);
+            preparedStatement.setFloat(3, pValorDecimoTerceiro);
+            preparedStatement.setFloat(4, pValorIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(5, pValorFGTSDecimoTerceiro);
+            preparedStatement.setFloat(6, pValorFerias);
+            preparedStatement.setFloat(7, pValorTerco);
+            preparedStatement.setFloat(8, pValorIncidenciaFerias);
+            preparedStatement.setFloat(9, pValorIncidenciaTerco);
+            preparedStatement.setFloat(10, pValorFGTSFerias);
+            preparedStatement.setFloat(11, pValorFGTSTerco);
+            preparedStatement.setFloat(12, pValorFGTSSalario);
+            preparedStatement.setString(13, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -407,6 +432,8 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir dados na tabela de saldo residual de rescisão.");
 
         }
+
+        return vCod;
 
     }
 

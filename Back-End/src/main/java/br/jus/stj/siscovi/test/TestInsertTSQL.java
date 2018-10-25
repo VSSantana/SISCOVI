@@ -426,8 +426,60 @@ public class TestInsertTSQL {
 
         System.out.print("RetornaRegistroUsuario - Cod deleção: " + vCodRetorno + "\n");
 
-           /*
+        vCodRetorno = 2;
 
+                insert.InsertSaldoResidualFerias( 2, 1, 1,1, 1, "SYSTEM");
+
+        RegistroSaldoResidualFerias registroSaldoResidualFerias = consulta.RetornaRegistroSaldoResidualFerias(2);
+
+        System.out.print("\nRetornaRegistroSaldoResidualFerias: \n");
+        System.out.println(registroSaldoResidualFerias.getpCod());
+        System.out.println(registroSaldoResidualFerias.getpCodRestituicaoFerias());
+        System.out.println(registroSaldoResidualFerias.getpValorFerias());
+        System.out.println(registroSaldoResidualFerias.getpValorTerco());
+        System.out.println(registroSaldoResidualFerias.getpIncidSubmod41Ferias());
+        System.out.println(registroSaldoResidualFerias.getpIncidSubmod41Terco());
+        System.out.println(registroSaldoResidualFerias.getpLoginAtualizacao());
+        System.out.println(registroSaldoResidualFerias.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "tb_saldo_residual_ferias");
+
+        System.out.print("RetornaRegistroSaldoResidualFerias - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = 2;
+
+        insert.InsertSaldoResidualDecimoTerceiro( 2, 3, 3,"SYSTEM");
+
+        RegistroSaldoResidualDecTer registroSaldoResidualDecTer = consulta.RetornaRegistroSaldoResidualDecTer(vCodRetorno);
+
+        System.out.print("\nRetornaRegistroSaldoResidualDecTer: \n");
+        System.out.println(registroSaldoResidualDecTer.getpCod());
+        System.out.println(registroSaldoResidualDecTer.getpCodRestituicaoDecTerceiro());
+        System.out.println(registroSaldoResidualDecTer.getpValor());
+        System.out.println(registroSaldoResidualDecTer.getpIncidenciaSubmodulo41());
+        System.out.println(registroSaldoResidualDecTer.getpLoginAtualizacao());
+        System.out.println(registroSaldoResidualDecTer.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "tb_saldo_residual_dec_ter");
+
+        System.out.print("RetornaRegistroSaldoResidualDecTer - Cod deleção: " + vCodRetorno + "\n");
+
+        vCodRetorno = 2;
+
+        insert.InsertSaldoResidualRescisao( 3, 2, 2,2, 2,2, 2, 2, 2, 2, 2, "SYSTEM");
+
+        RegistroSaldoResidualRescisao registroSaldoResidualRescisao = consulta.RetornaRegistroSaldoResidualRescisao(3);
+
+        System.out.print("\nRetornaRegistroSaldoResidualRescisao: \n");
+        System.out.println(registroSaldoResidualRescisao.getpCod());
+        System.out.println(registroSaldoResidualRescisao.getpLoginAtualizacao());
+        System.out.println(registroSaldoResidualRescisao.getpDataAtualizacao());
+
+        vCodRetorno = delete.DeleteRegistro(vCodRetorno, "tb_saldo_residual_rescisao");
+
+        System.out.print("RetornaRegistroSaldoResidualRescisao - Cod deleção: " + vCodRetorno + "\n");
+
+        /*
 
         RegistroTotalMensalAReter registroTotalMensalAReter = consulta.RetornaRegistroTotalMensalAReter(1);
 
