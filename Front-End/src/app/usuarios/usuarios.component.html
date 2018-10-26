@@ -12,7 +12,7 @@
       </div>
       <div class="modal-footer" *ngIf="render">
         <button class="btn waves-effect waves-light left" (click)="closeModal()">Cancelar</button>
-        <button class="btn waves-effect waves-light right" [disabled]="cadUs.getValidity()" (click)="sendForm($event)">Cadastrar Novo Usuário</button>
+        <button class="btn waves-effect waves-light right" [disabled]="cadUs.getValidity()" (click)="cadastraUsuario()">Cadastrar Novo Usuário</button>
       </div>
     </div>
   </div>

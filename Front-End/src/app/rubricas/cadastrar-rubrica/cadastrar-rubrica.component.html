@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="center">Cadastrar Rubrica</h2>
     <div class = row *ngIf="id">
-        <button class="btn waves-effect right" (click)="openModal()">Apagar Rubrica</button>
+        <button class="btn waves-effect right" (click)="openModal()">Excluir Rubrica</button>
         <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
             <div class="modal-content">
                 <div class="container">
@@ -9,7 +9,7 @@
                         <h1 class="center">Alerta</h1>
                     </div>
                     <div class="row">
-                        <h5 class="center">Tem certeza que deseja APAGAR esta Rubrica ?</h5>
+                        <h5 class="center">Tem certeza que deseja EXCLUIR esta Rubrica ?</h5>
                     </div>
                 </div>
             </div>

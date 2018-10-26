@@ -3,7 +3,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 @Pipe({
   name: 'afirimativePipe'
 })
-export class AfirmativePipe implements PipeTransform{
+export class AfirmativePipe implements PipeTransform {
   transform(value: string) {
     if (value === 'S' || value === 's') {
       return 'SIM';

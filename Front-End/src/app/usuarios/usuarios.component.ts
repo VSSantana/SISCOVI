@@ -33,7 +33,7 @@ export class UsuariosComponent {
       this.cadUs.setValidity(true);
       this.modalActions.emit({action: 'modal', params: ['close']});
     }
-    sendForm(event: Event) {
+    cadastraUsuario(event: Event) {
       event.preventDefault();
       this.cadUs.cadastrarUsuario().subscribe(res => {
         console.log(res);

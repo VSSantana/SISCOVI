@@ -1,25 +1,22 @@
 <div class="container">
     <h2 class="center-align">Total Mensal a Reter</h2>
 </div>
-<div class="container calculo">
+<div class="container">
     <div class="row">
-        <ul materialize="collapsible" data-collapsible="accordion" class="collapsible popout" [materializeActions]="actions1">
-            <li>
-                <div class="collapsible-header active" (click)="toggleCalculo()"><h3 class="center-align">Calcular</h3></div>
-                    <div class="collapsible-body">
-                        <div class="row">
-                            <div class="col s12">
-                                 <app-total-mensal-calculo *ngIf="view" (close)="onCalculated($event)"></app-total-mensal-calculo>
-                            </div>
-                        </div>
-                 </div>
-            </li>
-            <li>
-                <div class="collapsible-header" (click)="toggleRet()" ><h3 class="center-align">Valores Retidos</h3></div>
-                <div class="collapsible-body">
-                    <app-total-mensal-ret *ngIf="!view" [contratoSelecionado]="contSel"></app-total-mensal-ret>
-                </div>
-            </li>
-        </ul>
+        <br>
+        <div class="col s12">
+            <ul class="tabs tabs-fixed-width" materialize="tabs" [materializeParams]="tabSelectionParams">
+                <li class="tab col s3 text-grey text-darken-1" ><a [class.active]="testeRetencoes()"(click)="setRetencoesActive()">Restituições</a></li>
+                <li class="tab col s3 text-grey text-darken-1"><a [class.active]="testeCalculo()" (click)="setCalcularActive()" >Calcular</a></li>
+                <li class="tab col s3 text-grey text-darken-1"><a [class.active]="testePendentes()" (click)="setPendentesActive()">Cálculos Pendentes de Aprovação</a></li>
+                <li class="tab col s3 text-grey text-darken-1"><a [class.active]="testeExecutados()" (click)="setExecutadosActive()">Cálculos Pendentes de Execução</a></li>
+            </ul>
+        </div>
+        <div id="test1" active="testeRetencoes()" ><app-total-mensal-ret *ngIf="testeRetencoes()" [contratoSelecionado]="codigoContrato"></app-total-mensal-ret></div>
+        <div id="test2" class="col s12" active="testeCalculo()" ><app-total-mensal-calculo *ngIf="testeCalculo()" (navegaParaViewDeCalculos)="calculosPendentes($event)"></app-total-mensal-calculo></div>
+        <div id="test3" class="col s12" active="testePendentes()"><app-total-mensal-pendente-component *ngIf="testePendentes()" [codigoContrato]="codigoContrato" (nav)="calculosPendentesExecucao($event)">
+        </app-total-mensal-pendente-component></div>
+        <div id="test4" class="col s12" active="testeExecutados()"><app-total-mensal-execucao-component *ngIf="testeExecutados()" [codigoContrato]="codigoContrato"
+         (nav)="calculosRetidos($event)"></app-total-mensal-execucao-component></div>
     </div>
 </div>

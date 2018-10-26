@@ -63,6 +63,34 @@ import {TotalMensalComponent} from './totalMensal/total-mensal.component';
 import {TotalMensalCalculoComponent} from './totalMensal/total-mensal-calculo/total-mensal-calculo.component';
 import {TotalMensalRetComponent} from './totalMensal/total-mensal-ret/total-mensal-ret.component';
 import {TotalMensalService} from './totalMensal/total-mensal.service';
+import {FeriasComponent} from './ferias/ferias.component';
+import {DecimoTerceiroComponent} from './decimo_terceiro/decimo-terceiro.component';
+import {RescisaoComponent} from './rescisao/rescisao.component';
+import {CalculoFeriasComponent} from './ferias/calculo-ferias/calculo-ferias.component';
+import {FeriasService} from './ferias/ferias.service';
+import {FeriasCalculosPendentesComponent} from './ferias/ferias-pendentes/ferias-calculos-pendentes.component';
+import {RelatorioRetencoesFeriasComponent} from './ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component';
+import {ResgateFeriasComponent} from './ferias/calculo-ferias/resgate-ferias.component';
+import {MovimentacaoFeriasComponent} from './ferias/calculo-ferias/movimentacao-ferias.component';
+import {DiasConcedidosDirective} from './_shared/dias-concedidos.directive';
+import {ParcelaPipe} from './_shared/parcela.pipe';
+import {CalculoDecimoTerceiroComponent} from './decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component';
+import {DecimoTerceiroService} from './decimo_terceiro/decimo-terceiro.service';
+import {MovimentacaoDecimoTerceiroComponent} from './decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component';
+import {ResgateDecimoTerceiroComponent} from './decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component';
+import {TotalMensalPendenteComponent} from './totalMensal/calculos-pendentes/total-mensal-pendente.component';
+import {CalculoRescisaoComponent} from './rescisao/calculo-rescisao/calculo-rescisao.component';
+import {ResgateRescisaoComponent} from './rescisao/calculo-rescisao/resgate-rescisao.component';
+import {MovimentacaoRescisaoComponent} from './rescisao/calculo-rescisao/movimentacao-rescisao.component';
+import {RescisaoService} from './rescisao/rescisao.service';
+import {TotalMensalExecucaoComponent} from './totalMensal/calculos-pendentes/total-mensal-execucao.component';
+import {PendentePipe} from './_shared/pendente.pipe';
+import {RecalculoTotalMensalComponent} from './totalMensal/recalculo-total-mensal/recalculo-total-mensal.component';
+import {HistoricoTotalMensalComponent} from './totalMensal/calculos-pendentes/historico-total-mensal/historico-total-mensal.component';
+import {FeriasCalculosPendentesExecucaoComponent} from './ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component';
+import {DecimoTerceiroPendenteComponent} from './decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component';
+import {DecimoTerceiroPendenteExecucaoComponent} from './decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component';
+import {RetencoesDecimoTerceiroComponent} from "./decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component";
 
 @NgModule({
   declarations: [
@@ -70,6 +98,7 @@ import {TotalMensalService} from './totalMensal/total-mensal.service';
     MaskDateDirective,
     MaskPercentageDirective,
     KzMaskDirective,
+    DiasConcedidosDirective,
     LoginComponent,
     ComumComponent,
     FooterComponent,
@@ -87,6 +116,8 @@ import {TotalMensalService} from './totalMensal/total-mensal.service';
     CpfPipe,
     CnpjPipe,
     DatePipe,
+    ParcelaPipe,
+    PendentePipe,
     TitlecaseMaskDirective,
     AfirmativePipe,
     PercentuaisComponent,
@@ -107,6 +138,28 @@ import {TotalMensalService} from './totalMensal/total-mensal.service';
     TotalMensalComponent,
     TotalMensalCalculoComponent,
     TotalMensalRetComponent,
+    FeriasComponent,
+    DecimoTerceiroComponent,
+    RescisaoComponent,
+    CalculoFeriasComponent,
+    FeriasCalculosPendentesComponent,
+    RelatorioRetencoesFeriasComponent,
+    ResgateFeriasComponent,
+    MovimentacaoFeriasComponent,
+    CalculoDecimoTerceiroComponent,
+    MovimentacaoDecimoTerceiroComponent,
+    ResgateDecimoTerceiroComponent,
+    TotalMensalPendenteComponent,
+    CalculoRescisaoComponent,
+    ResgateRescisaoComponent,
+    MovimentacaoRescisaoComponent,
+    TotalMensalExecucaoComponent,
+    RecalculoTotalMensalComponent,
+    HistoricoTotalMensalComponent,
+    FeriasCalculosPendentesExecucaoComponent,
+    DecimoTerceiroPendenteComponent,
+    DecimoTerceiroPendenteExecucaoComponent,
+    RetencoesDecimoTerceiroComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +187,9 @@ import {TotalMensalService} from './totalMensal/total-mensal.service';
     PagerService,
     HistoricoService,
     TotalMensalService,
+    FeriasService,
+    DecimoTerceiroService,
+    RescisaoService,
     {provide: LOCALE_ID, useValue: 'pt'},
   ],
   bootstrap: [AppComponent]

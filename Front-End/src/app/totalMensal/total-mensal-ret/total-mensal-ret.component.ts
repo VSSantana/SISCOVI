@@ -7,7 +7,8 @@ import {ListaTotalMensalData} from '../lista-total-mensal-data';
 
 @Component({
     selector: 'app-total-mensal-ret',
-    templateUrl: './total-mensal-ret.component.html'
+    templateUrl: './total-mensal-ret.component.html',
+    styleUrls: ['../total-mensal.component.scss']
 })
 export class TotalMensalRetComponent implements OnInit {
     calculos: ListaTotalMensalData[];
@@ -26,7 +27,7 @@ export class TotalMensalRetComponent implements OnInit {
         this.tmService = tmService;
 
         if (this.contratoSelecionado) {
-            this.tmService.getValoresCalculados(this.contratoSelecionado, this.config.user.id).subscribe(res => {
+            this.tmService.getValoresRetidos(this.contratoSelecionado, this.config.user.id).subscribe(res => {
                 if (this.calculos) {
                    this.calculos =  this.calculos.splice(0);
                 }
@@ -37,7 +38,7 @@ export class TotalMensalRetComponent implements OnInit {
     }
     onChange(value: number) {
        this.codContrato = value;
-       this.tmService.getValoresCalculados(this.codContrato, this.config.user.id).subscribe(res => {
+       this.tmService.getValoresRetidos(this.codContrato, this.config.user.id).subscribe(res => {
            if (this.calculos) {
                this.calculos = this.calculos.splice(0);
            }
@@ -47,7 +48,7 @@ export class TotalMensalRetComponent implements OnInit {
     }
     onLoad() {
         if (this.codContrato && this.contratoSelecionado) {
-            this.tmService.getValoresCalculados(this.codContrato, this.config.user.id).subscribe(res => {
+            this.tmService.getValoresRetidos(this.codContrato, this.config.user.id).subscribe(res => {
                 if (this.calculos) {
                    this.calculos = this.calculos.splice(0);
                 }
@@ -59,7 +60,7 @@ export class TotalMensalRetComponent implements OnInit {
     ngOnInit () {
         if (this.contratoSelecionado) {
             this.codContrato = this.contratoSelecionado;
-            this.tmService.getValoresCalculados(this.contratoSelecionado, this.config.user.id).subscribe(res => {
+            this.tmService.getValoresRetidos(this.contratoSelecionado, this.config.user.id).subscribe(res => {
                this.calculos = res;
             });
         }

@@ -124,9 +124,14 @@ export class TotalMensalCalculoComponent {
      }
   }
   calculoTotalMensal() {
-      this.openModal();
       this.tmService.calcularTotalMensal(this.myForm.get('contrato').value, this.myForm.get('mes').value, this.myForm.get('ano').value).subscribe(res => {
-          this.resultado = res;
+          if (!res.error) {
+              this.resultado = res;
+              this.openModal();
+          } else {
+              this.myForm.setErrors({'mensagem': res.error});
+          }
+
       });
   }
   openModal() {
