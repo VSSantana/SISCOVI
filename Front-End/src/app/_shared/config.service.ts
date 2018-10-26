@@ -8,7 +8,7 @@ export class ConfigService {
   subtitle = 'Sistema Conta Vinculada';
   user: User;
   headers: Headers = new Headers();
-  public myApi = 'http://10.22.27.16:8080/SISCOVI/rest';
+  public myApi = 'http://10.20.0.148:8080/SISCOVI/rest';
   public mask = {
     processo_adm: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /[2]/, /[0]/, /\d/, /\d/],
     os: [/\d/, /\d/, /\d/, '/', /[2]/, /[0]/, /\d/, /\d/]
@@ -16,15 +16,13 @@ export class ConfigService {
   constructor() {
     this.setHeaders();
     if (window.location.hostname === 'localhost') {
-      this.myApi = 'http://10.22.27.16:8080/SISCOVI/rest';
+      this.myApi = 'http://10.20.0.148:8080/SISCOVI/rest';
     }
     const user  = localStorage.getItem('auth_user');
     if (!user) {
       localStorage.clear();
     }
-
   }
-
   public setHeaders () {
     const authToken = localStorage.getItem('auth_token');
     if (authToken) {
@@ -32,7 +30,5 @@ export class ConfigService {
       this.headers.append('Auth', `${authToken}`);
       this.headers.append('Accept', 'application/json');
     }
-
   }
-
 }
