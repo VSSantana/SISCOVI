@@ -45,7 +45,7 @@ import {AfirmativePipe} from './_shared/afirmative.pipe';
 import {CargosDosFuncionariosComponent} from './cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component';
 import {CadastroContratoComponent} from './contratos/cadastro-contrato/cadastro.contrato.component';
 import {CadastroUsuarioComponent} from './usuarios/cadastro-usuario/cadastro-usuario.component';
-import {CadastroUsuarioService} from './usuarios/cadastro-usuario/cadastro-usuario.service';
+import {UsuarioService} from './usuarios/usuario.service';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {CadastroPercentuaisComponent} from './percentuais/cadastro-percentuais/cadastro-percentuais.component';
 import {MaskPercentageDirective} from './_shared/mask-percentage.directive';
@@ -183,7 +183,7 @@ import {RetencoesDecimoTerceiroComponent} from "./decimo_terceiro/relatorio-rete
     ConvencaoService,
     VigenciaService,
     FuncionariosService,
-    CadastroUsuarioService,
+    UsuarioService,
     PagerService,
     HistoricoService,
     TotalMensalService,

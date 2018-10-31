@@ -3,5 +3,6 @@ export class Usuario {
   perfil: string;
   nome: string;
   login: string;
-  password: string;
+  loginAtualizacao: string;
+  ultimaAtualizacao: Date;
 }

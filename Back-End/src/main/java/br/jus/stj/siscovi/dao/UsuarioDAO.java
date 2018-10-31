@@ -1,4 +1,7 @@
 package br.jus.stj.siscovi.dao;
+import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
+import br.jus.stj.siscovi.dao.sql.UpdateTSQL;
+import br.jus.stj.siscovi.model.RegistroPerfilUsuario;
 import br.jus.stj.siscovi.model.UsuarioModel;
 
 
@@ -126,5 +129,20 @@ public class UsuarioDAO {
             sqle.printStackTrace();
         }
         return null;
+    }
+    public boolean AlteraUsuario(UsuarioModel usuario, String currentUser) {
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+        UpdateTSQL update = new UpdateTSQL(connection);
+
+        try {
+
+            update.UpdateUsuario(usuario.getCodigo(),consulta.RetornaCodPerfilUsuario(usuario.getPerfil()), usuario.getNome(), usuario.getLogin(), "SYSTEM", );
+
+            return true;
+
+        } catch () {
+
+        }
+        return false;
     }
 }

@@ -3,7 +3,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col m6 l3 offset-l10">
+    <div class="col left">
       <button class="btn waves-effect" (click)="openModal()">Novo Usuário<i class="material-icons right">add</i></button>
     </div>
     <div class="modal bottom-sheet" id="modal1" materialize="modal" [materializeActions]="modalActions" [materializeParams]="[{dismissible: false}]" >
@@ -12,7 +12,7 @@
       </div>
       <div class="modal-footer" *ngIf="render">
         <button class="btn waves-effect waves-light left" (click)="closeModal()">Cancelar</button>
-        <button class="btn waves-effect waves-light right" [disabled]="cadUs.getValidity()" (click)="cadastraUsuario()">Cadastrar Novo Usuário</button>
+        <button class="btn waves-effect waves-light right" [disabled]="cadUs.getValidity()" (click)="cadastraUsuario()">Cadastrar novo usuário</button>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios">
+        <tr *ngFor="let usuario of usuarios" (dblclick)="editarUsuario(usuario.codigo)">
           <td>{{usuario.nome}}</td>
           <td>{{usuario.perfil}}</td>
           <td>{{usuario.login}}</td>
