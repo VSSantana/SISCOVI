@@ -61,11 +61,11 @@ public class UsuarioController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response alterarUsuario(String object) {
         Gson gson = new Gson();
-        CadastroUsuarioModel cadastroRubricaModel = gson.fromJson(object, CadastroUsuarioModel.class);
+        CadastroUsuarioModel cadastroUsuarioModel = gson.fromJson(object, CadastroUsuarioModel.class);
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         UsuarioDAO usuarioDAO = new UsuarioDAO(connectSQLServer.dbConnect());
         String json;
-        if(usuarioDAO.AlteraRubrica(cadastroRubricaModel.getRubricaModel(), cadastroRubricaModel.getCurrentUser())) {
+        if(usuarioDAO.AlteraUsuario(cadastroUsuarioModel.getUsuario(), cadastroUsuarioModel.getCurrentUser())) {
             json = gson.toJson("Alteração feita com sucesso !");
         }else {
             json = gson.toJson("Houve falha na tentativa de Salvar as Alterações");

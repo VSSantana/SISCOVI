@@ -136,13 +136,15 @@ public class UsuarioDAO {
 
         try {
 
-            update.UpdateUsuario(usuario.getCodigo(),consulta.RetornaCodPerfilUsuario(usuario.getPerfil()), usuario.getNome(), usuario.getLogin(), "SYSTEM", );
+            update.UpdateUsuario(usuario.getCodigo(),consulta.RetornaCodPerfilUsuario(usuario.getPerfil()), usuario.getNome(), usuario.getLogin(), "SYSTEM");
 
             return true;
 
-        } catch () {
+        } catch (Exception exception) {
+
+            throw new NullPointerException("Não foi possível atualizar o uusuário.");
 
         }
-        return false;
+
     }
 }
