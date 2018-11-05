@@ -31,6 +31,10 @@ export class RubricasService {
     const url = this.config.myApi + '/rubricas/getAll';
     return this.http.get(url).map(res => res.json());
   }
+  buscarRubrica(codigo: number): Observable<Rubrica> {
+    const url = this.config.myApi + '/rubricas/getRubrica/' + codigo;
+    return this.http.get(url).map(res => res.json());
+  }
   getPercentuaisEstaticos() {
     const url = this.config.myApi + '/rubricas/getStaticPercent';
     return this.http.get(url).map(res => res.json());
@@ -48,21 +52,17 @@ export class RubricasService {
       const options = new RequestOptions({headers: headers});
       return this.http.post(url, data, options).map(res => res.json());
   }
-  buscarRubrica(codigo: number): Observable<Rubrica> {
-      const url = this.config.myApi + '/rubricas/getRubrica/' + codigo;
-      return this.http.get(url).map(res => res.json());
+  salvarAlteracao(rubrica: Rubrica) {
+    const url = this.config.myApi + '/rubricas/alterarRubrica';
+    const cadastroRubrica = new CadastroRubrica();
+    cadastroRubrica.rubrica = new Rubrica();
+    cadastroRubrica.rubrica = rubrica;
+    cadastroRubrica.currentUser = this.config.user.username;
+    const data = cadastroRubrica;
+    return this.http.put(url, data).map(res => res.json());
   }
   apagarRubrica(codigo: number) {
       const url = this.config.myApi + '/rubricas/deleteRubrica/' + codigo;
       return this.http.delete(url).map(res => res.json());
-  }
-  salvarAlteracao(rubrica: Rubrica) {
-      const url = this.config.myApi + '/rubricas/alterarRubrica';
-      const cadastroRubrica = new CadastroRubrica();
-      cadastroRubrica.rubrica = new Rubrica();
-      cadastroRubrica.rubrica = rubrica;
-      cadastroRubrica.currentUser = this.config.user.username;
-      const data = cadastroRubrica;
-      return this.http.put(url, data).map(res => res.json());
   }
 }

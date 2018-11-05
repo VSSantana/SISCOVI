@@ -234,6 +234,51 @@ public class ConsultaTSQL {
 
     }
 
+    /**
+     *Função que retorna o código de um perfil de usuario.
+     *
+     * @param pPerfilUsuario;
+     *
+     * @return O código (cod) do registro correspondente a um tipo de restituição.
+     */
+
+    public int RetornaCodPerfilUsuario (String pPerfilUsuario) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int vCodPerfilUsuario = 0;
+
+        /*Atribuição do cod do perfil de tipo de usuário.*/
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT COD" + " FROM TB_PERFIL_USUARIO" + " WHERE UPPER(nome) = UPPER(?)");
+
+            preparedStatement.setString(1, pPerfilUsuario);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodPerfilUsuario = resultSet.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        if (vCodPerfilUsuario == 0) {
+
+            throw new NullPointerException("Tipo de restituição não encontrada.");
+
+        }
+
+        return vCodPerfilUsuario;
+
+    }
+
 
 /*
     /**
