@@ -5,6 +5,7 @@ import {MaterializeAction} from 'angular2-materialize';
 import {ConfigService} from '../../_shared/config.service';
 import {Usuario} from '../usuario';
 import {UsuarioService} from '../usuario.service';
+import {Http} from '@angular/http';
 
 @Component({
     selector: 'app-cadastro-usuario',
@@ -23,7 +24,7 @@ export class CadastroUsuarioComponent {
   route: ActivatedRoute;
   router: Router;
   notValidEdit= true;
-  constructor(fb: FormBuilder, usuarioService: UsuarioService, route: ActivatedRoute, router: Router) {
+  constructor(fb: FormBuilder, usuarioService: UsuarioService, route: ActivatedRoute, router: Router, config: ConfigService, http: Http,) {
     this.route = route;
     this.router = router;
     this.usuarioService = usuarioService;
@@ -33,6 +34,10 @@ export class CadastroUsuarioComponent {
       perfil: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
       confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)])
+    });
+    const url = config.myApi + '/usuario/getPerfis/' + config.user.username;
+    http.get(url).map(res => res.json()).subscribe(res => {
+      this.perfil = res;
     });
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -45,10 +50,6 @@ export class CadastroUsuarioComponent {
         });
       }
     });
-  //      const url = config.myApi + '/usuario/getPerfis/' + config.user.username;
-  //      http.get(url).map(res => res.json()).subscribe(res => {
-  //          this.perfil = res;
-  //      });
   }
   openModal() {
     this.modalActions.emit({action: 'modal', params: ['open']});
@@ -56,7 +57,7 @@ export class CadastroUsuarioComponent {
   closeModal() {
     this.modalActions.emit({action: 'modal', params: ['close']});
   }
-  verifyForm() {
+  validateForm() {
     if (this.usuarioForm.status === 'VALID') {
       this.usuarioService.nome = this.usuarioForm.controls.nome.value;
       this.usuarioService.login = this.usuarioForm.controls.login.value;

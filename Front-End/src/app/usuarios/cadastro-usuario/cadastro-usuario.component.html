@@ -26,26 +26,26 @@
             <div class="row">
                 <div class="col s12 l4">
                     <label for="nome_usuario">Nome do usuário</label>
-                    <input placeholder="Nome" id="nome_usuario" type="text" class="validate" maxlength="30" required (keyup)="verifyForm()" formControlName="nome">
+                    <input placeholder="Nome" id="nome_usuario" type="text" class="validate" maxlength="30" required (keyup)="validateForm(); activateButton()" formControlName="nome">
                 </div>
                 <div class="col s12 l4 offset-l2">
                     <label for="login">Login</label>
-                    <input placeholder="Login" id="login" type="text" class="validate" required (keyup)="verifyForm()" formControlName="login">
+                    <input placeholder="Login" id="login" type="text" class="validate" required (keyup)="validateForm(); activateButton()" formControlName="login">
                 </div>
             </div>
             <div class="row">
                 <div class="col s12 l4">
                     <label for="password">Senha</label>
-                    <input placeholder="Senha" id="password" type="password" class="validate" required formControlName="password" (keyup)="verifyForm()">
+                    <input placeholder="Senha" id="password" type="password" class="validate" required formControlName="password" (keyup)="validateForm(); activateButton()">
                 </div>
                 <div class="col s12 l4 offset-l2">
                     <label for="confirm_password">Confirme a Senha</label>
-                    <input  id="confirm_password" type="password" class="validate" required formControlName="confirmPassword" (keyup)="verifyForm()">
+                    <input  id="confirm_password" type="password" class="validate" required formControlName="confirmPassword" (keyup)="validateForm(); activateButton()">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col">
-                    <select materialize="material_select" [materializeSelectOptions]="perfil" formControlName="perfil" (change)="verifyForm()">
+                    <select materialize="material_select" [materializeSelectOptions]="perfil" formControlName="perfil" (change)="validateForm(); activateButton()">
                         <option disabled>Selecione um Perfil</option>
                         <option *ngFor="let per of perfil" [value]="per">{{per}}</option>
                     </select>
@@ -53,5 +53,11 @@
                 </div>
             </div>
         </form>
+      <div class="row" *ngIf="id">
+        <button class="btn waves-effect right" [disabled]="(!notValidEdit && usuarioService.getValidity()) || (notValidEdit)" (click)="salvarAlteracao(); activateButton()">Salvar</button>
+        <button class="btn waves-effect left"(click)="disableButton()" routerLink="/usuarios">
+          Voltar
+        </button>
+      </div>
     </div>
 </div>

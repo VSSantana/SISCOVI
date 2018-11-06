@@ -20,6 +20,7 @@ export class CadastrarRubricaComponent {
   route: ActivatedRoute;
   router: Router;
   notValidEdit= true;
+  validity = true;
 
   constructor(fb: FormBuilder, rubricaService: RubricasService, route: ActivatedRoute, router: Router) {
     this.route = route;
@@ -42,7 +43,12 @@ export class CadastrarRubricaComponent {
       }
     });
   }
-
+  getValidity() {
+    return this.validity;
+  }
+  setValidity(value: boolean) {
+    this.validity = value;
+  }
   openModal() {
     this.modalActions.emit({action: 'modal', params: ['open']});
   }
