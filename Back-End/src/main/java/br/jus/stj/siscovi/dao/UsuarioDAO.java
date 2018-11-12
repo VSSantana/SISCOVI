@@ -1,7 +1,4 @@
 package br.jus.stj.siscovi.dao;
-import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
-import br.jus.stj.siscovi.dao.sql.UpdateTSQL;
-import br.jus.stj.siscovi.model.RegistroPerfilUsuario;
 import br.jus.stj.siscovi.model.UsuarioModel;
 
 
@@ -57,6 +54,7 @@ public class UsuarioDAO {
         }
         return null;
     }
+
     public Boolean existeNome(String nome) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -74,6 +72,7 @@ public class UsuarioDAO {
         }
         return true;
     }
+
     public Boolean existeLogin(String login) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -91,6 +90,7 @@ public class UsuarioDAO {
         }
         return true;
     }
+
     public Boolean cadastrarUsuario(UsuarioModel usuario, String password, String currentUser, int codigo) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -108,6 +108,7 @@ public class UsuarioDAO {
         }
         return false;
     }
+
     public ArrayList<UsuarioModel> getGestores(){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -130,21 +131,54 @@ public class UsuarioDAO {
         }
         return null;
     }
-    public boolean AlteraUsuario(UsuarioModel usuario, String currentUser) {
-        ConsultaTSQL consulta = new ConsultaTSQL(connection);
-        UpdateTSQL update = new UpdateTSQL(connection);
 
-        try {
-
-            update.UpdateUsuario(usuario.getCodigo(),consulta.RetornaCodPerfilUsuario(usuario.getPerfil()), usuario.getNome(), usuario.getLogin(), "SYSTEM");
-
-            return true;
-
-        } catch (Exception exception) {
-
-            throw new NullPointerException("Não foi possível atualizar o uusuário.");
-
+    public int verifyPermission(int codUsuario, int codContrato) {
+        int codGestor = 0;
+        String perfil = "";
+        String perfilUsuario = "";
+        String sql = "SELECT SIGLA FROM TB_USUARIO U JOIN TB_PERFIL_USUARIO PU ON PU.COD=U.COD_PERFIL WHERE U.COD=?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, codUsuario);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                if(resultSet.next()) {
+                    perfil =  resultSet.getString("SIGLA");
+                }
+            }
+        }catch (SQLException sqle) {
+            sqle.printStackTrace();
         }
-
+        sql = "SELECT PG.SIGLA FROM TB_CONTRATO CO JOIN TB_HISTORICO_GESTAO_CONTRATO HGC ON HGC.COD_CONTRATO=CO.COD JOIN tb_perfil_gestao PG ON PG.COD=HGC.COD_PERFIL_GESTAO WHERE HGC.COD_USUARIO=? AND CO.COD=?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, codUsuario);
+            preparedStatement.setInt(2, codContrato);
+            try(ResultSet resultSet  = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    perfilUsuario = resultSet.getString("SIGLA");
+                }
+            }
+        }catch(SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        if(perfil.equals("ADMINISTRADOR") || perfilUsuario.equals("1° SUBSTITUTO") || perfilUsuario.equals("2° SUBSTITUTO")) {
+            sql = "SELECT HGC.COD_USUARIO FROM TB_CONTRATO CO JOIN tb_historico_gestao_contrato HGC ON HGC.COD_CONTRATO=CO.COD WHERE COD_CONTRATO=?";
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1, codContrato);
+                try(ResultSet resultSet = preparedStatement.executeQuery()){
+                    if(resultSet.next()) {
+                        codGestor = resultSet.getInt("COD_USUARIO");
+                    }
+                }
+            }catch(SQLException sqle) {
+                sqle.printStackTrace();
+            }
+        }else {
+            if(perfilUsuario.equals("GESTOR")) {
+                codGestor = codUsuario;
+            }else {
+                System.err.println("Ação maliciosa detectada. Codigo Usuário: " + codUsuario + ". Codigo do Contrato da tentativa de  acesso: " + codContrato);
+                throw new RuntimeException("Acesso negado ! Entre em contato com o responsável pelo Sistema");
+            }
+        }
+        return codGestor;
     }
 }

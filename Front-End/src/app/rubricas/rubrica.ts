@@ -3,4 +3,6 @@ export class Rubrica {
   public sigla: string;
   public codigo: number;
   public descricao: string;
+ 
+
 }

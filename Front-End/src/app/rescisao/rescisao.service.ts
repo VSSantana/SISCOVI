@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {ConfigService} from '../_shared/config.service';
 import {TerceirizadoRescisao} from './terceirizado-rescisao';
+import {RescisaoPendente} from '../decimo_terceiro/decimo-terceiro-pendente/rescisao-pendente';
 
 @Injectable()
 export class RescisaoService {
@@ -33,6 +34,21 @@ export class RescisaoService {
         return this.http.post(url, data, headers).map(res => res.json());
     }
     registrarCalculoRescisao(calculos: TerceirizadoRescisao[]) {
+        const url = '';
+        return this.http.get(url).map(res => res.json());
+    }
+
+    getCalculosPendentes(codigoContrato: number) {
+        const url = '';
+        return this.http.get(url).map(res => res.json());
+    }
+
+    getCalculosPendentesNegados(codigoContrato: number) {
+        const url = '';
+        return this.http.get(url).map(res => res.json());
+    }
+
+    salvarDecimoTerceiroAvaliados(codigoContrato: number, calculosAvaliados: RescisaoPendente[]) {
         const url = '';
         return this.http.get(url).map(res => res.json());
     }

@@ -1,8 +1,8 @@
 export class Funcionario {
   codigo: number;
-  nome: String;
-  cpf: String;
-  ativo: String;
-  loginAtualizacao: String;
+  nome: string;
+  cpf: string;
+  ativo: string;
+  loginAtualizacao: string;
   dataAtualizacao: Date;
 }

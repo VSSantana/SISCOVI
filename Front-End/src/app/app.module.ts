@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import {HttpModule} from '@angular/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterializeModule} from 'angular2-materialize';
-import {TextMaskModule} from 'angular2-text-mask';
 import {MaskDateDirective} from './_shared/mask-date.directive';
 import {ConfigService} from './_shared/config.service';
 import {UserService} from './users/user.service';
@@ -45,7 +44,7 @@ import {AfirmativePipe} from './_shared/afirmative.pipe';
 import {CargosDosFuncionariosComponent} from './cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component';
 import {CadastroContratoComponent} from './contratos/cadastro-contrato/cadastro.contrato.component';
 import {CadastroUsuarioComponent} from './usuarios/cadastro-usuario/cadastro-usuario.component';
-import {UsuarioService} from './usuarios/usuario.service';
+import {CadastroUsuarioService} from './usuarios/cadastro-usuario/cadastro-usuario.service';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {CadastroPercentuaisComponent} from './percentuais/cadastro-percentuais/cadastro-percentuais.component';
 import {MaskPercentageDirective} from './_shared/mask-percentage.directive';
@@ -90,7 +89,11 @@ import {HistoricoTotalMensalComponent} from './totalMensal/calculos-pendentes/hi
 import {FeriasCalculosPendentesExecucaoComponent} from './ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component';
 import {DecimoTerceiroPendenteComponent} from './decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component';
 import {DecimoTerceiroPendenteExecucaoComponent} from './decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component';
-import {RetencoesDecimoTerceiroComponent} from "./decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component";
+import {RetencoesDecimoTerceiroComponent} from './decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component';
+import {RescisaoPendenteComponent} from './rescisao/rescisoes-pendentes/rescisao-pendente.component';
+import {CadastrarTerceirizadoComponent} from './funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component';
+import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cadastrar-gestor-contrato.component';
+import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component";
 
 @NgModule({
   declarations: [
@@ -159,14 +162,17 @@ import {RetencoesDecimoTerceiroComponent} from "./decimo_terceiro/relatorio-rete
     FeriasCalculosPendentesExecucaoComponent,
     DecimoTerceiroPendenteComponent,
     DecimoTerceiroPendenteExecucaoComponent,
-    RetencoesDecimoTerceiroComponent
+    RetencoesDecimoTerceiroComponent,
+    RescisaoPendenteComponent,
+    CadastrarTerceirizadoComponent,
+    CadastrarGestorContratoComponent,
+    GerenciarCargosTerceirizadosComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     MaterializeModule,
-    TextMaskModule,
     AppRoutingModule,
     ReactiveFormsModule,
     CurrencyMaskModule,
@@ -183,7 +189,7 @@ import {RetencoesDecimoTerceiroComponent} from "./decimo_terceiro/relatorio-rete
     ConvencaoService,
     VigenciaService,
     FuncionariosService,
-    UsuarioService,
+    CadastroUsuarioService,
     PagerService,
     HistoricoService,
     TotalMensalService,

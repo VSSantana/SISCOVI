@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RubricasService} from '../rubricas/rubricas.service';
-import {PercentualEstatico} from './percentual-estatico';
+import {PercentualEstatico} from '../rubricas/percentual-estatico';
 
 @Component({
   selector: 'app-percent-static',

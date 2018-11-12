@@ -1,5 +1,8 @@
 <div class="container">
   <h2 class="center-align">Funções Dos Terceirizados</h2>
+    <div class="row">
+        <button class="btn waves-effect" (click)="goToGerenciarCargos()">Gerenciar Cargo do terceirizado</button>
+    </div>
   <div class="row">
         <div class="input-field col s12 xl4 l5 m12">
           <select  name="contrato" materialize="material_select" [ngModel]="contratos" (change)="onChange($event.target.value)">

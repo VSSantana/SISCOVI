@@ -25,7 +25,9 @@ import {FeriasComponent} from './ferias/ferias.component';
 import {DecimoTerceiroComponent} from './decimo_terceiro/decimo-terceiro.component';
 import {RescisaoComponent} from './rescisao/rescisao.component';
 import {RecalculoTotalMensalComponent} from './totalMensal/recalculo-total-mensal/recalculo-total-mensal.component';
-import {CadastroUsuarioComponent} from './usuarios/cadastro-usuario/cadastro-usuario.component';
+import {CadastrarTerceirizadoComponent} from './funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component';
+import {CadastrarGestorContratoComponent} from "./historico/cadastrar-gestor/cadastrar-gestor-contrato.component";
+import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -39,7 +41,6 @@ const routes: Routes = [
       {path: 'rubricas', component: RubricasComponent, canActivate: [LoggedInGuard, ProfileGuard]},
       {path: 'rubricas/:id', component: CadastrarRubricaComponent, canActivate: [LoggedInGuard, ProfileGuard]},
       {path: 'usuarios', component: UsuariosComponent, canActivate: [LoggedInGuard, ProfileGuard]},
-      {path: 'usuarios/:id', component: CadastroUsuarioComponent, canActivate: [LoggedInGuard, ProfileGuard]},
       {path: 'cargos', component: CargoComponent, canActivate: [LoggedInGuard, ProfileGuard]},
       {path: 'gerenciar', component: IndicadoresComponent, canActivate: [LoggedInGuard]},
       {path: 'contratos', component: ContratosComponent, canActivate: [LoggedInGuard]},
@@ -47,6 +48,8 @@ const routes: Routes = [
       {path: 'cargosContrato', component: CargosDoContratoComponent, canActivate: [LoggedInGuard]},
       {path: 'convencoes', component: ConvencoesColetivasComponent, canActivate: [LoggedInGuard]},
       {path: 'terceirizados', component: FuncionariosComponent, canActivate: [LoggedInGuard]},
+      {path: 'terceirizados/:id', component: CadastrarTerceirizadoComponent, canActivate: [LoggedInGuard]},
+      {path: 'terceirizados/cadastro-terceirizado', component: CadastrarTerceirizadoComponent, canActivate: [LoggedInGuard]},
       {path: 'funcoes-dos-terceirizados', component: CargosDosFuncionariosComponent, canActivate: [LoggedInGuard]},
       {path: 'vigencias', component: VigenciaDosContratosComponent, canActivate: [LoggedInGuard]},
       {path: 'home', component: InicioComponent, canActivate: [LoggedInGuard]},
@@ -59,6 +62,9 @@ const routes: Routes = [
       {path: 'percentEst', component: PercentuaisEstaticosComponent, canActivate: [LoggedInGuard, ProfileGuard]},
       {path: 'ajustes-contratuais', component: AjusteContratoComponent, canActivate: [LoggedInGuard]},
       {path: 'historico-gestores', component: HistoricoGestoresComponent, canActivate: [LoggedInGuard]},
+      {path: 'historico-gestores/:id', component: CadastrarGestorContratoComponent, canActivate: [LoggedInGuard]},
+      {path: 'historico-gestores/cadastro-gestor-contrato', component: CadastrarGestorContratoComponent, canActivate: [LoggedInGuard]},
+      {path: 'funcoes-dos-terceirizados/gerenciar-cargos-terceirizados', component: GerenciarCargosTerceirizadosComponent, canActivate: [LoggedInGuard]},
     ]}
 ];
 @NgModule({

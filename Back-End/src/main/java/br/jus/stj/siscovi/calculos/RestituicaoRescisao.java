@@ -1,14 +1,11 @@
 package br.jus.stj.siscovi.calculos;
 
 import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
-import br.jus.stj.siscovi.dao.sql.DeleteTSQL;
-import br.jus.stj.siscovi.dao.sql.InsertTSQL;
-import br.jus.stj.siscovi.dao.sql.UpdateTSQL;
 import br.jus.stj.siscovi.model.CodFuncaoContratoECodFuncaoTerceirizadoModel;
-import br.jus.stj.siscovi.model.RegistroRestituicaoRescisao;
 import br.jus.stj.siscovi.model.ValorRestituicaoRescisaoModel;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,8 @@ public class RestituicaoRescisao {
     public ValorRestituicaoRescisaoModel CalculaRestituicaoRescisao (int pCodTerceirizadoContrato,
                                                                      Date pDataDesligamento) {
 
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         Retencao retencao = new Retencao(connection);
         Percentual percentual = new Percentual(connection);
         Periodos periodo = new Periodos(connection);
@@ -93,6 +92,10 @@ public class RestituicaoRescisao {
         Date vDataFim;
         int vAno;
         int vMes;
+
+        /*Variável para a checagem de existência do terceirizado.*/
+
+        int vCheck = 0;
 
         /*Variáveis de controle.*/
 
@@ -219,14 +222,48 @@ public class RestituicaoRescisao {
 
                     vDataInicio = vDataReferencia;
 
+                    /*Loop contendo das datas das alterações de percentuais que comporão os subperíodos.*/
+
+                    List<Date> datas = new ArrayList<>();
+
                     /*Seleciona as datas que compõem os subperíodos gerados pelas alterações de percentual no mês.*/
 
-                    List<Date> datas = consulta.RetornaSubperiodosMesPercentual(vCodContrato,
-                            vMes,
-                            vAno,
-                            vDataReferencia);
+                    try {
 
-                    /*Loop contendo das datas das alterações de percentuais que comporão os subperíodos.*/
+                        preparedStatement = connection.prepareStatement("SELECT data_inicio AS data" + " FROM tb_percentual_contrato" + " WHERE cod_contrato = ?" + " AND (MONTH(DATA_INICIO) = ?" + " AND \n" + " YEAR(DATA_INICIO) = ?)" + " UNION" + " SELECT data_fim AS data" + " FROM tb_percentual_contrato" + " WHERE cod_contrato = ?" + " AND (MONTH(DATA_FIM)=?" + " AND" + " YEAR(DATA_FIM) = ?)" + " UNION" + " SELECT data_inicio AS data" + " FROM tb_percentual_estatico" + " WHERE (MONTH(DATA_INICIO)=?" + " AND " + " YEAR(DATA_INICIO)=?)" + " UNION" + " SELECT data_fim AS data" + " FROM tb_percentual_estatico" + " WHERE (MONTH(DATA_FIM)=?" + " AND" + " YEAR(DATA_FIM)=?)" + " UNION" + " SELECT CASE WHEN ? = 2 THEN" + " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" + " ELSE" + " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" + " EXCEPT" + " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" + " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" + " ELSE" + " NULL END AS data" + " ORDER BY data ASC");
+
+                        preparedStatement.setInt(1, vCodContrato);
+                        preparedStatement.setInt(2, vMes);
+                        preparedStatement.setInt(3, vAno);
+                        preparedStatement.setInt(4, vCodContrato);
+                        preparedStatement.setInt(5, vMes);
+                        preparedStatement.setInt(6, vAno);
+                        preparedStatement.setInt(7, vMes);
+                        preparedStatement.setInt(8, vAno);
+                        preparedStatement.setInt(9, vMes);
+                        preparedStatement.setInt(10, vAno);
+                        preparedStatement.setInt(11, vMes);
+                        preparedStatement.setInt(12, vMes);
+                        preparedStatement.setInt(13, vAno);
+                        preparedStatement.setInt(14, vMes);
+                        preparedStatement.setInt(15, vAno);
+                        preparedStatement.setInt(16, vMes);
+                        preparedStatement.setInt(17, vAno);
+                        preparedStatement.setInt(18, vMes);
+                        preparedStatement.setInt(19, vAno);
+                        resultSet = preparedStatement.executeQuery();
+
+                        while (resultSet.next()) {
+
+                            datas.add(resultSet.getDate("data"));
+
+                        }
+
+                    } catch (SQLException e) {
+
+                        throw new NullPointerException("Erro ao tentar carregar as datas referentes ao percentuais. " + " Contrato: " + vCodContrato + ". No perídodo: " + vDataReferencia.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+                    }
 
                     for (Date data : datas) {
 
@@ -240,7 +277,19 @@ public class RestituicaoRescisao {
 
                         if (vMes == 2) {
 
-                            vDiasSubperiodo = periodo.AjusteDiasSubperiodoFevereiro(vDataReferencia, vDataFim, vDiasSubperiodo);
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
 
                         }
 
@@ -322,15 +371,46 @@ public class RestituicaoRescisao {
 
                     vDataInicio = vDataReferencia;
 
-                    /*Seleciona as datas que compõem os subperíodos gerados pelas alterações de remuneração no mês.*/
+                    /*Loop contendo das datas das alterações de percentuais que comporão os subperíodos.*/
 
-                    List<Date> datas = consulta.RetornaSubperiodosMesRemuneracao(vCodContrato,
-                            vMes,
-                            vAno,
-                            tupla.getCodFuncaoContrato(),
-                            vDataReferencia);
+                    /*Seleciona as datas que compõem os subperíodos gerados pelas alterações de percentual no mês.*/
 
-                    /*Loop contendo das datas das alterações de remuneração que comporão os subperíodos.*/
+                    List<Date> datas = new ArrayList<>();
+
+                    try {
+
+                        preparedStatement = connection.prepareStatement("SELECT rfc.data_inicio AS data" + " FROM tb_remuneracao_fun_con rfc\n" + " JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato" + " WHERE fc.cod_contrato = ?" + " AND fc.cod = ?" + " AND (MONTH(rfc.data_inicio) = ?" + " AND" + " YEAR(rfc.data_inicio) = ?)" + " UNION" + " SELECT rfc.data_fim AS data " + " FROM tb_remuneracao_fun_con rfc" + " JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato" + " WHERE fc.cod_contrato = ?" + " AND fc.cod = ?" + " AND (MONTH(rfc.data_fim) = ?" + " AND " + " YEAR(rfc.data_fim) = ?)" + " UNION" + " SELECT CASE WHEN ? = 2 THEN" + " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" + " ELSE" + " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" + " EXCEPT" + " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" + " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" + " ELSE" + " NULL END AS data" + " ORDER BY DATA ASC");
+
+                        preparedStatement.setInt(1, vCodContrato);
+                        preparedStatement.setInt(2, tupla.getCodFuncaoContrato());
+                        preparedStatement.setInt(3, vMes);
+                        preparedStatement.setInt(4, vAno);
+                        preparedStatement.setInt(5, vCodContrato);
+                        preparedStatement.setInt(6, tupla.getCodFuncaoContrato());
+                        preparedStatement.setInt(7, vMes);
+                        preparedStatement.setInt(8, vAno);
+                        preparedStatement.setInt(9, vMes);
+                        preparedStatement.setInt(10, vMes);
+                        preparedStatement.setInt(11, vAno);
+                        preparedStatement.setInt(12, vMes);
+                        preparedStatement.setInt(13, vAno);
+                        preparedStatement.setInt(14, vMes);
+                        preparedStatement.setInt(15, vAno);
+                        preparedStatement.setInt(16, vMes);
+                        preparedStatement.setInt(17, vAno);
+                        resultSet = preparedStatement.executeQuery();
+
+                        while (resultSet.next()) {
+
+                            datas.add(resultSet.getDate("data"));
+
+                        }
+
+                    } catch (SQLException e) {
+
+                        throw new NullPointerException("Não foi possível determinar os subperíodos do mês provenientes da alteração de remuneração da função: " + tupla.getCodFuncaoContrato() + " na data referência: " + vDataReferencia);
+
+                    }
 
                     for (Date data : datas) {
 
@@ -344,7 +424,19 @@ public class RestituicaoRescisao {
 
                         if (vMes == 2) {
 
-                            vDiasSubperiodo = periodo.AjusteDiasSubperiodoFevereiro(vDataReferencia, vDataFim, vDiasSubperiodo);
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
 
                         }
 
@@ -416,15 +508,52 @@ public class RestituicaoRescisao {
 
                     vDataInicio = vDataReferencia;
 
-                    /*Seleciona as datas que compõem os subperíodos gerados pelas alterações de percentual e remuneração no mês.*/
+                    List<Date> datas = new ArrayList<>();
 
-                    List<Date> datas = consulta.RetornaSubperiodosMesPercentualRemuneracao(vCodContrato,
-                            vMes,
-                            vAno,
-                            tupla.getCodFuncaoContrato(),
-                            vDataReferencia);
+                    try {
 
-                    /*Loop contendo das datas das alterações de percentual e remuneração que comporão os subperíodos.*/
+                        preparedStatement = connection.prepareStatement("SELECT data_inicio AS data" + " FROM tb_percentual_contrato" + " WHERE cod_contrato = ?" + " AND (MONTH(DATA_INICIO) = ?" + " AND \n" + " YEAR(DATA_INICIO) = ?)" + " UNION" + " SELECT data_fim AS data" + " FROM tb_percentual_contrato" + " WHERE cod_contrato = ?" + " AND (MONTH(DATA_FIM)=?" + " AND" + " YEAR(DATA_FIM) = ?)" + " UNION" + " SELECT data_inicio AS data" + " FROM tb_percentual_estatico" + " WHERE (MONTH(DATA_INICIO)=?" + " AND " + " YEAR(DATA_INICIO)=?)" + " UNION" + " SELECT data_fim AS data" + " FROM tb_percentual_estatico" + " WHERE (MONTH(DATA_FIM)=?" + " AND" + " YEAR(DATA_FIM)=?)" + " UNION" + " SELECT rfc.data_inicio AS data" + " FROM tb_remuneracao_fun_con rfc\n" + " JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato" + " WHERE fc.cod_contrato = ?" + " AND fc.cod = ?" + " AND (MONTH(rfc.data_inicio) = ?" + " AND" + " YEAR(rfc.data_inicio) = ?)" + " UNION" + " SELECT rfc.data_fim AS data " + " FROM tb_remuneracao_fun_con rfc" + " JOIN tb_funcao_contrato fc ON fc.cod = rfc.cod_funcao_contrato" + " WHERE fc.cod_contrato = ?" + " AND fc.cod = ?" + " AND (MONTH(rfc.data_fim) = ?" + " AND " + " YEAR(rfc.data_fim) = ?)" + " UNION" + " SELECT CASE WHEN ? = 2 THEN" + " EOMONTH(CONVERT(DATE, CONCAT('28/' , ? , '/' ,?), 103))" + " ELSE" + " CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103) END AS data" + " EXCEPT" + " SELECT CASE WHEN DAY(EOMONTH(CONVERT(DATE, CONCAT('30/' , ? , '/' ,?), 103))) = 31 THEN" + " CONVERT(DATE, CONCAT('31/' , ? , '/' ,?), 103)" + " ELSE" + " NULL END AS data" + " ORDER BY DATA ASC");
+
+                        preparedStatement.setInt(1, vCodContrato);
+                        preparedStatement.setInt(2, vMes);
+                        preparedStatement.setInt(3, vAno);
+                        preparedStatement.setInt(4, vCodContrato);
+                        preparedStatement.setInt(5, vMes);
+                        preparedStatement.setInt(6, vAno);
+                        preparedStatement.setInt(7, vMes);
+                        preparedStatement.setInt(8, vAno);
+                        preparedStatement.setInt(9, vMes);
+                        preparedStatement.setInt(10, vAno);
+                        preparedStatement.setInt(11, vCodContrato);
+                        preparedStatement.setInt(12, tupla.getCodFuncaoContrato());
+                        preparedStatement.setInt(13, vMes);
+                        preparedStatement.setInt(14, vAno);
+                        preparedStatement.setInt(15, vCodContrato);
+                        preparedStatement.setInt(16, tupla.getCodFuncaoContrato());
+                        preparedStatement.setInt(17, vMes);
+                        preparedStatement.setInt(18, vAno);
+                        preparedStatement.setInt(19, vMes);
+                        preparedStatement.setInt(20, vMes);
+                        preparedStatement.setInt(21, vAno);
+                        preparedStatement.setInt(22, vMes);
+                        preparedStatement.setInt(23, vAno);
+                        preparedStatement.setInt(24, vMes);
+                        preparedStatement.setInt(25, vAno);
+                        preparedStatement.setInt(26, vMes);
+                        preparedStatement.setInt(27, vAno);
+                        resultSet = preparedStatement.executeQuery();
+
+                        while (resultSet.next()) {
+
+                            datas.add(resultSet.getDate("data"));
+
+                        }
+
+                    } catch (SQLException e) {
+
+                        throw new NullPointerException("Não foi possível determinar os subperíodos do mês provenientes da alteração de percentuais e da remuneração da função: " + tupla.getCodFuncaoContrato() + " na data referência: " + vDataReferencia);
+
+                    }
 
                     for (Date data : datas) {
 
@@ -438,7 +567,19 @@ public class RestituicaoRescisao {
 
                         if (vMes == 2) {
 
-                            vDiasSubperiodo = periodo.AjusteDiasSubperiodoFevereiro(vDataReferencia, vDataFim, vDiasSubperiodo);
+                            if (vDataFim.toLocalDate().getDayOfMonth() == Date.valueOf(vDataReferencia.toLocalDate().withDayOfMonth(vDataReferencia.toLocalDate().lengthOfMonth())).toLocalDate().getDayOfMonth()) {
+
+                                if (vDataFim.toLocalDate().getDayOfMonth() == 28) {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 2;
+
+                                } else {
+
+                                    vDiasSubperiodo = vDiasSubperiodo + 1;
+
+                                }
+
+                            }
 
                         }
 
@@ -581,49 +722,70 @@ public class RestituicaoRescisao {
      * @param pLoginAtualizacao;
      */
 
-     public Integer RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
-                                                  String pTipoRestituicao,
-                                                  String pTipoRescisao,
-                                                  Date pDataDesligamento,
-                                                  Date pDataInicioFerias,
-                                                  float pValorDecimoTerceiro,
-                                                  float pValorIncidenciaDecimoTerceiro,
-                                                  float pValorFGTSDecimoTerceiro,
-                                                  float pValorFerias,
-                                                  float pValorTerco,
-                                                  float pValorIncidenciaFerias,
-                                                  float pValorIncidenciaTerco,
-                                                  float pValorFGTSFerias,
-                                                  float pValorFGTSTerco,
-                                                  float pValorFGTSSalario,
-                                                  String pLoginAtualizacao) {
+    public void RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
+                                              String pTipoRestituicao,
+                                              String pTipoRescisao,
+                                              Date pDataDesligamento,
+                                              float pValorDecimoTerceiro,
+                                              float pValorIncidenciaDecimoTerceiro,
+                                              float pValorFGTSDecimoTerceiro,
+                                              float pValorFerias,
+                                              float pValorTerco,
+                                              float pValorIncidenciaFerias,
+                                              float pValorIncidenciaTerco,
+                                              float pValorFGTSFerias,
+                                              float pValorFGTSTerco,
+                                              float pValorFGTSSalario,
+                                              String pLoginAtualizacao) {
 
-         ConsultaTSQL consulta = new ConsultaTSQL(connection);
-         InsertTSQL insert = new InsertTSQL(connection);
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
 
          /*Chaves Primárias*/
 
-         int vCodTbRestituicaoRescisao;
-         int vCodTipoRestituicao;
-         int vCodTipoRescisao;
+        int vCodTbRestituicaoRescisao = 0;
+        int vCodTipoRestituicao;
+        int vCodTipoRescisao;
 
          /*Variáveis de controle do saldo reidual.*/
 
-         float vIncidDecTer = 0;
-         float vFGTSDecimoTerceiro = 0;
-         float vIncidFerias = 0;
-         float vIncidTerco = 0;
-         float vFGTSFerias = 0;
-         float vFGTSTerco = 0;
-         float vFGTSRemuneracao = 0;
+        float vIncidDecTer = 0;
+        float vFGTSDecimoTerceiro = 0;
+        float vIncidFerias = 0;
+        float vIncidTerco = 0;
+        float vFGTSFerias = 0;
+        float vFGTSTerco = 0;
+        float vFGTSRemuneracao = 0;
 
          /*Atribuição do cod do tipo de restituição.*/
 
-         vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
+        vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
 
          /*Atribuição do cod do tipo de rescisão.*/
 
-         vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
+        vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
+
+        /*Recuparação do próximo valor da sequência da chave primária da tabela tb_restituicao_rescisao.*/
+
+        try {
+
+            preparedStatement = connection.prepareStatement("SELECT ident_current ('TB_RESTITUICAO_RESCISAO')");
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                vCodTbRestituicaoRescisao = resultSet.getInt(1);
+                vCodTbRestituicaoRescisao = vCodTbRestituicaoRescisao + 1;
+
+            }
+
+        } catch (SQLException sqle) {
+
+            throw new NullPointerException("Não foi possível recuperar o número de sequência da chave primária da tabela de restituição de férias.");
+
+        }
 
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -649,167 +811,101 @@ public class RestituicaoRescisao {
 
         /*Gravação no banco*/
 
-        vCodTbRestituicaoRescisao = insert.InsertRestituicaoRescisao(pCodTerceirizadoContrato,
-                                                                     vCodTipoRestituicao,
-                                                                     vCodTipoRescisao,
-                                                                     pDataDesligamento,
-                                                                     pDataInicioFerias,
-                                                                     pValorDecimoTerceiro,
-                                                                     pValorIncidenciaDecimoTerceiro,
-                                                                     pValorFGTSDecimoTerceiro,
-                                                                     pValorFerias,
-                                                                     pValorTerco,
-                                                                     pValorIncidenciaFerias,
-                                                                     pValorIncidenciaTerco,
-                                                                     pValorFGTSFerias,
-                                                                     pValorFGTSTerco,
-                                                                     pValorFGTSSalario,
-                                                                     pLoginAtualizacao);
+        try {
 
-        if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
+            String sql = "SET IDENTITY_INSERT tb_restituicao_rescisao ON;" +
+                    " INSERT INTO tb_restituicao_rescisao (COD,"+
+                    " COD_TERCEIRIZADO_CONTRATO," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " COD_TIPO_RESCISAO," +
+                    " DATA_DESLIGAMENTO," +
+                    " VALOR_DECIMO_TERCEIRO," +
+                    " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                    " INCID_MULTA_FGTS_DEC_TERCEIRO," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " INCID_MULTA_FGTS_FERIAS," +
+                    " INCID_MULTA_FGTS_TERCO," +
+                    " MULTA_FGTS_SALARIO," +
+                    " DATA_REFERENCIA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
 
-            insert.InsertSaldoResidualRescisao(vCodTbRestituicaoRescisao,
-                                               0,
-                                               vIncidDecTer,
-                                               vFGTSDecimoTerceiro,
-                                               0,
-                                               0,
-                                               vIncidFerias,
-                                               vIncidTerco,
-                                               vFGTSFerias,
-                                               vFGTSTerco,
-                                               vFGTSRemuneracao,
-                                               pLoginAtualizacao);
+            preparedStatement = connection.prepareStatement(sql);
 
-        }
+            preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
+            preparedStatement.setInt(2, pCodTerceirizadoContrato);
+            preparedStatement.setInt(3, vCodTipoRestituicao);
+            preparedStatement.setInt(4, vCodTipoRescisao);
+            preparedStatement.setDate(5, pDataDesligamento);
+            preparedStatement.setFloat(6, pValorDecimoTerceiro);
+            preparedStatement.setFloat(7, pValorIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(8, pValorFGTSDecimoTerceiro);
+            preparedStatement.setFloat(9, pValorFerias);
+            preparedStatement.setFloat(10, pValorTerco);
+            preparedStatement.setFloat(11, pValorIncidenciaFerias);
+            preparedStatement.setFloat(12, pValorIncidenciaTerco);
+            preparedStatement.setFloat(13, pValorFGTSFerias);
+            preparedStatement.setFloat(14, pValorFGTSTerco);
+            preparedStatement.setFloat(15, pValorFGTSSalario);
+            preparedStatement.setString(16, pLoginAtualizacao);
+            preparedStatement.executeUpdate();
 
-        return vCodTbRestituicaoRescisao;
+        } catch (SQLException e) {
 
-    }
+            e.printStackTrace();
 
-    public void RecalculoRestituicaoRescisao (int pCodRestituicaoRescisao,
-                                              String pTipoRestituicao,
-                                              String pTipoRescisao,
-                                              Date pDataDesligamento,
-                                              Date pDataInicioFerias,
-                                              float pValorDecimoTerceiro,
-                                              float pValorIncidenciaDecimoTerceiro,
-                                              float pValorFGTSDecimoTerceiro,
-                                              float pValorFerias,
-                                              float pValorTerco,
-                                              float pValorIncidenciaFerias,
-                                              float pValorIncidenciaTerco,
-                                              float pValorFGTSFerias,
-                                              float pValorFGTSTerco,
-                                              float pValorFGTSSalario,
-                                              String pLoginAtualizacao) {
-
-        int vRetornoChavePrimaria;
-        ConsultaTSQL consulta = new ConsultaTSQL(connection);
-        InsertTSQL insert = new InsertTSQL(connection);
-        UpdateTSQL update = new UpdateTSQL(connection);
-        DeleteTSQL delete = new DeleteTSQL(connection);
-
-        int vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
-        int vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
-
-        RegistroRestituicaoRescisao registro = consulta.RetornaRegistroRestituicaoRescisao(pCodRestituicaoRescisao);
-
-        if (registro == null) {
-
-            throw new NullPointerException("Registro anterior não encontrado.");
+            throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
 
         }
 
-        vRetornoChavePrimaria = insert.InsertHistoricoRestituicaoRescisao(registro.getpCod(),
-                                                                          registro.getpCodTipoRestituicao(),
-                                                                          registro.getpCodTipoRescisao(),
-                                                                          registro.getpDataDesligamento(),
-                                                                          registro.getpDataInicioFerias(),
-                                                                          registro.getpValorDecimoTerceiro(),
-                                                                          registro.getpIncidSubmod41DecTerceiro(),
-                                                                          registro.getpIncidMultaFGTSDecTeceriro(),
-                                                                          registro.getpValorFerias(),
-                                                                          registro.getpValorTerco(),
-                                                                          registro.getpIncidSubmod41Ferias(),
-                                                                          registro.getpIncidSubmod41Terco(),
-                                                                          registro.getpIncidMultaFGTSFerias(),
-                                                                          registro.getpIncidMultaFGTSTerco(),
-                                                                          registro.getpMultaFGTSSalario(),
-                                                                          registro.getpDataReferencia(),
-                                                                          registro.getpAutorizado(),
-                                                                          registro.getpRestituido(),
-                                                                          registro.getpObservacao(),
-                                                                          registro.getpLoginAtualizacao());
-
-        delete.DeleteSaldoResidualRescisao(pCodRestituicaoRescisao);
-
-        /*Variáveis de controle do saldo reidual.*/
-
-        float vIncidDecTer = 0;
-        float vFGTSDecimoTerceiro = 0;
-        float vIncidFerias = 0;
-        float vIncidTerco = 0;
-        float vFGTSFerias = 0;
-        float vFGTSTerco = 0;
-        float vFGTSRemuneracao = 0;
-
-        /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
-
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
-            vIncidDecTer = pValorIncidenciaDecimoTerceiro;
-            vIncidFerias = pValorIncidenciaFerias;
-            vIncidTerco = pValorIncidenciaTerco;
-            vFGTSDecimoTerceiro = pValorFGTSDecimoTerceiro;
-            vFGTSFerias = pValorFGTSFerias;
-            vFGTSTerco = pValorFGTSTerco;
-            vFGTSRemuneracao = pValorFGTSSalario;
+            try {
 
-            pValorIncidenciaDecimoTerceiro = 0;
-            pValorIncidenciaFerias = 0;
-            pValorIncidenciaTerco = 0;
-            pValorFGTSDecimoTerceiro = 0;
-            pValorFGTSFerias = 0;
-            pValorFGTSTerco = 0;
-            pValorFGTSSalario = 0;
+                String sql = "INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod_restituicao_rescisao," +
+                        " valor_decimo_terceiro," +
+                        " incid_submod_4_1_dec_terceiro," +
+                        " incid_multa_fgts_dec_terceiro," +
+                        " valor_ferias," +
+                        " valor_terco," +
+                        " incid_submod_4_1_ferias," +
+                        " incid_submod_4_1_terco," +
+                        " incid_multa_fgts_ferias," +
+                        " incid_multa_fgts_terco," +
+                        " multa_fgts_salario," +
+                        " login_atualizacao," +
+                        " data_atualizacao)" +
+                        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
-        }
+                preparedStatement = connection.prepareStatement(sql);
 
-        update.UpdateRestituicaoRescisao(pCodRestituicaoRescisao,
-                vCodTipoRestituicao,
-                vCodTipoRescisao,
-                pDataDesligamento,
-                pDataInicioFerias,
-                pValorDecimoTerceiro,
-                pValorIncidenciaDecimoTerceiro,
-                pValorFGTSDecimoTerceiro,
-                pValorFerias,
-                pValorTerco,
-                pValorIncidenciaFerias,
-                pValorIncidenciaTerco,
-                pValorFGTSFerias,
-                pValorFGTSTerco,
-                pValorFGTSSalario,
-                "",
-                "",
-                "",
-                pLoginAtualizacao);
+                preparedStatement.setInt(1, vCodTbRestituicaoRescisao);
+                preparedStatement.setFloat(2, 0);
+                preparedStatement.setFloat(3, vIncidDecTer);
+                preparedStatement.setFloat(4, vFGTSDecimoTerceiro);
+                preparedStatement.setFloat(5, 0);
+                preparedStatement.setFloat(6, 0);
+                preparedStatement.setFloat(7, vIncidFerias);
+                preparedStatement.setFloat(8, vIncidTerco);
+                preparedStatement.setFloat(9, vFGTSFerias);
+                preparedStatement.setFloat(10, vFGTSTerco);
+                preparedStatement.setFloat(11, vFGTSRemuneracao);
+                preparedStatement.setString(12, pLoginAtualizacao);
 
-        if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
+                preparedStatement.executeUpdate();
 
-            insert.InsertSaldoResidualRescisao(pCodRestituicaoRescisao,
-                                              0,
-                                               vIncidDecTer,
-                                               vFGTSDecimoTerceiro,
-                                              0,
-                                              0,
-                                               vIncidFerias,
-                                               vIncidTerco,
-                                               vFGTSFerias,
-                                               vFGTSTerco,
-                                               vFGTSRemuneracao,
-                                               pLoginAtualizacao);
+            } catch (SQLException e) {
+
+                e.printStackTrace();
+
+                throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
+
+            }
 
         }
 

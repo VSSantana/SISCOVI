@@ -32,18 +32,18 @@ public class InsertTSQL {
         try {
 
             String sql = "INSERT INTO TB_TOTAL_MENSAL_A_RETER (COD, " +
-                                                              "COD_TERCEIRIZADO_CONTRATO, " +
-                                                              "COD_FUNCAO_TERCEIRIZADO, " +
-                                                              "FERIAS, " +
-                                                              "TERCO_CONSTITUCIONAL, " +
-                                                              "DECIMO_TERCEIRO, " +
-                                                              "INCIDENCIA_SUBMODULO_4_1," +
-                                                              "MULTA_FGTS, " +
-                                                              "TOTAL, " +
-                                                              "DATA_REFERENCIA, " +
-                                                              "LOGIN_ATUALIZACAO, " +
-                                                              "DATA_ATUALIZACAO) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                    "COD_TERCEIRIZADO_CONTRATO, " +
+                    "COD_FUNCAO_TERCEIRIZADO, " +
+                    "FERIAS, " +
+                    "TERCO_CONSTITUCIONAL, " +
+                    "DECIMO_TERCEIRO, " +
+                    "INCIDENCIA_SUBMODULO_4_1," +
+                    "MULTA_FGTS, " +
+                    "TOTAL, " +
+                    "DATA_REFERENCIA, " +
+                    "LOGIN_ATUALIZACAO, " +
+                    "DATA_ATUALIZACAO) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -94,24 +94,24 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT tb_restituicao_ferias ON;" +
-                        " INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
-                                    " COD_TERCEIRIZADO_CONTRATO," +
-                                    " COD_TIPO_RESTITUICAO," +
-                                    " DATA_INICIO_PERIODO_AQUISITIVO," +
-                                    " DATA_FIM_PERIODO_AQUISITIVO," +
-                                    " DATA_INICIO_USUFRUTO," +
-                                    " DATA_FIM_USUFRUTO," +
-                                    " VALOR_FERIAS," +
-                                    " VALOR_TERCO_CONSTITUCIONAL," +
-                                    " INCID_SUBMOD_4_1_FERIAS," +
-                                    " INCID_SUBMOD_4_1_TERCO," +
-                                    " PARCELA," +
-                                    " DIAS_VENDIDOS," +
-                                    " DATA_REFERENCIA," +
-                                    " LOGIN_ATUALIZACAO," +
-                                    " DATA_ATUALIZACAO)" +
-                          " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT tb_restituicao_ferias OFF;";
+                    " INSERT INTO TB_RESTITUICAO_FERIAS (COD,"+
+                    " COD_TERCEIRIZADO_CONTRATO," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " DATA_INICIO_PERIODO_AQUISITIVO," +
+                    " DATA_FIM_PERIODO_AQUISITIVO," +
+                    " DATA_INICIO_USUFRUTO," +
+                    " DATA_FIM_USUFRUTO," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO_CONSTITUCIONAL," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " PARCELA," +
+                    " DIAS_VENDIDOS," +
+                    " DATA_REFERENCIA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT tb_restituicao_ferias OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -144,7 +144,7 @@ public class InsertTSQL {
     }
 
 
-    public int InsertSaldoResidualFerias (int pCodTbRestituicaoFerias,
+    public void InsertSaldoResidualFerias (int pCodTbRestituicaoFerias,
                                            float pValorFerias,
                                            float pValorTerco,
                                            float pIncidenciaFerias,
@@ -152,33 +152,26 @@ public class InsertTSQL {
                                            String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
-        ConsultaTSQL consulta = new ConsultaTSQL(connection);
-
-        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_FERIAS");
 
         try {
 
-            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_FERIAS ON;" +
-                    " INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD," +
-                                                            " COD_RESTITUICAO_FERIAS," +
-                                                               " VALOR_FERIAS," +
-                                                               " VALOR_TERCO," +
-                                                               " INCID_SUBMOD_4_1_FERIAS," +
-                                                               " INCID_SUBMOD_4_1_TERCO," +
-                                                               " LOGIN_ATUALIZACAO," +
-                                                               " DATA_ATUALIZACAO)" +
-                         " VALUES (?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_FERIAS OFF;";
+            String sql = "INSERT INTO TB_SALDO_RESIDUAL_FERIAS (COD_RESTITUICAO_FERIAS," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, vCod);
-            preparedStatement.setInt(2, pCodTbRestituicaoFerias);
-            preparedStatement.setFloat(3, pValorFerias);
-            preparedStatement.setFloat(4, pValorTerco);
-            preparedStatement.setFloat(5, pIncidenciaFerias);
-            preparedStatement.setFloat(6, pIncidenciaTerco);
-            preparedStatement.setString(7, pLoginAtualizacao);
+            preparedStatement.setInt(1, pCodTbRestituicaoFerias);
+            preparedStatement.setFloat(2, pValorFerias);
+            preparedStatement.setFloat(3, pValorTerco);
+            preparedStatement.setFloat(4, pIncidenciaFerias);
+            preparedStatement.setFloat(5, pIncidenciaTerco);
+            preparedStatement.setString(6, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -189,8 +182,6 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir os resultados do cálculo de férias no banco de dados!");
 
         }
-
-        return vCod;
 
     }
 
@@ -209,7 +200,7 @@ public class InsertTSQL {
 
         try {
 
-            String sql = "SET IDENTITY_INSERT TB_RESTITUICAO_DECIMO_TERCEIRO ON; " +
+            String sql = "SET IDENTITY_INSERT tb_restituicao_decimo_terceiro ON; " +
                     "INSERT INTO TB_RESTITUICAO_DECIMO_TERCEIRO (COD,"+
                     " COD_TERCEIRIZADO_CONTRATO," +
                     " COD_TIPO_RESTITUICAO," +
@@ -221,7 +212,7 @@ public class InsertTSQL {
                     " LOGIN_ATUALIZACAO," +
                     " DATA_ATUALIZACAO)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT TB_RESTITUICAO_DECIMO_TERCEIRO OFF;";
+                    " SET IDENTITY_INSERT tb_restituicao_decimo_terceiro OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -245,35 +236,28 @@ public class InsertTSQL {
 
     }
 
-    public int InsertSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro,
-                                                  float pValorDecimoTerceiro,
-                                                  float pValorIncidencia,
-                                                  String pLoginAtualizacao) {
+    public void InsertSaldoResidualDecimoTerceiro (int pCodRestituicaoDecimoTerceiro,
+                                                   float pValorDecimoTerceiro,
+                                                   float pValorIncidencia,
+                                                   String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
-        ConsultaTSQL consulta = new ConsultaTSQL(connection);
-
-        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_DEC_TER");
 
         try {
 
-            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_DEC_TER ON;" +
-                    " INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD," +
-                    " COD_RESTITUICAO_DEC_TERCEIRO," +
+            String sql = "INSERT INTO TB_SALDO_RESIDUAL_DEC_TER (COD_RESTITUICAO_DEC_TERCEIRO," +
                     " VALOR," +
                     " INCIDENCIA_SUBMODULO_4_1," +
                     " LOGIN_ATUALIZACAO," +
                     " DATA_ATUALIZACAO)" +
-                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_DEC_TER OFF;";
+                    " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, vCod);
-            preparedStatement.setInt(2, pCodRestituicaoDecimoTerceiro);
-            preparedStatement.setFloat(3, pValorDecimoTerceiro);
-            preparedStatement.setFloat(4, pValorIncidencia);
-            preparedStatement.setString(5, pLoginAtualizacao);
+            preparedStatement.setInt(1, pCodRestituicaoDecimoTerceiro);
+            preparedStatement.setFloat(2, pValorDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorIncidencia);
+            preparedStatement.setString(4, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -284,8 +268,6 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir dados na tabela de saldo residual de décimo terceiro!");
 
         }
-
-        return vCod;
 
     }
 
@@ -314,27 +296,27 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT tb_restituicao_rescisao ON;" +
-                        " INSERT INTO tb_restituicao_rescisao (COD,"+
-                                                             " COD_TERCEIRIZADO_CONTRATO," +
-                                                             " COD_TIPO_RESTITUICAO," +
-                                                             " COD_TIPO_RESCISAO," +
-                                                             " DATA_DESLIGAMENTO," +
-                                                             " DATA_INICIO_FERIAS," +
-                                                             " VALOR_DECIMO_TERCEIRO," +
-                                                             " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
-                                                             " INCID_MULTA_FGTS_DEC_TERCEIRO," +
-                                                             " VALOR_FERIAS," +
-                                                             " VALOR_TERCO," +
-                                                             " INCID_SUBMOD_4_1_FERIAS," +
-                                                             " INCID_SUBMOD_4_1_TERCO," +
-                                                             " INCID_MULTA_FGTS_FERIAS," +
-                                                             " INCID_MULTA_FGTS_TERCO," +
-                                                             " MULTA_FGTS_SALARIO," +
-                                                             " DATA_REFERENCIA," +
-                                                             " LOGIN_ATUALIZACAO," +
-                                                             " DATA_ATUALIZACAO)" +
-                         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
+                    " INSERT INTO tb_restituicao_rescisao (COD,"+
+                    " COD_TERCEIRIZADO_CONTRATO," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " COD_TIPO_RESCISAO," +
+                    " DATA_DESLIGAMENTO," +
+                    " DATA_INICIO_FERIAS," +
+                    " VALOR_DECIMO_TERCEIRO," +
+                    " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                    " INCID_MULTA_FGTS_DEC_TERCEIRO," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " INCID_MULTA_FGTS_FERIAS," +
+                    " INCID_MULTA_FGTS_TERCO," +
+                    " MULTA_FGTS_SALARIO," +
+                    " DATA_REFERENCIA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -369,29 +351,24 @@ public class InsertTSQL {
 
     }
 
-    public int InsertSaldoResidualRescisao (int pCodRestituicaoRescisao,
-                                            float pValorDecimoTerceiro,
-                                            float pValorIncidenciaDecimoTerceiro,
-                                            float pValorFGTSDecimoTerceiro,
-                                            float pValorFerias,
-                                            float pValorTerco,
-                                            float pValorIncidenciaFerias,
-                                            float pValorIncidenciaTerco,
-                                            float pValorFGTSFerias,
-                                            float pValorFGTSTerco,
-                                            float pValorFGTSSalario,
-                                            String pLoginAtualizacao) {
+    public void InsertSaldoResidualRescisao (int pCodRestituicaoRescisao,
+                                             float pValorDecimoTerceiro,
+                                             float pValorIncidenciaDecimoTerceiro,
+                                             float pValorFGTSDecimoTerceiro,
+                                             float pValorFerias,
+                                             float pValorTerco,
+                                             float pValorIncidenciaFerias,
+                                             float pValorIncidenciaTerco,
+                                             float pValorFGTSFerias,
+                                             float pValorFGTSTerco,
+                                             float pValorFGTSSalario,
+                                             String pLoginAtualizacao) {
 
         PreparedStatement preparedStatement;
-        ConsultaTSQL consulta = new ConsultaTSQL(connection);
-
-        int vCod = consulta.RetornaCodSequenceTable("TB_SALDO_RESIDUAL_RESCISAO");
 
         try {
 
-            String sql = "SET IDENTITY_INSERT TB_SALDO_RESIDUAL_RESCISAO ON;" +
-                    " INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod," +
-                    " cod_restituicao_rescisao," +
+            String sql = "INSERT INTO TB_SALDO_RESIDUAL_RESCISAO (cod_restituicao_rescisao," +
                     " valor_decimo_terceiro," +
                     " incid_submod_4_1_dec_terceiro," +
                     " incid_multa_fgts_dec_terceiro," +
@@ -404,24 +381,22 @@ public class InsertTSQL {
                     " multa_fgts_salario," +
                     " login_atualizacao," +
                     " data_atualizacao)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
-                    " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_RESCISAO OFF;";
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, vCod);
-            preparedStatement.setInt(2, pCodRestituicaoRescisao);
-            preparedStatement.setFloat(3, pValorDecimoTerceiro);
-            preparedStatement.setFloat(4, pValorIncidenciaDecimoTerceiro);
-            preparedStatement.setFloat(5, pValorFGTSDecimoTerceiro);
-            preparedStatement.setFloat(6, pValorFerias);
-            preparedStatement.setFloat(7, pValorTerco);
-            preparedStatement.setFloat(8, pValorIncidenciaFerias);
-            preparedStatement.setFloat(9, pValorIncidenciaTerco);
-            preparedStatement.setFloat(10, pValorFGTSFerias);
-            preparedStatement.setFloat(11, pValorFGTSTerco);
-            preparedStatement.setFloat(12, pValorFGTSSalario);
-            preparedStatement.setString(13, pLoginAtualizacao);
+            preparedStatement.setInt(1, pCodRestituicaoRescisao);
+            preparedStatement.setFloat(2, pValorDecimoTerceiro);
+            preparedStatement.setFloat(3, pValorIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(4, pValorFGTSDecimoTerceiro);
+            preparedStatement.setFloat(5, pValorFerias);
+            preparedStatement.setFloat(6, pValorTerco);
+            preparedStatement.setFloat(7, pValorIncidenciaFerias);
+            preparedStatement.setFloat(8, pValorIncidenciaTerco);
+            preparedStatement.setFloat(9, pValorFGTSFerias);
+            preparedStatement.setFloat(10, pValorFGTSTerco);
+            preparedStatement.setFloat(11, pValorFGTSSalario);
+            preparedStatement.setString(12, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -432,8 +407,6 @@ public class InsertTSQL {
             throw new RuntimeException("Erro ao tentar inserir dados na tabela de saldo residual de rescisão.");
 
         }
-
-        return vCod;
 
     }
 
@@ -457,21 +430,21 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_HIST_RESTITUICAO_DEC_TER ON;" +
-                         " INSERT INTO TB_HIST_RESTITUICAO_DEC_TER (COD," +
-                                                                  " COD_RESTITUICAO_DEC_TERCEIRO," +
-                                                                  " COD_TIPO_RESTITUICAO," +
-                                                                  " PARCELA," +
-                                                                  " DATA_INICIO_CONTAGEM," +
-                                                                  " VALOR," +
-                                                                  " INCIDENCIA_SUBMODULO_4_1," +
-                                                                  " DATA_REFERENCIA," +
-                                                                  " AUTORIZADO," +
-                                                                  " RESTITUIDO," +
-                                                                  " OBSERVACAO," +
-                                                                  " LOGIN_ATUALIZACAO," +
-                                                                  " DATA_ATUALIZACAO)" +
-                         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                       " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_DEC_TER OFF;";
+                    " INSERT INTO TB_HIST_RESTITUICAO_DEC_TER (COD," +
+                    " COD_RESTITUICAO_DEC_TERCEIRO," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " PARCELA," +
+                    " DATA_INICIO_CONTAGEM," +
+                    " VALOR," +
+                    " INCIDENCIA_SUBMODULO_4_1," +
+                    " DATA_REFERENCIA," +
+                    " AUTORIZADO," +
+                    " RESTITUIDO," +
+                    " OBSERVACAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_DEC_TER OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -531,30 +504,30 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_HIST_RESTITUICAO_RESCISAO ON;" +
-                         " INSERT INTO TB_HIST_RESTITUICAO_RESCISAO (COD," +
-                                                                   " COD_RESTITUICAO_RESCISAO," +
-                                                                   " COD_TIPO_RESTITUICAO," +
-                                                                   " COD_TIPO_RESCISAO," +
-                                                                   " DATA_DESLIGAMENTO," +
-                                                                   " DATA_INICIO_FERIAS," +
-                                                                   " VALOR_DECIMO_TERCEIRO," +
-                                                                   " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
-                                                                   " INCID_MULTA_FGTS_DEC_TERCEIRO," +
-                                                                   " VALOR_FERIAS," +
-                                                                   " VALOR_TERCO," +
-                                                                   " INCID_SUBMOD_4_1_FERIAS," +
-                                                                   " INCID_SUBMOD_4_1_TERCO," +
-                                                                   " INCID_MULTA_FGTS_FERIAS," +
-                                                                   " INCID_MULTA_FGTS_TERCO," +
-                                                                   " MULTA_FGTS_SALARIO," +
-                                                                   " DATA_REFERENCIA," +
-                                                                   " AUTORIZADO," +
-                                                                   " RESTITUIDO," +
-                                                                   " OBSERVACAO," +
-                                                                   " LOGIN_ATUALIZACAO," +
-                                                                   " DATA_ATUALIZACAO)" +
-                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                         " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_RESCISAO OFF;";
+                    " INSERT INTO TB_HIST_RESTITUICAO_RESCISAO (COD," +
+                    " COD_RESTITUICAO_RESCISAO," +
+                    " COD_TIPO_RESTITUICAO," +
+                    " COD_TIPO_RESCISAO," +
+                    " DATA_DESLIGAMENTO," +
+                    " DATA_INICIO_FERIAS," +
+                    " VALOR_DECIMO_TERCEIRO," +
+                    " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
+                    " INCID_MULTA_FGTS_DEC_TERCEIRO," +
+                    " VALOR_FERIAS," +
+                    " VALOR_TERCO," +
+                    " INCID_SUBMOD_4_1_FERIAS," +
+                    " INCID_SUBMOD_4_1_TERCO," +
+                    " INCID_MULTA_FGTS_FERIAS," +
+                    " INCID_MULTA_FGTS_TERCO," +
+                    " MULTA_FGTS_SALARIO," +
+                    " DATA_REFERENCIA," +
+                    " AUTORIZADO," +
+                    " RESTITUIDO," +
+                    " OBSERVACAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_RESCISAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
 
@@ -690,14 +663,14 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_RUBRICA ON;" +
-                        " INSERT INTO TB_RUBRICA (COD," +
-                                                " NOME," +
-                                                " SIGLA," +
-                                                " DESCRICAO," +
-                                                " LOGIN_ATUALIZACAO," +
-                                                " DATA_ATUALIZACAO)" +
-                          " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_RUBRICA OFF;";
+                    " INSERT INTO TB_RUBRICA (COD," +
+                    " NOME," +
+                    " SIGLA," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_RUBRICA OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCodRubrica);
@@ -736,17 +709,17 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_CONTRATO ON;" +
-                            " INSERT INTO TB_CONTRATO (COD," +
-                                                     " NOME_EMPRESA," +
-                                                     " CNPJ," +
-                                                     " NUMERO_CONTRATO," +
-                                                     " NUMERO_PROCESSO_STJ," +
-                                                     " SE_ATIVO," +
-                                                     " OBJETO," +
-                                                     " LOGIN_ATUALIZACAO," +
-                                                     " DATA_ATUALIZACAO)" +
-                                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_CONTRATO OFF;";
+                    " INSERT INTO TB_CONTRATO (COD," +
+                    " NOME_EMPRESA," +
+                    " CNPJ," +
+                    " NUMERO_CONTRATO," +
+                    " NUMERO_PROCESSO_STJ," +
+                    " SE_ATIVO," +
+                    " OBJETO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_CONTRATO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -786,15 +759,15 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_CONVENCAO_COLETIVA ON;" +
-                            " INSERT INTO TB_CONVENCAO_COLETIVA (COD," +
-                                                               " NOME," +
-                                                               " SIGLA," +
-                                                               " DATA_BASE," +
-                                                               " DESCRICAO," +
-                                                               " LOGIN_ATUALIZACAO," +
-                                                               " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_CONVENCAO_COLETIVA OFF;";
+                    " INSERT INTO TB_CONVENCAO_COLETIVA (COD," +
+                    " NOME," +
+                    " SIGLA," +
+                    " DATA_BASE," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_CONVENCAO_COLETIVA OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -835,18 +808,18 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_EVENTO_CONTRATUAL ON;" +
-                            " INSERT INTO TB_EVENTO_CONTRATUAL (COD," +
-                                                              " COD_CONTRATO," +
-                                                              " COD_TIPO_EVENTO," +
-                                                              " PRORROGACAO," +
-                                                              " ASSUNTO," +
-                                                              " DATA_INICIO_VIGENCIA," +
-                                                              " DATA_FIM_VIGENCIA," +
-                                                              " DATA_ASSINATURA," +
-                                                              " LOGIN_ATUALIZACAO," +
-                                                              " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                         " SET IDENTITY_INSERT TB_EVENTO_CONTRATUAL OFF;";
+                    " INSERT INTO TB_EVENTO_CONTRATUAL (COD," +
+                    " COD_CONTRATO," +
+                    " COD_TIPO_EVENTO," +
+                    " PRORROGACAO," +
+                    " ASSUNTO," +
+                    " DATA_INICIO_VIGENCIA," +
+                    " DATA_FIM_VIGENCIA," +
+                    " DATA_ASSINATURA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_EVENTO_CONTRATUAL OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -885,13 +858,13 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_FUNCAO ON;" +
-                            " INSERT INTO TB_FUNCAO (COD," +
-                                                   " NOME," +
-                                                   " DESCRICAO," +
-                                                   " LOGIN_ATUALIZACAO," +
-                                                   " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_FUNCAO OFF;";
+                    " INSERT INTO TB_FUNCAO (COD," +
+                    " NOME," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_FUNCAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -926,14 +899,14 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_FUNCAO_CONTRATO ON;" +
-                            " INSERT INTO TB_FUNCAO_CONTRATO (COD," +
-                                                            " COD_CONTRATO," +
-                                                            " COD_FUNCAO," +
-                                                            " DESCRICAO," +
-                                                            " LOGIN_ATUALIZACAO," +
-                                                            " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_FUNCAO_CONTRATO OFF;";
+                    " INSERT INTO TB_FUNCAO_CONTRATO (COD," +
+                    " COD_CONTRATO," +
+                    " COD_FUNCAO," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_FUNCAO_CONTRATO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -970,15 +943,15 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_FUNCAO_TERCEIRIZADO ON;" +
-                         " INSERT INTO TB_FUNCAO_TERCEIRIZADO (COD," +
-                                                             " COD_TERCEIRIZADO_CONTRATO," +
-                                                             " COD_FUNCAO_CONTRATO," +
-                                                             " DATA_INICIO," +
-                                                             " DATA_FIM," +
-                                                             " LOGIN_ATUALIZACAO," +
-                                                             " DATA_ATUALIZACAO)" +
-                                 " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_FUNCAO_TERCEIRIZADO OFF;";
+                    " INSERT INTO TB_FUNCAO_TERCEIRIZADO (COD," +
+                    " COD_TERCEIRIZADO_CONTRATO," +
+                    " COD_FUNCAO_CONTRATO," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_FUNCAO_TERCEIRIZADO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1017,16 +990,16 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_HISTORICO_GESTAO_CONTRATO ON;" +
-                            " INSERT INTO TB_HISTORICO_GESTAO_CONTRATO (COD," +
-                                                                      " COD_CONTRATO," +
-                                                                      " COD_USUARIO," +
-                                                                      " COD_PERFIL_GESTAO," +
-                                                                      " DATA_INICIO," +
-                                                                      " DATA_FIM," +
-                                                                      " LOGIN_ATUALIZACAO," +
-                                                                      " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_HISTORICO_GESTAO_CONTRATO OFF;";
+                    " INSERT INTO TB_HISTORICO_GESTAO_CONTRATO (COD," +
+                    " COD_CONTRATO," +
+                    " COD_USUARIO," +
+                    " COD_PERFIL_GESTAO," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_HISTORICO_GESTAO_CONTRATO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1067,17 +1040,17 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_PERCENTUAL_CONTRATO ON;" +
-                            " INSERT INTO TB_PERCENTUAL_CONTRATO (COD," +
-                                                                " COD_CONTRATO," +
-                                                                " COD_RUBRICA," +
-                                                                " PERCENTUAL," +
-                                                                " DATA_INICIO," +
-                                                                " DATA_FIM," +
-                                                                " DATA_ADITAMENTO," +
-                                                                " LOGIN_ATUALIZACAO," +
-                                                                " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_PERCENTUAL_CONTRATO OFF;";
+                    " INSERT INTO TB_PERCENTUAL_CONTRATO (COD," +
+                    " COD_CONTRATO," +
+                    " COD_RUBRICA," +
+                    " PERCENTUAL," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " DATA_ADITAMENTO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_PERCENTUAL_CONTRATO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1118,16 +1091,16 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_PERCENTUAL_ESTATICO ON;" +
-                            " INSERT INTO TB_PERCENTUAL_ESTATICO (COD," +
-                                                                " COD_RUBRICA," +
-                                                                " PERCENTUAL," +
-                                                                " DATA_INICIO," +
-                                                                " DATA_FIM," +
-                                                                " DATA_ADITAMENTO," +
-                                                                " LOGIN_ATUALIZACAO," +
-                                                                " DATA_ATUALIZACAO)" +
-                              " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_PERCENTUAL_ESTATICO OFF;";
+                    " INSERT INTO TB_PERCENTUAL_ESTATICO (COD," +
+                    " COD_RUBRICA," +
+                    " PERCENTUAL," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " DATA_ADITAMENTO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_PERCENTUAL_ESTATICO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1165,13 +1138,13 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_PERFIL_GESTAO ON;" +
-                            " INSERT INTO TB_PERFIL_GESTAO (COD," +
-                                                          " NOME," +
-                                                          " SIGLA," +
-                                                          " DESCRICAO," +
-                                                          " LOGIN_ATUALIZACAO," +
-                                                          " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " INSERT INTO TB_PERFIL_GESTAO (COD," +
+                    " NOME," +
+                    " SIGLA," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
                     " SET IDENTITY_INSERT TB_PERFIL_GESTAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -1208,14 +1181,14 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_PERFIL_USUARIO ON;" +
-                                " INSERT INTO TB_PERFIL_USUARIO (COD," +
-                                                               " NOME," +
-                                                               " SIGLA," +
-                                                               " DESCRICAO," +
-                                                               " LOGIN_ATUALIZACAO," +
-                                                               " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_PERFIL_USUARIO OFF;";
+                    " INSERT INTO TB_PERFIL_USUARIO (COD," +
+                    " NOME," +
+                    " SIGLA," +
+                    " DESCRICAO," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_PERFIL_USUARIO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1256,19 +1229,19 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_REMUNERACAO_FUN_CON ON;" +
-                            " INSERT INTO TB_REMUNERACAO_FUN_CON (COD," +
-                                                                " COD_FUNCAO_CONTRATO," +
-                                                                " COD_CONVENCAO_COLETIVA," +
-                                                                " DATA_INICIO," +
-                                                                " DATA_FIM," +
-                                                                " DATA_ADITAMENTO," +
-                                                                " REMUNERACAO," +
-                                                                " ADICIONAIS," +
-                                                                " TRIENIOS," +
-                                                                " LOGIN_ATUALIZACAO," +
-                                                                " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_REMUNERACAO_FUN_CON OFF;";
+                    " INSERT INTO TB_REMUNERACAO_FUN_CON (COD," +
+                    " COD_FUNCAO_CONTRATO," +
+                    " COD_CONVENCAO_COLETIVA," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " DATA_ADITAMENTO," +
+                    " REMUNERACAO," +
+                    " ADICIONAIS," +
+                    " TRIENIOS," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_REMUNERACAO_FUN_CON OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1323,16 +1296,16 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_RETRO_PERCENTUAL_ESTATICO ON;" +
-                            " INSERT INTO TB_RETRO_PERCENTUAL_ESTATICO (COD," +
-                                                                      " COD_CONTRATO," +
-                                                                      " COD_PERCENTUAL_ESTATICO," +
-                                                                      " INICIO," +
-                                                                      " FIM," +
-                                                                      " DATA_COBRANCA," +
-                                                                      " LOGIN_ATUALIZACAO," +
-                                                                      " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_RETRO_PERCENTUAL_ESTATICO OFF;";
+                    " INSERT INTO TB_RETRO_PERCENTUAL_ESTATICO (COD," +
+                    " COD_CONTRATO," +
+                    " COD_PERCENTUAL_ESTATICO," +
+                    " INICIO," +
+                    " FIM," +
+                    " DATA_COBRANCA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_RETRO_PERCENTUAL_ESTATICO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1371,15 +1344,15 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_RETROATIVIDADE_PERCENTUAL ON;" +
-                            " INSERT INTO TB_RETROATIVIDADE_PERCENTUAL (COD," +
-                                                                      " COD_PERCENTUAL_CONTRATO," +
-                                                                      " INICIO," +
-                                                                      " FIM," +
-                                                                      " DATA_COBRANCA," +
-                                                                      " LOGIN_ATUALIZACAO," +
-                                                                      " DATA_ATUALIZACAO)" +
-                                " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                         " SET IDENTITY_INSERT TB_RETROATIVIDADE_PERCENTUAL OFF;";
+                    " INSERT INTO TB_RETROATIVIDADE_PERCENTUAL (COD," +
+                    " COD_PERCENTUAL_CONTRATO," +
+                    " INICIO," +
+                    " FIM," +
+                    " DATA_COBRANCA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_RETROATIVIDADE_PERCENTUAL OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1417,14 +1390,14 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_RETROATIVIDADE_REMUNERACAO ON;" +
-                            " INSERT INTO TB_RETROATIVIDADE_REMUNERACAO (COD," +
-                                                                       " COD_REM_FUNCAO_CONTRATO," +
-                                                                       " INICIO," +
-                                                                       " FIM," +
-                                                                       " DATA_COBRANCA," +
-                                                                       " LOGIN_ATUALIZACAO," +
-                                                                       " DATA_ATUALIZACAO)" +
-                                 " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " INSERT INTO TB_RETROATIVIDADE_REMUNERACAO (COD," +
+                    " COD_REM_FUNCAO_CONTRATO," +
+                    " INICIO," +
+                    " FIM," +
+                    " DATA_COBRANCA," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
                     " SET IDENTITY_INSERT TB_RETROATIVIDADE_REMUNERACAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -1466,18 +1439,18 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_RETROATIVIDADE_TOTAL_MENSAL ON;" +
-                              " INSERT INTO TB_RETROATIVIDADE_TOTAL_MENSAL (COD," +
-                                                                          " COD_TOTAL_MENSAL_A_RETER," +
-                                                                          " FERIAS," +
-                                                                          " TERCO_CONSTITUCIONAL," +
-                                                                          " DECIMO_TERCEIRO," +
-                                                                          " INCIDENCIA_SUBMODULO_4_1," +
-                                                                          " MULTA_FGTS," +
-                                                                          " TOTAL," +
-                                                                          " LOGIN_ATUALIZACAO," +
-                                                                          " DATA_ATUALIZACAO)" +
-                                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_RETROATIVIDADE_TOTAL_MENSAL OFF;";
+                    " INSERT INTO TB_RETROATIVIDADE_TOTAL_MENSAL (COD," +
+                    " COD_TOTAL_MENSAL_A_RETER," +
+                    " FERIAS," +
+                    " TERCO_CONSTITUCIONAL," +
+                    " DECIMO_TERCEIRO," +
+                    " INCIDENCIA_SUBMODULO_4_1," +
+                    " MULTA_FGTS," +
+                    " TOTAL," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_RETROATIVIDADE_TOTAL_MENSAL OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1718,15 +1691,15 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_TRIENIO_TERC_CONTRATO ON;" +
-                            " INSERT INTO TB_TRIENIO_TERC_CONTRATO (COD," +
-                                                                  " COD_TERCEIRIZADO_CONTRATO," +
-                                                                  " NUMERO_DE_TRIENIOS," +
-                                                                  " DATA_INICIO," +
-                                                                  " DATA_FIM," +
-                                                                  " LOGIN_ATUALIZACAO," +
-                                                                  " DATA_ATUALIZACAO)" +
-                            " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_TRIENIO_TERC_CONTRATO OFF;";
+                    " INSERT INTO TB_TRIENIO_TERC_CONTRATO (COD," +
+                    " COD_TERCEIRIZADO_CONTRATO," +
+                    " NUMERO_DE_TRIENIOS," +
+                    " DATA_INICIO," +
+                    " DATA_FIM," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_TRIENIO_TERC_CONTRATO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1764,15 +1737,15 @@ public class InsertTSQL {
         try {
 
             String sql = "SET IDENTITY_INSERT TB_USUARIO ON;" +
-                            " INSERT INTO TB_USUARIO (COD," +
-                                                    " COD_PERFIL," +
-                                                    " NOME," +
-                                                    " LOGIN," +
-                                                    " PASSWORD," +
-                                                    " LOGIN_ATUALIZACAO," +
-                                                    " DATA_ATUALIZACAO)" +
-                                " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
-                        " SET IDENTITY_INSERT TB_USUARIO OFF;";
+                    " INSERT INTO TB_USUARIO (COD," +
+                    " COD_PERFIL," +
+                    " NOME," +
+                    " LOGIN," +
+                    " PASSWORD," +
+                    " LOGIN_ATUALIZACAO," +
+                    " DATA_ATUALIZACAO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                    " SET IDENTITY_INSERT TB_USUARIO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, vCod);
@@ -1795,5 +1768,8 @@ public class InsertTSQL {
         return vCod;
 
     }
+
+
+
 
 }

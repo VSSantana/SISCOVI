@@ -1,9 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TerceirizadoRescisao} from '../terceirizado-rescisao';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MaterializeAction} from 'angular2-materialize';
 import {RescisaoService} from '../rescisao.service';
 import {CalculoRescisao} from '../calculo-rescisao';
+import {Observable} from 'rxjs/Observable';
+import {map} from 'rxjs/operators';
+import 'rxjs/add/observable/of';
 
 @Component({
     selector: 'app-movimentacao-rescisao-component',
@@ -38,12 +41,14 @@ export  class MovimentacaoRescisaoComponent implements  OnInit {
         this.terceirizados.forEach(item => {
             const addCtrl = this.fb.group({
                 codTerceirizadoContrato: new FormControl(item.codTerceirizadoContrato),
+                nomeTerceirizado: new FormControl(item.nomeTerceirizado),
                 tipoRescisao: new FormControl(),
                 selected: new FormControl(this.isSelected),
                 tipoRestituicao: new FormControl(this.tipoRestituicao),
                 dataDesligamento: new FormControl(),
                 dataInicio: new FormControl(),
-                dataFim: new FormControl()
+                dataFim: new FormControl(),
+                valorAMovimentar: new FormControl(0)
             });
             control.push(addCtrl);
         });
@@ -147,4 +152,57 @@ export  class MovimentacaoRescisaoComponent implements  OnInit {
         this.diasConcedidos[indice] = diffDay + diasVendidos;
         console.log(this.diasConcedidos);
     }
+    /*public valorMovimentadoValidator(control: AbstractControl) {
+        const mensagem: string[] = [];
+        if (control.value <= 0) {
+            mensagem.push('O valor a ser movimentado deve ser maior que zero !');
+        }
+        if (control.parent) {
+            let dia = 0;
+            let mes = 0;
+            let ano = 0;
+            dia = Number(control.parent.get('fimFerias').value.split('/')[0]);
+            mes = Number(control.parent.get('fimFerias').value.split('/')[1]) - 1;
+            ano = Number(control.parent.get('fimFerias').value.split('/')[2]);
+            const fimUsufruto: Date = new Date(ano, mes, dia);
+            dia = Number(control.parent.get('inicioFerias').value.split('/')[0]);
+            mes = Number(control.parent.get('inicioFerias').value.split('/')[1]) - 1;
+            ano = Number(control.parent.get('inicioFerias').value.split('/')[2]);
+            const inicioUsufruto: Date = new Date(ano, mes, dia);
+            if (fimUsufruto && inicioUsufruto) {
+                if (control.parent.get('fimFerias').valid && control.parent.get('inicioFerias').valid) {
+                    const feriasTemp = new TerceirizadoRescisao(control.parent.get('codTerceirizadoContrato').value,
+                        control.parent.get('nomeTerceirizado').value,
+                        control.parent.get('dataDesligamento').value,
+                        control.parent.get('tipoRescisao').value,
+                        control.parent.get('tipoRestituicao').value)
+                    const index = this.terceirizados.findIndex( x => x.codTerceirizadoContrato === Number(control.parent.get('codTerceirizadoContrato').value) );
+                    this.rescisaoService.getValores(feriasTemp).subscribe(res => {
+                        if (!res.error) {
+                            this.terceirizados.forEach(terceirizado => {
+                                if (terceirizado.codigoTerceirizadoContrato === control.parent.get('codTerceirizadoContrato').value) {
+                                    terceirizado.valorRestituicaoFerias = res;
+                                    control.parent.get('valorMaximoASerMovimentado').setValue(terceirizado.valorRestituicaoFerias.valorFerias + terceirizado.valorRestituicaoFerias.valorTercoConstitucional);
+                                    this.vmsm = true;
+                                }
+                            });
+                        } else {
+                            const error: string = res.error;
+                            mensagem.push(error);
+                        }
+                    });
+                }
+            }
+            if (control.value && this.vmsm && control.parent.get('valorMaximoASerMovimentado').value ) {
+                if (control.value > (control.parent.get('valorMaximoASerMovimentado').value)) {
+                    mensagem.push('O valor disponível para movimentação é : R$' + String(control.parent.get('valorMaximoASerMovimentado').value).replace('.', ',') + ' !');
+                }
+            }
+        }
+        // return (mensagem.length > 0) ? {'mensagem': [mensagem]} : null;
+        return Observable.of((mensagem.length > 0 ) ? mensagem : null).pipe(
+            map(result => (mensagem.length > 0) ? {'mensagem': mensagem} : null)
+        );
+    }
+    */
 }

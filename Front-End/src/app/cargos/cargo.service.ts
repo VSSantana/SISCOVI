@@ -51,6 +51,11 @@ export class CargoService {
       const url = this.config.myApi + '/cargo/cadastrarCargos';
       return this.http.post(url, data, options).map(res => res.json());
   }
+
+    getFuncoesContrato(codigo: number) {
+      const url = this.config.myApi;
+        return this.http.get(url).map(res => res.json());
+    }
 }
 export class ListaCargos {
     currentUser: string;

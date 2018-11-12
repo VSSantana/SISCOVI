@@ -1,8 +1,8 @@
 export class Usuario {
   codigo: number;
-  perfil: string;
   nome: string;
-  login: string;
+  perfil: string;
   loginAtualizacao: string;
   ultimaAtualizacao: Date;
+  login: string;
 }

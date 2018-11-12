@@ -5,6 +5,7 @@ import {CargoService} from '../cargo.service';
 import {Contrato} from '../../contratos/contrato';
 import {ContratosService} from '../../contratos/contratos.service';
 import {ListaCargosFuncionarios} from './lista.cargos.funcionarios';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-cargos-funcionarios',
@@ -16,7 +17,7 @@ export class CargosDosFuncionariosComponent {
   cargServ: CargoService;
   listaCargosFuncionarios: ListaCargosFuncionarios[] = [];
   valid = false;
-  constructor(config: ConfigService, funcServ: FuncionariosService, cargServ: CargoService, contServ: ContratosService) {
+  constructor(config: ConfigService, funcServ: FuncionariosService, cargServ: CargoService, contServ: ContratosService, private router: Router, private route: ActivatedRoute) {
     this.cargServ = cargServ;
     contServ.getContratosDoUsuario().subscribe(res => {
       this.contratos = res;
@@ -27,5 +28,8 @@ export class CargosDosFuncionariosComponent {
     this.cargServ.getCargosFuncionarios(value).subscribe(res => {
       this.listaCargosFuncionarios = res;
     });
+  }
+  goToGerenciarCargos() {
+      this.router.navigate(['./gerenciar-cargos-terceirizados'], {relativeTo: this.route});
   }
 }

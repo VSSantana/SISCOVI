@@ -1,0 +1,32 @@
+<h2 class="center">Gerenciar Cargos</h2>
+<div class="container">
+    <div class="row">
+        <div class="input-field col l7">
+            <select id="selecao_contrato"materialize="material_select" [materializeSelectOptions]="contratos" (change)="defineCodigoContrato($event.target.value)">
+                <option disabled>Selecione um Contrato</option>
+                <option *ngFor="let contrato of contratos" [value]="contrato.codigo">{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}</option>
+            </select>
+            <label for="selecao_contrato">Contrato<span class="red-text"> *</span></label>
+        </div>
+        <div class="input-field col s4">
+            <select materialize="material_select" (change)="selecionaModo($event.target.value)">
+                <option disabled>Selecione uma opção</option>
+                <option value="ALOCAÇÃO">Alocar novo terceirizado</option>
+                <option value="ALTERAÇÃO">Alteração de função</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="terceirizados">
+        <div class="divider"></div>
+        <br>
+        <form>
+            <div class="input-field col s6">
+                <select id="terceirizado_nao_alocado" materialize="material_select">
+                    <option disabled>Selecione um Terceirizado</option>
+                    <option *ngFor="let terceirizado of terceirizados" [value]="terceirizado.codigo">{{terceirizado.nome}} - CPF: {{terceirizado.cpf}}</option>
+                </select>
+                <label for="terceirizado_nao_alocado">Terceirizados Não Alocados</label>
+            </div>
+        </form>
+    </div>
+</div>
