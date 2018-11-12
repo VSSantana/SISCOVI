@@ -5,7 +5,7 @@
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost\sousa:1433;database=SISCOVI;integratedSecurity=true</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://localhost\vssousa:1433;database=SISCOVI;integratedSecurity=true</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
