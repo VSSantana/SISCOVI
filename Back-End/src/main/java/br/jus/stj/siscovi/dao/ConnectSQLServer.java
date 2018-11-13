@@ -10,7 +10,7 @@ public class ConnectSQLServer {
     private DataSource dataSource;
     public ConnectSQLServer() {
         SQLServerConnectionPoolDataSource ds = new SQLServerConnectionPoolDataSource();
-        ds.setURL("jdbc:sqlserver://localhost\\sousa:1433;database=SISCOVI;integratedSecurity=true");
+        ds.setURL("jdbc:sqlserver://localhost\\vsousa:1433;database=SISCOVI;integratedSecurity=true");
         dataSource = ds;
 
     }

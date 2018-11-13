@@ -10,19 +10,19 @@ import java.sql.SQLException;
 
 
 public class LoginDAO{
-       private Connection connection;
-       int i=0;
-        public LoginDAO(Connection connection){
+    private Connection connection;
+    int i=0;
+    public LoginDAO(Connection connection){
 
-            this.connection = connection;
-        }
+        this.connection = connection;
+    }
 
-        public boolean checkLoginCredentials (String username, String password) throws NullPointerException, SQLException,SQLServerException {
+    public boolean checkLoginCredentials (String username, String password) throws NullPointerException, SQLException,SQLServerException {
         ResultSet rs = null;
         PreparedStatement prpstm= null;
 
         try {
-            prpstm = connection.prepareStatement("SELECT LOGIN FROM TB_USUARIO WHERE LOGIN=?");
+            prpstm = connection.prepareStatement("SELECT LOGIN FROM TB_USUARIO WHERE LOGIN = ?");
             prpstm.setString(1, username);
 
             rs = prpstm.executeQuery();

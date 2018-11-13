@@ -65,7 +65,7 @@ public class UsuarioController {
         ConnectSQLServer connectSQLServer = new ConnectSQLServer();
         UsuarioDAO usuarioDAO = new UsuarioDAO(connectSQLServer.dbConnect());
         String json;
-        if(usuarioDAO.AlteraUsuario(cadastroUsuarioModel.getUsuario(), cadastroUsuarioModel.getCurrentUser())) {
+        if(usuarioDAO.alteraUsuario(cadastroUsuarioModel.getUsuario(), cadastroUsuarioModel.getCurrentUser())) {
             json = gson.toJson("Alteração feita com sucesso !");
         }else {
             json = gson.toJson("Houve falha na tentativa de Salvar as Alterações");

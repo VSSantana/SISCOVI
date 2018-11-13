@@ -2,11 +2,275 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="SISCOVI" />
+      <artifact name="Back-End:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="" />
+    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Back_End_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoDecimoTerceiro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoFerias.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/DecimoTerceiroPendenteModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo/saldo.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo/total/saldo-total.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo/total/saldo-total.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo/total/saldo-total.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Back-End.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Back-End.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Back_End_Web_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SISCOVI.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_persistence_api_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_2_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_25_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_osgi_org_osgi_core_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Convencao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Ferias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Percentual.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Periodos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Remuneracao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/RestituicaoFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/RestituicaoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Retencao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Retroatividade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/TesteCalculoTotalMesal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/TesteRestituicaoDecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/TesteRestituicaoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/calculos/TotalMensalAReter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/CargoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/ContratoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/ConvencoesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/Course.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/CourseRestService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/FeriasController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/FeriasController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/FuncionariosController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/HistoricoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/MyResource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/PercentualController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/RescisaoController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/RescisaoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/RubricaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/controllers/VigenciaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/AuxiliateCalcDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/CargoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/ConnectSQLServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/ContratoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/ConvencoesDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/FeriasDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/FuncionariosDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/HistoricoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/LoginDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/PercentualDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/PerfilDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/RescisaoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/RubricasDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/SaldoTotalContaVincualadaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/TotalMensalDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/UsuarioDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/VigenciaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/sql/DeleteTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/sql/InsertTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/dao/sql/UpdateTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/helpers/CORSFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/helpers/ConsultaTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/helpers/ErrorMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/helpers/Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/APIKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/AreaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CadastroCargoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CadastroRubricaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CadastroUsuarioModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CalcularFeriasModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CalculoPendenteModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CargoFuncionariosResponseModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CargoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CargoResponseModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CargosFuncionariosModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CodFuncaoContratoECodFuncaoTerceirizadoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/CodTerceirizadoECodFuncaoTerceirizadoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ContratoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ConvencaoColetivaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/DataModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/DatasDeCalculoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/FuncionarioModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/FuncionariosResponseModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/HistoricoGestorModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ListaConvencoesModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ListaTotalMensalData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/LoginModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/PercentuaisEstaticosModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/PercentualModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/PercentualModelResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/PerfilModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroConvencaoColetiva.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroEventoContratual.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroFuncao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroFuncaoContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroFuncaoTerceirizado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroHistRestituicaoDecTer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroHistRestituicaoFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroHistRestituicaoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroHistoricoGestaoContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroPercentualContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroPercentualEstatico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroPerfilGestao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroPerfilUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRemuneracaoFunCon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRestituicaoDecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRestituicaoFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRestituicaoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRetroPercentualEstatico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRetroatividadePercentual.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRetroatividadeRemuneracao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRetroatividadeTotalMensal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroRubricaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroSaldoResidualDecTer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroSaldoResidualFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroSaldoResidualRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTerceirizado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTerceirizadoContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTipoEventoContratual.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTipoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTipoRestituicao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTotalMensalAReter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroTrienioTercContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RegistroUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ResponseLoginModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/RubricaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/SaldoTotalContaVinculada.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/TerceirizadoFerias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/TerceirizadoRescisao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/TotalMensal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/UsuarioModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ValorRestituicaoDecimoTerceiroModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/VigenciaModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/model/VigenciaResponseModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestAuxiliateCalc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestConsultaTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestDecimoTerceiro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestInsertTSQL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestRublicaDML.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TestTotalMensalAReter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/test/TesteSadoTotalContaVinculadaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/classes/br/jus/stj/siscovi/testing/DecimoTerceiroTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/aopalliance-repackaged-2.5.0-b32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/gson-2.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/hk2-api-2.5.0-b32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/hk2-locator-2.5.0-b32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/hk2-utils-2.5.0-b32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jackson-annotations-2.7.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jackson-core-2.7.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jackson-databind-2.7.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javassist-3.20.0-GA.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javax.annotation-api-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javax.inject-2.5.0-b32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javax.servlet-api-3.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javax.ws.rs-api-2.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/javax.ws.rs-api-2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jaxb-api-2.2.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jbcrypt-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-common.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-container-servlet-core.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-container-servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-guava-2.25.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-media-jaxb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jersey-server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/jjwt-0.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/mssql-jdbc-6.2.2.jre8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/org.osgi.core-4.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/osgi-resource-locator-1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/persistence-api-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/lib/validation-api-1.1.0.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CargoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CargoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/ContratoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/CargoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/CargoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/LoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/LoginDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/PerfilDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/PerfilDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/VigenciaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/VigenciaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/APIKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/APIKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AreaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AreaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroCargoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroCargoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CargosFuncionariosModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CargosFuncionariosModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/CargoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/CargoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/MyResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/MyResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/CargoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/CargoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/ConnectSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/ConnectSQLServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/ContratoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/ContratoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/LoginDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/LoginDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/PerfilDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/PerfilDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/UsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/dao/UsuarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/helpers/CORSFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/helpers/CORSFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/helpers/ErrorMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/helpers/ErrorMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/model/CargosFuncionariosModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/model/CargosFuncionariosModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" afterDir="false" />
+    </list>
     <ignored path="./target  /" />
     <ignored path="./idea/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,49 +322,49 @@
     <session id="909848314">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="4" />
+          <entry key="project.open.time.6" value="4" />
+          <entry key="project.open.time.7" value="5" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
+          <entry key="class" value="2" />
           <entry key="css" value="1" />
-          <entry key="java" value="164" />
-          <entry key="sql" value="4" />
+          <entry key="java" value="203" />
+          <entry key="sql" value="5" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
+          <entry key="CLASS" value="2" />
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="164" />
-          <entry key="Scratch" value="4" />
+          <entry key="JAVA" value="203" />
+          <entry key="Scratch" value="5" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="41" />
-          <entry key="java" value="22718" />
-          <entry key="sql" value="595" />
+          <entry key="java" value="22831" />
+          <entry key="sql" value="844" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="22707" />
+          <entry key="JAVA" value="22820" />
           <entry key="PLAIN_TEXT" value="43" />
           <entry key="SQL" value="11" />
-          <entry key="Scratch" value="595" />
+          <entry key="Scratch" value="844" />
         </counts>
       </usages-collector>
     </session>
@@ -150,7 +414,26 @@
     <favorites_list name="Back-End" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_1.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="457">
+              <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3706">
+              <caret line="83" column="50" lean-forward="true" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -176,31 +459,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroHistRestituicaoDecTer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroHistRestituicaoFerias.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroHistRestituicaoRescisao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroPercentualContrato.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroPercentualEstatico.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroPerfilGestao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroUsuario.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRemuneracaoFunCon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRetroPercentualEstatico.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRetroatividadePercentual.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRetroatividadeRemuneracao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRetroatividadeTotalMensal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroSaldoResidualDecTer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroSaldoResidualFerias.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroSaldoResidualRescisao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTerceirizado.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTerceirizadoContrato.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTipoEventoContratual.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTipoRescisao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTipoRestituicao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroPerfilUsuario.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTotalMensalAReter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTrienioTercContrato.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/testing/DecimoTerceiroTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroEventoContratual.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRestituicaoDecimoTerceiro.java" />
@@ -211,7 +469,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestTotalMensalAReter.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_1.sql" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java" />
@@ -223,10 +480,36 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/InsertTSQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/UsuarioModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_3.sql" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoDecimoTerceiro.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/DecimoTerceiroPendenteModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoFerias.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ErrorMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/APIKey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AreaModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroCargoModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CourseRestService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CargoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/CargoDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CargosFuncionariosModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/ContratoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/VigenciaDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/PerfilDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/LoginDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_1.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
       </list>
     </option>
   </component>
@@ -255,10 +538,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -268,7 +551,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -309,12 +591,22 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="siscovi" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="calculos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -324,19 +616,19 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542064548349" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542134703305" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projeto SISCOVI/tp2_projeto2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     <property name="nodejs_interpreter_path" value="node" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -382,6 +674,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestDecimoTerceiro" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.test.TestDecimoTerceiro" />
+      <module name="Back-End" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.jus.stj.siscovi.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestInsertTSQL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.test.TestInsertTSQL" />
       <module name="Back-End" />
@@ -398,20 +704,6 @@
     </configuration>
     <configuration name="TesteRestituicaoDecimoTerceiro" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.calculos.TesteRestituicaoDecimoTerceiro" />
-      <module name="Back-End" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.jus.stj.siscovi.calculos.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TesteRestituicaoFerias" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.calculos.TesteRestituicaoFerias" />
       <module name="Back-End" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -459,10 +751,11 @@
       </method>
     </configuration>
     <configuration name="SISCOVI" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.50" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER" value="false" />
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/SISCOVI" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="SISCOVI">
+        <artifact name="Back-End:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/SISCOVI" />
           </settings>
@@ -525,9 +818,8 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="SISCOVI" />
+          <artifact name="Back-End:war exploded" />
         </option>
       </method>
     </configuration>
@@ -542,19 +834,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.SISCOVI" />
-      <item itemvalue="Application.TesteRestituicaoFerias" />
       <item itemvalue="Application.TesteRestituicaoDecimoTerceiro" />
       <item itemvalue="Application.TesteRestituicaoRescisao" />
       <item itemvalue="Application.TestConsultaTSQL" />
       <item itemvalue="Application.TestInsertTSQL" />
+      <item itemvalue="Application.TestDecimoTerceiro" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestDecimoTerceiro" />
         <item itemvalue="Application.TestInsertTSQL" />
         <item itemvalue="Application.TesteRestituicaoRescisao" />
         <item itemvalue="Application.TestConsultaTSQL" />
         <item itemvalue="Application.TesteRestituicaoDecimoTerceiro" />
-        <item itemvalue="Application.TesteRestituicaoFerias" />
       </list>
     </recent_temporary>
   </component>
@@ -663,11 +955,14 @@
       <workItem from="1542065277133" duration="1409000" />
       <workItem from="1542099182699" duration="391000" />
       <workItem from="1542103275480" duration="136000" />
+      <workItem from="1542123064014" duration="2604000" />
+      <workItem from="1542125942408" duration="1957000" />
+      <workItem from="1542127931245" duration="6177000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475459000" />
+    <option name="totallyTimeSpent" value="486197000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,9 +974,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.3161876" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.3272921" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -692,7 +987,7 @@
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3275488" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.41311476" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.26611227" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49583334" weight="0.39782608" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -702,7 +997,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32916668" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Application Servers" order="12" weight="0.32786885" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" weight="0.33606556" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" weight="0.33575884" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32916668" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.329718" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -768,100 +1063,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="532" column="116" selection-start-line="532" selection-start-column="116" selection-end-line="532" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroConvencaoColetiva.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRestituicaoFerias.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRestituicaoDecimoTerceiro.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/testing/DecimoTerceiroTest.java" />
-    <entry file="jar://$PROJECT_DIR$/lib/mssql-jdbc-6.2.2.jre8.jar!/com/microsoft/sqlserver/jdbc/SQLServerException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroFuncaoTerceirizado.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestRublicaDML.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_1.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="35" column="42" lean-forward="true" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestTotalMensalAReter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-254">
-          <caret line="852" column="13" lean-forward="true" selection-start-line="852" selection-start-column="13" selection-end-line="852" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestInsertTSQL.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="70" column="10" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroUsuarioModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroRubricaModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/FuncionariosController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/sql/Connection.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -895,25 +1096,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97">
-          <caret line="49" column="69" selection-start-line="49" selection-start-column="69" selection-end-line="49" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroUsuario.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
           <caret line="236" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="102" column="70" selection-start-line="102" selection-start-column="70" selection-end-line="102" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -961,74 +1148,9 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_2.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_3.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-981" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CourseRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/ContratoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/LoginModel.java">
@@ -1038,13 +1160,286 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ErrorMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/UsuarioDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#235#236#0" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
+            <element signature="e#477#491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/DecimoTerceiroController.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/UsuarioController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="77" column="69" selection-start-line="77" selection-start-column="69" selection-end-line="77" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/APIKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="66" column="1" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AreaModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-471">
+          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2103">
+          <caret line="143" column="1" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CourseRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/DecimoTerceiroPendenteModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroCargoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#227#228#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/CargoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="149" column="17" lean-forward="true" selection-start-line="149" selection-start-column="17" selection-end-line="149" selection-end-column="17" />
+          <folding>
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CargosFuncionariosModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <folding>
+            <element signature="e#306#307#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/ContratoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/VigenciaDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/PerfilDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="92" column="1" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
+          <folding>
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/LoginDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="133" column="1" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/FuncionariosDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="155" column="1" selection-start-line="155" selection-start-column="1" selection-end-line="155" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CargoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1853">
+          <caret line="123" column="1" selection-start-line="123" selection-start-column="1" selection-end-line="123" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2006">
+          <caret line="63" column="50" lean-forward="true" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+          <folding>
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3706">
+          <caret line="83" column="50" lean-forward="true" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Back-End:Web exploded</last-edited>
+          <last-edited>Back-End:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1057,7 +1452,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web3 (Back-End)|Web</last-edited>
+          <last-edited>Web (Back-End)|Web</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1080,7 +1475,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>11</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1092,11 +1487,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Web|Back-End</last-edited>
+          <last-edited>Back-End</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

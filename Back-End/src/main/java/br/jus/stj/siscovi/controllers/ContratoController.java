@@ -45,7 +45,7 @@ public class ContratoController {
             json = gson.toJson(nomeGestor);
         }else {
             ErrorMessage errorMessage = new ErrorMessage();
-         json = gson.toJson(errorMessage.error = "Este contrato não existe !");
+            json = gson.toJson(errorMessage.error = "Este contrato não existe !");
         }
         return Response.ok(json, MediaType.APPLICATION_JSON).build();
     }

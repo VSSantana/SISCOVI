@@ -1,0 +1,50 @@
+<br>
+<div class="row">
+  <div class="input-field col l7">
+    <select id="selecao_contrato"materialize="material_select" [materializeSelectOptions]="contratos" (change)="defineCodigoContrato($event.target.value)">
+      <option disabled>Selecione um contrato</option>
+      <option *ngFor="let contrato of contratos" [value]="contrato.codigo" [selected]="codigoContrato == contrato.codigo">{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}</option>
+    </select>
+    <label for="selecao_contrato">Contrato<span class="red-text"> *</span></label>
+  </div>
+</div>
+<div class="row" *ngIf="!calculos && codigoContrato">
+  <div class="col s12 grey lighten-4" style="margin-top: 1em">
+    <br>
+    <h5 class="center-align">Não há cálculos realizados ainda ! <i class="small material-icons">mood_bad</i></h5>
+  </div>
+</div>
+<table  class="highlight centered responsive-table" *ngIf="calculos && codigoContrato">
+  <thead>
+  <tr>
+    <th >Função</th>
+    <th >Férias retido</th>
+    <th >Terço constitucional retido</th>
+    <th >Décimo terceiro retido</th>
+    <th >Incidência retido</th>
+    <th >MULTA do FGTS retido</th>
+    <th >Total retido</th>
+    <th >Férias restituído</th>
+    <th >Terço const. restituído</th>
+    <th >Incid. de férias restituído</th>
+    <th >Incid. de terço restituído</th>
+    <th >Total de férias restituído</th>
+    <th >Décimo terceiro restituído</th>
+    <th >Incid. sobre 13° restituído</th>
+    <th >Total de 13º restituído</th>
+    <th >Saldo</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let calculo of calculos; let k = index">
+    <td >{{calculo.nomeTerceirizado}}</td>
+    <td >{{calculo.nomeCargo}}</td>
+    <td >{{calculo.tipoRestituicao}}</td>
+    <td >{{calculo.parcelas | parcelaPipe}}</td>
+    <td >{{calculo.inicioContagem | date: 'shortDate'}}</td>
+    <td >{{calculo.valoresDecimoTerceiro.valorDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{calculo.valoresDecimoTerceiro.valorIncidenciaDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{calculo.valoresDecimoTerceiro.valorDecimoTerceiro + calculo.valoresDecimoTerceiro.valorIncidenciaDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
+  </tr>
+  </tbody>
+</table>

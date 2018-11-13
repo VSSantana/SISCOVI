@@ -75,7 +75,7 @@ public class Saldo {
                         "           SUM(tmr.terco_constitucional + CASE WHEN rtm.terco_constitucional IS NULL THEN 0 ELSE rtm.terco_constitucional END)  AS \"Abono de férias retido\",\n" +
                         "           SUM(tmr.decimo_terceiro + CASE WHEN rtm.decimo_terceiro IS NULL THEN 0 ELSE rtm.decimo_terceiro END) AS \"Décimo terceiro retido\",\n" +
                         "           SUM(tmr.incidencia_submodulo_4_1 + CASE WHEN rtm.incidencia_submodulo_4_1 IS NULL THEN 0 ELSE rtm.incidencia_submodulo_4_1 END) AS \"Incid. do submód. 4.1 retido\",\n" +
-                        "           SUM(tmr.multa_fgts + DECODE(rtm.multa_fgts, NULL, 0, rtm.multa_fgts)) AS \"Multa do FGTS retido\",\n" +
+                        "           SUM(tmr.multa_fgts + CASE WHEN rtm.multa_fgts IS NULL THEN 0 ELSE rtm.multa_fgts END) AS \"Multa do FGTS retido\"," +
                         "           SUM(tmr.total + CASE WHEN rtm.total IS NULL THEN 0 ELSE rtm.total END) AS \"Total retido\"\n" +
                         "      FROM tb_total_mensal_a_reter tmr\n" +
                         "        JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato\n" +
@@ -100,7 +100,11 @@ public class Saldo {
 
             } catch (SQLException sqle) {
 
-                throw new NullPointerException("Não foi possível recuperar o valor retido.");
+                sqle.printStackTrace();
+
+                throw new NullPointerException("Não foi possível recuperar o valor retido. Parâmetros: \n" +
+                        "pCodFuncionario = " + pCodTerceirizadoContrato + "\n" +
+                        "pCodRubrica = " + pCodRubrica);
 
             }
 
