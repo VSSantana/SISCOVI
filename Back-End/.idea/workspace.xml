@@ -6,162 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_7_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Back-End.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Back-End.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/aopalliance_repackaged_2_5_0_b32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/aopalliance_repackaged_2_5_0_b32.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SISCOVI/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Convencao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Ferias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Percentual.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Periodos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Remuneracao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/RestituicaoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/RestituicaoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Retencao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Retroatividade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/TesteCalculoTotalMesal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/TesteRestituicaoDecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/TesteRestituicaoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/calculos/TotalMensalAReter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/CargoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/ContratoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/ConvencoesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/Course.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/CourseRestService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/DecimoTerceiroController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/DecimoTerceiroController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/DecimoTerceiroController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/FeriasController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/FeriasController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/FuncionariosController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/HistoricoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/MyResource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/PercentualController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/RescisaoController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/RescisaoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/RubricaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/UsuarioController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/controllers/VigenciaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/AuxiliateCalcDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/CargoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/ConnectSQLServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/ContratoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/ConvencoesDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/FeriasDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/FuncionariosDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/HistoricoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/LoginDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/PercentualDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/PerfilDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/RescisaoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/RubricasDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/SaldoTotalContaVincualadaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/TotalMensalDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/UsuarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/VigenciaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/sql/DeleteTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/sql/InsertTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/dao/sql/UpdateTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/helpers/CORSFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/helpers/ErrorMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/helpers/Token.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/APIKey.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/AreaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CadastroCargoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CadastroRubricaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CadastroUsuarioModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CalcularFeriasModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CalculoPendenteModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CargoFuncionariosResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CargoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CargoResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CargosFuncionariosModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CodFuncaoContratoECodFuncaoTerceirizadoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/CodTerceirizadoECodFuncaoTerceirizadoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ContratoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ConvencaoColetivaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/DataModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/DatasDeCalculoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/FuncionarioModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/FuncionariosResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/HistoricoGestorModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ListaConvencoesModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ListaTotalMensalData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/LoginModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/PercentuaisEstaticosModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/PercentualModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/PercentualModelResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/PerfilModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroConvencaoColetiva.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroEventoContratual.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroFuncao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroFuncaoContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroFuncaoTerceirizado.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroHistRestituicaoDecTer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroHistRestituicaoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroHistRestituicaoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroHistoricoGestaoContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroPercentualContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroPercentualEstatico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroPerfilGestao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroPerfilUsuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRemuneracaoFunCon.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRestituicaoDecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRestituicaoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRestituicaoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRetroPercentualEstatico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRetroatividadePercentual.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRetroatividadeRemuneracao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRetroatividadeTotalMensal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroRubricaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroSaldoResidualDecTer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroSaldoResidualFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroSaldoResidualRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTerceirizado.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTerceirizadoContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTipoEventoContratual.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTipoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTipoRestituicao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTotalMensalAReter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroTrienioTercContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RegistroUsuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ResponseLoginModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/RubricaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/SaldoTotalContaVinculada.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/Status.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/TerceirizadoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/TerceirizadoRescisao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/TotalMensal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/UsuarioModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ValorRestituicaoDecimoTerceiroModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ValorRestituicaoFeriasModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/VigenciaModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/model/VigenciaResponseModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestAuxiliateCalc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestConsultaTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestDecimoTerceiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestInsertTSQL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestRublicaDML.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TestTotalMensalAReter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/test/TesteSadoTotalContaVinculadaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/production/Back-End/br/jus/stj/siscovi/testing/DecimoTerceiroTest.class" beforeDir="false" />
-    </list>
+    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="" />
     <ignored path="./target  /" />
     <ignored path="./idea/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -262,15 +107,16 @@
     <session id="247265336">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.48" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -304,7 +150,7 @@
     <favorites_list name="Back-End" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -816,11 +662,12 @@
       <workItem from="1542060057232" duration="1036000" />
       <workItem from="1542065277133" duration="1409000" />
       <workItem from="1542099182699" duration="391000" />
+      <workItem from="1542103275480" duration="136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475323000" />
+    <option name="totallyTimeSpent" value="475459000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -834,7 +681,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.31164902" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.3161876" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
