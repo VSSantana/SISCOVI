@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PerfilDAO {
     Connection connection;
@@ -70,24 +69,5 @@ public class PerfilDAO {
             sqle.printStackTrace();
         }
         return 0;
-    }
-
-    public List<PerfilModel> getPerfisGestao() {
-        List<PerfilModel> perfis = new ArrayList<>();
-        String sql = "SELECT COD, NOME, SIGLA, DESCRICAO FROM tb_perfil_gestao";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while(resultSet.next()) {
-                    PerfilModel perfilModel = new PerfilModel();
-                    perfilModel.setCod(resultSet.getInt("COD"));
-                    perfilModel.setSigla(resultSet.getString("SIGLA"));
-                    perfilModel.setDescricao(resultSet.getString("DESCRICAO"));
-                     perfis.add(perfilModel);
-                }
-            }
-        }catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return perfis;
     }
 }

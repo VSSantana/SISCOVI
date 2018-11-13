@@ -3,7 +3,6 @@ package br.jus.stj.siscovi.model;
 import java.sql.Date;
 
 public class TerceirizadoDecimoTerceiro {
-    private int cod;
     private final int codigoTerceirizadoContrato;
     private final String nomeTerceirizado;
     private final Date inicioContagem;
@@ -14,7 +13,6 @@ public class TerceirizadoDecimoTerceiro {
     private Date fimContagem;
     private ValorRestituicaoDecimoTerceiroModel valoresDecimoTerceiro;
     private String id;
-    private String nomeCargo;
 
     public TerceirizadoDecimoTerceiro(int codigoTerceirizadoContrato, String nomeTerceirizado, Date inicioContagem, float valorDisponivel, float valorMovimentado) {
         this.codigoTerceirizadoContrato = codigoTerceirizadoContrato;
@@ -23,15 +21,12 @@ public class TerceirizadoDecimoTerceiro {
         this.valorDisponivel = Math.round(valorDisponivel * 100.0f) / 100.0f;
         this.valorMovimentado = valorMovimentado;
     }
-
     public void setTipoRestituicao(String tipoRestituicao) {
         this.tipoRestituicao = tipoRestituicao;
     }
-
     public int getParcelas() {
         return parcelas;
     }
-
     public void setFimContagem(Date fimContagem) {
         this.fimContagem = fimContagem;
     }
@@ -70,35 +65,5 @@ public class TerceirizadoDecimoTerceiro {
 
     public String getId() {
         return id;
-    }
-
-    public void setParcelas(int parcelas) {
-        this.parcelas = parcelas;
-    }
-
-    public void setNomeCargo(String nomeCargo) {
-        this.nomeCargo = nomeCargo;
-    }
-
-    public int getCod() {
-        return cod;
-    }
-
-    @Override
-    public String toString() {
-        return "TerceirizadoDecimoTerceiro{" +
-                "cod=" + cod +
-                ", codigoTerceirizadoContrato=" + codigoTerceirizadoContrato +
-                ", nomeTerceirizado='" + nomeTerceirizado + '\'' +
-                ", inicioContagem=" + inicioContagem +
-                ", valorDisponivel=" + valorDisponivel +
-                ", tipoRestituicao='" + tipoRestituicao + '\'' +
-                ", valorMovimentado=" + valorMovimentado +
-                ", parcelas=" + parcelas +
-                ", fimContagem=" + fimContagem +
-                ", valoresDecimoTerceiro=" + valoresDecimoTerceiro +
-                ", id='" + id + '\'' +
-                ", nomeCargo='" + nomeCargo + '\'' +
-                '}';
     }
 }

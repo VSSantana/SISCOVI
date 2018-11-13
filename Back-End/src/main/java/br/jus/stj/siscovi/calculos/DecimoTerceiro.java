@@ -31,9 +31,9 @@ public class DecimoTerceiro {
         try {
 
             preparedStatement = connection.prepareStatement("SELECT MAX(DATA_INICIO_CONTAGEM)" +
-                    " FROM tb_restituicao_decimo_terceiro" +
-                    " WHERE COD_TERCEIRIZADO_CONTRATO = ?" +
-                    " AND PARCELA IN (0,2);");
+                                                                 " FROM tb_restituicao_decimo_terceiro" +
+                                                                 " WHERE COD_TERCEIRIZADO_CONTRATO = ?" +
+                                                                   " AND PARCELA IN (0,2);");
 
             preparedStatement.setInt(1, pCodTerceirizadoContrato);
 
@@ -66,8 +66,8 @@ public class DecimoTerceiro {
             try {
 
                 preparedStatement = connection.prepareStatement("SELECT DATA_DISPONIBILIZACAO\n" +
-                        " FROM tb_terceirizado_contrato\n" +
-                        " WHERE cod = ?;");
+                                                                     " FROM tb_terceirizado_contrato\n" +
+                                                                     " WHERE cod = ?;");
 
                 preparedStatement.setInt(1, pCodTerceirizadoContrato);
 

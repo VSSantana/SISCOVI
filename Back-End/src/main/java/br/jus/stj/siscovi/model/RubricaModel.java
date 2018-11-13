@@ -11,6 +11,7 @@ public class RubricaModel {
         this.sigla = sigla;
         this.codigo = codigo;
     }
+
     public int getCodigo(){
         return codigo;
     }
@@ -42,4 +43,5 @@ public class RubricaModel {
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
+
 }
