@@ -26,8 +26,9 @@ import {DecimoTerceiroComponent} from './decimo_terceiro/decimo-terceiro.compone
 import {RescisaoComponent} from './rescisao/rescisao.component';
 import {RecalculoTotalMensalComponent} from './totalMensal/recalculo-total-mensal/recalculo-total-mensal.component';
 import {CadastrarTerceirizadoComponent} from './funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component';
-import {CadastrarGestorContratoComponent} from "./historico/cadastrar-gestor/cadastrar-gestor-contrato.component";
-import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component";
+import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cadastrar-gestor-contrato.component';
+import {GerenciarCargosTerceirizadosComponent} from './cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component';
+import {SaldoTotalComponent} from './saldo/total/saldo-total.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -65,6 +66,7 @@ const routes: Routes = [
       {path: 'historico-gestores/:id', component: CadastrarGestorContratoComponent, canActivate: [LoggedInGuard]},
       {path: 'historico-gestores/cadastro-gestor-contrato', component: CadastrarGestorContratoComponent, canActivate: [LoggedInGuard]},
       {path: 'funcoes-dos-terceirizados/gerenciar-cargos-terceirizados', component: GerenciarCargosTerceirizadosComponent, canActivate: [LoggedInGuard]},
+      {path: 'saldo/total', component: SaldoTotalComponent, canActivate: [LoggedInGuard]},
     ]}
 ];
 @NgModule({

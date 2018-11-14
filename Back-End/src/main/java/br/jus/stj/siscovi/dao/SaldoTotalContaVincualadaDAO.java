@@ -19,10 +19,10 @@ public class SaldoTotalContaVincualadaDAO {
 
     }
 
-    public ArrayList<SaldoTotalContaVinculada> getSaldoContaVinculadaContrato (int pCodContrato, int pCodGestorContrato) {
+    public ArrayList<SaldoTotalContaVinculada> getSaldoContaVinculadaContrato (int pCodContrato, int pCodUsuario) {
 
         ArrayList<SaldoTotalContaVinculada> lista = new ArrayList<>();
-
+        int vCodGestor = new ContratoDAO(connection).codigoGestorContrato(pCodUsuario, pCodContrato);
         int vCodFuncaoContrato = 0;
 
         String sql = "SELECT  u.nome," +
@@ -42,7 +42,7 @@ public class SaldoTotalContaVincualadaDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, pCodContrato);
-            preparedStatement.setInt(2, pCodGestorContrato);
+            preparedStatement.setInt(2, vCodGestor);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -57,24 +57,25 @@ public class SaldoTotalContaVincualadaDAO {
                     SaldoTotalContaVinculada saldoTotalContaVinculada =
 
                             new SaldoTotalContaVinculada(resultSet.getString(4),
-                                                         resultSet.getString(1),
-                                                         resultSet.getString(2),
-                                                         resultSet.getString(3),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,1),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,2),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,3),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,7),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,100),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,1),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,2),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,3),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100) + saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,101),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,102),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,103),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100),
-                                                         saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,100) - (saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100) + saldoContaVinculada.SaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100)));
+                                                         //resultSet.getString(1),
+                                                         //resultSet.getString(2),
+                                                         //resultSet.getString(3),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,1),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,2),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,3),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,7),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,5),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,100),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,1),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,2),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,3),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100) + saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,101),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,102),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,103),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100),
+                                                         saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,100) - (saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100) + saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100)));
 
                     lista.add(saldoTotalContaVinculada);
 

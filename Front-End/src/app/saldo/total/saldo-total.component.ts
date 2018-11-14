@@ -1,31 +1,32 @@
 import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {Contrato} from '../../contratos/contrato';
 import {ConfigService} from '../../_shared/config.service';
-//import {SaldoService} from './saldo.service';
 import {ContratosService} from '../../contratos/contratos.service';
-//import {TerceirizadoDecimoTerceiro} from '../terceirizado-decimo-terceiro';
-/*
+import {SaldoTotal} from './saldo-total';
+import {SaldoService} from '../saldo.service';
+
 @Component({
-  selector: 'app-relatorio-retencoes-decimo-terceiro-component',
-  templateUrl: './retencoes-decimo-terceiro.component.html',
-  styleUrls: ['../decimo-terceiro.component.scss']
+  selector: 'app-saldo-component',
+  templateUrl: './saldo-total.component.html',
+  styleUrls: ['../saldo.component.scss']
 })
-export class RetencoesDecimoTerceiroComponent {
+
+export class SaldoTotalComponent {
   @Input() codigoContrato: number;
   contratos: Contrato[];
   isSelected = false;
-  calculos: TerceirizadoDecimoTerceiro[];
+  saldos: SaldoTotal[];
   config: ConfigService;
 
-  constructor(config: ConfigService, private decimoTerceiroService: DecimoTerceiroService, private contratoService: ContratosService, private ref: ChangeDetectorRef) {
+  constructor(config: ConfigService, private saldoService: SaldoService, private contratoService: ContratosService, private ref: ChangeDetectorRef) {
     this.config = config;
     this.contratoService.getContratosDoUsuario().subscribe(res => {
       this.contratos = res;
       if (this.codigoContrato) {
-        this.decimoTerceiroService.getRestituicoesDecimoTerceiro(this.codigoContrato).subscribe(res2 => {
-          this.calculos = res2;
-          if (this.calculos.length === 0) {
-            this.calculos = null;
+        this.saldoService.getSaldoTotal(this.codigoContrato).subscribe(res2 => {
+          this.saldos = res2;
+          if (this.saldos.length === 0) {
+            this.saldos = null;
             this.ref.markForCheck();
           } else {
           }
@@ -37,10 +38,10 @@ export class RetencoesDecimoTerceiroComponent {
   defineCodigoContrato(codigoContrato: number): void {
     this.codigoContrato = codigoContrato;
     if (this.codigoContrato) {
-      this.decimoTerceiroService.getRestituicoesDecimoTerceiro(this.codigoContrato).subscribe(res2 => {
-        this.calculos = res2;
-        if (this.calculos.length === 0) {
-          this.calculos = null;
+      this.saldoService.getSaldoTotal(this.codigoContrato).subscribe(res2 => {
+        this.saldos = res2;
+        if (this.saldos.length === 0) {
+          this.saldoService = null;
           this.ref.markForCheck();
         } else {
 

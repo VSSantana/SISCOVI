@@ -1,3 +1,5 @@
+<div class="container">
+  <h2 class="center">Saldo Total</h2>
 <br>
 <div class="row">
   <div class="input-field col l7">
@@ -8,13 +10,13 @@
     <label for="selecao_contrato">Contrato<span class="red-text"> *</span></label>
   </div>
 </div>
-<div class="row" *ngIf="!calculos && codigoContrato">
+<div class="row" *ngIf="!saldos && codigoContrato">
   <div class="col s12 grey lighten-4" style="margin-top: 1em">
     <br>
     <h5 class="center-align">Não há cálculos realizados ainda ! <i class="small material-icons">mood_bad</i></h5>
   </div>
 </div>
-<table  class="highlight centered responsive-table" *ngIf="calculos && codigoContrato">
+<table  class="highlight centered responsive-table" *ngIf="saldos && codigoContrato">
   <thead>
   <tr>
     <th >Função</th>
@@ -32,19 +34,30 @@
     <th >Décimo terceiro restituído</th>
     <th >Incid. sobre 13° restituído</th>
     <th >Total de 13º restituído</th>
+    <th >Total restituído</th>
     <th >Saldo</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let calculo of calculos; let k = index">
-    <td >{{calculo.nomeTerceirizado}}</td>
-    <td >{{calculo.nomeCargo}}</td>
-    <td >{{calculo.tipoRestituicao}}</td>
-    <td >{{calculo.parcelas | parcelaPipe}}</td>
-    <td >{{calculo.inicioContagem | date: 'shortDate'}}</td>
-    <td >{{calculo.valoresDecimoTerceiro.valorDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
-    <td >{{calculo.valoresDecimoTerceiro.valorIncidenciaDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
-    <td >{{calculo.valoresDecimoTerceiro.valorDecimoTerceiro + calculo.valoresDecimoTerceiro.valorIncidenciaDecimoTerceiro | currency:'BRL':true:'1.2-2'}}</td>
+  <tr *ngFor="let saldo of saldos; let k = index">
+    <td >{{saldo.funcao}}</td>
+    <td >{{saldo.valorFeriasRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTercoRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorDecimoTerceiroRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorIncidenciaRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorMultaFGTSRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTotalRetido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorFeriasRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTercoRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorIncidenciaFeriasRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorIncidenciaTercoRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTotalFeriasRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorDecimoTerceiroRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorIncidenciaDecimoTerceiroRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTotalDecimoTerceiroRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorTotalRestituido | currency:'BRL':true:'1.2-2'}}</td>
+    <td >{{saldo.valorSaldo | currency:'BRL':true:'1.2-2'}}</td>
   </tr>
   </tbody>
 </table>
+</div>

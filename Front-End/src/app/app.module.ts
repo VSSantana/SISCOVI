@@ -93,7 +93,9 @@ import {RetencoesDecimoTerceiroComponent} from './decimo_terceiro/relatorio-rete
 import {RescisaoPendenteComponent} from './rescisao/rescisoes-pendentes/rescisao-pendente.component';
 import {CadastrarTerceirizadoComponent} from './funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component';
 import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cadastrar-gestor-contrato.component';
-import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component";
+import {GerenciarCargosTerceirizadosComponent} from './cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component';
+import {SaldoTotalComponent} from './saldo/total/saldo-total.component';
+import {SaldoService} from './saldo/saldo.service';
 
 @NgModule({
   declarations: [
@@ -166,7 +168,8 @@ import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-t
     RescisaoPendenteComponent,
     CadastrarTerceirizadoComponent,
     CadastrarGestorContratoComponent,
-    GerenciarCargosTerceirizadosComponent
+    GerenciarCargosTerceirizadosComponent,
+    SaldoTotalComponent
   ],
   imports: [
     BrowserModule,
@@ -196,6 +199,7 @@ import {GerenciarCargosTerceirizadosComponent} from "./cargos/gerenciar-cargos-t
     FeriasService,
     DecimoTerceiroService,
     RescisaoService,
+    SaldoService,
     {provide: LOCALE_ID, useValue: 'pt'},
   ],
   bootstrap: [AppComponent]

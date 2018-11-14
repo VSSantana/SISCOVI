@@ -3,7 +3,6 @@ package br.jus.stj.siscovi.dao;
 import br.jus.stj.siscovi.calculos.DecimoTerceiro;
 import br.jus.stj.siscovi.calculos.Saldo;
 import br.jus.stj.siscovi.model.*;
-import com.sun.istack.internal.Nullable;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class DecimoTerceiroDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Date inicioContagem = decimoTerceiro.RetornaDataInicioContagem(resultSet.getInt("COD"));
-                    vSaldoDecimoTericeiro = saldoDecimoTerceiro.SaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 1, 3);
+                    vSaldoDecimoTericeiro = saldoDecimoTerceiro.getSaldoContaVinculada(resultSet.getInt("COD"), inicioContagem.toLocalDate().getYear(), 1, 3);
                     TerceirizadoDecimoTerceiro terceirizadoDecimoTerceiro = new TerceirizadoDecimoTerceiro(resultSet.getInt("COD"),
                             resultSet.getString("NOME"),
                             inicioContagem,

@@ -149,7 +149,10 @@ public class ContratoDAO {
                 }
             }
         } catch (SQLException e) {
+
+            e.printStackTrace();
             throw new NullPointerException("Erro ao tentar recuperar cálculos anteriores. Erro na função: 'codigoGestorContrato em ContratoDao.class'");
+
         }
         return codigoGestor;
     }

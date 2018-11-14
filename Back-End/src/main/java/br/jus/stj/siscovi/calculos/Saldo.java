@@ -25,7 +25,7 @@ public class Saldo {
      * @return float
      */
 
-    public float SaldoContaVinculada (int pCodTerceirizadoContrato, int pAno, int pOperacao, int pCodRubrica) {
+    public float getSaldoContaVinculada(int pCodTerceirizadoContrato, int pAno, int pOperacao, int pCodRubrica) {
 
         //Checked.
 
@@ -302,7 +302,7 @@ public class Saldo {
 
     }
 
-    public float SaldoTotalContaVinculada (int pCodContrato, int pCodFuncaoContrato, int pOperacao, int pCodRubrica) {
+    public float getSaldoTotalContaVinculada(int pCodContrato, int pCodFuncaoContrato, int pOperacao, int pCodRubrica) {
 
         //Checked.
 
@@ -349,18 +349,18 @@ public class Saldo {
             try {
 
                 preparedStatement = connection.prepareStatement("SELECT SUM(tmr.ferias + CASE WHEN rtm.ferias IS NULL THEN 0 ELSE rtm.ferias END)," +
-                        " SUM(tmr.terco_constitucional + CASE WHEN rtm.terco_constitucional IS NULL THEN 0 ELSE rtm.terco_constitucional END)," +
-                        " SUM(tmr.decimo_terceiro + CASE WHEN rtm.decimo_terceiro IS NULL THEN 0 ELSE rtm.decimo_terceiro END)," +
-                        " SUM(tmr.incidencia_submodulo_4_1 + CASE WHEN rtm.incidencia_submodulo_4_1 IS NULL THEN 0 ELSE rtm.incidencia_submodulo_4_1 END)," +
-                        " SUM(tmr.multa_fgts + CASE WHEN rtm.multa_fgts IS NULL THEN 0 ELSE rtm.multa_fgts END)," +
-                        " SUM(tmr.total + CASE WHEN rtm.total IS NULL THEN 0 ELSE rtm.total END)" +
-                        " FROM tb_total_mensal_a_reter tmr\n" +
-                         " JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato\n" +
-                        " LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod\n" +
-                        " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
-                        " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
-                        " WHERE fc.cod_contrato = ?\n" +
-                          " AND fc.cod = ?");
+                                                                          " SUM(tmr.terco_constitucional + CASE WHEN rtm.terco_constitucional IS NULL THEN 0 ELSE rtm.terco_constitucional END)," +
+                                                                          " SUM(tmr.decimo_terceiro + CASE WHEN rtm.decimo_terceiro IS NULL THEN 0 ELSE rtm.decimo_terceiro END)," +
+                                                                          " SUM(tmr.incidencia_submodulo_4_1 + CASE WHEN rtm.incidencia_submodulo_4_1 IS NULL THEN 0 ELSE rtm.incidencia_submodulo_4_1 END)," +
+                                                                          " SUM(tmr.multa_fgts + CASE WHEN rtm.multa_fgts IS NULL THEN 0 ELSE rtm.multa_fgts END)," +
+                                                                          " SUM(tmr.total + CASE WHEN rtm.total IS NULL THEN 0 ELSE rtm.total END)" +
+                                                                     " FROM tb_total_mensal_a_reter tmr\n" +
+                                                                       " JOIN tb_terceirizado_contrato tc ON tc.cod = tmr.cod_terceirizado_contrato\n" +
+                                                                       " LEFT JOIN tb_retroatividade_total_mensal rtm ON rtm.cod_total_mensal_a_reter = tmr.cod\n" +
+                                                                       " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
+                                                                       " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
+                                                                     " WHERE fc.cod_contrato = ?\n" +
+                                                                       " AND fc.cod = ?");
 
                 preparedStatement.setInt(1, pCodContrato);
                 preparedStatement.setInt(2, pCodFuncaoContrato);
@@ -394,16 +394,16 @@ public class Saldo {
             try {
 
                 preparedStatement = connection.prepareStatement("SELECT SUM(rf.valor_ferias),\n" +
-                        "           SUM(rf.valor_terco_constitucional),\n" +
-                        "           SUM(rf.incid_submod_4_1_ferias),\n" +
-                        "           SUM(rf.incid_submod_4_1_terco),\n" +
-                        "           SUM(rf.valor_ferias + rf.valor_terco_constitucional + rf.incid_submod_4_1_ferias + rf.incid_submod_4_1_terco)" +
-                        " FROM tb_restituicao_ferias rf\n" +
-                         " JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato\n" +
-                         " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
-                         " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
-                        " WHERE fc.cod_contrato = ?\n" +
-                        " AND fc.cod = ?;");
+                                                                          " SUM(rf.valor_terco_constitucional),\n" +
+                                                                          " SUM(rf.incid_submod_4_1_ferias),\n" +
+                                                                          " SUM(rf.incid_submod_4_1_terco),\n" +
+                                                                          " SUM(rf.valor_ferias + rf.valor_terco_constitucional + rf.incid_submod_4_1_ferias + rf.incid_submod_4_1_terco)" +
+                                                                     " FROM tb_restituicao_ferias rf\n" +
+                                                                       " JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato\n" +
+                                                                       " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
+                                                                       " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
+                                                                     " WHERE fc.cod_contrato = ?\n" +
+                                                                       " AND fc.cod = ?;");
 
                 preparedStatement.setInt(1, pCodContrato);
                 preparedStatement.setInt(2, pCodFuncaoContrato);
@@ -436,14 +436,14 @@ public class Saldo {
             try {
 
                 preparedStatement = connection.prepareStatement("SELECT SUM(rdt.valor),\n" +
-                        "           SUM(rdt.incidencia_submodulo_4_1),\n" +
-                        "           SUM(rdt.valor + rdt.incidencia_submodulo_4_1)" +
-                        " FROM tb_restituicao_decimo_terceiro rdt\n" +
-                         " JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato\n" +
-                         " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
-                         " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
-                        " WHERE fc.cod_contrato = ?\n" +
-                          " AND fc.cod = ?;");
+                                                                          " SUM(rdt.incidencia_submodulo_4_1),\n" +
+                                                                          " SUM(rdt.valor + rdt.incidencia_submodulo_4_1)" +
+                                                                     " FROM tb_restituicao_decimo_terceiro rdt\n" +
+                                                                      " JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato\n" +
+                                                                      " JOIN tb_funcao_terceirizado ft ON ft.cod_terceirizado_contrato = tc.cod\n" +
+                                                                      " JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato\n" +
+                                                                     " WHERE fc.cod_contrato = ?\n" +
+                                                                       " AND fc.cod = ?;");
 
                 preparedStatement.setInt(1, pCodContrato);
                 preparedStatement.setInt(2, pCodFuncaoContrato);

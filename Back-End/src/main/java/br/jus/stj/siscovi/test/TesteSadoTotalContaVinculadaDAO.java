@@ -17,7 +17,7 @@ public class TesteSadoTotalContaVinculadaDAO {
         ResultSet resultSet;
 
         SaldoTotalContaVincualadaDAO saldoTotalContaVincualadaDAO = new SaldoTotalContaVincualadaDAO(connectSQLServer.dbConnect());
-        ArrayList<SaldoTotalContaVinculada> saldoLista = saldoTotalContaVincualadaDAO.getSaldoContaVinculadaContrato(41, 142);
+        ArrayList<SaldoTotalContaVinculada> saldoLista = saldoTotalContaVincualadaDAO.getSaldoContaVinculadaContrato(1, 2);
 
         for (int i = 0; i < saldoLista.size(); i++) {
 
