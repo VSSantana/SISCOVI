@@ -1,7 +1,7 @@
 package br.jus.stj.siscovi.dao;
 
 import br.jus.stj.siscovi.calculos.Saldo;
-import br.jus.stj.siscovi.model.SaldoTotalContaVinculada;
+import br.jus.stj.siscovi.model.SaldoTotalContaVinculadaModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,19 +9,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
 
-public class SaldoTotalContaVincualadaDAO {
+public class SaldoTotalContaVinculadaDAO {
 
     private final Connection connection;
 
-    public SaldoTotalContaVincualadaDAO (Connection connection) {
+    public SaldoTotalContaVinculadaDAO(Connection connection) {
 
         this.connection = connection;
 
     }
 
-    public ArrayList<SaldoTotalContaVinculada> getSaldoContaVinculadaContrato (int pCodContrato, int pCodUsuario) {
+    public ArrayList<SaldoTotalContaVinculadaModel> getSaldoContaVinculadaContrato (int pCodContrato, int pCodUsuario) {
 
-        ArrayList<SaldoTotalContaVinculada> lista = new ArrayList<>();
+        ArrayList<SaldoTotalContaVinculadaModel> lista = new ArrayList<>();
         int vCodGestor = new ContratoDAO(connection).codigoGestorContrato(pCodUsuario, pCodContrato);
         int vCodFuncaoContrato = 0;
 
@@ -54,9 +54,9 @@ public class SaldoTotalContaVincualadaDAO {
 
                     Saldo saldoContaVinculada = new Saldo(connection);
 
-                    SaldoTotalContaVinculada saldoTotalContaVinculada =
+                    SaldoTotalContaVinculadaModel saldoTotalContaVinculadaModel =
 
-                            new SaldoTotalContaVinculada(resultSet.getString(4),
+                            new SaldoTotalContaVinculadaModel(resultSet.getString(4),
                                                          //resultSet.getString(1),
                                                          //resultSet.getString(2),
                                                          //resultSet.getString(3),
@@ -77,7 +77,7 @@ public class SaldoTotalContaVincualadaDAO {
                                                          saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100),
                                                          saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 1,100) - (saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 2,100) + saldoContaVinculada.getSaldoTotalContaVinculada(pCodContrato, vCodFuncaoContrato, 3,100)));
 
-                    lista.add(saldoTotalContaVinculada);
+                    lista.add(saldoTotalContaVinculadaModel);
 
                 } while (resultSet.next());
 

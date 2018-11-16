@@ -96,6 +96,7 @@ import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cad
 import {GerenciarCargosTerceirizadosComponent} from './cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component';
 import {SaldoTotalComponent} from './saldo/total/saldo-total.component';
 import {SaldoService} from './saldo/saldo.service';
+import {SaldoIndividualComponent} from './saldo/individual/saldo-individual-component';
 
 @NgModule({
   declarations: [
@@ -169,7 +170,8 @@ import {SaldoService} from './saldo/saldo.service';
     CadastrarTerceirizadoComponent,
     CadastrarGestorContratoComponent,
     GerenciarCargosTerceirizadosComponent,
-    SaldoTotalComponent
+    SaldoTotalComponent,
+    SaldoIndividualComponent
   ],
   imports: [
     BrowserModule,

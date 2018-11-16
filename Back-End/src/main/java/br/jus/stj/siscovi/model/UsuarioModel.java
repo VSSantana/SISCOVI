@@ -41,4 +41,5 @@ public class UsuarioModel {
     public int getCodigo() {
         return codigo;
     }
+
 }

@@ -19,4 +19,8 @@ export class SaldoService {
     const url = this.config.myApi + '/saldo/getSaldoTotal/' + codigoContrato + '/' + this.config.user.id;
     return this.http.get(url).map(res => res.json());
   }
+  getSaldoIndividual(codigoContrato: number) {
+    const url = this.config.myApi + '/saldo/getSaldoIndividual/' + codigoContrato;
+    return this.http.get(url).map(res => res.json());
+  }
 }

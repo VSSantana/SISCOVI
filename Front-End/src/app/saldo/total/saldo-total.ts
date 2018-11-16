@@ -18,5 +18,4 @@ export class SaldoTotal {
   valorTotalDecimoTerceiroRestituido: number;
   valorSaldo: number;
 
-
 }
