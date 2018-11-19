@@ -133,7 +133,6 @@ BEGIN
     FROM tb_tipo_evento_contratual
     WHERE UPPER(tipo) = 'CONTRATO';
 
-
   --Insert em tb_historico_gestao_contrato
 
   INSERT INTO tb_historico_gestao_contrato (cod_contrato, cod_usuario, cod_perfil_gestao, data_inicio, login_atualizacao, datA_atualizacao) VALUES (@vCodContrato1, @vCodGestor1, @vCodPerfilGestao, '05/08/2016', @vLoginAtualizacao, @vDataAtualizacao);

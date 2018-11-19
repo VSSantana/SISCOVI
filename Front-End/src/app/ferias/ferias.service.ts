@@ -4,7 +4,6 @@ import {ConfigService} from '../_shared/config.service';
 import {FeriasCalcular} from './ferias-calcular';
 import {Observable} from 'rxjs/Observable';
 import {FeriasCalculosPendentes} from './ferias-pendentes/ferias-calculos-pendentes';
-import {User} from '../users/user';
 
 
 @Injectable()
