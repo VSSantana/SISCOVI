@@ -1,18 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {ConfigService} from '../_shared/config.service';
-import {FeriasCalcular} from './ferias-calcular';
 import {Observable} from 'rxjs/Observable';
-import {FeriasCalculosPendentes} from './ferias-pendentes/ferias-calculos-pendentes';
-
 
 @Injectable()
-export class FeriasService {
+export class SaldoResidualService {
 
   constructor(private http: Http, private config: ConfigService) {}
-
+/*
   getFuncionariosFerias(codigoContrato: number, tipoRestituicao: string) {
-    const url = this.config.myApi + '/ferias/getTerceirizadosFerias=' + codigoContrato + '/' + tipoRestituicao;
+    const url = this.config.myApi + '/saldo-residual/getTerceirizadosFerias=' + codigoContrato + '/' + tipoRestituicao;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -121,4 +118,5 @@ export class FeriasService {
     errMsg = error.message ? error.message : error.toString();
     return Observable.throw(error);
   }
+  */
 }

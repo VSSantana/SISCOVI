@@ -30,6 +30,7 @@ import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cad
 import {GerenciarCargosTerceirizadosComponent} from './cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component';
 import {SaldoTotalComponent} from './saldo/total/saldo-total.component';
 import {SaldoIndividualComponent} from './saldo/individual/saldo-individual-component';
+import {SaldoResidualComponent} from './saldo-residual/saldo-residual.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -69,6 +70,7 @@ const routes: Routes = [
       {path: 'funcoes-dos-terceirizados/gerenciar-cargos-terceirizados', component: GerenciarCargosTerceirizadosComponent, canActivate: [LoggedInGuard]},
       {path: 'saldo/total', component: SaldoTotalComponent, canActivate: [LoggedInGuard]},
       {path: 'saldo/individual', component: SaldoIndividualComponent, canActivate: [LoggedInGuard]},
+      {path: 'saldo-residual', component: SaldoResidualComponent, canActivate: [LoggedInGuard]},
     ]}
 ];
 @NgModule({

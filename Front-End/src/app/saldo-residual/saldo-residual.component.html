@@ -11,10 +11,10 @@
         <li class="tab col s3 text-grey text-darken-1" ><a [class.active]="execExecucao()"(click)="setExecucaoActive()">Restituições pendentes de execução</a></li>
       </ul>
     </div>
-      <div id="tab1" class="col s12" active="execRestituicoes()"><app-relatorio-saldo-residual-restituicoes-component *ngIf="execRestituicoes()"></app-relatorio-saldo-residual-restituicoes-component></div>
-      <div id="tab2" class="col s12" active="execFerias()"><app-saldo-residual-ferias-component *ngIf="execFerias()" [codigoContrato]="codigoContrato" (nav)="feriasPendente($event)"></app-saldo-residual-ferias-component></div>
+      <div id="tab1" class="col s12" active="execRestituicoes()"><app-saldo-residual-restituicoes-component *ngIf="execRestituicoes()"></app-saldo-residual-restituicoes-component></div>
+      <!--<div id="tab2" class="col s12" active="execFerias()"><app-saldo-residual-ferias-component *ngIf="execFerias()" [codigoContrato]="codigoContrato" (nav)="feriasPendente($event)"></app-saldo-residual-ferias-component></div>
       <div id="tab3" class="col s12" active="execDecimoTericeiro()"><app-saldo-residual-decimo-terceiro-component *ngIf="execDecimoTericeiro()" [codigoContrato]="codigoContrato" (nav)="decimoTerceiroPendente($event)"></app-saldo-residual-decimo-terceiro-component></div>
       <div id="tab4" class="col s12" active="execRescisao()"><app-saldo-residual-rescisao-component *ngIf="execRescisao()" [codigoContrato]="codigoContrato" (nav)="rescisaoPendente($event)"></app-saldo-residual-rescisao-component></div>
       <div id="tab5" class="col s12" active="execExecucao()"><app-saldo-residual-restituicoes-pendentes-component *ngIf="execExecucao()" [codigoContrato]="codigoContrato" (nav)="execucaoPendente($event)"></app-saldo-residual-restituicoes-pendentes-component></div>
-    </div>
+    --></div>
 </div>
