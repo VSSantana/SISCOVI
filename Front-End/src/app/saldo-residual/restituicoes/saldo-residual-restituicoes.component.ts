@@ -3,6 +3,7 @@ import {ContratosService} from '../../contratos/contratos.service';
 import {ConfigService} from '../../_shared/config.service';
 import {Contrato} from '../../contratos/contrato';
 import {SaldoResidualService} from '../saldo-residual.service';
+import {SaldoResidualFerias} from './saldo-residual-restituicoes';
 
 @Component({
   selector: 'app-saldo-residual-restituicoes-component',
@@ -13,33 +14,33 @@ export class SaldoResidualRestituicoesComponent {
   contratos: Contrato[];
   @Input() codigoContrato = 0;
   isSelected = false;
-  // restituicoesSaldoResidual: FeriasCalculosPendentes[];
+  restituicoesSaldoResidualFerias: SaldoResidualFerias[];
   config: ConfigService;
   constructor(private saldoResidualService: SaldoResidualService, private contratoService: ContratosService, config: ConfigService, private ref: ChangeDetectorRef) {
-/*    this.config = config;
+   this.config = config;
     this.contratoService.getContratosDoUsuario().subscribe(res => {
       this.contratos = res;
       if (this.codigoContrato) {
-        this.feriasService.getRetencoesFerias(this.codigoContrato).subscribe(res2 => {
-          this.calculosFerias = res2;
-          if (this.calculosFerias.length === 0) {
-            this.calculosFerias = null;
+        this.saldoResidualService.getRestituicoesFerias(this.codigoContrato).subscribe(res2 => {
+          this.restituicoesSaldoResidualFerias = res2;
+          if (this.restituicoesSaldoResidualFerias.length === 0) {
+            this.restituicoesSaldoResidualFerias = null;
             this.ref.markForCheck();
           }
         });
       }
-    }); */
-  }/*
+    });
+  }
   defineCodigoContrato(codigoContrato: number): void {
     this.codigoContrato = codigoContrato;
     if (this.codigoContrato) {
-      this.feriasService.getRetencoesFerias(this.codigoContrato).subscribe(res2 => {
-        this.calculosFerias = res2;
-        if (this.calculosFerias.length === 0) {
-          this.calculosFerias = null;
+      this.saldoResidualService.getRestituicoesFerias(this.codigoContrato).subscribe(res2 => {
+        this.restituicoesSaldoResidualFerias = res2;
+        if (this.restituicoesSaldoResidualFerias.length === 0) {
+          this.restituicoesSaldoResidualFerias = null;
           this.ref.markForCheck();
         }
       });
     }
-  }*/
+  }
 }

@@ -4,8 +4,9 @@ export class SaldoResidualFerias {
   cpf: String;
   valorFeriasResidual: number;
   valorTercoResidual: number;
-  valorDecimoTerceiroResidual: number;
-  valorIncidenciaResidual: number;
+  valorIncidenciaFeriasResidual: number;
+  valorIncidenciaTercoResidual: number;
+  valorTotalResidual: number;
   restituidoFlag: number;
 
 }
