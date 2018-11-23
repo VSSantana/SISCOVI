@@ -37,7 +37,6 @@ public class SaldoResidualFeriasDAO {
                             "JOIN tb_terceirizado t ON t.cod = tc.cod_terceirizado " +
                             "JOIN tb_contrato c ON c.cod = tc.cod_contrato " +
                             "JOIN tb_tipo_restituicao tr ON tr.cod = rt.cod_tipo_restituicao " +
-                            "JOIN tb_usuario u ON u.cod = hgc.cod_usuario " +
                             "JOIN tb_funcao_contrato fc ON fc.cod = ft.cod_funcao_contrato " +
                             "JOIN tb_funcao f ON f.cod = fc.cod_funcao " +
                             "JOIN tb_saldo_residual_ferias srf ON srf.cod_restituicao_ferias = rt.cod " +
@@ -52,24 +51,26 @@ public class SaldoResidualFeriasDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                resultSet.next();
+                if (resultSet.next()) {
 
-                do {
+                    do {
 
-                    SaldoResidualRestituidoFerias saldo =
+                        SaldoResidualRestituidoFerias saldo =
 
-                            new SaldoResidualRestituidoFerias(resultSet.getString(1),
-                                                              resultSet.getString(2),
-                                                              resultSet.getFloat(3),
-                                                              resultSet.getFloat(4),
-                                                              resultSet.getFloat(5),
-                                                              resultSet.getFloat(6),
-                                                              resultSet.getFloat(3) + resultSet.getFloat(4) + resultSet.getFloat(5) + resultSet.getFloat(6),
-                                                              resultSet.getString(7));
+                                new SaldoResidualRestituidoFerias(resultSet.getString(1),
+                                        resultSet.getString(2),
+                                        resultSet.getFloat(3),
+                                        resultSet.getFloat(4),
+                                        resultSet.getFloat(5),
+                                        resultSet.getFloat(6),
+                                        resultSet.getFloat(3) + resultSet.getFloat(4) + resultSet.getFloat(5) + resultSet.getFloat(6),
+                                        resultSet.getString(7));
 
-                    lista.add(saldo);
+                        lista.add(saldo);
 
-                } while (resultSet.next());
+                    } while (resultSet.next());
+
+                }
 
             }
 

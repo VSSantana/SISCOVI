@@ -9,7 +9,7 @@ export class SaldoResidualService {
   constructor(private http: Http, private config: ConfigService) {}
 
   getRestituicoesFerias(codigoContrato: number) {
-    const url = this.config.myApi + '/saldo-residual/getTerceirizadosFerias/' + codigoContrato;
+    const url = this.config.myApi + '/saldo-residual/getSaldoResidualFerias/' + codigoContrato;
     return this.http.get(url).map(res => res.json());
   }
   /*

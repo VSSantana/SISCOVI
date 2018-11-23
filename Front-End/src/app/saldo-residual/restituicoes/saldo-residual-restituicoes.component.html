@@ -8,10 +8,17 @@
     <label for="selecao_contrato">Contrato<span class="red-text"> *</span></label>
   </div>
 </div>
+  <div class="row" *ngIf="!restituicoesSaldoResidualFerias && codigoContrato">
+    <div class="col s12 grey lighten-4" style="margin-top: 1em">
+      <br>
+    <h5 class="center-align">Não há saldo residual restituído ainda! <i class="small material-icons">mood_bad</i></h5>
+  </div>
+</div>
 <div class="row">
   <div class="col" *ngIf="restituicoesSaldoResidualFerias && codigoContrato">
     <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" >
-        <div class="collapsible-header">
+      <li>
+      <div class="collapsible-header">
           <h5 class="center-align">Saldo residual de férias restituído</h5>
         </div>
         <div class="collapsible-body row">
@@ -26,8 +33,7 @@
                 <th>Incidência de férias</th>
                 <th>Incidência de terço</th>
                 <th>Total</th>
-                <th>Restituído</th>
-                <th class="black-text">Total</th>
+                <th class="black-text">Restituído</th>
               </tr>
               </thead>
               <tbody>
@@ -39,12 +45,13 @@
                 <td>{{registro.valorIncidenciaFeriasResidual | currency:'BRL':true:'1.2-2'}}</td>
                 <td>{{registro.valorIncidenciaTercoResidual | currency:'BRL':true:'1.2-2'}}</td>
                 <td class="black-text"><b>{{registro.valorTotalResidual | currency:'BRL':true:'1.2-2'}}</b></td>
-                <td>{{registro.restituidoFlag | currency:'BRL':true:'1.2-2'}}</td>
+                <td class="black-text"><b>{{registro.restituidoFlag}}</b></td>
               </tr>
               </tbody>
             </table>
           </div>
         </div>
+      </li>
     </ul>
   </div>
 </div>

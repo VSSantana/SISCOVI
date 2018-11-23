@@ -22,12 +22,12 @@ public class TesteRestituicaoFerias {
 
         int vCodContrato = consulta.RetornaCodContratoAleatorio();
         int retorno;
-        int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
+        int vCodTerceirizadoContrato = 3;//consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         int vParcela = 0;
         int vDiasVendidos = 0;
-        float vValorMovimentado = 12842;
+        float vValorMovimentado = 1000;
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
@@ -51,7 +51,7 @@ public class TesteRestituicaoFerias {
                 vValorMovimentado, restituicao.getValorFerias(), restituicao.getValorTercoConstitucional(),
                 restituicao.getValorIncidenciaFerias(), restituicao.getValorIncidenciaTercoConstitucional(), vLoginAtualizacao);
 
-        restituicaoFerias.RecalculoRestituicaoFerias(retorno, "MOVIMENTAÇÃO", vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela, 0,0,0,0,0, "Teste");
+        //restituicaoFerias.RecalculoRestituicaoFerias(retorno, "MOVIMENTAÇÃO", vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo, vParcela, 0,0,0,0,0, "Teste");
 
         //restituicaoFerias.RecalculoRestituicaoFerias(retorno, vTipoRestituicao, vDiasVendidos, vInicioFerias, vFimFerias, vInicioPeriodoAquisitivo, vFimPeriodoAquisitivo,
         //         0, 0, 0,

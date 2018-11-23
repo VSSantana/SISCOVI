@@ -7,6 +7,6 @@ export class SaldoResidualFerias {
   valorIncidenciaFeriasResidual: number;
   valorIncidenciaTercoResidual: number;
   valorTotalResidual: number;
-  restituidoFlag: number;
+  restituidoFlag: String;
 
 }
