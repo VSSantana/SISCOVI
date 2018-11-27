@@ -55,6 +55,44 @@
     </ul>
   </div>
 </div>
+<div class="row">
+  <div class="col" *ngIf="restituicoesSaldoResidualDecimoTerceiro && codigoContrato">
+    <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" >
+      <li>
+        <div class="collapsible-header">
+          <h5 class="center-align">Saldo residual de décimo terceiro restituído</h5>
+        </div>
+        <div class="collapsible-body row">
+          <div class="col xl12 offset-l6 rigth center-align">
+            <table class="highlight centered center-align">
+              <thead>
+              <tr>
+                <th>Terceirizado</th>
+                <th>CPF</th>
+                <th>Décimo Terceiro</th>
+                <th>Incidência de Décimo Terceiro</th>
+                <th>Total</th>
+                <th class="black-text">Restituído</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let registro of restituicoesSaldoResidualDecimoTerceiro">
+                <td>{{registro.terceirizado }}</td>
+                <td>{{registro.cpf}}</td>
+                <td>{{registro.valorDecimoTerceiroResidual | currency:'BRL':true:'1.2-2'}}</td>
+                <td>{{registro.valorIncidenciaDecimoTerceiroResidual | currency:'BRL':true:'1.2-2'}}</td>
+                <td class="black-text"><b>{{registro.valorIncidenciaDecimoTerceiroResidual | currency:'BRL':true:'1.2-2'}}</b></td>
+                <td class="black-text"><b>{{registro.restituidoFlag}}</b></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
 
 
 

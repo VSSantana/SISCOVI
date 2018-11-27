@@ -12,6 +12,10 @@ export class SaldoResidualService {
     const url = this.config.myApi + '/saldo-residual/getSaldoResidualFerias/' + codigoContrato;
     return this.http.get(url).map(res => res.json());
   }
+  getRestituicoesDecimoTerceiro(codigoContrato: number) {
+    const url = this.config.myApi + '/saldo-residual/getSaldoResidualDecimoTerceiro/' + codigoContrato;
+    return this.http.get(url).map(res => res.json());
+  }
   /*
 
     calculaFeriasTerceirizados(feriasCalcular: FeriasCalcular[]) {

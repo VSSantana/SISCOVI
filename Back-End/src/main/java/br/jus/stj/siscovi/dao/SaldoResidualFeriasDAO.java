@@ -2,6 +2,7 @@ package br.jus.stj.siscovi.dao;
 
 import br.jus.stj.siscovi.calculos.Saldo;
 import br.jus.stj.siscovi.model.SaldoIndividualContaVinculadaModel;
+import br.jus.stj.siscovi.model.SaldoResidualRestituidoDecimoTerceiro;
 import br.jus.stj.siscovi.model.SaldoResidualRestituidoFerias;
 
 import java.sql.Connection;
@@ -78,7 +79,7 @@ public class SaldoResidualFeriasDAO {
 
             sqle.printStackTrace();
 
-            throw new NullPointerException("Falha na aquisição do saldo da conta vinculada.");
+            throw new NullPointerException("Falha na aquisição do saldo residual de férias da conta vinculada.");
 
         }
 

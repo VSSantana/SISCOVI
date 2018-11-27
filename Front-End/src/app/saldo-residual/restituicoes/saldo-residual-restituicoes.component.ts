@@ -4,6 +4,7 @@ import {ConfigService} from '../../_shared/config.service';
 import {Contrato} from '../../contratos/contrato';
 import {SaldoResidualService} from '../saldo-residual.service';
 import {SaldoResidualFerias} from './saldo-residual-restituicoes';
+import {SaldoResidualDecimoTerceiro} from './saldo-residual-restituicoes-decimo-terceiro';
 
 @Component({
   selector: 'app-saldo-residual-restituicoes-component',
@@ -15,6 +16,7 @@ export class SaldoResidualRestituicoesComponent {
   @Input() codigoContrato = 0;
   isSelected = false;
   restituicoesSaldoResidualFerias: SaldoResidualFerias[];
+  restituicoesSaldoResidualDecimoTerceiro: SaldoResidualDecimoTerceiro[];
   config: ConfigService;
   constructor(private saldoResidualService: SaldoResidualService, private contratoService: ContratosService, config: ConfigService, private ref: ChangeDetectorRef) {
    this.config = config;
@@ -28,6 +30,13 @@ export class SaldoResidualRestituicoesComponent {
             this.ref.markForCheck();
           }
         });
+        this.saldoResidualService.getRestituicoesDecimoTerceiro(this.codigoContrato).subscribe(res2 => {
+          this.restituicoesSaldoResidualDecimoTerceiro = res2;
+          if (this.restituicoesSaldoResidualDecimoTerceiro.length === 0) {
+            this.restituicoesSaldoResidualDecimoTerceiro = null;
+            this.ref.markForCheck();
+          }
+        });
       }
     });
   }
@@ -38,6 +47,13 @@ export class SaldoResidualRestituicoesComponent {
         this.restituicoesSaldoResidualFerias = res2;
         if (this.restituicoesSaldoResidualFerias.length === 0) {
           this.restituicoesSaldoResidualFerias = null;
+          this.ref.markForCheck();
+        }
+      });
+      this.saldoResidualService.getRestituicoesDecimoTerceiro(this.codigoContrato).subscribe(res2 => {
+        this.restituicoesSaldoResidualDecimoTerceiro = res2;
+        if (this.restituicoesSaldoResidualDecimoTerceiro.length === 0) {
+          this.restituicoesSaldoResidualDecimoTerceiro = null;
           this.ref.markForCheck();
         }
       });
