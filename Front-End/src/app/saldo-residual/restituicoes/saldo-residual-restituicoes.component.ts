@@ -5,6 +5,7 @@ import {Contrato} from '../../contratos/contrato';
 import {SaldoResidualService} from '../saldo-residual.service';
 import {SaldoResidualFerias} from './saldo-residual-restituicoes';
 import {SaldoResidualDecimoTerceiro} from './saldo-residual-restituicoes-decimo-terceiro';
+import {SaldoResidualRescisao} from './saldo-residual-restituicoes-rescisao';
 
 @Component({
   selector: 'app-saldo-residual-restituicoes-component',
@@ -17,6 +18,7 @@ export class SaldoResidualRestituicoesComponent {
   isSelected = false;
   restituicoesSaldoResidualFerias: SaldoResidualFerias[];
   restituicoesSaldoResidualDecimoTerceiro: SaldoResidualDecimoTerceiro[];
+  restituicoesSaldoResidualRescisao: SaldoResidualRescisao[];
   config: ConfigService;
   constructor(private saldoResidualService: SaldoResidualService, private contratoService: ContratosService, config: ConfigService, private ref: ChangeDetectorRef) {
    this.config = config;
@@ -37,6 +39,13 @@ export class SaldoResidualRestituicoesComponent {
             this.ref.markForCheck();
           }
         });
+        this.saldoResidualService.getRestituicoesRescisao(this.codigoContrato).subscribe(res2 => {
+          this.restituicoesSaldoResidualRescisao = res2;
+          if (this.restituicoesSaldoResidualRescisao.length === 0) {
+            this.restituicoesSaldoResidualRescisao = null;
+            this.ref.markForCheck();
+          }
+        });
       }
     });
   }
@@ -54,6 +63,13 @@ export class SaldoResidualRestituicoesComponent {
         this.restituicoesSaldoResidualDecimoTerceiro = res2;
         if (this.restituicoesSaldoResidualDecimoTerceiro.length === 0) {
           this.restituicoesSaldoResidualDecimoTerceiro = null;
+          this.ref.markForCheck();
+        }
+      });
+      this.saldoResidualService.getRestituicoesRescisao(this.codigoContrato).subscribe(res2 => {
+        this.restituicoesSaldoResidualRescisao = res2;
+        if (this.restituicoesSaldoResidualRescisao.length === 0) {
+          this.restituicoesSaldoResidualRescisao = null;
           this.ref.markForCheck();
         }
       });

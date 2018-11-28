@@ -100,6 +100,9 @@ import {SaldoIndividualComponent} from './saldo/individual/saldo-individual-comp
 import {SaldoResidualComponent} from './saldo-residual/saldo-residual.component';
 import {SaldoResidualService} from './saldo-residual/saldo-residual.service';
 import {SaldoResidualRestituicoesComponent} from './saldo-residual/restituicoes/saldo-residual-restituicoes.component';
+import {SaldoResidualFeriasComponent} from './saldo-residual/ferias/saldo-residual-ferias.component';
+import {SaldoResidualDecimoTerceiroComponent} from './saldo-residual/decimo-terceiro/saldo-residual-decimo-terceiro.component';
+import {SaldoResidualRescisaoComponent} from './saldo-residual/rescisao/saldo-residual-rescisao.component';
 
 @NgModule({
   declarations: [
@@ -176,7 +179,10 @@ import {SaldoResidualRestituicoesComponent} from './saldo-residual/restituicoes/
     SaldoTotalComponent,
     SaldoIndividualComponent,
     SaldoResidualComponent,
-    SaldoResidualRestituicoesComponent
+    SaldoResidualRestituicoesComponent,
+    SaldoResidualFeriasComponent,
+    SaldoResidualDecimoTerceiroComponent,
+    SaldoResidualRescisaoComponent
   ],
   imports: [
     BrowserModule,
