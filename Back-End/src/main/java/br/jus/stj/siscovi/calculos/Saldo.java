@@ -27,7 +27,7 @@ public class Saldo {
 
     public float getSaldoContaVinculada(int pCodTerceirizadoContrato, int pAno, int pOperacao, int pCodRubrica) {
 
-        /*pOperacao = 1 - RETENÇÃO POR FUNCIONÁRIO
+         /*pOperacao = 1 - RETENÇÃO POR FUNCIONÁRIO
            pOperacao = 2 - RESTITUIÇÃO FÉRIAS POR FUNCIONÁRIO
            pOperacao = 3 - RESTITUICAO 13º POR FUNCIONÁRIO
 

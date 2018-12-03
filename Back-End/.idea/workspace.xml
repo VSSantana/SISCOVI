@@ -8,12 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/SaldoResidualController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/SaldoResidualController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoResidualController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoResidualController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/SaldoResidualController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/SaldoResidualController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/restituicoes/saldo-residual-restituicoes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/restituicoes/saldo-residual-restituicoes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/restituicoes/saldo-residual-restituicoes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/restituicoes/saldo-residual-restituicoes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/saldo-residual.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/saldo-residual.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.ts" afterDir="false" />
     </list>
     <ignored path="./target  /" />
     <ignored path="./idea/" />
@@ -66,7 +63,7 @@
     <session id="909848314">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="1" />
@@ -74,18 +71,18 @@
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="4" />
-          <entry key="project.open.time.6" value="10" />
+          <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="4" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.open.time.8" value="5" />
+          <entry key="project.opened" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="4" />
           <entry key="css" value="1" />
-          <entry key="java" value="306" />
-          <entry key="sql" value="9" />
+          <entry key="java" value="307" />
+          <entry key="sql" value="10" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
@@ -93,25 +90,25 @@
         <counts>
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="306" />
-          <entry key="Scratch" value="9" />
+          <entry key="JAVA" value="307" />
+          <entry key="Scratch" value="10" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="46" />
-          <entry key="java" value="25781" />
-          <entry key="sql" value="1061" />
+          <entry key="java" value="25858" />
+          <entry key="sql" value="1381" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="25770" />
+          <entry key="JAVA" value="25847" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="SQL" value="11" />
-          <entry key="Scratch" value="1061" />
+          <entry key="Scratch" value="1381" />
         </counts>
       </usages-collector>
     </session>
@@ -161,7 +158,26 @@
     <favorites_list name="Back-End" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2805">
+              <caret line="169" selection-start-line="169" selection-end-line="169" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="14" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -218,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/SaldoIndividualContaVinculadaModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console_3.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoTotalContaVinculadaDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/FeriasController.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/FeriasDAO.java" />
@@ -237,6 +252,7 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/SaldoResidualRescisao.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoResidualRescisaoDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoResidualController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql" />
       </list>
     </option>
@@ -279,7 +295,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -353,6 +368,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -367,7 +383,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="database.console.LAST_STATE" value="false" />
+    <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projeto SISCOVI/SISCOVI" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="project.structure.last.edited" value="Project" />
@@ -399,7 +415,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TesteRestituicaoRescisao">
+  <component name="RunManager" selected="Tomcat Server.SISCOVI">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -716,11 +732,13 @@
       <workItem from="1542999606952" duration="2000" />
       <workItem from="1543334722012" duration="7118000" />
       <workItem from="1543399517952" duration="4070000" />
+      <workItem from="1543504494004" duration="3207000" />
+      <workItem from="1543572103105" duration="1238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="535568000" />
+    <option name="totallyTimeSpent" value="540013000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -734,7 +752,7 @@
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.30810234" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.19189766" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -742,7 +760,7 @@
       <window_info id="Favorites" order="5" sideWeight="0.505295" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="0" visible="true" weight="0.22557172" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32744282" />
       <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.26611227" />
@@ -1003,13 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="75" column="84" lean-forward="true" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/FeriasDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="758">
@@ -1112,9 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="865">
           <caret line="68" column="13" lean-forward="true" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1143,9 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
           <caret line="87" column="92" selection-start-line="87" selection-start-column="92" selection-end-line="87" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1153,9 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="66" column="50" lean-forward="true" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1163,13 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="16" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1184,6 +1179,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10095">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2805">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="14" selection-end-column="31" />
         </state>
       </provider>
     </entry>

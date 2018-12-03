@@ -9,43 +9,59 @@
   </div>
 </div>
 <div class="row">
-  <div class="col" *ngIf="restituicoesSaldoResidualFerias && codigoContrato">
-    <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" >
-      <li>
-        <div class="collapsible-header">
-          <h5 class="center-align">Saldo residual de férias restituído</h5>
-        </div>
-        <div class="collapsible-body row">
-          <div class="col xl12 offset-l6 rigth center-align">
-            <table class="highlight centered center-align">
-              <thead>
-              <tr>
-                <th>Terceirizado</th>
-                <th>CPF</th>
-                <th>Férias</th>
-                <th>Terço Constitucional</th>
-                <th>Incidência de férias</th>
-                <th>Incidência de terço</th>
-                <th>Total</th>
-                <th class="black-text">Restituído</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let registro of restituicoesSaldoResidualFerias">
-                <td>{{registro.terceirizado }}</td>
-                <td>{{registro.cpf}}</td>
-                <td>{{registro.valorFeriasResidual | currency:'BRL':true:'1.2-2'}}</td>
-                <td>{{registro.valorTercoResidual | currency:'BRL':true:'1.2-2'}}</td>
-                <td>{{registro.valorIncidenciaFeriasResidual | currency:'BRL':true:'1.2-2'}}</td>
-                <td>{{registro.valorIncidenciaTercoResidual | currency:'BRL':true:'1.2-2'}}</td>
-                <td class="black-text"><b>{{registro.valorTotalResidual | currency:'BRL':true:'1.2-2'}}</b></td>
-                <td class="black-text"><b>{{registro.restituidoFlag}}</b></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <form [formGroup]="feriasForm" *ngIf="calculosPendentes">
+    <div class="col  l12" formArrayName="avaliacaoCalculoFerias">
+      <table *ngIf="codigoContrato && calculosPendentes" class="highlight centered responsive-table">
+        <thead>
+        <tr>
+          <th *ngIf="config.user.perfil.sigla == 'ADMINISTRADOR'">
+            <input type="checkbox" class="checkbox-black" id="test5" (change)="isSelected = !isSelected"/>
+            <label for="test5"></label>
+          </th>
+          <th *ngIf="config.user.perfil.sigla == 'ADMINISTRADOR'">Avaliação</th>
+          <th *ngIf="config.user.perfil.sigla == 'USUÁRIO'">Status</th>
+          <th>Terceirizado</th>
+          <th>CPF</th>
+          <th>Férias</th>
+          <th>Terço Constitucional</th>
+          <th>Incidência de férias</th>
+          <th>Incidência de terço</th>
+          <th>Total</th>
+          <th class="black-text">Restituído</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let registro of calculosPendentes; let k = index">
+          <td *ngIf="config.user.perfil.sigla == 'ADMINISTRADOR'">
+            <div [formGroupName]="k">
+              <input type="checkbox" class="checkbox-black" [checked]="isSelected" [ngModel]="isSelected" formControlName="selected" id="{{k}}"/>
+              <label for="{{k}}"></label>
+            </div>
+          </td>
+          <td *ngIf="config.user.perfil.sigla == 'ADMINISTRADOR'">
+            <div [formGroupName]="k">
+              <div class="row">
+                <div class="input-field col s12">
+                  <select materialize="material_select" formControlName="avaliacao">
+                    <option value="S">APROVAR</option>
+                    <option value="N">REJEITAR</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td *ngIf="config.user.perfil.sigla == 'USUÁRIO'">{{calculo.status}}</td>
+          <td>{{registro.terceirizado }}</td>
+          <td>{{registro.cpf}}</td>
+          <td>{{registro.valorFeriasResidual | currency:'BRL':true:'1.2-2'}}</td>
+          <td>{{registro.valorTercoResidual | currency:'BRL':true:'1.2-2'}}</td>
+          <td>{{registro.valorIncidenciaFeriasResidual | currency:'BRL':true:'1.2-2'}}</td>
+          <td>{{registro.valorIncidenciaTercoResidual | currency:'BRL':true:'1.2-2'}}</td>
+          <td class="black-text"><b>{{registro.valorTotalResidual | currency:'BRL':true:'1.2-2'}}</b></td>
+          <td class="black-text"><b>{{registro.restituidoFlag}}</b></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
 </div>
