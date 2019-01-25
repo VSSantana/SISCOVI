@@ -441,7 +441,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projeto SISCOVI/SISCOVI" />
     <property name="nodejs_interpreter_path" value="node" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -793,12 +793,12 @@
       <workItem from="1548174789546" duration="1852000" />
       <workItem from="1548256372862" duration="7184000" />
       <workItem from="1548341953442" duration="9809000" />
-      <workItem from="1548428456472" duration="624000" />
+      <workItem from="1548428456472" duration="1976000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="560453000" />
+    <option name="totallyTimeSpent" value="561805000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1317,12 +1317,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Back-End</last-edited>
+          <last-edited>Web|Back-End</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

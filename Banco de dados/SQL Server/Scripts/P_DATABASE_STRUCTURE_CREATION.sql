@@ -859,21 +859,29 @@ ALTER TABLE TB_TRIENIO_TERC_CONTRATO ADD constraint tb_trienio_terc_contrato_pk 
 
 CREATE TABLE tb_saldo_conta_vinculada (
     cod                 INTEGER NOT NULL,
+    cod_contrato        INTEGER NOT NULL,
     saldo               FLOAT(20) NOT NULL,
     data_saldo          DATE NOT NULL,
     login_atualizacao   VARCHAR(150) NOT NULL,
     data_atualizacao    datetime NOT NULL
 )
 
-    go
+go
 
 ALTER TABLE TB_SALDO_CONTA_VINCULADA ADD constraint tb_saldo_conta_vinculada_pk PRIMARY KEY CLUSTERED (COD)
      WITH (
      ALLOW_PAGE_LOCKS = ON , 
      ALLOW_ROW_LOCKS = ON ) 
      
-    go
+     go
 
+ALTER TABLE TB_SALDO_CONTA_VINCULADA
+    ADD CONSTRAINT tb_saldo_conta_vinculada_fk FOREIGN KEY ( cod_contrato )
+        REFERENCES tb_contrato ( cod )
+ON DELETE NO ACTION 
+    ON UPDATE no action 
+    
+    go
 
 ALTER TABLE TB_TRIENIO_TERC_CONTRATO
     ADD CONSTRAINT tb_trienio_terc_contrato_fk1 FOREIGN KEY ( cod_terceirizado_contrato )
