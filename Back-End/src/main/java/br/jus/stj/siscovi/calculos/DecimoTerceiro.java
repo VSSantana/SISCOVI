@@ -85,10 +85,60 @@ public class DecimoTerceiro {
 
             } catch (SQLException e) {
 
+                throw new NullPointerException("Falha na consulta ao Banco de Dados.");
 
             }
 
         }
+
+        return vDataRetorno;
+
+    }
+
+    /**
+     * Função que retorna a data de inicio da contagem do décimo terceiro
+     * de um terceirizado em um determinado contrato para fins de rescisão.
+     * @param pCodTerceirizadoContrato
+     */
+
+    public Date RetornaDataInicioContagemRescisao (int pCodTerceirizadoContrato,
+                                                   Date pDataDesligamento) {
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        Date vMaxDataCalculo = null;
+        Date vDataRetorno = null;
+
+        /* Seleciona a máxima data de início de contagem existente ou atribui valor nulo a variável. */
+
+        try {
+
+                preparedStatement = connection.prepareStatement("SELECT DATA_DISPONIBILIZACAO\n" +
+                        " FROM tb_terceirizado_contrato\n" +
+                        " WHERE cod = ?;");
+
+                preparedStatement.setInt(1, pCodTerceirizadoContrato);
+
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vDataRetorno = resultSet.getDate(1);
+
+                } else {
+
+                    throw new NullPointerException("Data de disponibilização do terceirizado não encontrada.");
+
+                }
+
+        } catch (SQLException e) {
+
+             throw new NullPointerException("Falha na consulta ao Banco de Dados ao tentar buscar a data de disponibilização do terceirizado.");
+
+        }
+
+        if (Date.valueOf(vDataRetorno). != pDataDesligamento.getYear)
 
         return vDataRetorno;
 
