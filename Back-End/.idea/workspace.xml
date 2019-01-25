@@ -6,325 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/Saldo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/.angular-cli.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.angular-cli.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/app.e2e-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/app.po.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/tsconfig.e2e.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/tsconfig.e2e.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/karma.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/protractor.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/afirmative.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/afirmative.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/calculo-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/calculo-pendente.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/cnpj.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/cnpj.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/cpf.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/cpf.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/date.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/date.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/dias-concedidos.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/dias-concedidos.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/file-size.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/file-size.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/filtros.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/filtros.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/kz-mask.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/kz-mask.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-date.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-date.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-percentage.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-percentage.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/pager.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/pager.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/parcela.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/parcela.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/pendente.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/pendente.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/rxjs-extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/rxjs-extension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/tipo-restituicao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/tipo-restituicao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/titlecase-mask.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/titlecase-mask.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.funcionarios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/lista.cargos.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/lista.cargos.funcionarios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/formulario.cadastro.contrato.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/formulario.cadastro.contrato.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes-coletivas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes-coletivas.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/lista.convencoes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/lista.convencoes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/rescisao-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/rescisao-pendente.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/terceirizado-decimo-terceiro.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/terceirizado-decimo-terceiro.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/valor-decimo-terceiro.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/valor-decimo-terceiro.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-calcular.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-calcular.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/terceirizado-ferias-movimentacao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/terceirizado-ferias-movimentacao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/valor-restituicao-ferias.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/valor-restituicao-ferias.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionario.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/lista.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/lista.funcionarios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio-child.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio-child.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/lista.de.percentuais.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/lista.de.percentuais.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/terceirizado-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/terceirizado-rescisao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/valor-restituicao-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/valor-restituicao-rescisao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastro-rubrica.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastro-rubrica.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/percentual-estatico.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/percentual-estatico.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubrica.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubrica.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/historico-total-mensal/historico-total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/historico-total-mensal/historico-total-mensal.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/lista-total-mensal-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/lista-total-mensal-data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-pendente.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/totalMensal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/totalMensal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/logged-in.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/logged-in.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/profile.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/profile.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/profile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuario.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/lista.vigencias.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/lista.vigencias.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/css/materialize.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/css/materialize.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/jquery-2.1.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/jquery-2.1.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/materialize.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/materialize.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/web-animations.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/web-animations.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/langs/pt_BR.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/langs/pt_BR.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/sass/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/sass/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/sass/trabalho-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/sass/trabalho-card.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/polyfills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/sass/trabalho-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/sass/trabalho-card.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/tsconfig.spec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/typings.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/typings.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/tslint.json" afterDir="false" />
-    </list>
+    <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="" />
     <ignored path="./target  /" />
     <ignored path="./idea/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -385,9 +67,9 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="11" />
-          <entry key="project.open.time.7" value="5" />
+          <entry key="project.open.time.7" value="6" />
           <entry key="project.open.time.8" value="9" />
-          <entry key="project.opened" value="36" />
+          <entry key="project.opened" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -476,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+              <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -487,8 +169,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="33" column="91" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="91" />
+            <state relative-caret-position="595">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -497,7 +179,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+              <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -505,7 +187,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-191">
+            <state relative-caret-position="68">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
@@ -514,7 +196,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
+            <state relative-caret-position="850">
               <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
             </state>
           </provider>
@@ -523,8 +205,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="408">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -650,6 +332,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -742,7 +425,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1111,11 +793,12 @@
       <workItem from="1548174789546" duration="1852000" />
       <workItem from="1548256372862" duration="7184000" />
       <workItem from="1548341953442" duration="9809000" />
+      <workItem from="1548428456472" duration="624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="559829000" />
+    <option name="totallyTimeSpent" value="560453000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1130,7 +813,7 @@
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20042644" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20255864" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -1525,30 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-191">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1559,7 +1218,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1569,14 +1228,38 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+          <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="33" column="91" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="91" />
+        <state relative-caret-position="595">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
