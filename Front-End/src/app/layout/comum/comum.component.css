@@ -67,11 +67,11 @@ a.button-collapse.show-on-large {
   position: fixed; }
 
 footer {
-  position: fixed;
+  position: static;
   bottom: 0px;
   width: 100%;
-  max-height: 145px;
-  z-index: 100; }
+  z-index: 100;
+  max-height: 16.5em; }
 
 ul.right {
   position: absolute;
@@ -87,5 +87,10 @@ ul.right {
 
 table.highlight tbody tr:hover {
   background-color: #bdbdbd; }
+
+footer {
+  border: 0.001em solid #404f54 !important;
+  -webkit-box-shadow: 0px -4px 3px #404f54 !important;
+  box-shadow: 0px -4px 3px #404f54 !important; }
 
 /*# sourceMappingURL=comum.component.css.map */

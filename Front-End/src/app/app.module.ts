@@ -94,15 +94,10 @@ import {RescisaoPendenteComponent} from './rescisao/rescisoes-pendentes/rescisao
 import {CadastrarTerceirizadoComponent} from './funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component';
 import {CadastrarGestorContratoComponent} from './historico/cadastrar-gestor/cadastrar-gestor-contrato.component';
 import {GerenciarCargosTerceirizadosComponent} from './cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component';
+import {CadastroAjusteFormComponent} from './contratos/ajustes-contratuais/cadastrar-ajustes/cadastro-ajuste-form.component';
 import {SaldoTotalComponent} from './saldo/total/saldo-total.component';
 import {SaldoService} from './saldo/saldo.service';
 import {SaldoIndividualComponent} from './saldo/individual/saldo-individual-component';
-import {SaldoResidualComponent} from './saldo-residual/saldo-residual.component';
-import {SaldoResidualService} from './saldo-residual/saldo-residual.service';
-import {SaldoResidualRestituicoesComponent} from './saldo-residual/restituicoes/saldo-residual-restituicoes.component';
-import {SaldoResidualFeriasComponent} from './saldo-residual/ferias/saldo-residual-ferias.component';
-import {SaldoResidualDecimoTerceiroComponent} from './saldo-residual/decimo-terceiro/saldo-residual-decimo-terceiro.component';
-import {SaldoResidualRescisaoComponent} from './saldo-residual/rescisao/saldo-residual-rescisao.component';
 
 @NgModule({
   declarations: [
@@ -176,13 +171,9 @@ import {SaldoResidualRescisaoComponent} from './saldo-residual/rescisao/saldo-re
     CadastrarTerceirizadoComponent,
     CadastrarGestorContratoComponent,
     GerenciarCargosTerceirizadosComponent,
+    CadastroAjusteFormComponent,
     SaldoTotalComponent,
     SaldoIndividualComponent,
-    SaldoResidualComponent,
-    SaldoResidualRestituicoesComponent,
-    SaldoResidualFeriasComponent,
-    SaldoResidualDecimoTerceiroComponent,
-    SaldoResidualRescisaoComponent
   ],
   imports: [
     BrowserModule,
@@ -213,7 +204,6 @@ import {SaldoResidualRescisaoComponent} from './saldo-residual/rescisao/saldo-re
     DecimoTerceiroService,
     RescisaoService,
     SaldoService,
-    SaldoResidualService,
     {provide: LOCALE_ID, useValue: 'pt'},
   ],
   bootstrap: [AppComponent]

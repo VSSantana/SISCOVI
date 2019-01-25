@@ -59,10 +59,23 @@ export class DecimoTerceiroService {
     }
     registrarCalculoDecimoTerceiro(calculosDecimoTerceiro: TerceirizadoDecimoTerceiro[]) {
         const url = this.config.myApi + '/decimo-terceiro/registrarCalculoDecimoTerceiro';
+        const data: any[] = [];
         calculosDecimoTerceiro.forEach(item => {
-            item.id = this.config.user.username;
+            const info = {
+                codigoTerceirizadoContrato: item.codigoTerceirizadoContrato,
+                nomeTerceirizado: item.nomeTerceirizado,
+                inicioContagem: item.inicioContagem,
+                valorDisponivel: item.valorDisponivel,
+                tipoRestituicao: item.tipoRestituicao,
+                valorMovimentado: item.valorMovimentado,
+                parcelas: item.parcelas,
+                valoresDecimoTerceiro: item.valoresDecimoTerceiro,
+                nomeCargo: item.nomeCargo,
+                fimContagem: item.fimContagem,
+                id: this.config.user.username
+            };
+            data.push(info);
         });
-        const data = calculosDecimoTerceiro;
         const headers = new Headers({'Content-type': 'application/json'});
         return this.http.post(url, data, headers).map(res => res.json());
     }

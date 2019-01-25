@@ -3,6 +3,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {ConfigService} from '../_shared/config.service';
 import {Contrato} from '../contratos/contrato';
 import {Cargo} from './cargo';
+import {CargosFuncionarios} from './cargos-dos-funcionarios/cargos.funcionarios';
 
 @Injectable()
 export class CargoService {
@@ -53,8 +54,46 @@ export class CargoService {
   }
 
     getFuncoesContrato(codigo: number) {
-      const url = this.config.myApi;
-        return this.http.get(url).map(res => res.json());
+      const url = this.config.myApi + '/cargo/getFuncoesContrato/' + codigo;
+      const data = this.config.user;
+        return this.http.post(url, data).map(res => res.json());
+    }
+
+    getTerceirizadosFuncao(codigoContrato: number) {
+      const url = this.config.myApi + '/cargo/getTerceirizadosFuncao/' + codigoContrato;
+      const data = this.config.user;
+      return this.http.post(url, data).map(res => res.json());
+    }
+
+    alocarFuncao(alocarTerceririzados: CargosFuncionarios[], codigo: number) {
+      const url = this.config.myApi + '/cargo/alocarTerceirizadosContrato/' + codigo + '/' + this.config.user.username;
+      const data = [];
+        alocarTerceririzados.forEach(item => {
+            const a = item.dataDisponibilizacao.toISOString().split('T');
+            const alocarTerceirizado = {
+                funcionario: item.funcionario,
+                funcao: item.funcao,
+                dataDisponibilizacao: a[0]
+            };
+            data.push(alocarTerceirizado);
+        });
+      return this.http.post(url, data).map(res => res.json());
+    }
+
+    alterarFuncaoTerceirizado(confirmarAlteracao: CargosFuncionarios[], codigoContrato: number) {
+      const url = this.config.myApi + '/cargo/alterarFuncaoTerceirizado/' + codigoContrato + '/' + this.config.user.username;
+      const data = [];
+      for (let i = 0; i < confirmarAlteracao.length; i++) {
+          const date = confirmarAlteracao[i].dataDisponibilizacao.toISOString().split('T');
+          const info = {
+              funcionario: confirmarAlteracao[i].funcionario,
+              dataDisponibilizacao: date[0],
+              funcao: confirmarAlteracao[i].funcao
+          };
+          data.push(info);
+      }
+      return this.http.post(url, data).map(res => res.json());
+
     }
 }
 export class ListaCargos {

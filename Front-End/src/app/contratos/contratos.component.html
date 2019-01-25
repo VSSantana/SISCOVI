@@ -3,20 +3,10 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col s6 l3 xl3 offset-xl11 offset-l11 ">
-      <button class="waves-effect  btn large blue-grey darken-3" (click)="$event.preventDefault(); loadMyChildComponent(); openModal();" >
-        <a class="white-text">Novo Contrato<i class="material-icons left">add</i></a>
+    <div class="left col s12 ">
+      <button class="waves-effect  btn large blue-grey darken-3" (click)="cadastrarContrato()">
+        <a class="white-text">Novo Contrato<i class="material-icons right">add</i></a>
       </button>
-      <div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
-        <div class="modal-content">
-          <app-cadastro-contrato *ngIf="render"></app-cadastro-contrato>
-        </div>
-        <div class="modal-footer">
-          <button class="waves-effect waves-light btn left" (click)="closeModal()">Cancelar</button>
-          <button class="waves-effect waves-light btn right right-align" [disabled]="!contServ.formValido" (click)="cadastrarContrato()">Cadastrar Contrato</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

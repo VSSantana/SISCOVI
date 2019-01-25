@@ -2,6 +2,7 @@ import {Component, EventEmitter} from '@angular/core';
 import {ContratosService} from './contratos.service';
 import {Contrato} from './contrato';
 import {MaterializeAction} from 'angular2-materialize';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-contrato',
@@ -12,9 +13,9 @@ export class ContratosComponent {
   contratos: Contrato[];
   modalActions = new EventEmitter<string | MaterializeAction>();
   private loadComponent = false;
-  render = true;
+  render = false;
   contServ: ContratosService;
-  constructor(contServ: ContratosService) {
+  constructor(contServ: ContratosService, private router: Router, private route: ActivatedRoute) {
       this.contServ = contServ;
       contServ.getContratosDoUsuario().subscribe( res => {
         contServ.contratos = res;
@@ -32,5 +33,8 @@ export class ContratosComponent {
     this.render = false;
     this.modalActions.emit({action: 'modal', params: ['close']});
   }
-  cadastrarContrato() {}
+  cadastrarContrato() {
+      this.router.navigate(['./cadastro-contrato'], {relativeTo: this.route});
+  }
+
 }

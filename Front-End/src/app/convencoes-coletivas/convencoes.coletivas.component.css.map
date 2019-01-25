@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,8BAA+B;EAC7B,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,YAAY;;AAGtB,sBAAuB;EACrB,OAAO,EAAE,aAAa;;AAExB,mBAAoB;EAClB,OAAO,EAAE,YAAY;;AAEvB,gBAAiB;EACf,OAAO,EAAE,YAAY;;AAEvB,eAAgB;EACd,OAAO,EAAE,YAAY",
+"mappings": "AAAA,8BAA+B;EAC7B,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,YAAY;;AAEtB,SAAS;EACP,KAAK,EAAE,eAAe;EACtB,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI",
 "sources": ["convencoes.coletivas.component.scss"],
 "names": [],
 "file": "convencoes.coletivas.component.css"

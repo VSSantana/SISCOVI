@@ -1,10 +1,9 @@
 package br.jus.stj.siscovi.calculos;
 
-import com.sun.scenario.effect.impl.prism.ps.PPSBlend_REDPeer;
-import javax.validation.constraints.Null;
-import java.sql.*;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Saldo {
 
@@ -138,6 +137,32 @@ public class Saldo {
 
                 }
 
+                preparedStatement = connection.prepareStatement("SELECT SUM(srf.valor_ferias) AS \"Férias restituído\",\n" +
+                        "       SUM(srf.valor_terco) AS \"1/3 constitucional restituído\",\n" +
+                        "       SUM(srf.incid_submod_4_1_ferias) AS \"Incid. de férias restituído\",\n" +
+                        "       SUM(srf.incid_submod_4_1_terco) AS \"Incod. de terço restituído\",\n" +
+                        "       SUM(srf.valor_ferias + srf.valor_terco + srf.incid_submod_4_1_ferias + srf.incid_submod_4_1_terco) AS \"Total restituído\"\n" +
+                        "  FROM tb_restituicao_ferias rf\n" +
+                        "    JOIN tb_terceirizado_contrato tc ON tc.cod = rf.cod_terceirizado_contrato\n" +
+                        "    JOIN tb_saldo_residual_ferias srf ON rf.cod = srf.cod_restituicao_ferias\n" +
+                        "  WHERE YEAR(rf.data_inicio_periodo_aquisitivo) = ?\n" +
+                        "    AND tc.cod = ?\n" +
+                        "    AND srf.restituido = 'S';");
+
+                preparedStatement.setInt(1, pAno);
+                preparedStatement.setInt(2, pCodTerceirizadoContrato);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vFeriasRestituido = resultSet.getFloat(1) + vFeriasRestituido;
+                    vTercoConstitucionalRestituido = resultSet.getFloat(2) + vTercoConstitucionalRestituido;
+                    vIncidenciaFeriasRestituido = resultSet.getFloat(3) + vIncidenciaFeriasRestituido;
+                    vIncidenciaTercoRestituido = resultSet.getFloat(4) + vIncidenciaTercoRestituido;
+                    vTotalRestituido = resultSet.getFloat(5) + vTotalRestituido;
+
+                }
+
             } catch (SQLException sqle) {
 
                 sqle.printStackTrace();
@@ -171,6 +196,28 @@ public class Saldo {
                     vDecimoTerceiroRestituido = resultSet.getFloat(1);
                     vIncidencia13Restituido = resultSet.getFloat(2);
                     vTotalRestituido = resultSet.getFloat(3);
+
+                }
+
+                preparedStatement = connection.prepareStatement("SELECT SUM(srdt.valor) AS \"Décimo terceiro restituído\",\n" +
+                        "           SUM(srdt.incidencia_submodulo_4_1) AS \"Incid. de 13° restituído\",\n" +
+                        "           SUM(srdt.valor + srdt.incidencia_submodulo_4_1) AS \"Total restituído\"\n" +
+                        "      FROM tb_restituicao_decimo_terceiro rdt\n" +
+                        "       JOIN tb_terceirizado_contrato tc ON tc.cod = rdt.cod_terceirizado_contrato\n" +
+                        "        JOIN tb_saldo_residual_dec_ter srdt ON srdt.cod_restituicao_dec_terceiro = rdt.cod\n" +
+                        "      WHERE YEAR(rdt.data_inicio_contagem) = ?\n" +
+                        "       AND tc.cod = ?\n" +
+                        "        AND srdt.restituido = 'S';");
+
+                preparedStatement.setInt(1, pAno);
+                preparedStatement.setInt(2, pCodTerceirizadoContrato);
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+
+                    vDecimoTerceiroRestituido = resultSet.getFloat(1) +  vDecimoTerceiroRestituido;
+                    vIncidencia13Restituido = resultSet.getFloat(2) + vIncidencia13Restituido;
+                    vTotalRestituido = resultSet.getFloat(3) + vTotalRestituido;
 
                 }
 

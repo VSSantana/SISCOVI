@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {ContratosService} from '../contratos/contratos.service';
 import {Contrato} from '../contratos/contrato';
 import {ConvencaoService} from './convencao.service';
-import {ListaConvencoes} from './lista.convencoes';
+import {Convencao} from './convencao';
 
 @Component({
   selector: 'app-convencao-coletiva',
@@ -12,20 +11,20 @@ import {ListaConvencoes} from './lista.convencoes';
 export class ConvencoesColetivasComponent {
   contratos: Contrato[] = [];
   convServ: ConvencaoService;
-  convencoes: ListaConvencoes[] = [];
+  convencoes: Convencao[] = [];
   valid = false;
   index: number;
-  constructor(convServ: ConvencaoService, contService: ContratosService) {
+  constructor(convServ: ConvencaoService) {
     this.convServ = convServ;
-    contService.getContratosDoUsuario().subscribe(res => {
-      this.contratos = res;
+    convServ.getAll().subscribe(res => {
+      this.convencoes = res;
     });
   }
-  onChange(value: number): void {
+  /*onChange(value: number): void {
     this.convServ.getConvencoes(value).subscribe(res => {
       this.convencoes = res;
       this.valid = true;
       this.index = value - 1;
     });
-  }
+  }*/
 }

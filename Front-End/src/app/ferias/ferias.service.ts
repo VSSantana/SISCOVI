@@ -4,6 +4,7 @@ import {ConfigService} from '../_shared/config.service';
 import {FeriasCalcular} from './ferias-calcular';
 import {Observable} from 'rxjs/Observable';
 import {FeriasCalculosPendentes} from './ferias-pendentes/ferias-calculos-pendentes';
+import {User} from '../users/user';
 
 
 @Injectable()
@@ -51,7 +52,7 @@ export class FeriasService {
     }
 
     getValoresFeriasTerceirizado(feriasCalcular: FeriasCalcular) {
-        const url = this.config.myApi + '/ferias/getValorRestituicaoFeriasModel';
+        const url = this.config.myApi + '/ferias/getValorRestituicaoFerias';
         const inicioFerias = this.encapsulaDatas(feriasCalcular.getInicioFerias());
         const fimFerias = this.encapsulaDatas(feriasCalcular.getFimFerias());
         const data = {

@@ -7,10 +7,323 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/Saldo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/saldo-residual/ferias/saldo-residual-ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Saldo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/controllers/TotalMensalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/.angular-cli.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.angular-cli.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/app.e2e-spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/app.po.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/e2e/tsconfig.e2e.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/e2e/tsconfig.e2e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/karma.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/protractor.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/afirmative.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/afirmative.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/calculo-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/calculo-pendente.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/cnpj.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/cnpj.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/cpf.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/cpf.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/date.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/date.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/dias-concedidos.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/dias-concedidos.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/file-size.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/file-size.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/filtros.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/filtros.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/kz-mask.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/kz-mask.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-date.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-date.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-percentage.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask-percentage.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/mask.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/page-menu/page-menu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/pager.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/pager.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/parcela.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/parcela.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/pendente.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/pendente.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/rxjs-extension.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/rxjs-extension.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/tipo-restituicao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/tipo-restituicao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/titlecase-mask.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/titlecase-mask.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/cadastro-cargos.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cadastro-cargos/visualiza-cargo-cadastro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.dos.funcionarios.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/cargos.funcionarios.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/lista.cargos.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos-dos-funcionarios/lista.cargos.funcionarios.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.do.contrato.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/cargos.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/cargos/gerenciar-cargos-terceirizados/gerenciar-cargos-terceirizados.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/ajuste-contrato.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/ajustes-contratuais/cadastrar-ajustes/cadastrar-ajustes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/cadastro.contrato.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/formulario.cadastro.contrato.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/cadastro-contrato/formulario.cadastro.contrato.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contrato.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/contratos/contratos.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes-coletivas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes-coletivas.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/convencoes.coletivas.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/lista.convencoes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/convencoes-coletivas/lista.convencoes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/calculo-decimo-terceiro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/movimentacao-decimo-terceiro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/calculo-decimo-terceiro/resgate-decimo-terceiro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente-execucao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/decimo-terceiro-pendente.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/rescisao-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro-pendente/rescisao-pendente.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/decimo-terceiro.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/relatorio-retencoes-decimo-terceiro/retencoes-decimo-terceiro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/terceirizado-decimo-terceiro.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/terceirizado-decimo-terceiro.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/valor-decimo-terceiro.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/decimo_terceiro/valor-decimo-terceiro.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/calculo-ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/movimentacao-ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/calculo-ferias/resgate-ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-calcular.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-calcular.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes-execucao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias-pendentes/ferias-calculos-pendentes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/ferias.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/relatorio-retencoes-ferias/relatorio-retencoes-ferias.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/terceirizado-ferias-movimentacao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/terceirizado-ferias-movimentacao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/ferias/valor-restituicao-ferias.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/ferias/valor-restituicao-ferias.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/cadastrar-terceirizado/cadastrar-terceirizado.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionario.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/funcionarios.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/lista.funcionarios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/funcionarios/lista.funcionarios.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/cadastrar-gestor/cadastrar-gestor-contrato.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico-gestores.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/historico/historico.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/historico/historico.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/indicadores/indicadores.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/inicio/inicio.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/comum/comum.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/footer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/loading.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/menu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio-child.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio-child.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/layout/relatorio/relatorio.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais-estaticos/percentuais-estaticos.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/cadastro-percentuais/cadastro-percentuais.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/lista.de.percentuais.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/lista.de.percentuais.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentuais.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/percentuais/percentual.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/calculo-rescisao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/movimentacao-rescisao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/calculo-rescisao/resgate-rescisao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisao.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/rescisoes-pendentes/rescisao-pendente.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/terceirizado-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/terceirizado-rescisao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rescisao/valor-restituicao-rescisao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rescisao/valor-restituicao-rescisao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastrar-rubrica.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastro-rubrica.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/cadastrar-rubrica/cadastro-rubrica.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/percentual-estatico.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/percentual-estatico.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubrica.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubrica.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/rubricas/rubricas.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/historico-total-mensal/historico-total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/historico-total-mensal/historico-total-mensal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-execucao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/calculos-pendentes/total-mensal-pendente.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/lista-total-mensal-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/lista-total-mensal-data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/recalculo-total-mensal/recalculo-total-mensal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-calculo/total-mensal-calculo.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-pendente.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-pendente.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal-ret/total-mensal-ret.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/total-mensal.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/totalMensal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/totalMensal/totalMensal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/logged-in.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/logged-in.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/profile.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/profile.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/profile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/users/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/users/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/cadastro-usuario/cadastro-usuario.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuario.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/usuarios/usuarios.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/lista.vigencias.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/lista.vigencias.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.dos.contratos.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/vigencia-dos-contratos/vigencia.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/css/materialize.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/css/materialize.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/jquery-2.1.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/jquery-2.1.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/materialize.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/materialize.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/js/web-animations.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/js/web-animations.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/langs/pt_BR.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/langs/pt_BR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/sass/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/sass/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/sass/trabalho-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/sass/trabalho-card.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/assets/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/sass/trabalho-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/sass/trabalho-card.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/typings.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/typings.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/tslint.json" afterDir="false" />
     </list>
     <ignored path="./target  /" />
     <ignored path="./idea/" />
@@ -63,7 +376,7 @@
     <session id="909848314">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="31" />
+          <entry key="project.closed" value="35" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="1" />
@@ -73,15 +386,15 @@
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="5" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.open.time.8" value="9" />
+          <entry key="project.opened" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="4" />
           <entry key="css" value="1" />
-          <entry key="java" value="307" />
+          <entry key="java" value="330" />
           <entry key="sql" value="10" />
           <entry key="xml" value="1" />
         </counts>
@@ -90,7 +403,7 @@
         <counts>
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="307" />
+          <entry key="JAVA" value="330" />
           <entry key="Scratch" value="10" />
           <entry key="XML" value="1" />
         </counts>
@@ -98,14 +411,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="46" />
-          <entry key="java" value="25858" />
+          <entry key="java" value="26160" />
           <entry key="sql" value="1381" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="25847" />
+          <entry key="JAVA" value="26149" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="SQL" value="11" />
           <entry key="Scratch" value="1381" />
@@ -162,17 +475,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2805">
-              <caret line="169" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="425">
+              <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="14" selection-end-column="31" />
+            <state relative-caret-position="374">
+              <caret line="33" column="91" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-191">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -203,8 +558,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/DecimoTerceiroPendenteModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoDecimoTerceiro.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AvaliacaoFerias.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/ErrorMessage.java" />
@@ -252,8 +605,10 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/SaldoResidualRescisao.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoResidualRescisaoDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoResidualController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java" />
       </list>
     </option>
   </component>
@@ -282,10 +637,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1763" />
-    <option name="y" value="-12" />
+    <option name="x" value="-1745" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="height" value="1016" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -353,6 +708,24 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Back-End" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Back-End" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="siscovi" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -368,8 +741,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -378,12 +751,12 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543410306099" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548356120865" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="database.console.LAST_STATE" value="true" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projeto SISCOVI/SISCOVI" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="project.structure.last.edited" value="Project" />
@@ -415,15 +788,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.SISCOVI">
+  <component name="RunManager" selected="Application.TesteRestituicaoRescisao">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestDecimoTerceiro" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.test.TestDecimoTerceiro" />
+    <configuration name="TestSaldo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.jus.stj.siscovi.test.TestSaldo" />
       <module name="Back-End" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -596,19 +969,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.SISCOVI" />
-      <item itemvalue="Application.TestDecimoTerceiro" />
       <item itemvalue="Application.TesteSadoTotalContaVinculadaDAO" />
       <item itemvalue="Application.TesteRestituicaoFerias" />
       <item itemvalue="Application.TesteRestituicaoDecimoTerceiro" />
       <item itemvalue="Application.TesteRestituicaoRescisao" />
+      <item itemvalue="Application.TestSaldo" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TesteRestituicaoRescisao" />
+        <item itemvalue="Application.TestSaldo" />
         <item itemvalue="Application.TesteRestituicaoDecimoTerceiro" />
         <item itemvalue="Application.TesteRestituicaoFerias" />
         <item itemvalue="Application.TesteSadoTotalContaVinculadaDAO" />
-        <item itemvalue="Application.TestDecimoTerceiro" />
       </list>
     </recent_temporary>
   </component>
@@ -734,11 +1107,15 @@
       <workItem from="1543399517952" duration="4070000" />
       <workItem from="1543504494004" duration="3207000" />
       <workItem from="1543572103105" duration="1238000" />
+      <workItem from="1548170920613" duration="971000" />
+      <workItem from="1548174789546" duration="1852000" />
+      <workItem from="1548256372862" duration="7184000" />
+      <workItem from="1548341953442" duration="9809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="540013000" />
+    <option name="totallyTimeSpent" value="559829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -751,8 +1128,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.19189766" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20042644" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -760,10 +1138,10 @@
       <window_info id="Favorites" order="5" sideWeight="0.505295" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="0" visible="true" weight="0.22557172" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32744282" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.26611227" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.26507276" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49583334" weight="0.39782608" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -785,12 +1163,12 @@
       <window_info anchor="right" id="Dynamic Properties" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Database" order="9" visible="true" weight="0.12793177" />
+      <window_info anchor="right" id="Database" order="9" weight="0.12793177" />
       <window_info anchor="right" id="Coverage" order="10" sideWeight="0.5008026" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Bean Validation" order="11" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.3011727" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20042644" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -800,8 +1178,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3275488" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.3087318" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32744282" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" visible="true" weight="0.26507276" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49583334" weight="0.39782608" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -811,19 +1189,19 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32916668" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Application Servers" order="12" weight="0.32786885" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" weight="0.33679834" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" weight="0.33575884" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32916668" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.329718" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49919742" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="4" weight="0.32995737" />
+      <window_info anchor="right" id="Maven Projects" order="4" weight="0.32942432" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Dynamic Properties" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Database" order="9" weight="0.32889125" />
+      <window_info anchor="right" id="Database" order="9" weight="0.12793177" />
       <window_info anchor="right" id="Coverage" order="10" sideWeight="0.5008026" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Bean Validation" order="11" weight="0.32995737" />
     </layout-to-restore>
@@ -839,69 +1217,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/FuncionariosDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CargoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="123" column="1" selection-start-line="123" selection-start-column="1" selection-end-line="123" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroPercentualContrato.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroTipoRestituicao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteSadoTotalContaVinculadaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="120" lean-forward="true" selection-start-line="19" selection-start-column="120" selection-end-line="19" selection-end-column="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ContratoDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/VigenciaModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/TerceirizadoFerias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/Status.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -937,13 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5055">
@@ -962,34 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="55" lean-forward="true" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CourseRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="143" column="1" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
@@ -1028,13 +1308,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5950">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoTotalContaVinculadaDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1063,20 +1336,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoIndividualContaVinculadaDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1098,13 +1357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="570" column="35" lean-forward="true" selection-start-line="570" selection-start-column="35" selection-end-line="570" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-289">
@@ -1112,24 +1364,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="436" column="29" lean-forward="true" selection-start-line="436" selection-start-column="29" selection-end-line="436" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoResidualDecimoTerceiroDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="865">
           <caret line="68" column="13" lean-forward="true" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1168,31 +1406,177 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/CourseRestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10095">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="2159">
+          <caret line="143" column="1" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/Course.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/MyResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3128">
+          <caret line="192" selection-start-line="192" selection-end-line="192" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="14" selection-end-column="31" />
+        <state relative-caret-position="357">
+          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="35" column="80" selection-start-line="35" selection-start-column="80" selection-end-line="35" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/TotalMensalDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5155">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Percentual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2430">
+          <caret line="1231" lean-forward="true" selection-start-line="1231" selection-end-line="1231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Periodos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="230" column="58" lean-forward="true" selection-start-line="230" selection-start-column="48" selection-end-line="230" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3995">
+          <caret line="770" column="91" lean-forward="true" selection-start-line="770" selection-start-column="91" selection-end-line="770" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestInsertTSQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" column="73" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="17" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-191">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoDecimoTerceiro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="492" column="60" lean-forward="true" selection-start-line="492" selection-start-column="60" selection-end-line="492" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="33" column="91" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="91" />
         </state>
       </provider>
     </entry>

@@ -14,4 +14,9 @@ export class ConvencaoService {
     const url = this.config.myApi + '/convencao/getConvencoesDoContrato=' + codigo;
     return this.http.get(url).map( res => res.json());
   }
+
+    getAll() {
+        const url = this.config.myApi + '/convencao/getAll';
+        return this.http.get(url).map(res => res.json());
+    }
 }

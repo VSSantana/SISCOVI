@@ -38,8 +38,7 @@ export class UserService {
     this.logout();
     this.headers = new Headers(
       {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       }
       );
     const url: string = this.config.myApi + '/login/token';

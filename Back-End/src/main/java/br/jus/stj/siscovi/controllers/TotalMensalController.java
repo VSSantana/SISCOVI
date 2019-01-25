@@ -33,7 +33,7 @@ public class TotalMensalController {
         Connection connection = new ConnectSQLServer().dbConnect();
         ContratoDAO contratoDAO = new ContratoDAO(connection);
         TotalMensalDAO totalMensalDAO = new TotalMensalDAO(connection);
-        Gson gson = new GsonBuilder().serializeNulls().setDateFormat("dd/MM/yyyy").create();
+        Gson gson = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
         String json;
         ArrayList<ListaTotalMensalData> lista = totalMensalDAO.getValoresCalculadosAnteriormente(codigoContrato, contratoDAO.codigoGestorContrato(codigoUsuario, codigoContrato));
         if(lista.size() > 0) {

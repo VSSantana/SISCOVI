@@ -52,6 +52,11 @@ export class MovimentacaoFeriasComponent implements  OnInit {
                 inicioFerias: new FormControl(''),
                 fimFerias: new FormControl(''),
                 valorMaximoASerMovimentado: new FormControl(),
+                valorFerias: new FormControl(),
+                valorIncidenciaFerias: new FormControl(),
+                valorIncidenciaTercoConstitucional: new FormControl(),
+                valorTercoConstitucional: new FormControl(),
+
             });
             control.push(addCtrl);
         });
@@ -169,7 +174,12 @@ export class MovimentacaoFeriasComponent implements  OnInit {
                             this.terceirizados.forEach(terceirizado => {
                                 if (terceirizado.codigoTerceirizadoContrato === control.parent.get('codTerceirizadoContrato').value) {
                                     terceirizado.valorRestituicaoFerias = res;
-                                    control.parent.get('valorMaximoASerMovimentado').setValue(terceirizado.valorRestituicaoFerias.valorFerias + terceirizado.valorRestituicaoFerias.valorTercoConstitucional);
+                                    control.parent.get('valorMaximoASerMovimentado').setValue(terceirizado.valorRestituicaoFerias.valorFerias +
+                                        terceirizado.valorRestituicaoFerias.valorTercoConstitucional);
+                                    control.parent.get('valorFerias').setValue(terceirizado.valorRestituicaoFerias.valorFerias);
+                                    control.parent.get('valorIncidenciaFerias').setValue(terceirizado.valorRestituicaoFerias.valorIncidenciaFerias);
+                                    control.parent.get('valorIncidenciaTercoConstitucional').setValue(terceirizado.valorRestituicaoFerias.valorIncidenciaTercoConstitucional);
+                                    control.parent.get('valorTercoConstitucional').setValue(terceirizado.valorRestituicaoFerias.valorTercoConstitucional);
                                     this.vmsm = true;
                                 }
                             });
@@ -330,7 +340,12 @@ export class MovimentacaoFeriasComponent implements  OnInit {
                         this.feriasForm.get('calcularTerceirizados').get('' + i).get('inicioPeriodoAquisitivo').value,
                         this.feriasForm.get('calcularTerceirizados').get('' + i).get('fimPeriodoAquisitivo').value,
                         this.feriasForm.get('calcularTerceirizados').get('' + i).get('valorMovimentado').value,
-                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('parcelas').value, 0, 0, 0, 0, 0);
+                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('parcelas').value,
+                        0,
+                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('valorFerias').value,
+                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('valorTercoConstitucional').value,
+                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('valorIncidenciaFerias').value,
+                        this.feriasForm.get('calcularTerceirizados').get('' + i).get('valorIncidenciaTercoConstitucional').value);
                     if (this.terceirizados[i].valorRestituicaoFerias) {
                         objeto.setInicioPeriodoAquisitivo(this.terceirizados[i].valorRestituicaoFerias.inicioPeriodoAquisitivo);
                         objeto.setFimPeriodoAquisitivo(this.terceirizados[i].valorRestituicaoFerias.fimPeriodoAquisitivo);
@@ -379,6 +394,7 @@ export class MovimentacaoFeriasComponent implements  OnInit {
             this.openModal3();
         }
     }
+
     getDiasConcedidos(inicioFerias, fimFerias, diasVendidos, indice) {
         let dia = inicioFerias.split('/')[0];
         let mes = inicioFerias.split('/')[1] - 1;

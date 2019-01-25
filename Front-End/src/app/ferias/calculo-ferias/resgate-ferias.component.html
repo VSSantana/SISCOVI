@@ -19,11 +19,11 @@
             <tbody>
             <tr *ngFor="let terceirizado of terceirizados; let k = index">
                 <td>
-                    <div [formGroupName]="k">
-                        <input type="checkbox" [checked]="isSelected" [ngModel]="isSelected" formControlName="selected" id="{{k}}"/>
-                        <label for="{{k}}"></label>
-                    </div>
-                </td>
+                <div [formGroupName]="k">
+                    <input type="checkbox" [checked]="isSelected" [ngModel]="isSelected" formControlName="selected" id="{{k}}"/>
+                    <label for="{{k}}"></label>
+                </div>
+            </td>
                 <td>{{terceirizado.nomeTerceirizado}}</td>
                 <td>
                     <div [formGroupName]="k">

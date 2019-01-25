@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FeriasCalcular} from '../../ferias/ferias-calcular';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TerceirizadoDecimoTerceiro} from '../terceirizado-decimo-terceiro';
@@ -29,7 +29,7 @@ export class MovimentacaoDecimoTerceiroComponent implements  OnInit {
     protected diasConcedidos: number[] = [];
     @Output() navegaParaViewDeCalculos = new EventEmitter();
     primeiroItemErrado: number;
-    constructor(private fb: FormBuilder, private decimoTerceiroService: DecimoTerceiroService) { }
+    constructor(private fb: FormBuilder, private decimoTerceiroService: DecimoTerceiroService, private ref: ChangeDetectorRef) {}
     ngOnInit() {
         this.formInit();
     }
@@ -37,6 +37,7 @@ export class MovimentacaoDecimoTerceiroComponent implements  OnInit {
         this.decimoTerceiroForm = this.fb.group({
             calcularTerceirizados: this.fb.array([])
         });
+        this.ref.markForCheck();
         const control = <FormArray>this.decimoTerceiroForm.controls.calcularTerceirizados;
         this.terceirizados.forEach(item => {
             const addCtrl = this.fb.group({
@@ -119,7 +120,7 @@ export class MovimentacaoDecimoTerceiroComponent implements  OnInit {
                         this.decimoTerceiroForm.get('calcularTerceirizados').get('' + i).get('inicioContagem').value,
                         this.decimoTerceiroForm.get('calcularTerceirizados').get('' + i).get('valorMovimentado').value,
                         this.decimoTerceiroForm.get('calcularTerceirizados').get('' + i).get('parcelas').value);
-                    objeto.tipoRestituicao = this.tipoRestituicao;
+                    objeto.tipoRestituicao = 'MOVIMENTAÇÃO';
                     if (this.terceirizados[i].valorMovimentado) {
 
                     }

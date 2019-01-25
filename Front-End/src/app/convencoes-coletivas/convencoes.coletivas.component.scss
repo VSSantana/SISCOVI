@@ -2,16 +2,8 @@ table.highlight tbody tr:hover {
   background-color: #9e9e9e;
   cursor: context-menu;
 }
-
-input .select-dropdown {
-  z-index: -1 !important;
-}
-div .select-wrapper {
-  z-index: 0 !important;
-}
-div .input-field {
-  z-index: 0 !important;
-}
-#select-options {
-  z-index: 0 !important;
+.row .col{
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
 }

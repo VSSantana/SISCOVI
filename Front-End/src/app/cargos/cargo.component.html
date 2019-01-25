@@ -1,13 +1,15 @@
 <div class="container">
   <h2 class="center">Cargos</h2>
   <div class="row">
-      <div class="row">
-          <div class="input-field col s6 right">
+      <div class="valign-wrapper col s12">
+          <div class="left-align col s6">
+              <button class="left btn waves-effect" (click)="openModal()">Cadastrar Novo Cargo</button>
+          </div>
+          <div class="input-field col s6">
               <i class="material-icons prefix">search</i>
               <input placeholder="Digite um nome" id="search_name" type="text" class="validate">
               <label for="search_name">Busca</label>
           </div>
-          <button class="btn waves-effect" (click)="openModal()">Cadastrar Novo Cargo</button>
       </div>
       <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
         <div class="modal-content">
@@ -36,7 +38,7 @@
                 <td>{{cargo.nome}}</td>
                 <td>{{cargo.descricao}}</td>
                 <td>{{cargo.loginAtualizacao}}</td>
-                <td>{{cargo.dataAtualizacao}}</td>
+                <td>{{cargo.dataAtualizacao | date: 'shortDate'}}</td>
             </tr>
             </tbody>
         </table>

@@ -1,9 +1,9 @@
 export class Convencao {
-  cargo: string;
-  remuneracao: number;
-  dataInicioConvencao: Date;
-  dataFimConvencao: Date;
-  dataAditamento: Date;
+  codigo: number;
+  nome: string;
+  dataBase: Date;
+  descricao: string;
+  sigla: string;
   loginAtualizacao: string;
   dataAtualizacao: Date;
 }

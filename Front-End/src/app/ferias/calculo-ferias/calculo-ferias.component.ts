@@ -21,7 +21,9 @@ export class CalculoFeriasComponent {
             this.contratos = res;
         });
     }
+
     defineCodigoContrato(codigoContrato: number): void {
+        this.terceirizados = null;
         this.codigo = codigoContrato;
         if (this.codigo && this.tipoRestituicao) {
             this.feriasService.getFuncionariosFerias(this.codigo, this.tipoRestituicao).subscribe(res => {
@@ -38,6 +40,7 @@ export class CalculoFeriasComponent {
             });
         }
     }
+
     eventNav(codigo: number): void {
         console.log(codigo);
         this.navegaParaViewDeCalculos.emit(codigo);

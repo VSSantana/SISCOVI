@@ -19,7 +19,12 @@
     </div>
 </div>
 <div class="container" *ngIf="valid">
-  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" id="cargos-funcionarios">
+    <div class="row" *ngIf="listaCargosFuncionarios.length === 0">
+        <div class="col s12 grey lighten-4">
+            <h5 class="center-align">Não há funcionários cadastrados nos cargos ainda <i class="small material-icons">mood_bad</i>. Por favor aloque funcionários nas funções !</h5>
+        </div>
+    </div>
+  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion" id="cargos-funcionarios" *ngIf="listaCargosFuncionarios.length > 0">
     <li *ngFor="let lista of listaCargosFuncionarios">
       <div class="collapsible-header">
         <h5 class="center white-text">{{lista.nomeCargo}}</h5>

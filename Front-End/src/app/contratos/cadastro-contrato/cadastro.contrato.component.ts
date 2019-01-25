@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CargoService} from '../../cargos/cargo.service';
@@ -7,7 +7,13 @@ import {ContratosService} from '../contratos.service';
 import {UserService} from '../../users/user.service';
 import {ConfigService} from '../../_shared/config.service';
 import {Usuario} from '../../usuarios/usuario';
-import {FormularioCadastroContrato} from './formulario.cadastro.contrato';
+import {MaterializeAction} from 'angular2-materialize';
+import {Contrato} from '../contrato';
+import {HistoricoGestor} from '../../historico/historico-gestor';
+import {Percentual} from '../../percentuais/percentual';
+import {Rubrica} from '../../rubricas/rubrica';
+import {Convencao} from '../../convencoes-coletivas/convencao';
+import {ConvencaoService} from '../../convencoes-coletivas/convencao.service';
 
 @Component({
   selector: 'app-cadastro-contrato',
@@ -40,7 +46,10 @@ export class CadastroContratoComponent implements OnInit {
         {valor: 11, mes: 'Novembro'},
         {valor: 12, mes: 'Dezembro'}
     ];
-    constructor(router: Router, carSer: CargoService, fb: FormBuilder, fb1: FormBuilder, contratoService: ContratosService, userService: UserService, config: ConfigService) {
+    modalActions = new EventEmitter<string | MaterializeAction>();
+    convencoesColetivas: Convencao[];
+    constructor(router: Router, carSer: CargoService, fb: FormBuilder, fb1: FormBuilder, contratoService: ContratosService, userService: UserService, config: ConfigService,
+                private convServ: ConvencaoService) {
         this.router = router;
         this.fb = fb;
         this.fb1 = fb1;
@@ -49,6 +58,9 @@ export class CadastroContratoComponent implements OnInit {
         this.carSer.getAllCargos().subscribe(res => {
             this.cargosCadastrados = res;
             this.initCargos();
+        });
+        this.convServ.getAll().subscribe(res => {
+            this.convencoesColetivas = res;
         });
         if (userService.user.perfil.sigla === 'ADMINISTRADOR') {
             userService.getUsuarios().subscribe(res => {
@@ -68,14 +80,15 @@ export class CadastroContratoComponent implements OnInit {
             nomeGestor: new FormControl('', [Validators.required, this.nameValidator]),
             nomeEmpresa: new FormControl('', [Validators.required, this.nameValidator]),
             cnpj: new FormControl('', [Validators.required, this.cnpjValidator]),
-            ativo: new FormControl('SIM', [Validators.required]),
+            ativo: new FormControl('S', [Validators.required]),
             objeto: new FormControl(''),
             percentualFerias: new FormControl('', [Validators.required]),
             percentualDecimoTerceiro: new FormControl('', [Validators.required]),
             percentualIncidencia: new FormControl('', [Validators.required, this.percentualValidator]),
             numeroContrato: new FormControl('', [Validators.required]),
             primeiroSubstituto: new FormControl(''),
-            segundoSubstituto: new FormControl('')
+            segundoSubstituto: new FormControl(''),
+            numeroProcessoSTJ: new FormControl('')
         });
         this.myForm = this.fb.group({
             cargos: this.fb.array([])
@@ -92,9 +105,19 @@ export class CadastroContratoComponent implements OnInit {
             nome: new FormControl('', [Validators.required]),
             remuneracao: new FormControl('', [Validators.required]),
             descricao: new FormControl(''),
+            adicionais: new FormControl(''),
+            trienios: new FormControl(''),
+            convencao: new FormControl(''),
+            dataBase: new FormControl('')
             // dia: new FormControl('', [Validators.required]),
             // mes: new FormControl('', [Validators.required])
         });
+    }
+    openModal() {
+        this.modalActions.emit({action: 'modal', params: ['open']});
+    }
+    closeModal() {
+        this.modalActions.emit({action: 'modal', params: ['close']});
     }
     adicionaCargo(): void {
         const control = <FormArray>this.myForm.controls.cargos;
@@ -131,37 +154,17 @@ export class CadastroContratoComponent implements OnInit {
         return (mensagem.length > 0) ? {'mensagem': [mensagem]} : null;
     }
     public percentualValidator(control: AbstractControl): {[key: string]: any} {
-        const val = control.value.split('%')[0];
+        const val = control.value;
         const mensagem = [];
         if (control.value) {
-            if ((Number(val.replace(',', '.'))) === 0) {
+            if (val === 0) {
                 mensagem.push('Digite um valor para o percentual de incidência. Valores comuns para este percentual são  36,8 e 35,6');
             }
         }
         return (mensagem.length > 0) ? {'mensagem': [mensagem]} : null;
     }
     isValid() {
-        if (this.myForm2.valid && this.myForm.valid) {
-           this.contratoService.formValido = true;
-           const formCadastroContrato = new FormularioCadastroContrato();
-           formCadastroContrato.nomeGestor = this.myForm2.get('nomeGestor').value;
-           formCadastroContrato.nomePrimeiroSubstituto = this.myForm2.get('primeiroSubstituto').value;
-           formCadastroContrato.nomeSegundoSubstituto = this.myForm2.get('segundoSubstituto').value;
-           formCadastroContrato.cnpj = this.myForm2.get('cnpj').value;
-           formCadastroContrato.numeroContrato = this.myForm2.get('numeroContrato').value;
-           formCadastroContrato.ativo = this.myForm2.get('ativo').value;
-           formCadastroContrato.objeto = this.myForm2.get('objeto').value;
-           formCadastroContrato.inicioVigencia = this.myForm2.get('inicioVigencia').value;
-           formCadastroContrato.fimVigencia = this.myForm2.get('fimVigencia').value;
-           formCadastroContrato.assinatura = this.myForm2.get('assinatura').value;
-           formCadastroContrato.percentualFerias = this.myForm2.get('percentualFerias').value;
-           formCadastroContrato.percentualDecimoTerceiro = this.myForm2.get('percentualDecimoTerceiro').value;
-           formCadastroContrato.percentualIncidencia = this.myForm2.get('percentualIncidencia').value;
-           formCadastroContrato.cargos = this.myForm.get('cargos').value;
-           this.contratoService.formCadContr = formCadastroContrato;
-        }else {
-            this.contratoService.formValido = false;
-        }
+
     }
     formArrayLength() {
         const control = <FormArray>this.myForm.controls.cargos;
@@ -199,5 +202,123 @@ export class CadastroContratoComponent implements OnInit {
             mensagem.push('CNPJ inválido');
         }
         return (mensagem.length > 0) ? {'mensagem': [mensagem]} : null;
+    }
+    enviarCadastroContrato() {
+        const historicoGestao: HistoricoGestor[] = this.criaHistorico();
+        const funcoes: Cargo[] = this.criaFuncoes();
+        const percentuais: Percentual[] = this.criaPercentuais();
+        const contrato: Contrato = new Contrato(this.myForm2.get('nomeEmpresa').value, this.myForm2.get('cnpj').value, 0, this.myForm2.get('numeroContrato').value, 0,
+            this.converteDateFormat(this.myForm2.get('inicioVigencia').value),
+            this.converteDateFormat(this.myForm2.get('fimVigencia').value), this.myForm2.get('objeto').value,
+            this.myForm2.get('ativo').value,
+            historicoGestao,
+            funcoes);
+        contrato.dataAssinatura = this.converteDateFormat(this.myForm2.get('assinatura').value);
+        contrato.numeroProcessoSTJ = this.myForm2.get('numeroProcessoSTJ').value;
+        contrato.percentuais = percentuais;
+        this.contratoService.cadastrarContrato(contrato).subscribe(res => {
+            if (res.success) {
+            }else {
+            }
+        });
+    }
+
+    private criaHistorico(): HistoricoGestor[] {
+        const lista: HistoricoGestor[] = [];
+        let historico = new HistoricoGestor();
+        historico.inicio = this.converteDateFormat(this.myForm2.get('inicioVigencia').value);
+        historico.gestor = this.myForm2.get('nomeGestor').value;
+        historico.fim = this.converteDateFormat(this.myForm2.get('fimVigencia').value);
+        historico.codigoPerfilGestao = 1;
+        lista.push(historico);
+        historico = new HistoricoGestor();
+        if (this.myForm2.get('primeiroSubstituto').value.length > 0) {
+            historico.inicio = this.converteDateFormat(this.myForm2.get('inicioVigencia').value);
+            historico.gestor = this.myForm2.get('primeiroSubstituto').value;
+            historico.fim = this.converteDateFormat(this.myForm2.get('fimVigencia').value);
+            historico.codigoPerfilGestao = 2;
+            lista.push(historico);
+            historico = new HistoricoGestor();
+        }
+        if (this.myForm2.get('segundoSubstituto').value.length > 0) {
+            historico.inicio = this.converteDateFormat(this.myForm2.get('inicioVigencia').value);
+            historico.gestor = this.myForm2.get('segundoSubstituto').value;
+            historico.fim = this.converteDateFormat(this.myForm2.get('fimVigencia').value);
+            historico.codigoPerfilGestao = 3;
+            lista.push(historico);
+        }
+        return lista;
+    }
+
+    private converteDateFormat(value: string): Date {
+        const date: string[] = value.split('/');
+        return new Date(Number(date[2]), Number(date[1]) - 1, Number(date[0]));
+    }
+
+    private criaFuncoes(): Cargo[] {
+        const funcoes: Cargo[] = [];
+        const cargosForm = this.getFormArrayItems();
+        for (let i = 0; i < this.formArrayLength(); i++) {
+            const funcao = new Cargo();
+            funcao.nome = this.myForm.get('cargos').get('' + i).get('nome').value;
+            funcao.remuneracao = this.myForm.get('cargos').get('' + i).get('remuneracao').value;
+            funcao.descricao = this.myForm.get('cargos').get('' + i).get('descricao').value;
+            funcao.adicionais = this.myForm.get('cargos').get('' + i).get('adicionais').value;
+            funcao.trienios = this.myForm.get('cargos').get('' + i).get('trienios').value;
+            const convencao: Convencao = this.convencoesColetivas.find( item => {
+                if (item.codigo === Number(this.myForm.get('cargos').get('' + i).get('convencao').value)) {
+                    return true;
+                }
+            });
+            convencao.dataBase = this.converteDateFormat(this.myForm.get('cargos').get('' + i).get('dataBase').value);
+            const currentName: string =  this.myForm.get('cargos').get('' + i).get('nome').value;
+            const index = this.cargosCadastrados.findIndex(item => {
+                if (item.nome === currentName) {
+                    return true;
+                }
+            });
+            if (index >= 0) {
+                funcao.codigo = this.cargosCadastrados[index].codigo;
+            }
+            funcao.convencao = convencao;
+            funcoes.push(funcao);
+        }
+        return funcoes;
+    }
+
+    private criaPercentuais(): Percentual[] {
+        const percentuais: Percentual[] = [];
+        let percentual = new Percentual();
+        const date = this.converteDateFormat(this.myForm2.get('inicioVigencia').value);
+        percentual.dataInicio = date;
+        percentual.dataAditamento = date;
+        percentual.percentual = this.myForm2.get('percentualFerias').value;
+        let rubrica = new Rubrica();
+        rubrica.codigo = 1;
+        rubrica.nome = 'Férias';
+        rubrica.sigla = 'Férias';
+        percentual.rubrica = rubrica;
+        percentuais.push(percentual);
+        percentual = new Percentual();
+        percentual.dataInicio = date;
+        percentual.dataAditamento = date;
+        percentual.percentual = this.myForm2.get('percentualDecimoTerceiro').value;
+        rubrica = new Rubrica();
+        rubrica.codigo = 3;
+        rubrica.nome = 'Décimo Terceiro';
+        rubrica.sigla = '13º';
+        percentual.rubrica = rubrica;
+        percentuais.push(percentual);
+        percentual = new Percentual();
+        percentual.dataInicio = date;
+        percentual.dataAditamento = date;
+        percentual.percentual = this.myForm2.get('percentualIncidencia').value;
+        rubrica = new Rubrica();
+        rubrica.codigo = 7;
+        rubrica.nome = 'Incidência do submódulo 4.1';
+        rubrica.sigla = 'Submódulo 4.1';
+        percentual.rubrica = rubrica;
+        percentuais.push(percentual);
+        return percentuais;
     }
 }

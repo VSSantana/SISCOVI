@@ -11,7 +11,7 @@ export class TerceirizadoDecimoTerceiro {
     valoresDecimoTerceiro: ValorDecimoTerceiro;
     nomeCargo: string;
     fimContagem: Date;
-    private _id: String;
+    private id: String;
     constructor(codigoTerceirizadoContrato: number, nomeTerceirizado: string, inicioContagem: Date, valorMovimentado: number, parcelas: number) {
         this.codigoTerceirizadoContrato = codigoTerceirizadoContrato;
         this.nomeTerceirizado = nomeTerceirizado;
@@ -22,7 +22,5 @@ export class TerceirizadoDecimoTerceiro {
     public setNomeTerceirizado(nomeTerceirizado: string) {
         this.nomeTerceirizado = nomeTerceirizado;
     }
-    set id(value: String) {
-        this._id = value;
-    }
+
 }

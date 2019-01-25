@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TerceirizadoDecimoTerceiro} from '../terceirizado-decimo-terceiro';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MaterializeAction} from 'angular2-materialize';
@@ -24,7 +24,7 @@ export class ResgateDecimoTerceiroComponent implements OnInit {
     vmsm = false;
     protected diasConcedidos: number[] = [];
     @Output() navegaParaViewDeCalculos = new EventEmitter();
-    constructor(private fb: FormBuilder, private decimoTerceiroService: DecimoTerceiroService) { }
+    constructor(private fb: FormBuilder, private decimoTerceiroService: DecimoTerceiroService, private ref: ChangeDetectorRef) { }
     ngOnInit() {
         this.formInit();
     }
@@ -32,6 +32,7 @@ export class ResgateDecimoTerceiroComponent implements OnInit {
         this.decimoTerceiroForm = this.fb.group({
             calcularTerceirizados: this.fb.array([])
         });
+        this.ref.markForCheck();
         const control = <FormArray>this.decimoTerceiroForm.controls.calcularTerceirizados;
         this.terceirizados.forEach(item => {
             const addCtrl = this.fb.group({
@@ -50,6 +51,7 @@ export class ResgateDecimoTerceiroComponent implements OnInit {
             this.decimoTerceiroForm.get('calcularTerceirizados').get('' + i).get('tipoRestituicao').setValidators(Validators.required);
             this.decimoTerceiroForm.get('calcularTerceirizados').get('' + i).get('inicioContagem');
         }
+        this.ref.markForCheck();
     }
     closeModal1() {
         this.modalActions.emit({action: 'modal', params: ['close']});

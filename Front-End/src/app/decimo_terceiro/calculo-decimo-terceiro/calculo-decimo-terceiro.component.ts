@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {Contrato} from '../../contratos/contrato';
 import {ContratosService} from '../../contratos/contratos.service';
 import {DecimoTerceiroService} from '../decimo-terceiro.service';
@@ -14,12 +14,13 @@ export class CalculoDecimoTerceiroComponent {
     codigo: number;
     tipoRestituicao: string;
     @Output() navegaParaViewDeCalculos = new EventEmitter();
-    constructor(private contratoService: ContratosService, private decimoTerceiroService: DecimoTerceiroService) {
+    constructor(private contratoService: ContratosService, private decimoTerceiroService: DecimoTerceiroService, private ref: ChangeDetectorRef) {
         this.contratoService.getContratosDoUsuario().subscribe(res => {
             this.contratos = res;
         });
     }
     defineCodigoContrato(codigoContrato: number): void {
+        this.terceirizados = null;
         this.codigo = codigoContrato;
         if (this.codigo && this.tipoRestituicao) {
             this.decimoTerceiroService.getFuncionariosDecimoTerceiro(this.codigo, this.tipoRestituicao).subscribe(res => {
@@ -37,7 +38,6 @@ export class CalculoDecimoTerceiroComponent {
         }
     }
     eventNav(codigo: number): void {
-        console.log(codigo);
         this.navegaParaViewDeCalculos.emit(codigo);
     }
 }

@@ -2,7 +2,7 @@
 <div class="row">
     <div class="input-field col l7">
         <select id="selecao_contrato"materialize="material_select" [materializeSelectOptions]="contratos" (change)="defineCodigoContrato($event.target.value)">
-            <option disabled>Selecione um contrato</option>
+            <option disabled>Selecione um Contrato</option>
             <option *ngFor="let contrato of contratos" [value]="contrato.codigo" [selected]="codigoContrato == contrato.codigo">{{contrato.nomeDaEmpresa}} - Contrato nº: {{contrato.numeroDoContrato}}</option>
         </select>
         <label for="selecao_contrato">Contrato<span class="red-text"> *</span></label>

@@ -1,11 +1,10 @@
-import {AfterContentChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeriasService} from '../ferias.service';
 import {Contrato} from '../../contratos/contrato';
 import {TerceirizadoFeriasMovimentacao} from '../terceirizado-ferias-movimentacao';
 import {FeriasCalcular} from '../ferias-calcular';
 import {MaterializeAction} from 'angular2-materialize';
-import {expressionChangedAfterItHasBeenCheckedError} from "@angular/core/src/view/errors";
 
 @Component({
     selector: 'app-resgate-ferias-component',
