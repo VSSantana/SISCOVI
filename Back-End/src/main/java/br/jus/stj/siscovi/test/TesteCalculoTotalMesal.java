@@ -14,16 +14,16 @@ public class TesteCalculoTotalMesal {
 
     public static void main(String[] args){
 
-    ConnectSQLServer connectSQLServer = new ConnectSQLServer();
-    TotalMensalAReter totalMensalAReter = new TotalMensalAReter(connectSQLServer.dbConnect());
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
-    int vCodTipoRestituicao = 0;
+        ConnectSQLServer connectSQLServer = new ConnectSQLServer();
+        TotalMensalAReter totalMensalAReter = new TotalMensalAReter(connectSQLServer.dbConnect());
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int vCodTipoRestituicao = 0;
 
-    totalMensalAReter.CalculaTotalMensal(1, 8, 2016, "VSSOUSA");
-    //TotalMensalDAO totalMensalDAO  = new TotalMensalDAO(connectSQLServer.dbConnect());
-    //totalMensalDAO.recuperaAnosDeCalculosAnteriores(41);
-    //new TotalMensalController().getValoresCalculados(41,8);
+        totalMensalAReter.CalculaTotalMensal(1, 8, 2016, "VSSOUSA");
+        //TotalMensalDAO totalMensalDAO  = new TotalMensalDAO(connectSQLServer.dbConnect());
+        //totalMensalDAO.recuperaAnosDeCalculosAnteriores(41);
+        //new TotalMensalController().getValoresCalculados(41,8);
 
     }
 

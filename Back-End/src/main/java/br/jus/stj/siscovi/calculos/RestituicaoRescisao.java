@@ -29,10 +29,16 @@ public class RestituicaoRescisao {
      *
      * @param pCodTerceirizadoContrato;
      * @param pDataDesligamento;
+     *
+     *
      */
 
     public ValorRestituicaoRescisaoModel CalculaRestituicaoRescisao (int pCodTerceirizadoContrato,
-                                                                     Date pDataDesligamento) {
+                                                                     Date pDataDesligamento,
+                                                                     Date pDataInicioFeriasIntegrais,
+                                                                     Date pDataFimFeriasIntegrais,
+                                                                     Date pDataInicioFeriasProporcionais,
+                                                                     Date pDataFimFeriasProporcionais) {
 
         Retencao retencao = new Retencao(connection);
         Percentual percentual = new Percentual(connection);

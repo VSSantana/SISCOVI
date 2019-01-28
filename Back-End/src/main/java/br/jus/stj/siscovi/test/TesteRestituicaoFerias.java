@@ -1,4 +1,7 @@
-package br.jus.stj.siscovi.calculos;
+package br.jus.stj.siscovi.test;
+
+import br.jus.stj.siscovi.calculos.Ferias;
+import br.jus.stj.siscovi.calculos.RestituicaoFerias;
 import br.jus.stj.siscovi.dao.sql.*;
 import br.jus.stj.siscovi.model.ValorRestituicaoFeriasModel;
 
@@ -20,10 +23,10 @@ public class TesteRestituicaoFerias {
 
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
 
-        int vCodContrato = consulta.RetornaCodContratoAleatorio();
+        int vCodContrato = 1;//consulta.RetornaCodContratoAleatorio();
         int retorno;
-        int vCodTerceirizadoContrato = 3;//consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
-        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
+        int vCodTerceirizadoContrato = 1;//consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
+        String vTipoRestituicao = String.valueOf("RESGATE");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         int vParcela = 0;
         int vDiasVendidos = 0;
@@ -33,8 +36,8 @@ public class TesteRestituicaoFerias {
                 vCodTerceirizadoContrato + "\n");
         System.out.print("Tipo de restituição: " + vTipoRestituicao + "\nDias vendidos: " + vDiasVendidos + "\n");
 
-        Date vInicioFerias = Date.valueOf("2017-09-01");
-        Date vFimFerias = Date.valueOf("2017-09-30");
+        Date vInicioFerias = Date.valueOf("2018-09-01");
+        Date vFimFerias = Date.valueOf("2018-09-30");
         Date vInicioPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 1);
         Date vFimPeriodoAquisitivo = ferias.DataPeriodoAquisitivo(vCodTerceirizadoContrato, 2);
 

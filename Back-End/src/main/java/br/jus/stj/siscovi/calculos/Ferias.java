@@ -1,10 +1,9 @@
 package br.jus.stj.siscovi.calculos;
 
-import com.sun.scenario.effect.impl.prism.ps.PPSBlend_REDPeer;
-import javax.validation.constraints.Null;
 import java.sql.*;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 
 public class Ferias {
 
@@ -291,6 +290,90 @@ public class Ferias {
         }
 
         return null;
+
+    }
+
+    /**
+     * Fução que retorna as datas relativas aos períodos de férias vencidas e integrais para fins de rescisão.
+     * @param pCodTerceirizado
+     * @param pDataDesligamento
+     * @return Date
+     */
+
+    public Date RetornaDatasPeriodoFeriasRescisao (int pCodTerceirizado,
+                                                   Date pDataDesligamento,
+                                                   int pOperacao ) {
+
+        //Operações:
+        // 1 - Data inicio das férias integrais.
+        // 2 - Data fim das férias integrais.
+        // 3 - Data inicio das férias proporcionais.
+        // 4 - Data fim das férias proporcionais.
+
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        Date vRetorno = null;
+
+        Date vDataInicioFeriasIntegrais = DataPeriodoAquisitivo(pCodTerceirizado, 1);
+        Date vDataFimFeriasIntegrais = DataPeriodoAquisitivo(pCodTerceirizado, 2);
+        Date vDataInicioFeriasProporcionais = Date.valueOf(vDataFimFeriasIntegrais.toLocalDate().plusDays(1));
+        Date vDataFimFeriasProporcionais = pDataDesligamento;
+        Date vDataAuxiliar = Date.valueOf(vDataInicioFeriasProporcionais.toLocalDate().plusDays(364));
+
+        // Caso o perído inicialmente recuperado supere a data de desligamento se ajustam o fim das férias
+        // integrais e o inicio das férias proporionais.
+
+        if (vDataFimFeriasIntegrais.after(pDataDesligamento)) {
+
+            vDataFimFeriasIntegrais = pDataDesligamento;
+            vDataInicioFeriasProporcionais = vDataInicioFeriasIntegrais;
+
+        }
+
+        // Loop que perpassa todos os períodos de férias possíveis em ordem.
+
+        while (vDataAuxiliar.before(pDataDesligamento)) {
+
+            vDataInicioFeriasIntegrais = vDataInicioFeriasProporcionais;
+            vDataFimFeriasIntegrais = vDataAuxiliar;
+            vDataInicioFeriasProporcionais = Date.valueOf(vDataFimFeriasIntegrais.toLocalDate().plusDays(1));
+            vDataAuxiliar = Date.valueOf(vDataInicioFeriasProporcionais.toLocalDate().plusDays(364));
+
+        }
+
+        // Seleção da data requerida.
+
+        if (pOperacao == 1) {
+
+            vRetorno = vDataInicioFeriasIntegrais;
+        } else {
+
+            if (pOperacao == 2) {
+
+                vRetorno = vDataFimFeriasIntegrais;
+
+            } else {
+
+                if (pOperacao == 3) {
+
+                    vRetorno = vDataInicioFeriasProporcionais;
+                } else {
+
+                    if (pOperacao == 4) {
+
+                        vRetorno = pDataDesligamento;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return vRetorno;
 
     }
 
