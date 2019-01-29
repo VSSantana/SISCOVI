@@ -38,7 +38,8 @@ public class RestituicaoRescisao {
                                                                      Date pDataInicioFeriasIntegrais,
                                                                      Date pDataFimFeriasIntegrais,
                                                                      Date pDataInicioFeriasProporcionais,
-                                                                     Date pDataFimFeriasProporcionais) {
+                                                                     Date pDataFimFeriasProporcionais,
+                                                                     Date pDataInicioContagemDecTer) {
 
         Retencao retencao = new Retencao(connection);
         Percentual percentual = new Percentual(connection);
@@ -63,6 +64,12 @@ public class RestituicaoRescisao {
         float vTotalMultaFGTSFerias = 0;
         float vTotalMultaFGTSTerco = 0;
         float vTotalMultaFGTSDecimoTerceiro = 0;
+        float vTotalFeriasProporcional = 0;
+        float vTotalTercoConstitucionalProporcional = 0;
+        float vTotalIncidenciaFeriasProporcional = 0;
+        float vTotalIncidenciaTercoProporcional = 0;
+        float vTotalMultaFGTSFeriasProporcional = 0;
+        float vTotalMultaFGTSTercoProporcional = 0;
 
         /*Variáveis de valores parciais.*/
 
@@ -94,7 +101,6 @@ public class RestituicaoRescisao {
         /*Variáveis de data.*/
 
         Date vDataDisponibilizacao;
-        Date vDataReferencia;
         Date vDataInicio;
         Date vDataFim;
         int vAno;
@@ -108,19 +114,141 @@ public class RestituicaoRescisao {
 
         if (pDataDesligamento == null) {
 
-            throw new NullPointerException("Erro na checagem dos parâmetros.");
+            throw new NullPointerException("Erro na passagem dos parâmetros.");
 
         }
+
+        vDataDisponibilizacao = consulta.RetornaDataDisponibilizacaoTerceirizado(pCodTerceirizadoContrato);
+
+        vTotalDecimoTerceiro = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 3, pDataInicioContagemDecTer, pDataDesligamento);
+        vTotalIncidenciaDecimoTerceiro = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 6, pDataInicioContagemDecTer, pDataDesligamento);
+        vTotalMultaFGTSDecimoTerceiro = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 9, pDataInicioContagemDecTer, pDataDesligamento);
+        vTotalFerias = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 1, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalTercoConstitucional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 2, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalIncidenciaFerias = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 4, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalIncidenciaTerco = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 5, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalMultaFGTSFerias = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 7, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalMultaFGTSTerco = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 8, pDataInicioFeriasIntegrais, pDataFimFeriasIntegrais);
+        vTotalFeriasProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 1, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalTercoConstitucionalProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 2, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalIncidenciaFeriasProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 4, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalIncidenciaTercoProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 5, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalMultaFGTSFeriasProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 7, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalMultaFGTSTercoProporcional = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 8, pDataInicioFeriasProporcionais, pDataFimFeriasProporcionais);
+        vTotalMultaFGTSRemuneracao = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 10, vDataDisponibilizacao, pDataDesligamento);
+
+
+        return new ValorRestituicaoRescisaoModel(vTotalDecimoTerceiro,
+                                                 vTotalIncidenciaDecimoTerceiro,
+                                                 vTotalMultaFGTSDecimoTerceiro,
+                                                 vTotalFerias,
+                                                 vTotalTercoConstitucional,
+                                                 vTotalIncidenciaFerias,
+                                                 vTotalIncidenciaTerco,
+                                                 vTotalMultaFGTSFerias,
+                                                 vTotalMultaFGTSTerco,
+                                                 vTotalFeriasProporcional,
+                                                 vTotalTercoConstitucionalProporcional,
+                                                 vTotalIncidenciaFeriasProporcional,
+                                                 vTotalIncidenciaTercoProporcional,
+                                                 vTotalMultaFGTSFeriasProporcional,
+                                                 vTotalMultaFGTSTercoProporcional,
+                                                 vTotalMultaFGTSRemuneracao);
+
+    }
+
+    public float CalcularValorRubricaRescisao (int pCodTerceirizadoContrato,
+                                               int pRubrica,
+                                               Date pDataInicioCalculo,
+                                               Date pDataFimCalculo) {
+
+        //Cod. pRubrica:
+        // 1 -  return vTotalFerias;
+        // 2 -  return vTotalTercoConstitucional;
+        // 3 -  return vTotalDecimoTerceiro;
+        // 4 -  return vTotalIncidenciaFerias;
+        // 5 -  return vTotalIncidenciaTerco;
+        // 6 -  return vTotalIncidenciaDecimoTerceiro;
+        // 7 -  return vTotalMultaFGTSFerias;
+        // 8 -  return vTotalMultaFGTSTerco;
+        // 9 -  return vTotalMultaFGTSDecimoTerceiro;
+        // 10 - return vTotalMultaFGTSRemuneracao;
+
+
+        Retencao retencao = new Retencao(connection);
+        Percentual percentual = new Percentual(connection);
+        Periodos periodo = new Periodos(connection);
+        Remuneracao remuneracao = new Remuneracao(connection);
+        Saldo saldo = new Saldo(connection);
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+
+        float vRetorno = 0;
+
+        /*Chaves primárias.*/
+
+        int vCodContrato;
+
+        /*Variáveis totalizadoras de valores.*/
+
+        float vTotalFerias = 0;
+        float vTotalTercoConstitucional = 0;
+        float vTotalIncidenciaFerias = 0;
+        float vTotalIncidenciaTerco = 0;
+        float vTotalDecimoTerceiro = 0;
+        float vTotalIncidenciaDecimoTerceiro = 0;
+        float vTotalMultaFGTSRemuneracao = 0;
+        float vTotalMultaFGTSFerias = 0;
+        float vTotalMultaFGTSTerco = 0;
+        float vTotalMultaFGTSDecimoTerceiro = 0;
+
+
+        /*Variáveis de valores parciais.*/
+
+        float vValorFerias;
+        float vValorTercoConstitucional;
+        float vValorIncidenciaFerias;
+        float vValorIncidenciaTerco;
+        float vValorDecimoTerceiro;
+        float vValorIncidenciaDecimoTerceiro;
+        float vValorMultaFGTSRemuneracao;
+        float vValorMultaFGTSFerias;
+        float vValorMultaFGTSTerco;
+        float vValorMultaFGTSDecimoTerceiro;
+
+        /*Variáveis de percentuais.*/
+
+        float vPercentualFerias;
+        float vPercentualTercoConstitucional;
+        float vPercentualIncidencia;
+        float vPercentualDecimoTerceiro;
+        float vPercentualFGTS;
+        float vPercentualMultaFGTS;
+        float vPercentualPenalidadeFGTS;
+
+        /*Variável de remuneração da função.*/
+
+        float vRemuneracao;
+
+        /*Variáveis de data.*/
+
+        Date vDataReferencia;
+        Date vDataInicio;
+        Date vDataFim;
+        int vAno;
+        int vMes;
+
+        /*Variáveis de controle.*/
+
+        int vDiasSubperiodo;
 
         /*Atribuiçao da data de disponibilização e do cod do contrato.*/
 
         vCodContrato = consulta.RetornaContratoTerceirizado(pCodTerceirizadoContrato);
-        vDataDisponibilizacao = consulta.RetornaDataDisponibilizacaoTerceirizado(pCodTerceirizadoContrato);
 
-        /*Define o valor das variáveis vMes e Vano de acordo com a adata de inínio do período aquisitivo.*/
+        /*Define o valor das variáveis vMes e Vano de acordo com a adata de início do período aquisitivo.*/
 
-        vMes = vDataDisponibilizacao.toLocalDate().getMonthValue();
-        vAno = vDataDisponibilizacao.toLocalDate().getYear();
+        vMes = pDataInicioCalculo.toLocalDate().getMonthValue();
+        vAno = pDataInicioCalculo.toLocalDate().getYear();
 
         /*Definição da data referência (sempre o primeiro dia do mês).*/
 
@@ -523,7 +651,7 @@ public class RestituicaoRescisao {
 
             /*Contabilização do valor final (valor calculado menos restituições).*/
 
-            if (vMes == 12 || (vMes == pDataDesligamento.toLocalDate().getMonthValue()) && vAno == pDataDesligamento.toLocalDate().getYear()) {
+            if (vMes == 12 || (vMes == pDataFimCalculo.toLocalDate().getMonthValue()) && vAno == pDataFimCalculo.toLocalDate().getYear()) {
 
                 vTotalFerias = (vTotalFerias - saldo.getSaldoContaVinculada(pCodTerceirizadoContrato, vAno, 2, 1));
                 vTotalTercoConstitucional = (vTotalTercoConstitucional - saldo.getSaldoContaVinculada(pCodTerceirizadoContrato, vAno, 2, 2));
@@ -546,23 +674,49 @@ public class RestituicaoRescisao {
 
             vDataReferencia = Date.valueOf(vAno + "-" + vMes + "-" + "01");
 
-        } while (vDataReferencia.before(pDataDesligamento) || vDataReferencia.equals(pDataDesligamento));
+        } while (vDataReferencia.before(pDataFimCalculo) || vDataReferencia.equals(pDataFimCalculo));
 
-//        System.out.println(vTotalFerias);
-        //       System.out.println(vTotalTercoConstitucional);
-        //      System.out.println(vTotalIncidenciaFerias);
-        //     System.out.println(vTotalIncidenciaTerco);
+        if (pRubrica == 1) {
+            vRetorno = vTotalFerias;
+        }
 
-        return new ValorRestituicaoRescisaoModel(vTotalDecimoTerceiro,
-                vTotalIncidenciaDecimoTerceiro,
-                vTotalMultaFGTSDecimoTerceiro,
-                vTotalFerias,
-                vTotalTercoConstitucional,
-                vTotalIncidenciaFerias,
-                vTotalIncidenciaTerco,
-                vTotalMultaFGTSFerias,
-                vTotalMultaFGTSTerco,
-                vTotalMultaFGTSRemuneracao);
+        if (pRubrica == 2) {
+            vRetorno = vTotalTercoConstitucional;
+        }
+
+        if (pRubrica == 3) {
+            vRetorno = vTotalDecimoTerceiro;
+        }
+
+        if (pRubrica == 4) {
+            vRetorno = vTotalIncidenciaFerias;
+        }
+
+        if (pRubrica == 5) {
+            vRetorno = vTotalIncidenciaTerco;
+        }
+
+        if (pRubrica == 6) {
+            vRetorno = vTotalIncidenciaDecimoTerceiro;
+        }
+
+        if (pRubrica == 7) {
+            vRetorno = vTotalMultaFGTSFerias;
+        }
+
+        if (pRubrica == 8) {
+            vRetorno = vTotalMultaFGTSTerco;
+        }
+
+        if (pRubrica == 9) {
+            vRetorno = vTotalMultaFGTSDecimoTerceiro;
+        }
+
+        if (pRubrica == 10) {
+            vRetorno = vTotalMultaFGTSRemuneracao;
+        }
+
+        return vRetorno;
 
     }
 
@@ -587,49 +741,49 @@ public class RestituicaoRescisao {
      * @param pLoginAtualizacao;
      */
 
-     public Integer RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
-                                                  String pTipoRestituicao,
-                                                  String pTipoRescisao,
-                                                  Date pDataDesligamento,
-                                                  Date pDataInicioFerias,
-                                                  float pValorDecimoTerceiro,
-                                                  float pValorIncidenciaDecimoTerceiro,
-                                                  float pValorFGTSDecimoTerceiro,
-                                                  float pValorFerias,
-                                                  float pValorTerco,
-                                                  float pValorIncidenciaFerias,
-                                                  float pValorIncidenciaTerco,
-                                                  float pValorFGTSFerias,
-                                                  float pValorFGTSTerco,
-                                                  float pValorFGTSSalario,
-                                                  String pLoginAtualizacao) {
+    public Integer RegistrarRestituicaoRescisao (int pCodTerceirizadoContrato,
+                                                 String pTipoRestituicao,
+                                                 String pTipoRescisao,
+                                                 Date pDataDesligamento,
+                                                 Date pDataInicioFerias,
+                                                 float pValorDecimoTerceiro,
+                                                 float pValorIncidenciaDecimoTerceiro,
+                                                 float pValorFGTSDecimoTerceiro,
+                                                 float pValorFerias,
+                                                 float pValorTerco,
+                                                 float pValorIncidenciaFerias,
+                                                 float pValorIncidenciaTerco,
+                                                 float pValorFGTSFerias,
+                                                 float pValorFGTSTerco,
+                                                 float pValorFGTSSalario,
+                                                 String pLoginAtualizacao) {
 
-         ConsultaTSQL consulta = new ConsultaTSQL(connection);
-         InsertTSQL insert = new InsertTSQL(connection);
+        ConsultaTSQL consulta = new ConsultaTSQL(connection);
+        InsertTSQL insert = new InsertTSQL(connection);
 
-         /*Chaves Primárias*/
+        /*Chaves Primárias*/
 
-         int vCodTbRestituicaoRescisao;
-         int vCodTipoRestituicao;
-         int vCodTipoRescisao;
+        int vCodTbRestituicaoRescisao;
+        int vCodTipoRestituicao;
+        int vCodTipoRescisao;
 
-         /*Variáveis de controle do saldo reidual.*/
+        /*Variáveis de controle do saldo reidual.*/
 
-         float vIncidDecTer = 0;
-         float vFGTSDecimoTerceiro = 0;
-         float vIncidFerias = 0;
-         float vIncidTerco = 0;
-         float vFGTSFerias = 0;
-         float vFGTSTerco = 0;
-         float vFGTSRemuneracao = 0;
+        float vIncidDecTer = 0;
+        float vFGTSDecimoTerceiro = 0;
+        float vIncidFerias = 0;
+        float vIncidTerco = 0;
+        float vFGTSFerias = 0;
+        float vFGTSTerco = 0;
+        float vFGTSRemuneracao = 0;
 
-         /*Atribuição do cod do tipo de restituição.*/
+        /*Atribuição do cod do tipo de restituição.*/
 
-         vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
+        vCodTipoRestituicao = consulta.RetornaCodTipoRestituicao(pTipoRestituicao);
 
-         /*Atribuição do cod do tipo de rescisão.*/
+        /*Atribuição do cod do tipo de rescisão.*/
 
-         vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
+        vCodTipoRescisao = consulta.RetornaCodTipoRescisao(pTipoRescisao);
 
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -656,36 +810,36 @@ public class RestituicaoRescisao {
         /*Gravação no banco*/
 
         vCodTbRestituicaoRescisao = insert.InsertRestituicaoRescisao(pCodTerceirizadoContrato,
-                                                                     vCodTipoRestituicao,
-                                                                     vCodTipoRescisao,
-                                                                     pDataDesligamento,
-                                                                     pDataInicioFerias,
-                                                                     pValorDecimoTerceiro,
-                                                                     pValorIncidenciaDecimoTerceiro,
-                                                                     pValorFGTSDecimoTerceiro,
-                                                                     pValorFerias,
-                                                                     pValorTerco,
-                                                                     pValorIncidenciaFerias,
-                                                                     pValorIncidenciaTerco,
-                                                                     pValorFGTSFerias,
-                                                                     pValorFGTSTerco,
-                                                                     pValorFGTSSalario,
-                                                                     pLoginAtualizacao);
+                vCodTipoRestituicao,
+                vCodTipoRescisao,
+                pDataDesligamento,
+                pDataInicioFerias,
+                pValorDecimoTerceiro,
+                pValorIncidenciaDecimoTerceiro,
+                pValorFGTSDecimoTerceiro,
+                pValorFerias,
+                pValorTerco,
+                pValorIncidenciaFerias,
+                pValorIncidenciaTerco,
+                pValorFGTSFerias,
+                pValorFGTSTerco,
+                pValorFGTSSalario,
+                pLoginAtualizacao);
 
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
             insert.InsertSaldoResidualRescisao(vCodTbRestituicaoRescisao,
-                                               0,
-                                               vIncidDecTer,
-                                               vFGTSDecimoTerceiro,
-                                               0,
-                                               0,
-                                               vIncidFerias,
-                                               vIncidTerco,
-                                               vFGTSFerias,
-                                               vFGTSTerco,
-                                               vFGTSRemuneracao,
-                                               pLoginAtualizacao);
+                    0,
+                    vIncidDecTer,
+                    vFGTSDecimoTerceiro,
+                    0,
+                    0,
+                    vIncidFerias,
+                    vIncidTerco,
+                    vFGTSFerias,
+                    vFGTSTerco,
+                    vFGTSRemuneracao,
+                    pLoginAtualizacao);
 
         }
 
@@ -728,25 +882,25 @@ public class RestituicaoRescisao {
         }
 
         vRetornoChavePrimaria = insert.InsertHistoricoRestituicaoRescisao(registro.getpCod(),
-                                                                          registro.getpCodTipoRestituicao(),
-                                                                          registro.getpCodTipoRescisao(),
-                                                                          registro.getpDataDesligamento(),
-                                                                          registro.getpDataInicioFerias(),
-                                                                          registro.getpValorDecimoTerceiro(),
-                                                                          registro.getpIncidSubmod41DecTerceiro(),
-                                                                          registro.getpIncidMultaFGTSDecTeceriro(),
-                                                                          registro.getpValorFerias(),
-                                                                          registro.getpValorTerco(),
-                                                                          registro.getpIncidSubmod41Ferias(),
-                                                                          registro.getpIncidSubmod41Terco(),
-                                                                          registro.getpIncidMultaFGTSFerias(),
-                                                                          registro.getpIncidMultaFGTSTerco(),
-                                                                          registro.getpMultaFGTSSalario(),
-                                                                          registro.getpDataReferencia(),
-                                                                          registro.getpAutorizado(),
-                                                                          registro.getpRestituido(),
-                                                                          registro.getpObservacao(),
-                                                                          registro.getpLoginAtualizacao());
+                registro.getpCodTipoRestituicao(),
+                registro.getpCodTipoRescisao(),
+                registro.getpDataDesligamento(),
+                registro.getpDataInicioFerias(),
+                registro.getpValorDecimoTerceiro(),
+                registro.getpIncidSubmod41DecTerceiro(),
+                registro.getpIncidMultaFGTSDecTeceriro(),
+                registro.getpValorFerias(),
+                registro.getpValorTerco(),
+                registro.getpIncidSubmod41Ferias(),
+                registro.getpIncidSubmod41Terco(),
+                registro.getpIncidMultaFGTSFerias(),
+                registro.getpIncidMultaFGTSTerco(),
+                registro.getpMultaFGTSSalario(),
+                registro.getpDataReferencia(),
+                registro.getpAutorizado(),
+                registro.getpRestituido(),
+                registro.getpObservacao(),
+                registro.getpLoginAtualizacao());
 
         delete.DeleteSaldoResidualRescisao(pCodRestituicaoRescisao);
 
@@ -805,17 +959,17 @@ public class RestituicaoRescisao {
         if (pTipoRestituicao.equals("MOVIMENTAÇÃO")) {
 
             insert.InsertSaldoResidualRescisao(pCodRestituicaoRescisao,
-                                              0,
-                                               vIncidDecTer,
-                                               vFGTSDecimoTerceiro,
-                                              0,
-                                              0,
-                                               vIncidFerias,
-                                               vIncidTerco,
-                                               vFGTSFerias,
-                                               vFGTSTerco,
-                                               vFGTSRemuneracao,
-                                               pLoginAtualizacao);
+                    0,
+                    vIncidDecTer,
+                    vFGTSDecimoTerceiro,
+                    0,
+                    0,
+                    vIncidFerias,
+                    vIncidTerco,
+                    vFGTSFerias,
+                    vFGTSTerco,
+                    vFGTSRemuneracao,
+                    pLoginAtualizacao);
 
         }
 

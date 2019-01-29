@@ -7,20 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestFerias.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Back_End_war_exploded/WEB-INF/classes/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/DecimoTerceiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Ferias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/Ferias.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/RestituicaoRescisao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/RestituicaoRescisao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/TesteCalculoTotalMesal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/jus/stj/siscovi/calculos/TesteRestituicaoFerias.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/app/_shared/config.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java" afterDir="false" />
     </list>
     <ignored path="./target  /" />
     <ignored path="./idea/" />
@@ -73,9 +64,9 @@
     <session id="909848314">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="37" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.closed" value="40" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.3" value="1" />
@@ -84,15 +75,16 @@
           <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="7" />
           <entry key="project.open.time.8" value="9" />
-          <entry key="project.opened" value="38" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="4" />
           <entry key="css" value="1" />
-          <entry key="java" value="347" />
-          <entry key="sql" value="10" />
+          <entry key="java" value="358" />
+          <entry key="sql" value="11" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
@@ -100,25 +92,25 @@
         <counts>
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="347" />
-          <entry key="Scratch" value="10" />
+          <entry key="JAVA" value="358" />
+          <entry key="Scratch" value="11" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="46" />
-          <entry key="java" value="29174" />
-          <entry key="sql" value="1381" />
+          <entry key="java" value="30742" />
+          <entry key="sql" value="1449" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="29163" />
+          <entry key="JAVA" value="30731" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="SQL" value="11" />
-          <entry key="Scratch" value="1381" />
+          <entry key="Scratch" value="1449" />
         </counts>
       </usages-collector>
     </session>
@@ -172,17 +164,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7021">
-              <caret line="126" column="71" lean-forward="true" selection-start-line="126" selection-start-column="71" selection-end-line="126" selection-end-column="71" />
+            <state relative-caret-position="650">
+              <caret line="145" column="72" lean-forward="true" selection-start-line="145" selection-start-column="72" selection-end-line="145" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="221">
+              <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestFerias.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="331" column="46" selection-start-line="331" selection-start-column="46" selection-end-line="331" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -205,6 +227,7 @@
       <find>contrato</find>
       <find>funcao_terceirizado</find>
       <find>perfil</find>
+      <find>vDataDisponibilizacao</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,8 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/CORSFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/helpers/Token.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/APIKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/AreaModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/CadastroCargoModel.java" />
@@ -253,17 +274,19 @@
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/SaldoResidualRescisao.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/SaldoResidualRescisaoDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoResidualController.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestSaldo.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestAuxiliateCalc.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoFerias.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestFerias.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql" />
       </list>
     </option>
   </component>
@@ -287,15 +310,25 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="SISCOVI" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="SISCOVI" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="SISCOVI" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
       </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-16" />
+    <option name="x" value="-29" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1016" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -305,8 +338,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,6 +429,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,13 +439,13 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548701726682" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548793921813" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projeto SISCOVI/SISCOVI" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -768,11 +801,14 @@
       <workItem from="1548341953442" duration="9809000" />
       <workItem from="1548428456472" duration="7707000" />
       <workItem from="1548688193605" duration="13221000" />
+      <workItem from="1548775153004" duration="561000" />
+      <workItem from="1548775879099" duration="928000" />
+      <workItem from="1548778214519" duration="10581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="580757000" />
+    <option name="totallyTimeSpent" value="592827000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -786,7 +822,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20469083" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.21108742" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -794,7 +830,7 @@
       <window_info id="Favorites" order="5" sideWeight="0.505295" side_tool="true" weight="0.22441365" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.22451194" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32744282" />
       <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.27657267" />
@@ -819,12 +855,12 @@
       <window_info anchor="right" id="Dynamic Properties" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Database" order="9" weight="0.12793177" />
+      <window_info anchor="right" id="Database" order="9" visible="true" weight="0.12793177" />
       <window_info anchor="right" id="Coverage" order="10" sideWeight="0.5008026" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Bean Validation" order="11" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.20469083" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.21108742" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -835,7 +871,7 @@
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.22557172" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32744282" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" visible="true" weight="0.27657267" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48333332" weight="0.27657267" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49583334" weight="0.39782608" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -845,7 +881,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32916668" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Application Servers" order="12" weight="0.32786885" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" weight="0.335141" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" sideWeight="0.42083332" visible="true" weight="0.335141" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32916668" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.329718" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1041,27 +1077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3128">
-          <caret line="192" selection-start-line="192" selection-end-line="192" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/TotalMensalController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1090,13 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3995">
-          <caret line="770" column="91" lean-forward="true" selection-start-line="770" selection-start-column="91" selection-end-line="770" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestInsertTSQL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1108,23 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="492" column="60" lean-forward="true" selection-start-line="492" selection-start-column="60" selection-end-line="492" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1160,16 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1187,16 +1168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="308" column="45" lean-forward="true" selection-start-line="308" selection-start-column="45" selection-end-line="308" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoFerias.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1573">
@@ -1204,23 +1175,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestFerias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteCalculoTotalMesal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1231,17 +1189,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/ConnectSQLServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7021">
-          <caret line="126" column="71" lean-forward="true" selection-start-line="126" selection-start-column="71" selection-end-line="126" selection-end-column="71" />
+        <state relative-caret-position="119">
+          <caret line="12" column="99" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/SaldoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/TotalMensalAReter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15028">
+          <caret line="892" column="46" lean-forward="true" selection-start-line="892" selection-start-column="46" selection-end-line="892" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Saldo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="863">
+          <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/ValorRestituicaoRescisaoModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="476">
+          <caret line="28" column="64" lean-forward="true" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/Ferias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="331" column="46" selection-start-line="331" selection-start-column="46" selection-end-line="331" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestFerias.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="145" column="72" lean-forward="true" selection-start-line="145" selection-start-column="72" selection-end-line="145" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

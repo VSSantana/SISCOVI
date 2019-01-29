@@ -327,8 +327,9 @@ public class Ferias {
 
         if (vDataFimFeriasIntegrais.after(pDataDesligamento)) {
 
-            vDataFimFeriasIntegrais = pDataDesligamento;
+            vDataFimFeriasIntegrais = null;
             vDataInicioFeriasProporcionais = vDataInicioFeriasIntegrais;
+            vDataInicioFeriasIntegrais = null;
 
         }
 

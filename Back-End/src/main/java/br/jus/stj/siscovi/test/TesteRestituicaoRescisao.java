@@ -1,5 +1,6 @@
-package br.jus.stj.siscovi.calculos;
+package br.jus.stj.siscovi.test;
 
+import br.jus.stj.siscovi.calculos.RestituicaoRescisao;
 import br.jus.stj.siscovi.dao.ConnectSQLServer;
 import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
 import br.jus.stj.siscovi.dao.sql.DeleteTSQL;
@@ -31,6 +32,11 @@ public class TesteRestituicaoRescisao {
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         Date vDataDesligamento = Date.valueOf("2016-12-31");
         Date vDataInicioFerias = Date.valueOf("2016-12-31");
+        Date vDataInicioFeriasIntegrais = Date.valueOf("2016-12-31");
+        Date vDataFimFeriasIntegrais = Date.valueOf("2016-12-31");
+        Date vDataInicioFeriasProporcionais = Date.valueOf("2016-12-31");
+        Date vDataFimFeriasProporcionais = Date.valueOf("2016-12-31");
+        Date vDataInicioContagemDecTer = Date.valueOf("2016-12-31");
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
@@ -38,7 +44,12 @@ public class TesteRestituicaoRescisao {
                 + "\n" + "Data do desligamento: " + vDataDesligamento + "\n" + "Login usuário: " + vLoginAtualizacao + "\n");
 
         ValorRestituicaoRescisaoModel restituicao = restituicaoRescisao.CalculaRestituicaoRescisao(vCodTerceirizadoContrato,
-                                                                                                    vDataDesligamento);
+                                                                                                   vDataDesligamento,
+                                                                                                   vDataInicioFeriasIntegrais,
+                                                                                                   vDataFimFeriasIntegrais,
+                                                                                                   vDataInicioFeriasProporcionais,
+                                                                                                   vDataFimFeriasProporcionais,
+                                                                                                   vDataInicioContagemDecTer);
 
         System.out.println(restituicao.getValorDecimoTerceiro());
         System.out.println(restituicao.getValorIncidenciaDecimoTerceiro());
