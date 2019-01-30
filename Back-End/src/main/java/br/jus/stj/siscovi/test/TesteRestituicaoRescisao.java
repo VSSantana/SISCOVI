@@ -24,19 +24,18 @@ public class TesteRestituicaoRescisao {
         ConsultaTSQL consulta = new ConsultaTSQL(connectSQLServer.dbConnect());
         DeleteTSQL delete = new DeleteTSQL(connectSQLServer.dbConnect());
 
-        int vCodContrato = consulta.RetornaCodContratoAleatorio();
-        int vCodTerceirizadoContrato = consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
+        int vCodContrato = 1; //consulta.RetornaCodContratoAleatorio();
+        int vCodTerceirizadoContrato = 3; //consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         int vRetorno;
         String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
         String vTipoRescisao = String.valueOf("SEM JUSTA CAUSA");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         Date vDataDesligamento = Date.valueOf("2016-12-31");
-        Date vDataInicioFerias = Date.valueOf("2016-12-31");
-        Date vDataInicioFeriasIntegrais = Date.valueOf("2016-12-31");
-        Date vDataFimFeriasIntegrais = Date.valueOf("2016-12-31");
-        Date vDataInicioFeriasProporcionais = Date.valueOf("2016-12-31");
+        Date vDataInicioFeriasIntegrais = null;//Date.valueOf("2016-12-31");
+        Date vDataFimFeriasIntegrais = null;//Date.valueOf("2016-12-31");
+        Date vDataInicioFeriasProporcionais = Date.valueOf("2016-08-01");
         Date vDataFimFeriasProporcionais = Date.valueOf("2016-12-31");
-        Date vDataInicioContagemDecTer = Date.valueOf("2016-12-31");
+
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
                 vCodTerceirizadoContrato + "\n");
@@ -48,20 +47,26 @@ public class TesteRestituicaoRescisao {
                                                                                                    vDataInicioFeriasIntegrais,
                                                                                                    vDataFimFeriasIntegrais,
                                                                                                    vDataInicioFeriasProporcionais,
-                                                                                                   vDataFimFeriasProporcionais,
-                                                                                                   vDataInicioContagemDecTer);
+                                                                                                   vDataFimFeriasProporcionais);
 
-        System.out.println(restituicao.getValorDecimoTerceiro());
-        System.out.println(restituicao.getValorIncidenciaDecimoTerceiro());
-        System.out.println(restituicao.getValorFGTSDecimoTerceiro());
-        System.out.println(restituicao.getValorFerias());
-        System.out.println(restituicao.getValorTerco());
-        System.out.println(restituicao.getValorIncidenciaFerias());
-        System.out.println(restituicao.getValorIncidenciaTerco());
-        System.out.println(restituicao.getValorFGTSFerias());
-        System.out.println(restituicao.getValorFGTSTerco());
-        System.out.println(restituicao.getValorFGTSSalario());
+        System.out.println("Décimo terceiro: " + restituicao.getValorDecimoTerceiro());
+        System.out.println("Incidência de Décimo terceiro: " + restituicao.getValorIncidenciaDecimoTerceiro());
+        System.out.println("Multa FGTS do Décimo terceiro: " + restituicao.getValorFGTSDecimoTerceiro());
+        System.out.println("Férias integrais: " + restituicao.getValorFerias());
+        System.out.println("Terço integral: " + restituicao.getValorTerco());
+        System.out.println("Incidência de férias integrais: " + restituicao.getValorIncidenciaFerias());
+        System.out.println("Incidência de terço integral: " + restituicao.getValorIncidenciaTerco());
+        System.out.println("MULTA FGTS de férias integrais: " + restituicao.getValorFGTSFerias());
+        System.out.println("MULTA FGTS de terço integral: " + restituicao.getValorFGTSTerco());
+        System.out.println("Férias proporcionais: " + restituicao.getValorFeriasProporcional());
+        System.out.println("Terço proporcional: " + restituicao.getValorTercoProporcional());
+        System.out.println("Incidência de férias proporcionais: " + restituicao.getValorIncidenciaFeriasProporcional());
+        System.out.println("Incidência de terõ proporcional: " + restituicao.getValorIncidenciaTercoProporcional());
+        System.out.println("MULTA FGTS de férias proporcionais: " + restituicao.getValorFGTSFeriasProporcional());
+        System.out.println("MULTA FGTS de terço proporcional: " + restituicao.getValorFGTSTercoProporcional());
+        System.out.println("Décimo terceiro: " + restituicao.getValorFGTSSalario());
 
+/*
         vRetorno = restituicaoRescisao.RegistrarRestituicaoRescisao(vCodTerceirizadoContrato,
                                                                     vTipoRestituicao,
                                                                     vTipoRescisao,
@@ -78,7 +83,7 @@ public class TesteRestituicaoRescisao {
                                                                     restituicao.getValorFGTSTerco(),
                                                                     restituicao.getValorFGTSSalario(),
                                                                     vLoginAtualizacao);
-
+*/
         //restituicaoRescisao.RecalculoRestituicaoRescisao(vRetorno, "RESGATE", vTipoRescisao, vDataDesligamento, vDataInicioFerias, 0, 0, 0, 0, 0,0 ,0,0,0, 0, "SYSTEM");
 
         //delete.DeleteHistRestituicaoRescisao(vRetorno);

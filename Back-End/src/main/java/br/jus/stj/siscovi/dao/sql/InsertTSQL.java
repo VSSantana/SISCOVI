@@ -303,6 +303,12 @@ public class InsertTSQL {
                                           float pValorIncidenciaTerco,
                                           float pValorFGTSFerias,
                                           float pValorFGTSTerco,
+                                          float pValorFeriasProporcional,
+                                          float pValorTercoProporcional,
+                                          float pValorIncidenciaFeriasProporcional,
+                                          float pValorIncidenciaTercoProporcional,
+                                          float pValorFGTSFeriasProporcional,
+                                          float pValorFGTSTercoProporcional,
                                           float pValorFGTSSalario,
                                           String pLoginAtualizacao) {
 
@@ -329,6 +335,12 @@ public class InsertTSQL {
                                                              " INCID_SUBMOD_4_1_TERCO," +
                                                              " INCID_MULTA_FGTS_FERIAS," +
                                                              " INCID_MULTA_FGTS_TERCO," +
+                                                             " VALOR_FERIAS_PROP," +
+                                                             " VALOR_TERCO_PROP," +
+                                                             " INCID_SUBMOD_4_1_FERIAS_PROP," +
+                                                             " INCID_SUBMOD_4_1_TERCO_PROP," +
+                                                             " INCID_MULTA_FGTS_FERIAS_PROP," +
+                                                             " INCID_MULTA_FGTS_TERCO_PROP," +
                                                              " MULTA_FGTS_SALARIO," +
                                                              " DATA_REFERENCIA," +
                                                              " LOGIN_ATUALIZACAO," +
@@ -353,8 +365,14 @@ public class InsertTSQL {
             preparedStatement.setFloat(13, pValorIncidenciaTerco);
             preparedStatement.setFloat(14, pValorFGTSFerias);
             preparedStatement.setFloat(15, pValorFGTSTerco);
-            preparedStatement.setFloat(16, pValorFGTSSalario);
-            preparedStatement.setString(17, pLoginAtualizacao);
+            preparedStatement.setFloat(16, pValorFeriasProporcional);
+            preparedStatement.setFloat(17, pValorTercoProporcional);
+            preparedStatement.setFloat(18, pValorIncidenciaFeriasProporcional);
+            preparedStatement.setFloat(19, pValorIncidenciaTercoProporcional);
+            preparedStatement.setFloat(20, pValorFGTSFeriasProporcional);
+            preparedStatement.setFloat(21, pValorFGTSTercoProporcional);
+            preparedStatement.setFloat(22, pValorFGTSSalario);
+            preparedStatement.setString(23, pLoginAtualizacao);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

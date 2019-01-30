@@ -14,22 +14,22 @@ public class TestFerias {
         Ferias ferias = new Ferias(connectSQLServer.dbConnect());
         int vCodTerceirizado = 1;
 
-        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2019-01-28"), 1);
+        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2016-12-31"), 1);
 
         System.out.print(data);
         System.out.print("\n");
 
-        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2019-01-28"), 2);
+        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2016-12-31"), 2);
 
         System.out.print(data);
         System.out.print("\n");
 
-        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2019-01-28"), 3);
+        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2016-12-31"), 3);
 
         System.out.print(data);
         System.out.print("\n");
 
-        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2019-01-28"), 4);
+        data = ferias.RetornaDatasPeriodoFeriasRescisao(vCodTerceirizado, Date.valueOf("2016-12-31"), 4);
 
         System.out.print(data);
         System.out.print("\n");
