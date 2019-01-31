@@ -1213,6 +1213,12 @@ public class ConsultaTSQL {
                                " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
                                " INCID_MULTA_FGTS_FERIAS," +
                                " INCID_MULTA_FGTS_TERCO," +
+                               " VALOR_FERIAS_PROP," +
+                               " VALOR_TERCO_PROP," +
+                               " INCID_SUBMOD_4_1_FERIAS_PROP," +
+                               " INCID_SUBMOD_4_1_DEC_TERCEIRO_PROP," +
+                               " INCID_MULTA_FGTS_FERIAS_PROP," +
+                               " INCID_MULTA_FGTS_TERCO_PROP," +
                                " MULTA_FGTS_SALARIO," +
                                " DATA_REFERENCIA," +
                                " AUTORIZADO," +
@@ -1231,27 +1237,33 @@ public class ConsultaTSQL {
             if (resultSet.next()) {
 
                 registro = new RegistroRestituicaoRescisao(resultSet.getInt(1),
-                                                       resultSet.getInt(2),
-                                                       resultSet.getInt(3),
-                                                       resultSet.getInt(4),
-                                                       resultSet.getDate(5),
-                                                       resultSet.getDate(6),
-                                                       resultSet.getFloat(7),
-                                                       resultSet.getFloat(8),
-                                                       resultSet.getFloat(9),
-                                                       resultSet.getFloat(10),
-                                                       resultSet.getFloat(11),
-                                                       resultSet.getFloat(12),
-                                                       resultSet.getFloat(13),
-                                                       resultSet.getFloat(14),
-                                                       resultSet.getFloat(15),
-                                                       resultSet.getFloat(16),
-                                                       resultSet.getDate(17),
-                                                       resultSet.getString(18),
-                                                       resultSet.getString(19),
-                                                       resultSet.getString(20),
-                                                       resultSet.getString(21),
-                                                       resultSet.getTimestamp(22));
+                                                           resultSet.getInt(2),
+                                                           resultSet.getInt(3),
+                                                           resultSet.getInt(4),
+                                                           resultSet.getDate(5),
+                                                           resultSet.getDate(6),
+                                                           resultSet.getFloat(7),
+                                                           resultSet.getFloat(8),
+                                                           resultSet.getFloat(9),
+                                                           resultSet.getFloat(10),
+                                                           resultSet.getFloat(11),
+                                                           resultSet.getFloat(12),
+                                                           resultSet.getFloat(13),
+                                                           resultSet.getFloat(14),
+                                                           resultSet.getFloat(15),
+                                                           resultSet.getFloat(16),
+                                                           resultSet.getFloat(17),
+                                                           resultSet.getFloat(18),
+                                                           resultSet.getFloat(19),
+                                                           resultSet.getFloat(20),
+                                                           resultSet.getFloat(21),
+                                                           resultSet.getFloat(22),
+                                                           resultSet.getDate(23),
+                                                           resultSet.getString(24),
+                                                           resultSet.getString(25),
+                                                           resultSet.getString(26),
+                                                           resultSet.getString(27),
+                                                           resultSet.getTimestamp(28));
 
             }
 
@@ -1888,6 +1900,12 @@ public class ConsultaTSQL {
                                 "incid_submod_4_1_terco, " +
                                 "INCID_MULTA_FGTS_FERIAS, " +
                                 "INCID_MULTA_FGTS_TERCO, " +
+                                "valor_ferias_prop, " +
+                                "valor_terco_prop, " +
+                                "incid_submod_4_1_ferias_prop, " +
+                                "incid_submod_4_1_terco_prop, " +
+                                "incid_multa_fgts_ferias_prop, " +
+                                "incid_multa_fgts_terco_prop, " +
                                 "MULTA_FGTS_SALARIO, " +
                                 "data_referencia, " +
                                 "autorizado, " +
@@ -1921,12 +1939,18 @@ public class ConsultaTSQL {
                                                                resultSet.getFloat(13),
                                                                resultSet.getFloat(14),
                                                                resultSet.getFloat(15),
-                                                               resultSet.getDate(16),
-                                                               resultSet.getString(17),
-                                                               resultSet.getString(18),
-                                                               resultSet.getString(19),
-                                                               resultSet.getString(20),
-                                                               resultSet.getTimestamp(21));
+                                                               resultSet.getFloat(16),
+                                                               resultSet.getFloat(17),
+                                                               resultSet.getFloat(18),
+                                                               resultSet.getFloat(19),
+                                                               resultSet.getFloat(20),
+                                                               resultSet.getFloat(21),
+                                                               resultSet.getDate(22),
+                                                               resultSet.getString(23),
+                                                               resultSet.getString(24),
+                                                               resultSet.getString(25),
+                                                               resultSet.getString(26),
+                                                               resultSet.getTimestamp(27));
 
             }
 
@@ -2600,6 +2624,12 @@ public class ConsultaTSQL {
                                 "INCID_SUBMOD_4_1_TERCO, " +
                                 "INCID_MULTA_FGTS_FERIAS, " +
                                 "INCID_MULTA_FGTS_TERCO, " +
+                                "valor_ferias_prop, " +
+                                "valor_terco_prop, " +
+                                "incid_submod_4_1_ferias_prop, " +
+                                "incid_submod_4_1_terco_prop, " +
+                                "incid_multa_fgts_ferias_prop, " +
+                                "incid_multa_fgts_terco_prop, " +
                                 "MULTA_FGTS_SALARIO, " +
                                 "AUTORIZADO, " +
                                 "RESTITUIDO, " +
@@ -2627,10 +2657,16 @@ public class ConsultaTSQL {
                                                              resultSet.getFloat(9),
                                                              resultSet.getFloat(10),
                                                              resultSet.getFloat(11),
-                                                             resultSet.getString(12),
-                                                             resultSet.getString(13),
-                                                             resultSet.getString(14),
-                                                             resultSet.getTimestamp(15));
+                                                             resultSet.getFloat(12),
+                                                             resultSet.getFloat(13),
+                                                             resultSet.getFloat(14),
+                                                             resultSet.getFloat(15),
+                                                             resultSet.getFloat(16),
+                                                             resultSet.getFloat(17),
+                                                             resultSet.getString(18),
+                                                             resultSet.getString(19),
+                                                             resultSet.getString(20),
+                                                             resultSet.getTimestamp(21));
 
             }
 

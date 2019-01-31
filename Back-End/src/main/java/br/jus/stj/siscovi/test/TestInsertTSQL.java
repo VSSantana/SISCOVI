@@ -425,7 +425,7 @@ public class TestInsertTSQL {
         vCodRetorno = delete.DeleteRegistro(vCodRetorno, "TB_USUARIO");
 
         System.out.print("RetornaRegistroUsuario - Cod deleção: " + vCodRetorno + "\n");
-
+/*
         vCodRetorno = 2;
 
                 insert.InsertSaldoResidualFerias( 2, 1, 1,1, 1, "SYSTEM");
@@ -466,7 +466,7 @@ public class TestInsertTSQL {
 
         vCodRetorno = 2;
 
-        insert.InsertSaldoResidualRescisao( 3, 2, 2,2, 2,2, 2, 2, 2, 2, 2, "SYSTEM");
+        insert.InsertSaldoResidualRescisao( 2, 2, 2,2, 2,2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, "SYSTEM");
 
         RegistroSaldoResidualRescisao registroSaldoResidualRescisao = consulta.RetornaRegistroSaldoResidualRescisao(3);
 

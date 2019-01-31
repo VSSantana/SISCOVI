@@ -345,7 +345,7 @@ public class InsertTSQL {
                                                              " DATA_REFERENCIA," +
                                                              " LOGIN_ATUALIZACAO," +
                                                              " DATA_ATUALIZACAO)" +
-                         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
+                         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, CURRENT_TIMESTAMP);" +
                         " SET IDENTITY_INSERT tb_restituicao_rescisao OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -397,6 +397,12 @@ public class InsertTSQL {
                                             float pValorIncidenciaTerco,
                                             float pValorFGTSFerias,
                                             float pValorFGTSTerco,
+                                            float pValorFeriasProporcional,
+                                            float pValorTercoProporcional,
+                                            float pValorIncidenciaFeriasProporcional,
+                                            float pValorIncidenciaTercoProporcional,
+                                            float pValorFGTSFeriasProporcional,
+                                            float pValorFGTSTercoProporcional,
                                             float pValorFGTSSalario,
                                             String pLoginAtualizacao) {
 
@@ -419,10 +425,16 @@ public class InsertTSQL {
                     " incid_submod_4_1_terco," +
                     " incid_multa_fgts_ferias," +
                     " incid_multa_fgts_terco," +
+                    " valor_ferias_prop," +
+                    " valor_terco_prop," +
+                    " incid_submod_4_1_ferias_prop," +
+                    " incid_submod_4_1_terco_prop," +
+                    " incid_multa_fgts_ferias_prop," +
+                    " incid_multa_fgts_terco_prop," +
                     " multa_fgts_salario," +
                     " login_atualizacao," +
                     " data_atualizacao)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  CURRENT_TIMESTAMP);" +
                     " SET IDENTITY_INSERT TB_SALDO_RESIDUAL_RESCISAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -438,8 +450,14 @@ public class InsertTSQL {
             preparedStatement.setFloat(9, pValorIncidenciaTerco);
             preparedStatement.setFloat(10, pValorFGTSFerias);
             preparedStatement.setFloat(11, pValorFGTSTerco);
-            preparedStatement.setFloat(12, pValorFGTSSalario);
-            preparedStatement.setString(13, pLoginAtualizacao);
+            preparedStatement.setFloat(12, pValorFeriasProporcional);
+            preparedStatement.setFloat(13, pValorTercoProporcional);
+            preparedStatement.setFloat(14, pValorIncidenciaFeriasProporcional);
+            preparedStatement.setFloat(15, pValorIncidenciaTercoProporcional);
+            preparedStatement.setFloat(16, pValorFGTSFeriasProporcional);
+            preparedStatement.setFloat(17, pValorFGTSTercoProporcional);
+            preparedStatement.setFloat(18, pValorFGTSSalario);
+            preparedStatement.setString(19, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 
@@ -534,6 +552,12 @@ public class InsertTSQL {
                                                        float pIncidSubmod41Terco,
                                                        float pIncidMultaFGTSFerias,
                                                        float pIncidMultaFGTSTerco,
+                                                       float pValorFeriasProporcional,
+                                                       float pValorTercoProporcional,
+                                                       float pIncidSubmod41FeriasProporcional,
+                                                       float pIncidSubmod41TercoProporcional,
+                                                       float pIncidMultaFGTSFeriasProporcional,
+                                                       float pIncidMultaFGTSTercoProporcional,
                                                        float pMultaFGTSSalario,
                                                        Date pDataReferencia,
                                                        String pAutorizado,
@@ -564,6 +588,12 @@ public class InsertTSQL {
                                                                    " INCID_SUBMOD_4_1_TERCO," +
                                                                    " INCID_MULTA_FGTS_FERIAS," +
                                                                    " INCID_MULTA_FGTS_TERCO," +
+                                                                   " VALOR_FERIAS_PROP," +
+                                                                   " VALOR_TERCO_PROP," +
+                                                                   " INCID_SUBMOD_4_1_FERIAS_PROP," +
+                                                                   " INCID_SUBMOD_4_1_TERCO_PROP," +
+                                                                   " INCID_MULTA_FGTS_FERIAS_PROP," +
+                                                                   " INCID_MULTA_FGTS_TERCO_PROP," +
                                                                    " MULTA_FGTS_SALARIO," +
                                                                    " DATA_REFERENCIA," +
                                                                    " AUTORIZADO," +
@@ -571,7 +601,7 @@ public class InsertTSQL {
                                                                    " OBSERVACAO," +
                                                                    " LOGIN_ATUALIZACAO," +
                                                                    " DATA_ATUALIZACAO)" +
-                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
+                           " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);" +
                          " SET IDENTITY_INSERT TB_HIST_RESTITUICAO_RESCISAO OFF;";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -591,12 +621,18 @@ public class InsertTSQL {
             preparedStatement.setFloat(13, pIncidSubmod41Terco);
             preparedStatement.setFloat(14, pIncidMultaFGTSFerias);
             preparedStatement.setFloat(15, pIncidMultaFGTSTerco);
-            preparedStatement.setFloat(16, pMultaFGTSSalario);
-            preparedStatement.setDate(17, pDataReferencia);
-            preparedStatement.setString(18, pAutorizado);
-            preparedStatement.setString(19,pRestituido);
-            preparedStatement.setString(20, pObservacao);
-            preparedStatement.setString(21, pLoginAtualizacao);
+            preparedStatement.setFloat(16, pValorFeriasProporcional);
+            preparedStatement.setFloat(17, pValorTercoProporcional);
+            preparedStatement.setFloat(18, pIncidSubmod41FeriasProporcional);
+            preparedStatement.setFloat(19, pIncidSubmod41TercoProporcional);
+            preparedStatement.setFloat(20, pIncidMultaFGTSFeriasProporcional);
+            preparedStatement.setFloat(21, pIncidMultaFGTSTercoProporcional);
+            preparedStatement.setFloat(22, pMultaFGTSSalario);
+            preparedStatement.setDate(23, pDataReferencia);
+            preparedStatement.setString(24, pAutorizado);
+            preparedStatement.setString(25,pRestituido);
+            preparedStatement.setString(26, pObservacao);
+            preparedStatement.setString(27, pLoginAtualizacao);
 
             preparedStatement.executeUpdate();
 

@@ -20,6 +20,13 @@ public class RegistroHistRestituicaoRescisao {
     private float pIncidSubmod41Terco;
     private float pIncidMultaFgtsFerias;
     private float pIncidMultaFgtsTerco;
+    private float valorFeriasProporcional;
+    private float valorTercoProporcional;
+    private float valorIncidenciaFeriasProporcional;
+    private float valorIncidenciaTercoProporcional;
+    private float valorFGTSFeriasProporcional;
+    private float valorFGTSTercoProporcional;
+
     private float pMultaFgtsSalario;
     private Date pDataReferencia;
     private String pAutorizado;
@@ -43,6 +50,12 @@ public class RegistroHistRestituicaoRescisao {
                                            float pIncidSubmod41Terco,
                                            float pIncidMultaFgtsFerias,
                                            float pIncidMultaFgtsTerco,
+                                           float valorFeriasProporcional,
+                                           float valorTercoProporcional,
+                                           float valorIncidenciaFeriasProporcional,
+                                           float valorIncidenciaTercoProporcional,
+                                           float valorFGTSFeriasProporcional,
+                                           float valorFGTSTercoProporcional,
                                            float pMultaFgtsSalario,
                                            Date pDataReferencia,
                                            String pAutorizado,
@@ -66,6 +79,12 @@ public class RegistroHistRestituicaoRescisao {
         this.pIncidSubmod41Terco = pIncidSubmod41Terco;
         this.pIncidMultaFgtsFerias = pIncidMultaFgtsFerias;
         this.pIncidMultaFgtsTerco = pIncidMultaFgtsTerco;
+        this.valorFeriasProporcional = valorFeriasProporcional;
+        this.valorTercoProporcional = valorTercoProporcional;
+        this.valorIncidenciaFeriasProporcional = valorIncidenciaFeriasProporcional;
+        this.valorIncidenciaTercoProporcional = valorIncidenciaTercoProporcional;
+        this.valorFGTSFeriasProporcional = valorFGTSFeriasProporcional;
+        this.valorFGTSTercoProporcional = valorFGTSTercoProporcional;
         this.pMultaFgtsSalario = pMultaFgtsSalario;
         this.pDataReferencia = pDataReferencia;
         this.pAutorizado = pAutorizado;
@@ -140,5 +159,16 @@ public class RegistroHistRestituicaoRescisao {
         return pDataAtualizacao;
     }
 
+    public float getValorFeriasProporcional () { return valorFeriasProporcional; }
+
+    public float getValorTercoProporcional () { return valorTercoProporcional; }
+
+    public float getValorIncidenciaFeriasProporcional () { return valorIncidenciaFeriasProporcional; }
+
+    public float getValorIncidenciaTercoProporcional () { return valorIncidenciaTercoProporcional; }
+
+    public float getValorFGTSFeriasProporcional () { return valorFGTSFeriasProporcional; }
+
+    public float getValorFGTSTercoProporcional () { return valorFGTSTercoProporcional; }
 
 }

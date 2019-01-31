@@ -775,6 +775,10 @@ public class RestituicaoRescisao {
         float vIncidTerco = 0;
         float vFGTSFerias = 0;
         float vFGTSTerco = 0;
+        float vIncidFeriasProporcional = 0;
+        float vIncidTercoProporcional = 0;
+        float vFGTSFeriasProporcional = 0;
+        float vFGTSTercoProporcional = 0;
         float vFGTSRemuneracao = 0;
 
         /*Atribuição do cod do tipo de restituição.*/
@@ -796,6 +800,10 @@ public class RestituicaoRescisao {
             vFGTSFerias = pValorFGTSFerias;
             vFGTSTerco = pValorFGTSTerco;
             vFGTSRemuneracao = pValorFGTSSalario;
+            vIncidFeriasProporcional = pValorIncidenciaFeriasProporcional;
+            vIncidTercoProporcional = pValorIncidenciaTercoProporcional;
+            vFGTSFeriasProporcional = pValorFGTSFeriasProporcional;
+            vFGTSTercoProporcional = pValorFGTSTercoProporcional;
 
             pValorIncidenciaDecimoTerceiro = 0;
             pValorIncidenciaFerias = 0;
@@ -804,6 +812,10 @@ public class RestituicaoRescisao {
             pValorFGTSFerias = 0;
             pValorFGTSTerco = 0;
             pValorFGTSSalario = 0;
+            pValorIncidenciaFeriasProporcional = 0;
+            pValorIncidenciaTercoProporcional = 0;
+            pValorFGTSFeriasProporcional = 0;
+            pValorFGTSTercoProporcional = 0;
 
         }
 
@@ -844,6 +856,12 @@ public class RestituicaoRescisao {
                     vIncidTerco,
                     vFGTSFerias,
                     vFGTSTerco,
+                    0,
+                    0,
+                    vIncidFeriasProporcional,
+                    vIncidTercoProporcional,
+                    vFGTSFeriasProporcional,
+                    vFGTSTercoProporcional,
                     vFGTSRemuneracao,
                     pLoginAtualizacao);
 
@@ -867,6 +885,12 @@ public class RestituicaoRescisao {
                                               float pValorIncidenciaTerco,
                                               float pValorFGTSFerias,
                                               float pValorFGTSTerco,
+                                              float pValorFeriasProporcional,
+                                              float pValorTercoProporcional,
+                                              float pValorIncidenciaFeriasProporcional,
+                                              float pValorIncidenciaTercoProporcional,
+                                              float pValorFGTSFeriasProporcional,
+                                              float pValorFGTSTercoProporcional,
                                               float pValorFGTSSalario,
                                               String pLoginAtualizacao) {
 
@@ -888,25 +912,31 @@ public class RestituicaoRescisao {
         }
 
         vRetornoChavePrimaria = insert.InsertHistoricoRestituicaoRescisao(registro.getpCod(),
-                registro.getpCodTipoRestituicao(),
-                registro.getpCodTipoRescisao(),
-                registro.getpDataDesligamento(),
-                registro.getpDataInicioFerias(),
-                registro.getpValorDecimoTerceiro(),
-                registro.getpIncidSubmod41DecTerceiro(),
-                registro.getpIncidMultaFGTSDecTeceriro(),
-                registro.getpValorFerias(),
-                registro.getpValorTerco(),
-                registro.getpIncidSubmod41Ferias(),
-                registro.getpIncidSubmod41Terco(),
-                registro.getpIncidMultaFGTSFerias(),
-                registro.getpIncidMultaFGTSTerco(),
-                registro.getpMultaFGTSSalario(),
-                registro.getpDataReferencia(),
-                registro.getpAutorizado(),
-                registro.getpRestituido(),
-                registro.getpObservacao(),
-                registro.getpLoginAtualizacao());
+                                                                          registro.getpCodTipoRestituicao(),
+                                                                          registro.getpCodTipoRescisao(),
+                                                                          registro.getpDataDesligamento(),
+                                                                          registro.getpDataInicioFerias(),
+                                                                          registro.getpValorDecimoTerceiro(),
+                                                                          registro.getpIncidSubmod41DecTerceiro(),
+                                                                          registro.getpIncidMultaFGTSDecTeceriro(),
+                                                                          registro.getpValorFerias(),
+                                                                          registro.getpValorTerco(),
+                                                                          registro.getpIncidSubmod41Ferias(),
+                                                                          registro.getpIncidSubmod41Terco(),
+                                                                          registro.getpIncidMultaFGTSFerias(),
+                                                                          registro.getpIncidMultaFGTSTerco(),
+                                                                          registro.getValorFeriasProporcional(),
+                                                                          registro.getValorTercoProporcional(),
+                                                                          registro.getValorIncidenciaFeriasProporcional(),
+                                                                          registro.getValorIncidenciaTercoProporcional(),
+                                                                          registro.getValorFGTSFeriasProporcional(),
+                                                                          registro.getValorFGTSTercoProporcional(),
+                                                                          registro.getpMultaFGTSSalario(),
+                                                                          registro.getpDataReferencia(),
+                                                                          registro.getpAutorizado(),
+                                                                          registro.getpRestituido(),
+                                                                          registro.getpObservacao(),
+                                                                          registro.getpLoginAtualizacao());
 
         delete.DeleteSaldoResidualRescisao(pCodRestituicaoRescisao);
 
@@ -919,6 +949,10 @@ public class RestituicaoRescisao {
         float vFGTSFerias = 0;
         float vFGTSTerco = 0;
         float vFGTSRemuneracao = 0;
+        float vIncidFeriasProporcional = 0;
+        float vIncidTercoProporcional = 0;
+        float vFGTSFeriasProporcional = 0;
+        float vFGTSTercoProporcional = 0;
 
         /*Provisionamento da incidência para o saldo residual no caso de movimentação.*/
 
@@ -931,6 +965,10 @@ public class RestituicaoRescisao {
             vFGTSFerias = pValorFGTSFerias;
             vFGTSTerco = pValorFGTSTerco;
             vFGTSRemuneracao = pValorFGTSSalario;
+            vIncidFeriasProporcional = pValorIncidenciaFeriasProporcional;
+            vIncidTercoProporcional = pValorIncidenciaTercoProporcional;
+            vFGTSFeriasProporcional = pValorFGTSFeriasProporcional;
+            vFGTSTercoProporcional = pValorFGTSTercoProporcional;
 
             pValorIncidenciaDecimoTerceiro = 0;
             pValorIncidenciaFerias = 0;
@@ -938,7 +976,12 @@ public class RestituicaoRescisao {
             pValorFGTSDecimoTerceiro = 0;
             pValorFGTSFerias = 0;
             pValorFGTSTerco = 0;
+            pValorIncidenciaFeriasProporcional = 0;
+            pValorIncidenciaTercoProporcional = 0;
+            pValorFGTSFeriasProporcional = 0;
+            pValorFGTSTercoProporcional = 0;
             pValorFGTSSalario = 0;
+
 
         }
 
@@ -956,6 +999,12 @@ public class RestituicaoRescisao {
                 pValorIncidenciaTerco,
                 pValorFGTSFerias,
                 pValorFGTSTerco,
+                pValorFeriasProporcional,
+                pValorTercoProporcional,
+                pValorIncidenciaFeriasProporcional,
+                pValorIncidenciaTercoProporcional,
+                pValorFGTSFeriasProporcional,
+                pValorFGTSTercoProporcional,
                 pValorFGTSSalario,
                 "",
                 "",
@@ -974,6 +1023,12 @@ public class RestituicaoRescisao {
                     vIncidTerco,
                     vFGTSFerias,
                     vFGTSTerco,
+                    0,
+                    0,
+                    vIncidFeriasProporcional,
+                    vIncidTercoProporcional,
+                    vFGTSFeriasProporcional,
+                    vFGTSTercoProporcional,
                     vFGTSRemuneracao,
                     pLoginAtualizacao);
 

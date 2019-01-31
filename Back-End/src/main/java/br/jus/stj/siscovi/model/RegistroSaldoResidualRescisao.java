@@ -15,6 +15,13 @@ public class RegistroSaldoResidualRescisao {
     private float pIncidSubmod41Terco;
     private float pIncidMultaFgtsFerias;
     private float pIncidMultaFgtsTerco;
+    private final float valorFeriasProporcional;
+    private final float valorTercoProporcional;
+    private final float valorIncidenciaFeriasProporcional;
+    private final float valorIncidenciaTercoProporcional;
+    private final float valorFGTSFeriasProporcional;
+    private final float valorFGTSTercoProporcional;
+
     private float pMultaFgtsSalario;
     private String pAutorizado;
     private String pRestituido;
@@ -32,6 +39,12 @@ public class RegistroSaldoResidualRescisao {
                                           float pIncidSubmod41Terco,
                                           float pIncidMultaFgtsFerias,
                                           float pIncidMultaFgtsTerco,
+                                          float valorFeriasProporcional,
+                                          float valorTercoProporcional,
+                                          float valorIncidenciaFeriasProporcional,
+                                          float valorIncidenciaTercoProporcional,
+                                          float valorFGTSFeriasProporcional,
+                                          float valorFGTSTercoProporcional,
                                           float pMultaFgtsSalario,
                                           String pAutorizado,
                                           String pRestituido,
@@ -49,6 +62,12 @@ public class RegistroSaldoResidualRescisao {
         this.pIncidSubmod41Terco = pIncidSubmod41Terco;
         this.pIncidMultaFgtsFerias = pIncidMultaFgtsFerias;
         this.pIncidMultaFgtsTerco = pIncidMultaFgtsTerco;
+        this.valorFeriasProporcional = valorFeriasProporcional;
+        this.valorTercoProporcional = valorTercoProporcional;
+        this.valorIncidenciaFeriasProporcional = valorIncidenciaFeriasProporcional;
+        this.valorIncidenciaTercoProporcional = valorIncidenciaTercoProporcional;
+        this.valorFGTSFeriasProporcional = valorFGTSFeriasProporcional;
+        this.valorFGTSTercoProporcional = valorFGTSTercoProporcional;
         this.pMultaFgtsSalario = pMultaFgtsSalario;
         this.pAutorizado = pAutorizado;
         this.pRestituido = pRestituido;
@@ -88,5 +107,18 @@ public class RegistroSaldoResidualRescisao {
     public String getpLoginAtualizacao() { return pLoginAtualizacao; }
 
     public Timestamp getpDataAtualizacao() { return pDataAtualizacao; }
+
+    public float getValorFeriasProporcional () { return valorFeriasProporcional; }
+
+    public float getValorTercoProporcional () { return valorTercoProporcional; }
+
+    public float getValorIncidenciaFeriasProporcional () { return valorIncidenciaFeriasProporcional; }
+
+    public float getValorIncidenciaTercoProporcional () { return valorIncidenciaTercoProporcional; }
+
+    public float getValorFGTSFeriasProporcional () { return valorFGTSFeriasProporcional; }
+
+    public float getValorFGTSTercoProporcional () { return valorFGTSTercoProporcional; }
+
 
 }
