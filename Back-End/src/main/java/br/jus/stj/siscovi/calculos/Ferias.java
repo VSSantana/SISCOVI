@@ -110,7 +110,7 @@ public class Ferias {
 
         }
 
-        /**A cada 12 dias de trabalho o funcionário adquire 1 dias de férias,
+        /**A cada 12 dias de trabalho o funcionário adquire 1 dia de férias,
          considerando um período de 360 dias, óbviamente.*/
 
         vDiasAUsufruir = vContagemDeDias/12;

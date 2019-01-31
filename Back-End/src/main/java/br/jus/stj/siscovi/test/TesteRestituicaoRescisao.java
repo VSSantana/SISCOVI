@@ -25,9 +25,9 @@ public class TesteRestituicaoRescisao {
         DeleteTSQL delete = new DeleteTSQL(connectSQLServer.dbConnect());
 
         int vCodContrato = 1; //consulta.RetornaCodContratoAleatorio();
-        int vCodTerceirizadoContrato = 3; //consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
+        int vCodTerceirizadoContrato = 10; //consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         int vRetorno;
-        String vTipoRestituicao = String.valueOf("MOVIMENTAÇÃO");
+        String vTipoRestituicao = String.valueOf("RESGATE");
         String vTipoRescisao = String.valueOf("SEM JUSTA CAUSA");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         Date vDataDesligamento = Date.valueOf("2016-12-31");
@@ -66,7 +66,7 @@ public class TesteRestituicaoRescisao {
         System.out.println("MULTA FGTS de terço proporcional: " + restituicao.getValorFGTSTercoProporcional());
         System.out.println("Décimo terceiro: " + restituicao.getValorFGTSSalario());
 
-/*
+
         vRetorno = restituicaoRescisao.RegistrarRestituicaoRescisao(vCodTerceirizadoContrato,
                                                                     vTipoRestituicao,
                                                                     vTipoRescisao,
@@ -83,7 +83,7 @@ public class TesteRestituicaoRescisao {
                                                                     restituicao.getValorFGTSTerco(),
                                                                     restituicao.getValorFGTSSalario(),
                                                                     vLoginAtualizacao);
-*/
+
         //restituicaoRescisao.RecalculoRestituicaoRescisao(vRetorno, "RESGATE", vTipoRescisao, vDataDesligamento, vDataInicioFerias, 0, 0, 0, 0, 0,0 ,0,0,0, 0, "SYSTEM");
 
         //delete.DeleteHistRestituicaoRescisao(vRetorno);
