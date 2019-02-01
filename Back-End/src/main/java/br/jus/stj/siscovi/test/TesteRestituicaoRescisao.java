@@ -25,16 +25,17 @@ public class TesteRestituicaoRescisao {
         DeleteTSQL delete = new DeleteTSQL(connectSQLServer.dbConnect());
 
         int vCodContrato = 1; //consulta.RetornaCodContratoAleatorio();
-        int vCodTerceirizadoContrato = 10; //consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
+        int vCodTerceirizadoContrato = 8; //consulta.RetornaCodTerceirizadoAleatorio(vCodContrato);
         int vRetorno;
         String vTipoRestituicao = String.valueOf("RESGATE");
         String vTipoRescisao = String.valueOf("SEM JUSTA CAUSA");
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
-        Date vDataDesligamento = Date.valueOf("2016-12-31");
-        Date vDataInicioFeriasIntegrais = null;//Date.valueOf("2016-12-31");
-        Date vDataFimFeriasIntegrais = null;//Date.valueOf("2016-12-31");
-        Date vDataInicioFeriasProporcionais = Date.valueOf("2016-08-01");
-        Date vDataFimFeriasProporcionais = Date.valueOf("2016-12-31");
+        Date vDataInicioFerias = Date.valueOf("2017-12-31");
+        Date vDataDesligamento = Date.valueOf("2017-12-31");
+        Date vDataInicioFeriasIntegrais = Date.valueOf("2016-08-05");
+        Date vDataFimFeriasIntegrais = Date.valueOf("2017-08-04");
+        Date vDataInicioFeriasProporcionais = Date.valueOf("2017-08-05");
+        Date vDataFimFeriasProporcionais = Date.valueOf("2017-12-31");
 
 
         System.out.print("Dados do teste\nCOD_CONTRATO: " + vCodContrato + " COD_TERCEIRIZADO_CONTRATO: " +
@@ -81,6 +82,12 @@ public class TesteRestituicaoRescisao {
                                                                     restituicao.getValorIncidenciaTerco(),
                                                                     restituicao.getValorFGTSFerias(),
                                                                     restituicao.getValorFGTSTerco(),
+                                                                    restituicao.getValorFeriasProporcional(),
+                                                                    restituicao.getValorTercoProporcional(),
+                                                                    restituicao.getValorIncidenciaFeriasProporcional(),
+                                                                    restituicao.getValorIncidenciaTercoProporcional(),
+                                                                    restituicao.getValorFGTSFeriasProporcional(),
+                                                                    restituicao.getValorFGTSTercoProporcional(),
                                                                     restituicao.getValorFGTSSalario(),
                                                                     vLoginAtualizacao);
 

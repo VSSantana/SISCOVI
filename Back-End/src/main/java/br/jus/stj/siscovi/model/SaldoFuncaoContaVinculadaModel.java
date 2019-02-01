@@ -1,6 +1,6 @@
 package br.jus.stj.siscovi.model;
 
-public class SaldoTotalContaVinculadaModel {
+public class SaldoFuncaoContaVinculadaModel {
 
     private String funcao;
     //private String gestor;
@@ -24,26 +24,26 @@ public class SaldoTotalContaVinculadaModel {
     private float valorTotalRestituido;
     private float valorSaldo;
 
-    public SaldoTotalContaVinculadaModel(String funcao,
-                                         //String gestor,
-                                         //String empresa,
-                                         //String numeroContrato,
-                                         float valorFeriasRetido,
-                                         float valorTercoRetido,
-                                         float valorDecimoTerceiroRetido,
-                                         float valorIncidenciaRetido,
-                                         float valorMultaFGTSRetido,
-                                         float valorTotalRetido,
-                                         float valorFeriasRestituido,
-                                         float valorTercoRestituido,
-                                         float valorDecimoTerceiroRestituido,
-                                         float valorTotalRestituido,
-                                         float valorIncidenciaFeriasRestituido,
-                                         float valorIncidenciaTercoRestituido,
-                                         float valorTotalFeriasRestituido,
-                                         float valorIncidenciaDecimoTerceiroRestituido,
-                                         float valorTotalDecimoTerceiroRestituido,
-                                         float valorSaldo) {
+    public SaldoFuncaoContaVinculadaModel(String funcao,
+                                          //String gestor,
+                                          //String empresa,
+                                          //String numeroContrato,
+                                          float valorFeriasRetido,
+                                          float valorTercoRetido,
+                                          float valorDecimoTerceiroRetido,
+                                          float valorIncidenciaRetido,
+                                          float valorMultaFGTSRetido,
+                                          float valorTotalRetido,
+                                          float valorFeriasRestituido,
+                                          float valorTercoRestituido,
+                                          float valorDecimoTerceiroRestituido,
+                                          float valorTotalRestituido,
+                                          float valorIncidenciaFeriasRestituido,
+                                          float valorIncidenciaTercoRestituido,
+                                          float valorTotalFeriasRestituido,
+                                          float valorIncidenciaDecimoTerceiroRestituido,
+                                          float valorTotalDecimoTerceiroRestituido,
+                                          float valorSaldo) {
 
         this.funcao = funcao;
         //this.gestor = gestor;
