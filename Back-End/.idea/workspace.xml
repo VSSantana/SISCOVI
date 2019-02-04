@@ -7,21 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="773a5017-292b-4e2c-9b46-88d52d72358f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/storage_v2/_src_/database/SISCOVI.XELopw/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/storage_v2/_src_/database/SISCOVI.XELopw/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/storage_v2/_src_/database/siscovi.fLYcfQ/schema/dbo.sYMBAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/942fb181-dcfa-407f-a3c4-3bc5cf00a7a6/storage_v2/_src_/database/siscovi.fLYcfQ/schema/dbo.sYMBAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/DecimoTerceiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/controllers/DecimoTerceiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/DecimoTerceiroDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/InsertTSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/InsertTSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/UpdateTSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/UpdateTSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroHistRestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroHistRestituicaoRescisao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/model/RegistroRestituicaoRescisao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TestDecimoTerceiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoDecimoTerceiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="./target  /" />
     <ignored path="./idea/" />
@@ -54,48 +40,11 @@
     <expand />
     <select />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/ConsultaTSQL.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="981">
-                    <caret line="1195" lean-forward="true" selection-start-line="1195" selection-end-line="1195" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/InsertTSQL.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1336">
-                    <caret line="335" column="95" lean-forward="true" selection-start-line="331" selection-start-column="61" selection-end-line="335" selection-end-column="95" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/UpdateTSQL.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="248">
-                    <caret line="194" column="5" lean-forward="true" selection-start-line="194" selection-start-column="5" selection-end-line="198" selection-end-column="40" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="909848314">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="43" />
+          <entry key="project.closed" value="44" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.11" value="1" />
@@ -192,20 +141,7 @@
     <favorites_list name="Back-End" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -449,7 +385,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549303038853" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549303524475" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -818,12 +754,12 @@
       <workItem from="1548933234801" duration="8244000" />
       <workItem from="1548946932852" duration="6681000" />
       <workItem from="1549017356871" duration="11384000" />
-      <workItem from="1549293947658" duration="7907000" />
+      <workItem from="1549293947658" duration="8235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="634199000" />
+    <option name="totallyTimeSpent" value="634527000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -836,9 +772,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.2835821" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.494705" visible="true" weight="0.2835821" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -1187,13 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/UpdateTSQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="194" column="5" lean-forward="true" selection-start-line="194" selection-start-column="5" selection-end-line="198" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/calculos/RestituicaoRescisao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4850">
@@ -1274,11 +1202,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/test/TesteRestituicaoRescisao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
+        <state relative-caret-position="1333">
           <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/jus/stj/siscovi/dao/sql/UpdateTSQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="194" column="5" lean-forward="true" selection-start-line="194" selection-start-column="5" selection-end-line="198" selection-end-column="40" />
         </state>
       </provider>
     </entry>
