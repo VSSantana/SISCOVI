@@ -1,5 +1,7 @@
-package br.jus.stj.siscovi.calculos;
+package br.jus.stj.siscovi.test;
 
+import br.jus.stj.siscovi.calculos.DecimoTerceiro;
+import br.jus.stj.siscovi.calculos.RestituicaoDecimoTerceiro;
 import br.jus.stj.siscovi.dao.ConnectSQLServer;
 import br.jus.stj.siscovi.dao.sql.ConsultaTSQL;
 import br.jus.stj.siscovi.dao.sql.DeleteTSQL;
@@ -27,7 +29,7 @@ public class TesteRestituicaoDecimoTerceiro {
         String vLoginAtualizacao = String.valueOf("VSSOUSA");
         float vValorMovimentado = 1500;
         int vNumeroParcela = 0;
-        Date vDataInicioContagem = decimoTerceiro.RetornaDataInicioContagem(vCodTerceirizadoContrato);
+        Date vDataInicioContagem = decimoTerceiro.RetornaDataInicioContagem(vCodTerceirizadoContrato, 2016);
         String vDataFim = String.valueOf(vDataInicioContagem.toLocalDate().getYear()) + "-12-31";
 
         System.out.print(vDataFim);

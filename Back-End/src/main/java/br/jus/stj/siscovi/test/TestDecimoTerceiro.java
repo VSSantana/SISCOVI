@@ -17,6 +17,7 @@ public class TestDecimoTerceiro {
 
         int vCodTerceirizadoContrato = 0;
         int vCodContrato = 0;
+        int vAno = 2017;
         Date vDataInicioContagem = null;
 
         //Carregamento do código do contrato.
@@ -64,7 +65,7 @@ public class TestDecimoTerceiro {
 
         }
 
-        vDataInicioContagem = decimoTerceiro.RetornaDataInicioContagem(vCodTerceirizadoContrato);
+        vDataInicioContagem = decimoTerceiro.RetornaDataInicioContagem(vCodTerceirizadoContrato, vAno);
 
         System.out.print("Teste da função RetornaDataInicioContagem\n");
         System.out.print("Código do contrato: " + String.valueOf(vCodContrato) + " | Código do terceirizado no contrato: " + String.valueOf(vCodTerceirizadoContrato) + "\n");

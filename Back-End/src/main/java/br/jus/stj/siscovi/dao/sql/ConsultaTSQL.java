@@ -1204,6 +1204,10 @@ public class ConsultaTSQL {
                                " COD_TIPO_RESCISAO," +
                                " DATA_DESLIGAMENTO," +
                                " DATA_INICIO_FERIAS," +
+                               " DATA_FIM_FERIAS," +
+                               " DATA_INICIO_FERIAS_PROP," +
+                               " DATA_FIM_FERIAS_PROP," +
+                               " DATA_INICIO_CONTAGEM_DEC_TER," +
                                " VALOR_DECIMO_TERCEIRO," +
                                " INCID_SUBMOD_4_1_DEC_TERCEIRO," +
                                " INCID_MULTA_FGTS_DEC_TERCEIRO," +
@@ -1216,7 +1220,7 @@ public class ConsultaTSQL {
                                " VALOR_FERIAS_PROP," +
                                " VALOR_TERCO_PROP," +
                                " INCID_SUBMOD_4_1_FERIAS_PROP," +
-                               " INCID_SUBMOD_4_1_DEC_TERCEIRO_PROP," +
+                               " INCID_SUBMOD_4_1_TERCO_PROP," +
                                " INCID_MULTA_FGTS_FERIAS_PROP," +
                                " INCID_MULTA_FGTS_TERCO_PROP," +
                                " MULTA_FGTS_SALARIO," +
@@ -1242,10 +1246,10 @@ public class ConsultaTSQL {
                                                            resultSet.getInt(4),
                                                            resultSet.getDate(5),
                                                            resultSet.getDate(6),
-                                                           resultSet.getFloat(7),
-                                                           resultSet.getFloat(8),
-                                                           resultSet.getFloat(9),
-                                                           resultSet.getFloat(10),
+                                                           resultSet.getDate(7),
+                                                           resultSet.getDate(8),
+                                                           resultSet.getDate(9),
+                                                           resultSet.getDate(10),
                                                            resultSet.getFloat(11),
                                                            resultSet.getFloat(12),
                                                            resultSet.getFloat(13),
@@ -1258,12 +1262,16 @@ public class ConsultaTSQL {
                                                            resultSet.getFloat(20),
                                                            resultSet.getFloat(21),
                                                            resultSet.getFloat(22),
-                                                           resultSet.getDate(23),
-                                                           resultSet.getString(24),
-                                                           resultSet.getString(25),
-                                                           resultSet.getString(26),
-                                                           resultSet.getString(27),
-                                                           resultSet.getTimestamp(28));
+                                                           resultSet.getFloat(23),
+                                                           resultSet.getFloat(24),
+                                                           resultSet.getFloat(25),
+                                                           resultSet.getFloat(26),
+                                                           resultSet.getDate(27),
+                                                           resultSet.getString(28),
+                                                           resultSet.getString(29),
+                                                           resultSet.getString(30),
+                                                           resultSet.getString(31),
+                                                           resultSet.getTimestamp(32));
 
             }
 
@@ -1891,6 +1899,10 @@ public class ConsultaTSQL {
                                 "COD_TIPO_RESCISAO, " +
                                 "DATA_DESLIGAMENTO, " +
                                 "DATA_INICIO_FERIAS, " +
+                                "DATA_FIM_FERIAS, " +
+                                "DATA_INICIO_FERIAS_PROP, " +
+                                "DATA_FIM_FERIAS_PROP, " +
+                                "DATA_INICIO_CONTAGEM_DEC_TER, " +
                                 "VALOR_DECIMO_TERCEIRO, " +
                                 "INCID_SUBMOD_4_1_DEC_TERCEIRO, " +
                                 "INCID_MULTA_FGTS_DEC_TERCEIRO, " +
@@ -1929,10 +1941,10 @@ public class ConsultaTSQL {
                                                                resultSet.getInt(3),
                                                                resultSet.getDate(4),
                                                                resultSet.getDate(5),
-                                                               resultSet.getFloat(6),
-                                                               resultSet.getFloat(7),
-                                                               resultSet.getFloat(8),
-                                                               resultSet.getFloat(9),
+                                                               resultSet.getDate(6),
+                                                               resultSet.getDate(7),
+                                                               resultSet.getDate(8),
+                                                               resultSet.getDate(9),
                                                                resultSet.getFloat(10),
                                                                resultSet.getFloat(11),
                                                                resultSet.getFloat(12),
@@ -1945,12 +1957,16 @@ public class ConsultaTSQL {
                                                                resultSet.getFloat(19),
                                                                resultSet.getFloat(20),
                                                                resultSet.getFloat(21),
-                                                               resultSet.getDate(22),
-                                                               resultSet.getString(23),
-                                                               resultSet.getString(24),
-                                                               resultSet.getString(25),
-                                                               resultSet.getString(26),
-                                                               resultSet.getTimestamp(27));
+                                                               resultSet.getFloat(22),
+                                                               resultSet.getFloat(23),
+                                                               resultSet.getFloat(24),
+                                                               resultSet.getFloat(25),
+                                                               resultSet.getDate(26),
+                                                               resultSet.getString(27),
+                                                               resultSet.getString(28),
+                                                               resultSet.getString(29),
+                                                               resultSet.getString(30),
+                                                               resultSet.getTimestamp(31));
 
             }
 

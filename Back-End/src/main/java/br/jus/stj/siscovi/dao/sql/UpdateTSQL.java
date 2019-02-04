@@ -192,7 +192,11 @@ public class UpdateTSQL {
      * @param pCodTipoRestituicao;
      * @param pCodTipoRescisao;
      * @param pDataDesligamento;
-     * @param pDataInicioFerias;
+     * @param pDataInicioFeriasIntegrais;
+     * @param pDataFimFeriasIntegrais;
+     * @param pDataInicioFeriasProporcionais;
+     * @param pDataFimFeriasProporcionais;
+     * @param pDataInicioContagemDecTer;
      * @param pValorDecimoTerceiro;
      * @param pValorIncidenciaDecimoTerceiro;
      * @param pValorFGTSDecimoTerceiro;
@@ -213,7 +217,11 @@ public class UpdateTSQL {
                                            int pCodTipoRestituicao,
                                            int pCodTipoRescisao,
                                            Date pDataDesligamento,
-                                           Date pDataInicioFerias,
+                                           Date pDataInicioFeriasIntegrais,
+                                           Date pDataFimFeriasIntegrais,
+                                           Date pDataInicioFeriasProporcionais,
+                                           Date pDataFimFeriasProporcionais,
+                                           Date pDataInicioContagemDecTer,
                                            float pValorDecimoTerceiro,
                                            float pValorIncidenciaDecimoTerceiro,
                                            float pValorFGTSDecimoTerceiro,
@@ -242,6 +250,10 @@ public class UpdateTSQL {
                 " COD_TIPO_RESCISAO = ?," +
                 " DATA_DESLIGAMENTO = ?," +
                 " DATA_INICIO_FERIAS = ?," +
+                " DATA_FIM_FERIAS = ?," +
+                " DATA_INICIO_FERIAS_PROP = ?," +
+                " DATA_FIM_FERIAS_PROP = ?," +
+                " DATA_INICIO_CONTAGEM_DEC_TER = ?," +
                 " VALOR_DECIMO_TERCEIRO = ?," +
                 " INCID_SUBMOD_4_1_DEC_TERCEIRO = ?," +
                 " INCID_MULTA_FGTS_DEC_TERCEIRO = ?," +
@@ -272,28 +284,32 @@ public class UpdateTSQL {
             preparedStatement.setInt(1, pCodTipoRestituicao);
             preparedStatement.setInt(2, pCodTipoRescisao);
             preparedStatement.setDate(3, pDataDesligamento);
-            preparedStatement.setDate(4, pDataInicioFerias);
-            preparedStatement.setFloat(5, pValorDecimoTerceiro);
-            preparedStatement.setFloat(6, pValorIncidenciaDecimoTerceiro);
-            preparedStatement.setFloat(7, pValorFGTSDecimoTerceiro);
-            preparedStatement.setFloat(8, pValorFerias);
-            preparedStatement.setFloat(9, pValorTerco);
-            preparedStatement.setFloat(10, pValorIncidenciaFerias);
-            preparedStatement.setFloat(11, pValorIncidenciaTerco);
-            preparedStatement.setFloat(12, pValorFGTSFerias);
-            preparedStatement.setFloat(13, pValorFGTSTerco);
-            preparedStatement.setFloat(14, pValorFeriasProporcional);
-            preparedStatement.setFloat(15, pValorTercoProporcional);
-            preparedStatement.setFloat(16, pValorIncidenciaFeriasProporcional);
-            preparedStatement.setFloat(17, pValorIncidenciaTercoProporcional);
-            preparedStatement.setFloat(18, pValorFGTSFeriasProporcional);
-            preparedStatement.setFloat(19, pValorFGTSTercoProporcional);
-            preparedStatement.setFloat(20, pValorFGTSSalario);
-            preparedStatement.setString(21,String.valueOf(pAutorizado));
-            preparedStatement.setString(22, String.valueOf(pRestituido));
-            preparedStatement.setString(23, pObservacao);
-            preparedStatement.setString(24, pLoginAtualizacao);
-            preparedStatement.setInt(25, pCodRestituicaoRescisao);
+            preparedStatement.setDate(4, pDataInicioFeriasIntegrais);
+            preparedStatement.setDate(5, pDataFimFeriasIntegrais);
+            preparedStatement.setDate(6, pDataInicioFeriasProporcionais);
+            preparedStatement.setDate(7, pDataFimFeriasProporcionais);
+            preparedStatement.setDate(8, pDataInicioContagemDecTer);
+            preparedStatement.setFloat(9, pValorDecimoTerceiro);
+            preparedStatement.setFloat(10, pValorIncidenciaDecimoTerceiro);
+            preparedStatement.setFloat(11, pValorFGTSDecimoTerceiro);
+            preparedStatement.setFloat(12, pValorFerias);
+            preparedStatement.setFloat(13, pValorTerco);
+            preparedStatement.setFloat(14, pValorIncidenciaFerias);
+            preparedStatement.setFloat(15, pValorIncidenciaTerco);
+            preparedStatement.setFloat(16, pValorFGTSFerias);
+            preparedStatement.setFloat(17, pValorFGTSTerco);
+            preparedStatement.setFloat(18, pValorFeriasProporcional);
+            preparedStatement.setFloat(19, pValorTercoProporcional);
+            preparedStatement.setFloat(20, pValorIncidenciaFeriasProporcional);
+            preparedStatement.setFloat(21, pValorIncidenciaTercoProporcional);
+            preparedStatement.setFloat(22, pValorFGTSFeriasProporcional);
+            preparedStatement.setFloat(23, pValorFGTSTercoProporcional);
+            preparedStatement.setFloat(24, pValorFGTSSalario);
+            preparedStatement.setString(25,String.valueOf(pAutorizado));
+            preparedStatement.setString(26, String.valueOf(pRestituido));
+            preparedStatement.setString(27, pObservacao);
+            preparedStatement.setString(28, pLoginAtualizacao);
+            preparedStatement.setInt(29, pCodRestituicaoRescisao);
 
             preparedStatement.executeUpdate();
 
@@ -1461,7 +1477,11 @@ public class UpdateTSQL {
                                                        int pCodTipoRestituicao,
                                                        int pCodTipoRescisao,
                                                        Date pDataDesligamento,
-                                                       Date pDataInicioFerias,
+                                                       Date pDataInicioFeriasIntegrais,
+                                                       Date pDataFimFeriasIntegrais,
+                                                       Date pDataInicioFeriasProporcionais,
+                                                       Date pDataFimFeriasProporcionais,
+                                                       Date pDataInicioContagemDecTer,
                                                        float pValorDecimoTerceiro,
                                                        float pIncidSubmod41DecTerceiro,
                                                        float pIncidMultaFGTSDecTeceriro,
@@ -1496,6 +1516,10 @@ public class UpdateTSQL {
                                 " COD_TIPO_RESCISAO = ?," +
                                 " DATA_DESLIGAMENTO = ?," +
                                 " DATA_INICIO_FERIAS = ?," +
+                                " DATA_FIM_FERIAS = ?," +
+                                " DATA_INICIO_FERIAS_PROP = ?," +
+                                " DATA_FIM_FERIAS_PROP = ?," +
+                                " DATA_INICIO_CONTAGEM_DEC_TER = ?," +
                                 " VALOR_DECIMO_TERCEIRO = ?," +
                                 " INCID_SUBMOD_4_1_DEC_TERCEIRO = ?," +
                                 " INCID_MULTA_FGTS_DEC_TERCEIRO = ?," +
@@ -1526,29 +1550,33 @@ public class UpdateTSQL {
             preparedStatement.setInt(2, pCodTipoRestituicao);
             preparedStatement.setInt(3, pCodTipoRescisao);
             preparedStatement.setDate(4, pDataDesligamento);
-            preparedStatement.setDate(5, pDataInicioFerias);
-            preparedStatement.setFloat(6, pValorDecimoTerceiro);
-            preparedStatement.setFloat(7, pIncidSubmod41DecTerceiro);
-            preparedStatement.setFloat(8, pIncidMultaFGTSDecTeceriro);
-            preparedStatement.setFloat(9, pValorFerias);
-            preparedStatement.setFloat(10, pValorTerco);
-            preparedStatement.setFloat(11, pIncidSubmod41Ferias);
-            preparedStatement.setFloat(12, pIncidSubmod41Terco);
-            preparedStatement.setFloat(13, pIncidMultaFGTSFerias);
-            preparedStatement.setFloat(14, pIncidMultaFGTSTerco);
-            preparedStatement.setFloat(15, pValorFeriasProporcional);
-            preparedStatement.setFloat(16, pValorTercoProporcional);
-            preparedStatement.setFloat(17, pIncidSubmod41FeriasProporcional);
-            preparedStatement.setFloat(18, pIncidSubmod41TercoProporcional);
-            preparedStatement.setFloat(19, pIncidMultaFGTSFeriasProporcional);
-            preparedStatement.setFloat(20, pIncidMultaFGTSTercoProporcional);
-            preparedStatement.setFloat(21, pMultaFGTSSalario);
-            preparedStatement.setDate(22, pDataReferencia);
-            preparedStatement.setString(23, pAutorizado);
-            preparedStatement.setString(24,pRestituido);
-            preparedStatement.setString(25, pObservacao);
-            preparedStatement.setString(26, pLoginAtualizacao);
-            preparedStatement.setInt(27, pCodHistoricoRestituicaoRescisao);
+            preparedStatement.setDate(5, pDataInicioFeriasIntegrais);
+            preparedStatement.setDate(6, pDataFimFeriasIntegrais);
+            preparedStatement.setDate(7, pDataInicioFeriasProporcionais);
+            preparedStatement.setDate(8, pDataFimFeriasProporcionais);
+            preparedStatement.setDate(9, pDataInicioContagemDecTer);
+            preparedStatement.setFloat(10, pValorDecimoTerceiro);
+            preparedStatement.setFloat(11, pIncidSubmod41DecTerceiro);
+            preparedStatement.setFloat(12, pIncidMultaFGTSDecTeceriro);
+            preparedStatement.setFloat(13, pValorFerias);
+            preparedStatement.setFloat(14, pValorTerco);
+            preparedStatement.setFloat(15, pIncidSubmod41Ferias);
+            preparedStatement.setFloat(16, pIncidSubmod41Terco);
+            preparedStatement.setFloat(17, pIncidMultaFGTSFerias);
+            preparedStatement.setFloat(18, pIncidMultaFGTSTerco);
+            preparedStatement.setFloat(19, pValorFeriasProporcional);
+            preparedStatement.setFloat(20, pValorTercoProporcional);
+            preparedStatement.setFloat(21, pIncidSubmod41FeriasProporcional);
+            preparedStatement.setFloat(22, pIncidSubmod41TercoProporcional);
+            preparedStatement.setFloat(23, pIncidMultaFGTSFeriasProporcional);
+            preparedStatement.setFloat(24, pIncidMultaFGTSTercoProporcional);
+            preparedStatement.setFloat(25, pMultaFGTSSalario);
+            preparedStatement.setDate(26, pDataReferencia);
+            preparedStatement.setString(27, pAutorizado);
+            preparedStatement.setString(28,pRestituido);
+            preparedStatement.setString(29, pObservacao);
+            preparedStatement.setString(30, pLoginAtualizacao);
+            preparedStatement.setInt(31, pCodHistoricoRestituicaoRescisao);
 
             preparedStatement.executeUpdate();
 

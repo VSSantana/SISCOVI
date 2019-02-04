@@ -43,6 +43,7 @@ public class RestituicaoRescisao {
                                                                      Date pDataFimFeriasProporcionais) {
 
         ConsultaTSQL consulta = new ConsultaTSQL(connection);
+        DecimoTerceiro decimoTerceiro = new DecimoTerceiro(connection);
 
         /*Variáveis totalizadoras de valores.*/
 
@@ -78,18 +79,7 @@ public class RestituicaoRescisao {
 
         vDataDisponibilizacao = consulta.RetornaDataDisponibilizacaoTerceirizado(pCodTerceirizadoContrato);
 
-        /*Determina se a data de inicio da contagem do 13 é a data de disponibilização ou o primeiro dia do ano de desligamento.*/
-        if (vDataDisponibilizacao.toLocalDate().getYear() == pDataDesligamento.toLocalDate().getYear()) {
-
-            vDataInicioContagemDecTer = vDataDisponibilizacao;
-
-        }
-
-        else {
-
-            vDataInicioContagemDecTer = Date.valueOf(pDataDesligamento.toLocalDate().getYear() + "-01-01");
-
-        }
+        vDataInicioContagemDecTer = decimoTerceiro.RetornaDataInicioContagem(pCodTerceirizadoContrato, pDataDesligamento.toLocalDate().getYear());
 
         vTotalDecimoTerceiro = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 3, vDataInicioContagemDecTer, pDataDesligamento);
         vTotalIncidenciaDecimoTerceiro = CalcularValorRubricaRescisao(pCodTerceirizadoContrato, 6, vDataInicioContagemDecTer, pDataDesligamento);
@@ -715,6 +705,11 @@ public class RestituicaoRescisao {
      * @param pTipoRestituicao;
      * @param pTipoRescisao;
      * @param pDataDesligamento;
+     * @param pDataInicioFeriasIntegrais;
+     * @param pDataFimFeriasIntegrais;
+     * @param pDataInicioFeriasProporcionais;
+     * @param pDataFimFeriasProporcionais;
+     * @param pDataInicioContagemDecTer;
      * @param pValorDecimoTerceiro;
      * @param pValorIncidenciaDecimoTerceiro;
      * @param pValorFGTSDecimoTerceiro;
@@ -739,7 +734,11 @@ public class RestituicaoRescisao {
                                                  String pTipoRestituicao,
                                                  String pTipoRescisao,
                                                  Date pDataDesligamento,
-                                                 Date pDataInicioFerias,
+                                                 Date pDataInicioFeriasIntegrais,
+                                                 Date pDataFimFeriasIntegrais,
+                                                 Date pDataInicioFeriasProporcionais,
+                                                 Date pDataFimFeriasProporcionais,
+                                                 Date pDataInicioContagemDecTer,
                                                  float pValorDecimoTerceiro,
                                                  float pValorIncidenciaDecimoTerceiro,
                                                  float pValorFGTSDecimoTerceiro,
@@ -825,7 +824,11 @@ public class RestituicaoRescisao {
                                                                      vCodTipoRestituicao,
                                                                      vCodTipoRescisao,
                                                                      pDataDesligamento,
-                                                                     pDataInicioFerias,
+                                                                     pDataInicioFeriasIntegrais,
+                                                                     pDataFimFeriasIntegrais,
+                                                                     pDataInicioFeriasProporcionais,
+                                                                     pDataFimFeriasProporcionais,
+                                                                     pDataInicioContagemDecTer,
                                                                      pValorDecimoTerceiro,
                                                                      pValorIncidenciaDecimoTerceiro,
                                                                      pValorFGTSDecimoTerceiro,
@@ -875,7 +878,11 @@ public class RestituicaoRescisao {
                                               String pTipoRestituicao,
                                               String pTipoRescisao,
                                               Date pDataDesligamento,
-                                              Date pDataInicioFerias,
+                                              Date pDataInicioFeriasIntegrais,
+                                              Date pDataFimFeriasIntegrais,
+                                              Date pDataInicioFeriasProporcionais,
+                                              Date pDataFimFeriasProporcionais,
+                                              Date pDataInicioContagemDecTer,
                                               float pValorDecimoTerceiro,
                                               float pValorIncidenciaDecimoTerceiro,
                                               float pValorFGTSDecimoTerceiro,
@@ -915,7 +922,11 @@ public class RestituicaoRescisao {
                                                                           registro.getpCodTipoRestituicao(),
                                                                           registro.getpCodTipoRescisao(),
                                                                           registro.getpDataDesligamento(),
-                                                                          registro.getpDataInicioFerias(),
+                                                                          registro.getpDataInicioFeriasIntegrais(),
+                                                                          registro.getpDataFimFeriasIntegrais(),
+                                                                          registro.getpDataInicioFeriasProporcionais(),
+                                                                          registro.getpDataFimFeriasProporcionais(),
+                                                                          registro.getpDataInicioContagemDecTer(),
                                                                           registro.getpValorDecimoTerceiro(),
                                                                           registro.getpIncidSubmod41DecTerceiro(),
                                                                           registro.getpIncidMultaFGTSDecTeceriro(),
@@ -989,7 +1000,11 @@ public class RestituicaoRescisao {
                 vCodTipoRestituicao,
                 vCodTipoRescisao,
                 pDataDesligamento,
-                pDataInicioFerias,
+                pDataInicioFeriasIntegrais,
+                pDataFimFeriasIntegrais,
+                pDataInicioFeriasProporcionais,
+                pDataFimFeriasProporcionais,
+                pDataInicioContagemDecTer,
                 pValorDecimoTerceiro,
                 pValorIncidenciaDecimoTerceiro,
                 pValorFGTSDecimoTerceiro,
