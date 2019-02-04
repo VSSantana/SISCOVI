@@ -887,6 +887,23 @@ ON DELETE NO ACTION
     
     go
 
+    CREATE TABLE tb_lista_percentuais (
+    cod                 INTEGER NOT NULL,
+    percentual          FLOAT(3) NOT NULL,
+    login_atualizacao   VARCHAR(150) NOT NULL,
+    data_atualizacao    datetime NOT NULL
+)
+
+go
+
+ALTER TABLE TB_LISTA_PERCENTUAIS ADD constraint tb_lista_percentuais_pk PRIMARY KEY CLUSTERED (COD)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON ) 
+     
+     go
+
+
 ALTER TABLE TB_TRIENIO_TERC_CONTRATO
     ADD CONSTRAINT tb_trienio_terc_contrato_fk1 FOREIGN KEY ( cod_terceirizado_contrato )
         REFERENCES tb_terceirizado_contrato ( cod )
